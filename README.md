@@ -9,7 +9,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Pablo Choconi** - [pablogch](https://github.com/pablogch)
 * **Mariano Barrionuevo** - [godlegend9](https://github.com/godlegend9)
 * **Luciano Noel Wilberger Schwaab** - [LucianoWil](https://github.com/LucianoWil)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Zoilo Pazos** - [zzoip](https://github.com/zzoip)
 
 Corrector: **{Corrector}**
 
