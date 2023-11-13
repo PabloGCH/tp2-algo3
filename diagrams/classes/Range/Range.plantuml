@@ -1,0 +1,15 @@
+@startuml
+!include Senior.plantuml
+!include Rookie.plantuml
+!include SemiSenior.plantuml
+class Range {
+    +energyFromExperience(unaCantidad: Energy): Energy
+    +ascent()
+}
+Range <... Senior
+Range <... SemiSenior
+Range <... Rookie
+Rookie -> SemiSenior
+SemiSenior -> Senior
+
+@enduml
