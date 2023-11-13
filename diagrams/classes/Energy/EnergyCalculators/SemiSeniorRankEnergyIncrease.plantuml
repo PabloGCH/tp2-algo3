@@ -1,0 +1,7 @@
+@startuml
+!include ../EnergyCalculator.plantuml
+EnergyCalculator <|.. SemiSeniorRankEnergyIncrease
+class SemiSeniorRankEnergyIncrease {
+    calculate(energy :Energy) :Energy
+}
+@enduml

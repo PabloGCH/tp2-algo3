@@ -1,0 +1,5 @@
+@startuml
+interface EnergyCalculator {
+    calculate(energy :Energy) :Energy   
+}
+@enduml

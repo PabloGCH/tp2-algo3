@@ -1,6 +1,6 @@
 @startuml
-!include Points.plantuml
 !include EnergyCalculator.plantuml
+!include ../Points/Points.plantuml
 
 class Energy {
     -energyPoints :Points

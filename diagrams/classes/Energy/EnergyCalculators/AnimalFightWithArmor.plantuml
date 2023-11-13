@@ -1,0 +1,7 @@
+@startuml
+!include ../EnergyCalculator.plantuml
+EnergyCalculator <|.. AnimalFightWithHelmet
+class AnimalFightWithHelmet {
+    calculate(energy :Energy) :Energy   
+}
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+!include ../EnergyCalculator.plantuml
+EnergyCalculator <|.. FoodConsumptionEnergyIncrease
+class FoodConsumptionEnergyIncrease {
+    calculate(energy :Energy) :Energy
+}
+@enduml
