@@ -1,5 +1,5 @@
 @startuml
-!include ../EnergyCalculator.plantuml
+!include EnergyCalculator.plantuml
 EnergyCalculator <|.. AnimalFightWithHelmet
 class AnimalFightWithHelmet {
     calculate(energy :Energy) :Energy   

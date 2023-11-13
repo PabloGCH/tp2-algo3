@@ -1,5 +1,5 @@
 @startuml
-!include EnergyCalculator.plantuml
+!include EnergyCalculators/EnergyCalculator.plantuml
 !include ../Points/Points.plantuml
 
 class Energy {

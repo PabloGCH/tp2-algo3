@@ -1,5 +1,5 @@
 @startuml
-!include ../EnergyCalculator.plantuml
+!include EnergyCalculator.plantuml
 EnergyCalculator <|.. SeniorRankEnergyIncrease
 class SeniorRankEnergyIncrease {
     calculate(energy :Energy) :Energy
