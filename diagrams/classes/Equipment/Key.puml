@@ -1,0 +1,6 @@
+@startuml
+class Key {
+    +upgrade(): Key
+    +energyConsumptionByFight(Energy: Energy): Energy
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+Interface Equipment {
+    +upgrade(): Armor
+    +energyConsumptionByFight(Energy: Energy): Energy
+}
+@enduml
