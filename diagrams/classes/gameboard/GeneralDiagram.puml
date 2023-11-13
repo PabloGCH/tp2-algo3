@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include SquareInterface.puml
+!include Initial.puml
+!include Middle.puml
+!include FinishLine.puml
+!include Effect.puml
+!include Obstacle.puml
+!include Prize.puml
+
+
+package Model {
+    class Gladiator {
+
+    }
+}
+
+Prize ..|> Effect
+Obstacle ..|> Effect
+Effect <-- Square
+Gladiator <- Square
+Square <|-- Initial
+Square <|-- Middle
+Square <|-- FinishLine
+@enduml
