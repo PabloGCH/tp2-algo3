@@ -1,0 +1,10 @@
+@startuml
+package Model {
+    abstract class Square {
+        - gladiator: Gladiator
+        - effect: Effect
+        + applyEffect(): void
+    }
+}
+
+@enduml
