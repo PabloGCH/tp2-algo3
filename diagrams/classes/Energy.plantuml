@@ -1,0 +1,12 @@
+@startuml
+!include Points.plantuml
+!include EnergyCalculator.plantuml
+
+class Energy {
+    -energyPoints :Points
+    +calculate(calculator :EnergyCalculator) :Energy
+    +spendEnergyForWineConsumption(cupsOfWineAmount :int) :Energy
+}
+Energy --> Points
+Energy ..> EnergyCalculator
+@enduml

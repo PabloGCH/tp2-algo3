@@ -1,0 +1,12 @@
+@startuml
+!include Energy.plantuml
+class Gladiator {
+    -energy :Energy
+    +increaseEnergyByFoodConsumption() :Energy
+    +increaseEnergyByRank() :void
+    +drinkWine(cupsOfWineAmount :int) :Energy
+    +eat()
+    +fightWithBeast()
+}
+Gladiator -> Energy
+@enduml
