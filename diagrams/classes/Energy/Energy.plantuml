@@ -5,7 +5,7 @@
 class Energy {
     -energyPoints :Points
     +calculate(calculator :EnergyCalculator) :Energy
-    +spendEnergyForWineConsumption(cupsOfWineAmount :int) :Energy
+    +spendEnergyByWineConsumption(cupsOfWineAmount :int) :Energy
 }
 Energy --> Points
 Energy ..> EnergyCalculator

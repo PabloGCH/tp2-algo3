@@ -12,8 +12,8 @@ public class Gladiator {
 
     private Energy energy;
 
-    Gladiator(Energy energy) {
-        this.energy = energy;
+    public Gladiator() {
+
     }
     
     public void increaseEnergyByRank() {}
