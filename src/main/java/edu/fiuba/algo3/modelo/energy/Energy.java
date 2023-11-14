@@ -5,13 +5,17 @@ public class Energy {
         Energy calculate(Energy energy);
     }
     private interface Points {}
+
     private Points points;
+
     public Energy calculate(EnergyCalculator calculator) {
         return this;
     }
+  
     public Energy spendEnergyByWineConsumption(int cupsOfWine) {
         return this;
     }
+  
     Energy(Points points) {
         this.points = points;
     }
