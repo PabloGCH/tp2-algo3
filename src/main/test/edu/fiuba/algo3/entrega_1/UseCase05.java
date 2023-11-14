@@ -20,6 +20,6 @@ public class UseCase05 {
 
         // Assert
 
-        assumeTrue(equipment instanceof NullEquipment);
+        assumeTrue(equipment instanceof Helmet);
     }
 }
