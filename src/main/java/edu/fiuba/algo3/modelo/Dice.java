@@ -9,7 +9,7 @@ public class Dice {
         this.diceFaces = 6;
     }
     public int throwDice() {
-        int result = this.throwResult.nextInt(diceFaces) + 1;
+        int result = throwResult.nextInt(diceFaces) + 1;
         return result;
     };
 }
