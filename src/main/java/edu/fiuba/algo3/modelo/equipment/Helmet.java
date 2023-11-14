@@ -6,7 +6,8 @@ public class Helmet implements Equipment{
         return new Armor();
     }
 
-    public Energy energyConsumptionByFight(Energy energyPoints){
-        return energyPoints;
+    public Energy energyConsumptionByFight(Energy energy){
+        AnimalFightWithHelmet calculator = new AnimalFightWithHelmet();
+        return energy.calculate(calculator);
     }
 }

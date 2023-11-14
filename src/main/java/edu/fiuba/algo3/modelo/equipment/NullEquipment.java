@@ -8,7 +8,8 @@ public class NullEquipment implements Equipment {
         return new Helmet();
     }
 
-    public Energy energyConsumptionByFight(Energy energyPoints){
-        return energyPoints;
+    public Energy energyConsumptionByFight(Energy energy){
+        AnimalFightWithoutEquipment calculator = new AnimalFightWithoutEquipment();
+        return energy.calculate(calculator);
     }
 }
