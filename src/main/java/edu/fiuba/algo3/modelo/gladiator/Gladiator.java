@@ -1,4 +1,6 @@
 package edu.fiuba.algo3.modelo.gladiator;
+import edu.fiuba.algo3.modelo.points.Points;
+import edu.fiuba.algo3.modelo.rank.Rank;
 
 public class Gladiator {
     private interface EnergyCalculator {
@@ -12,12 +14,29 @@ public class Gladiator {
 
     private Energy energy;
 
-    public Gladiator() {
+    private Rank rank;
 
+    public Gladiator() {
+        this.rank = new Rank();
     }
     
+    public void move() {
+        
+    }
+
     public void increaseEnergyByRank() {}
     public void drinkWine(int cupsOfWineAmount) {}
-    public void eat() {}
+
+    public void eat() {
+        Points point = new Points(15);
+        Energy newEnergy = new Energy(point);
+
+        this.energy.calculate(newEnergy);
+    }
+
+    public void Evolution(){
+        rank.ascent();
+    }
+
     public void fightWithBeast() {}
 }

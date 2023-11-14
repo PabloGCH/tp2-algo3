@@ -15,14 +15,14 @@ public class UseCase08 {
 
         // Act
 
-        gladiator.Move;
-        gladiator.Move;
-        gladiator.Move;
-        gladiator.Move;
-        gladiator.Move;
-        gladiator.Move;
-        gladiator.Move;
-        gladiator.Move;
+        gladiator.move();
+        gladiator.move();
+        gladiator.move();
+        gladiator.move();
+        gladiator.move();
+        gladiator.move();
+        gladiator.move();
+        gladiator.move();
 
         // Assert
 
