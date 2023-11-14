@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.modelo.energy;
+import edu.fiuba.algo3.modelo.points.Points;
 
 public class Energy {
     private interface EnergyCalculator {
         Energy calculate(Energy energy);
     }
-    private interface Points {}
 
     private Points points;
 
@@ -16,7 +16,11 @@ public class Energy {
         return this;
     }
   
-    Energy(Points points) {
-        this.points = points;
+    public Energy(int pointsAmount) {
+        this.points = new Points(pointsAmount);
+    }
+
+    public Points getPoints() {
+        return this.points;
     }
 }
