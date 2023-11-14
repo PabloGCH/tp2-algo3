@@ -15,10 +15,11 @@ public class UseCase05 {
 
         // Act
 
-        gladiator.getEquipment;
+        gladiator.upgrade();//Gets Helmet
+        Equipment equipment = gladiator.getEquipment();
 
         // Assert
 
-        assumeTrue(energyPoints == 35);
+        assumeTrue(equipment instanceof NullEquipment);
     }
 }
