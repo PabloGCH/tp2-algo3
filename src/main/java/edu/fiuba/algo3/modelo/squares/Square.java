@@ -14,5 +14,7 @@ public abstract class Square {
         this.gladiators.add(aGladiator);
         this.effect.affect(aGladiator);
     }
-    
+    public int display() {
+        return (int) gladiators.stream().count();
+    }
 }
