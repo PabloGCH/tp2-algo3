@@ -14,7 +14,6 @@ public class Gladiator {
     public Gladiator() {
         this.energy = new Energy(20);
         this.equipment = new NullEquipment();
-
         this.rank = new Rookie();
     }
     
@@ -22,15 +21,14 @@ public class Gladiator {
         evolution();
         seniority();
     }
-
-    public void increaseEnergyByRank() {}
+    
     public void drinkWine(int cupsOfWineAmount) {}
 
-    public void evolution(){
+    private void evolution(){
         this.rank = this.rank.ascent();
     }
 
-    public void seniority(){
+    private void seniority(){
         this.energy = this.rank.energyFromExperience(this.energy);
     }
 
