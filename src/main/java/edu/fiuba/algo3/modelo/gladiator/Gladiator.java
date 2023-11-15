@@ -1,22 +1,11 @@
 package edu.fiuba.algo3.modelo.gladiator;
 import edu.fiuba.algo3.modelo.equipment.Equipment;
-import edu.fiuba.algo3.modelo.points.Points;
+import edu.fiuba.algo3.modelo.energy.Energy;
 import edu.fiuba.algo3.modelo.rank.Rank;
 import edu.fiuba.algo3.modelo.rank.Rookie;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
 
 public class Gladiator {
-    private interface EnergyCalculator {
-        Energy calculate(Energy energy);
-    }
-
-
-    private interface Energy {
-        Energy calculate(EnergyCalculator calculator);
-        Energy spendEnergyByWineConsumption(int cupsOfWine);
-    }
-
-    private interface Equipment {}
 
     private Energy energy;
     private Equipment equipment;
@@ -31,6 +20,7 @@ public class Gladiator {
     
     public void move() {
         evolution();
+        seniority();
     }
 
     public void increaseEnergyByRank() {}

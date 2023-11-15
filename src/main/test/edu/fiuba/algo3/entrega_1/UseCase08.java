@@ -12,8 +12,6 @@ public class UseCase08 {
         // Arrange
 
         Gladiator gladiator = new Gladiator();
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
 
         // Act
 
@@ -25,6 +23,9 @@ public class UseCase08 {
         gladiator.move();
         gladiator.move();
         gladiator.move();
+
+        var energy = gladiator.getEnergy();
+        int energyPoints = energy.getPoints();
 
         // Assert
 

@@ -7,7 +7,7 @@ public class SemiSenior implements Rank {
     private int shift;
     //methods
     public SemiSenior(){
-        shift = 0;
+        this.shift = 0;
     }
 
     @Override
