@@ -11,7 +11,7 @@ public class Gladiator {
     private Equipment equipment;
 
     public Gladiator() {
-        this.energy = new Energy(20);
+        this.energy = new Energy(0);
         this.equipment = new NullEquipment();
     }
     
