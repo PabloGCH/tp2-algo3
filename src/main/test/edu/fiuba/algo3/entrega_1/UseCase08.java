@@ -1,13 +1,13 @@
 package edu.fiuba.algo3.entrega_1;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 public class UseCase08 {
-     @Test
+    @Test
     public void tetsNewRange(){
         // Arrange
 
@@ -26,7 +26,7 @@ public class UseCase08 {
 
         // Assert
 
-        assertTrue();
+        assertEquals(35, gladiator.getEnergy());
 
 
     }

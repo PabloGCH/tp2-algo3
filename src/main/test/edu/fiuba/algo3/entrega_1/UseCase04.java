@@ -20,7 +20,7 @@ public class UseCase04 {
         // Act
 
         gladiator.eat();
-        int energyPoints = gladiator.getEnergyAsInteger();
+        int energyPoints = gladiator.getEnergy();
 
         // Assert
 

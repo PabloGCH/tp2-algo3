@@ -2,26 +2,27 @@ package edu.fiuba.algo3.modelo.rank;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
 
-public class Rooki implements Stage{
+public class Rooki extends Rank {
     //attributes
-    private Rank rank;
 
     //methods
+    public Rooki(){
+        shift = 0;
+    }
 
     @Override
-    public Energy energyFromExperience(Energy cantidad){
-
-        return cantidad;
+    public Energy energyFromExperience(Energy amount){  
+        return amount ;
     }
     
     @Override
-    public void ascent(){
-        System.out.println("congratulations you have been promoted to Semi Senior");
-        rank.setStage(new SemiSenior());
+    public Rank ascent(){
+        this.shift ++;
+        if (this.shift == 8) {
+            System.out.println("congratulations you have been promoted to Semi Senior");
+            return (new SemiSenior());
+        }
+        return this;
     }
 
-    @Override
-    public void setRank(Rank rank){
-        this.rank = rank;
-    }
 }

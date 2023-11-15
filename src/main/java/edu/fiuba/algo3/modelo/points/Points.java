@@ -11,4 +11,8 @@ public class Points {
     public Points substractEnergyPoints(Points points) {
         return this;
     }
+
+    public int getAmount() {
+        return this.amount;
+    }
 }

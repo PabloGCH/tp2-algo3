@@ -2,25 +2,21 @@ package edu.fiuba.algo3.modelo.rank;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
 
-public class Senior implements Stage{
+public class Senior extends Rank{
     //attributes
-    private Rank rank;
     
     //methods
-
     @Override
-    public Energy energyFromExperience(Energy cantidad){
-
-        return cantidad;
+    public Energy energyFromExperience(Energy amount){
+        Energy extraEnergy = new Energy(10);
+        return (amount + extraEnergy);
     }
 
     @Override
-    public void ascent(){
+    public Rank ascent(){
+        this.shift ++;
         System.out.println("maximum range reached");
+        return this;
     }
 
-    @Override
-    public void setRank(Rank rank){
-        this.rank = rank;
-    }
 }

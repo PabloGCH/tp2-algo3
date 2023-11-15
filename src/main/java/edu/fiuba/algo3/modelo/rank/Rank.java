@@ -2,27 +2,18 @@ package edu.fiuba.algo3.modelo.rank;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
 
-public class Rank {
+public abstract class Rank {
     //attributes
-
+    protected int shift;
     //methods
-    private Stage stage;
 
-    public Rank(){
-        setStage(new Rooki());
+    public Energy energyFromExperience(Energy amount){
+
+        return amount;
     }
 
-    public Energy energyFromExperience(Energy cantidad){
-
-        return cantidad;
+    public Rank ascent(){
+        return this;
     }
 
-    public void ascent(){
-        
-    }
-
-    void setStage(Stage stage){
-        this.stage = stage;
-        this.stage.setRank(this);
-    }
 }
