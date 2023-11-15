@@ -13,7 +13,7 @@ public class SemiSenior implements Rank {
     @Override
     public Energy energyFromExperience(Energy amount){
         Energy extraEnergy = new Energy(5);
-        return (amount + extraEnergy);
+        return (amount.add(extraEnergy));
     }
     
     @Override

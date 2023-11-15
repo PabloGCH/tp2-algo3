@@ -9,7 +9,7 @@ public class Senior implements Rank{
     @Override
     public Energy energyFromExperience(Energy amount){
         Energy extraEnergy = new Energy(10);
-        return (amount + extraEnergy);
+        return (amount.add(extraEnergy));
     }
 
     @Override
