@@ -17,7 +17,9 @@ public class Gladiator {
     
     public void increaseEnergyByRank() {}
     public void drinkWine(int cupsOfWineAmount) {}
-    public void eat() {}
+    public void eat() {
+        this.energy = this.energy.add(new Energy(15));
+    }
     public void fightWithBeast() {}
     public Energy getEnergy() {
         return this.energy;
