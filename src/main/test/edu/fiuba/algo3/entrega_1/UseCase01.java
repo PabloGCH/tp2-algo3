@@ -14,10 +14,9 @@ public class UseCase01 {
         Gladiator gladiator = new Gladiator(); //Should start with 20 energy
         //Act
         var energy = gladiator.getEnergy();
-        var energyPoints = energy.getPoints();
-        int amount = energyPoints.getAmount();
+        int energyPoints = energy.getPoints();
         //Assert
-        assertTrue(amount == 20);
+        assertTrue(energyPoints == 20);
     }
     @Test
     public void testGladiatorStartsWithNullEquipment() {
