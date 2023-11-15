@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.energy.Energy;
 
 public class Rooki extends Rank {
     //attributes
-
+    private int shift;
     //methods
     public Rooki(){
         shift = 0;

@@ -2,6 +2,7 @@
 !include ../Energy/Energy.plantuml
 
 class SemiSenior {
+    -shift: int
     +SemiSenior()
     +energyFromExperience(unaCantidad: Energy): Energy
     +ascent(): Rank

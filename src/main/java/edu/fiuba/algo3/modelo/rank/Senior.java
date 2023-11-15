@@ -14,7 +14,6 @@ public class Senior extends Rank{
 
     @Override
     public Rank ascent(){
-        this.shift ++;
         System.out.println("maximum range reached");
         return this;
     }
