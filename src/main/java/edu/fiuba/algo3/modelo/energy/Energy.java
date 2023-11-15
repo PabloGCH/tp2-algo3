@@ -5,7 +5,6 @@ public class Energy {
     private interface EnergyCalculator {
         Energy calculate(Energy energy);
     }
-    private interface Points {}
 
     private Points points;
 
