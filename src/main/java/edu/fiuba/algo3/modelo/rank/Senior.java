@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.rank;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
 
-public class Senior extends Rank{
+public class Senior implements Rank{
     //attributes
     
     //methods

@@ -2,7 +2,7 @@
 !include Senior.plantuml
 !include Rookie.plantuml
 !include SemiSenior.plantuml
-abstract class Rank {
+interface Rank {
     +energyFromExperience(unaCantidad: Energy): Energy
     +ascent(): Rank
 }

@@ -8,5 +8,5 @@ class Rookie {
     +ascent(): Rank
 }
 
-Rookie ..> Energy
+Rookie ..|> Energy
 @enduml

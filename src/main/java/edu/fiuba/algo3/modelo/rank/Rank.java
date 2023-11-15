@@ -2,18 +2,13 @@ package edu.fiuba.algo3.modelo.rank;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
 
-public abstract class Rank {
+public interface Rank {
     //attributes
     
     //methods
 
-    public Energy energyFromExperience(Energy amount){
+    public Energy energyFromExperience(Energy amount);
 
-        return amount;
-    }
-
-    public Rank ascent(){
-        return this;
-    }
+    public Rank ascent();
 
 }

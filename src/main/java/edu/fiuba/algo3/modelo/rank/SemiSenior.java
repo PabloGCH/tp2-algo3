@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.rank;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
 
-public class SemiSenior extends Rank {
+public class SemiSenior implements Rank {
     //attributes
     private int shift;
     //methods
