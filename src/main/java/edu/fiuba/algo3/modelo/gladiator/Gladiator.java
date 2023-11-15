@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.gladiator;
 import edu.fiuba.algo3.modelo.equipment.Equipment;
 import edu.fiuba.algo3.modelo.points.Points;
 import edu.fiuba.algo3.modelo.rank.Rank;
-import edu.fiuba.algo3.modelo.rank.Rooki;
+import edu.fiuba.algo3.modelo.rank.Rookie;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
 
 public class Gladiator {
@@ -24,8 +24,8 @@ public class Gladiator {
 
     public Gladiator() {
         this.energy = new Energy(20);
-        //this.equipment = new NullEquipment();
-        this.rank = new Rooki();
+        this.equipment = new NullEquipment();
+        this.rank = new Rookie();
     }
     
     public void move() {

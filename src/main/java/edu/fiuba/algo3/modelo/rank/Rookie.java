@@ -2,11 +2,11 @@ package edu.fiuba.algo3.modelo.rank;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
 
-public class Rooki extends Rank {
+public class Rookie extends Rank {
     //attributes
     private int shift;
     //methods
-    public Rooki(){
+    public Rookie(){
         shift = 0;
     }
 
