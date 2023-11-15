@@ -36,14 +36,16 @@ public class Gladiator {
     public void increaseEnergyByRank() {}
     public void drinkWine(int cupsOfWineAmount) {}
 
-    public void eat() {}
-
     public void evolution(){
         this.rank = this.rank.ascent();
     }
 
     public void seniority(){
         this.energy = this.rank.energyFromExperience(this.energy);
+    }
+
+    public void eat() {
+        this.energy = this.energy.add(new Energy(15));
     }
 
     public void fightWithBeast() {}
