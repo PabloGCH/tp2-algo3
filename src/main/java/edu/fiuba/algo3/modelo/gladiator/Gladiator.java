@@ -12,7 +12,7 @@ public class Gladiator {
     private Rank rank;
 
     public Gladiator() {
-        this.energy = new Energy(20);
+        this.energy = new Energy(0);
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
     }
