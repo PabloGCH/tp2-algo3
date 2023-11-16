@@ -6,12 +6,13 @@ import edu.fiuba.algo3.modelo.rank.Rookie;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
 
 public class Gladiator {
-
+    private String name;
     private Energy energy;
     private Equipment equipment;
     private Rank rank;
 
     public Gladiator() {
+
         this.energy = new Energy(0);
         this.equipment = new NullEquipment();
         this.rank = new Rookie();

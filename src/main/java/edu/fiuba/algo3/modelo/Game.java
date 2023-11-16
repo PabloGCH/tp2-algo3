@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Game {
-
+    private int turns = 0;
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
     private ArrayList<Square> map;
     public Game(ArrayList<Gladiator> gladiators, ArrayList<Square> map) {
@@ -17,8 +17,14 @@ public class Game {
             this.addGladiator(aGladiator);
         }
     }
-    public void startGame() {
+    public boolean startGame() {
+        while(turns <30) {
+            for (Gladiator aGladiator : gladiators) {
 
+            }
+            turns ++;
+        }
+        return true;
     }
 
     public void addGladiator(Gladiator aGladiator) {
@@ -31,7 +37,8 @@ public class Game {
         map.add(new Middle(new Food()));
         map.add(new Middle(new NullEffect()));
         map.add(new Middle(new Bacchanalia()));
-        map.add(new FinishLine());
+        int middleIndex = (int) (map.stream().count() + 1) / 2;
+        map.add(new FinishLine(map.get(middleIndex)));
     }
 
     public void displayMap() {
