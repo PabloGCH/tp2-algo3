@@ -44,5 +44,8 @@ public class Gladiator {
     public Equipment getEquipment() {
         return this.equipment;
     }
+    public void setInitialEnergy(Energy energy) {
+        this.energy = this.energy.add(energy);
+    }
 
 }
