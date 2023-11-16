@@ -1,13 +1,7 @@
 @startuml
-!include Senior.plantuml
-!include Rookie.plantuml
-!include SemiSenior.plantuml
 interface Rank {
-    +energyFromExperience(unaCantidad: Energy): Energy
+    +energyFromExperience(amount: Energy): Energy
     +ascent(): Rank
 }
-Rank <|.. Senior
-Rank <|.. SemiSenior
-Rank <|.. Rookie
 
 @enduml

@@ -4,7 +4,7 @@
 class Rookie {
     -shift: int
     +Rookie()
-    +energyFromExperience(unaCantidad: Energy): Energy
+    +energyFromExperience(amount: Energy): Energy
     +ascent(): Rank
 }
 
