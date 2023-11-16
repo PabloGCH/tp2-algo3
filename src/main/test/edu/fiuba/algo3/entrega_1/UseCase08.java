@@ -18,14 +18,14 @@ public class UseCase08 {
         initialSquare.receiveGladiator(gladiator);
         // Act
 
-        gladiator.move();
-        gladiator.move();
-        gladiator.move();
-        gladiator.move();
-        gladiator.move();
-        gladiator.move();
-        gladiator.move();
-        gladiator.move();
+        gladiator.turn();
+        gladiator.turn();
+        gladiator.turn();
+        gladiator.turn();
+        gladiator.turn();
+        gladiator.turn();
+        gladiator.turn();
+        gladiator.turn();
 
         var energy = gladiator.getEnergy();
         int energyPoints = energy.getPoints();
