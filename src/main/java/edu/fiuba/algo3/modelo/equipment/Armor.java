@@ -6,8 +6,7 @@ public class Armor implements Equipment{
     public Equipment Upgrade() {
         return new ShieldSword();
     }
-    public Energy energyConsumptionByFight(Energy energy){
-        AnimalFightWithArmor calculator = new AnimalFightWithArmor();
-        return energy.calculate(calculator);
+    public Energy receiveAttack(Energy energy){
+        return energy.substract(new Energy(10));
     }
 }

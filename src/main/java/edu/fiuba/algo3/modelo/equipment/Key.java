@@ -7,8 +7,7 @@ public class Key implements Equipment{
         return new Key();
     }
 
-    public Energy energyConsumptionByFight(Energy energy){
-        AnimalFightWithKey calculator = new AnimalFightWithKey();
-        return energy.calculate(calculator);
+    public Energy receiveAttack(Energy energy){
+        return energy;
     }
 }

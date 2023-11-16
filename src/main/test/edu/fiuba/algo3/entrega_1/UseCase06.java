@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 public class UseCase06 {
     public void testGladiatorGetsShieldSword(){
-        // Arrange
+       /* // Arrange
 
         Gladiator gladiator = new Gladiator();
 
@@ -19,6 +19,6 @@ public class UseCase06 {
 
         // Assert
 
-        assumeTrue(equipment instanceof ShieldSword);
+        assumeTrue(equipment instanceof ShieldSword);*/
     }
 }

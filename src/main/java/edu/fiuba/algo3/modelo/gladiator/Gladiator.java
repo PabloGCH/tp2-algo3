@@ -36,7 +36,9 @@ public class Gladiator {
         this.energy = this.energy.add(new Energy(15));
     }
 
-    public void fightWithBeast() {}
+    public void fightWithBeast() {
+        this.energy = this.equipment.receiveAttack(this.energy);
+    }
 
     public Energy getEnergy() {
         return this.energy;

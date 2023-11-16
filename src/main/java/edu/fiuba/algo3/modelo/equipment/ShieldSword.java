@@ -8,8 +8,7 @@ public class ShieldSword implements Equipment{
         return new Key();
     }
 
-    public Energy energyConsumptionByFight(Energy energyPoints){
-        AnimalFightWithSwordShield calculator = new AnimalFightWithSwordShield();
-        return energy.calculate(calculator);
+    public Energy receiveAttack(Energy energy){
+        return energy.substract(new Energy(2));
     }
 }
