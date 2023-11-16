@@ -29,7 +29,7 @@ public class UseCase08 {
 
         // Assert
 
-        assertEquals(35, energyPoints);
+        assertEquals(25, energyPoints);
 
 
     }
