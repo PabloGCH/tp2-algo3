@@ -1,5 +1,6 @@
 @startuml
 autonumber
+actor Actor
 Actor --> Gladiator: <<create>> Gladiator()
 Actor --> Gladiator: eat()
 Actor --> Gladiator: getEnergy(): Energy
