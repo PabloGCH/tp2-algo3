@@ -1,6 +1,6 @@
 @startuml
 class NullEquipment {
     +upgrade(): Helmet
-    +energyConsumptionByFight(Energy: Energy): Energy
+    +receiveAttack(Energy: energyPoints): Energy
 }
 @enduml

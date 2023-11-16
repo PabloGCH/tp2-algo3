@@ -6,13 +6,10 @@
 !include Armor.puml
 !include ShieldSword.puml
 !include Key.puml
-/' !include ..\Energy\Energy.plantuml
-!include ..\Gladiator\Gladiator.plantuml'/
 Equipment ..|> NullEquipment
 Equipment ..|> Helmet
 Equipment ..|> Armor
 Equipment ..|> ShieldSword
 Equipment ..|> Key
-/' Gladiator o-- Equipment '/
 
 @enduml

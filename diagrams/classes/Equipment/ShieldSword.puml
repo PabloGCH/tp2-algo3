@@ -1,6 +1,6 @@
 @startuml
 class ShieldSword {
     +upgrade(): Key
-    +energyConsumptionByFight(Energy: Energy): Energy
+    +receiveAttack(Energy: energyPoints): Energy
 }
 @enduml

@@ -1,6 +1,6 @@
 @startuml
 !include ../Energy/Energy.plantuml
-!include ../Range/Range.plantuml
+!include ../rank/Rank.plantuml
 class Gladiator {
     -energy :Energy
     +increaseEnergyByFoodConsumption() :Energy
@@ -10,5 +10,5 @@ class Gladiator {
     +fightWithBeast()
 }
 Gladiator -> Energy
-Gladiator -* Range
+Gladiator -* Rank
 @enduml
