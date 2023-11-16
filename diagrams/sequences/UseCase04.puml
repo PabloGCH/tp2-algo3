@@ -1,0 +1,9 @@
+@startuml
+autonumber
+Actor --> Gladiator: <<create>> Gladiator()
+Actor --> Gladiator: eat()
+Actor --> Gladiator: getEnergy(): Energy
+Gladiator -->> Actor: energy
+Actor --> Energy: getPoints():int
+Energy -->> Actor: energyPoints
+@enduml

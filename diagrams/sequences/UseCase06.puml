@@ -1,11 +1,12 @@
 @startuml
-'https://plantuml.com/sequence-diagram
-
 autonumber
-actor Actor
 Actor -->> Gladiator: <<create>> Gladiator()
 Actor -->> initialSquare: <<create>> Initial()
 Actor --> initialSquare: receiveGladiator(gladiator: Gladiator)
+Actor --> Gladiator: upgrade()
+Actor --> Gladiator: upgrade()
+Actor --> Gladiator: upgrade()
+Actor --> Gladiator: fightWithBeast()
 Actor --> Gladiator: getEnergy(): Energy
 Gladiator -->> Actor: energy
 Actor --> Energy: getPoints():int
