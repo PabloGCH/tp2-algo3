@@ -36,7 +36,9 @@ public class Gladiator {
         this.energy = this.energy.add(new Energy(15));
     }
 
-    public void fightWithBeast() {}
+    public void fightWithBeast() {
+        this.energy = this.equipment.receiveAttack(this.energy);
+    }
 
     public Energy getEnergy() {
         return this.energy;
@@ -46,6 +48,10 @@ public class Gladiator {
     }
     public void setInitialEnergy(Energy energy) {
         this.energy = this.energy.add(energy);
+    }
+
+    public void upgrade(){
+        this.equipment = this.equipment.upgrade();
     }
 
 }
