@@ -3,4 +3,5 @@ interface Rank {
     +energyFromExperience(amount: Energy): Energy
     +ascent(): Rank
 }
+
 @enduml

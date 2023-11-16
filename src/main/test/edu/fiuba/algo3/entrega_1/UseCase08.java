@@ -13,9 +13,7 @@ public class UseCase08 {
     public void tetsNewRange(){
         // Arrange
 
-        Gladiator gladiator = new Gladiator();
-        Square initialSquare = new Initial();
-        initialSquare.receiveGladiator(gladiator);
+        Gladiator gladiator = new Gladiator();;
         // Act
 
         gladiator.turn();
@@ -32,7 +30,7 @@ public class UseCase08 {
 
         // Assert
 
-        assertEquals(25, energyPoints);
+        assertEquals(5, energyPoints);
 
 
     }

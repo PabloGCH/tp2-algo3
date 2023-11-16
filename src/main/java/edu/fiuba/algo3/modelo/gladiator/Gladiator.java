@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.state.Tired;
 
 public class Gladiator {
     private String name;
-    private State state = new Tired();
+    private State state;
     private Energy energy;
     private Equipment equipment;
     private Rank rank;
@@ -19,6 +19,7 @@ public class Gladiator {
         this.energy = new Energy(0);
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
+        this.state = new Tired();
     }
     
     public int turn() {;
