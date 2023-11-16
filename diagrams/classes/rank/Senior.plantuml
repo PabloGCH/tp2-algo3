@@ -5,5 +5,5 @@ class Senior {
     +energyFromExperience(unaCantidad: Energy): Energy
     +ascent(): Rank
 }
-Senior ..|> Energy
+Senior ..> Energy
 @enduml
