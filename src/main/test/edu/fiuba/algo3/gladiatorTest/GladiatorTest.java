@@ -13,8 +13,8 @@ public class GladiatorTest {
         gladiator.eat();
         int energyPoints = gladiator.getEnergy().getPoints();
         //Assert
-        //Starts with 20 energy, 15 is added after eating
-        assertTrue(energyPoints == 35);
+        //Starts with 0 energy, 15 is added after eating
+        assertTrue(energyPoints == 15);
     }
     @Test void energyUpdatedCorrectlyAfterEatingTwice() {
         //Arrange
@@ -24,7 +24,7 @@ public class GladiatorTest {
         gladiator.eat();
         int energyPoints = gladiator.getEnergy().getPoints();
         //Assert
-        //Starts with 20 energy, 15 is added after eating
-        assertTrue(energyPoints == 50);
+        //Starts with 0 energy, 15 is added after eating
+        assertTrue(energyPoints == 30);
     }
 }
