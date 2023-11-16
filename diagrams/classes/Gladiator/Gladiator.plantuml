@@ -1,14 +1,11 @@
 @startuml
-!include ../Energy/Energy.plantuml
-!include ../rank/Rank.plantuml
 class Gladiator {
-    -energy :Energy
-    +increaseEnergyByFoodConsumption() :Energy
-    +increaseEnergyByRank() :void
-    +drinkWine(cupsOfWineAmount :int) :Energy
+    -name : String
+    +Gladiator(): Gladiator
+    +move() /'Change to "turn" (changes in branch "use-case-3-9-10")'/
+    +drinkWine()
     +eat()
     +fightWithBeast()
+    +upgrade()
 }
-Gladiator -> Energy
-Gladiator -* Rank
 @enduml
