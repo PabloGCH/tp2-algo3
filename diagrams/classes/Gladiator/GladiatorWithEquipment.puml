@@ -1,5 +1,4 @@
 @startuml
-'https://plantuml.com/class-diagram
 !include ../Equipment/EquipmentDiagram.puml
 !include Gladiator.plantuml
 Gladiator o-- Equipment
