@@ -1,5 +1,7 @@
 @startuml
 
+autonumber
+
 actor Actor
 Actor -> Game : <<Create>> Game(gladiators,map)
 activate Game
