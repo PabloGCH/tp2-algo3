@@ -1,0 +1,12 @@
+@startuml
+
+actor Actor
+
+actor -> Gladiador : <<Create>>
+activate Gladiador
+Gladiador -> Rookie : <<Create>> 
+Gladiador -> Energy : <<Create>> 
+actor -> Gladiador : <<turn()>>
+
+
+@enduml
