@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UseCase10 {
     @Test
-    public void testGladiatorWithKeyReceiveNoDamage(){
+    public void test10GladiatorWithKeyReceiveNoDamage(){
         //Arrange
         Gladiator gladiator = new Gladiator(); //Should start with 20 energy
         Square initialSquare = new Initial();

@@ -11,6 +11,8 @@ public class Game {
     private int turns = 0;
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
     private ArrayList<Square> map;
+    private Dice dice = new Dice();
+
     public Game(ArrayList<Gladiator> gladiators, ArrayList<Square> map) {
         this.map = map;
         for (Gladiator aGladiator : gladiators) {
@@ -20,7 +22,6 @@ public class Game {
     public boolean startGame() {
         while(turns <30) {
             for (Gladiator aGladiator : gladiators) {
-
             }
             turns ++;
         }
