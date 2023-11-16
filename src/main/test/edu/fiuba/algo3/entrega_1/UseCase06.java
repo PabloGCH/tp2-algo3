@@ -8,7 +8,7 @@ public class UseCase06 {
     public void testGladiatorGetsShieldSword(){
        /* // Arrange
 
-        Gladiator gladiator = new Gladiator();
+        /* Gladiator gladiator = new Gladiator();
 
         // Act
 

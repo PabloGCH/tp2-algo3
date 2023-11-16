@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 public class UseCase11 {
     public void testGladiatorWithKeyUpgradeHasNoEffect(){
-    /*    // Arrange
+        // Arrange
 
-        Gladiator gladiator = new Gladiator();
+        /* Gladiator gladiator = new Gladiator();
 
         // Act
 
@@ -21,6 +21,6 @@ public class UseCase11 {
 
         // Assert
 
-        assumeTrue(equipment instanceof Key);*/
+        assumeTrue(equipment instanceof Key); */
     }
 }
