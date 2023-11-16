@@ -19,7 +19,8 @@ public class UseCase02 {
         map.add(new Middle(new Food()));
         map.add(new Middle(new NullEffect()));
         map.add(new Middle(new Bacchanalia()));
-        map.add(new FinishLine());
+        int middleIndex = (int) (map.stream().count() + 1) / 2;
+        map.add(new FinishLine(map.get(middleIndex)));
         gladiators.add(aGladiator);
         Game aGame = new Game(gladiators, map);
         Assertions.assertTrue(aGladiator.getEnergy().getPoints() == 20);
