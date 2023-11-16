@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.energy.Energy;
 
 public class NullEquipment implements Equipment {
 
-    public Equipment Upgrade() {
+    public Equipment upgrade() {
         return new Helmet();
     }
 

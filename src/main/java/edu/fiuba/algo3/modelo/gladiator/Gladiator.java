@@ -50,4 +50,8 @@ public class Gladiator {
         this.energy = this.energy.add(energy);
     }
 
+    public void upgrade(){
+        this.equipment = this.equipment.upgrade();
+    }
+
 }
