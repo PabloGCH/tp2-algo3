@@ -12,7 +12,7 @@ public class Gladiator {
     private Rank rank;
 
     public Gladiator() {
-        this.energy = new Energy(20);
+        this.energy = new Energy(0);
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
     }
@@ -36,13 +36,22 @@ public class Gladiator {
         this.energy = this.energy.add(new Energy(15));
     }
 
-    public void fightWithBeast() {}
+    public void fightWithBeast() {
+        this.energy = this.equipment.receiveAttack(this.energy);
+    }
 
     public Energy getEnergy() {
         return this.energy;
     }
     public Equipment getEquipment() {
         return this.equipment;
+    }
+    public void setInitialEnergy(Energy energy) {
+        this.energy = this.energy.add(energy);
+    }
+
+    public void upgrade(){
+        this.equipment = this.equipment.upgrade();
     }
 
 }

@@ -10,23 +10,18 @@ import java.util.ArrayList;
 public class Game {
 
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
-    private ArrayList<Square> map = new ArrayList<>();
-
-    public void startGame() {
-        this.addGladiator();
-        this.addGladiator();
-        Scanner aScanner = new Scanner(System.in);
-        System.out.println("Add a new Gladiator? true/false.");
-        boolean addGladiator = aScanner.nextBoolean();
-        while(gladiators.stream().count() <= 6 && addGladiator == true) {
-            this.addGladiator();
-            System.out.println("Add a new Gladiator? true/false.");
-            addGladiator = aScanner.nextBoolean();
+    private ArrayList<Square> map;
+    public Game(ArrayList<Gladiator> gladiators, ArrayList<Square> map) {
+        this.map = map;
+        for (Gladiator aGladiator : gladiators) {
+            this.addGladiator(aGladiator);
         }
     }
+    public void startGame() {
 
-    public void addGladiator() {
-        Gladiator aGladiator = new Gladiator();
+    }
+
+    public void addGladiator(Gladiator aGladiator) {
         this.gladiators.add(aGladiator);
         this.map.get(0).receiveGladiator(aGladiator);
     }
