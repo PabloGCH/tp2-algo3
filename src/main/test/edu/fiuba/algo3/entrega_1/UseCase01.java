@@ -14,10 +14,10 @@ public class UseCase01 {
     @Test
     public void testGladiatorStartsWithCorrectEnergy() {
         //Arrange
-        Gladiator gladiator = new Gladiator(); //Should start with 20 energy
-        Square initialSquare = new Initial();
+        Gladiator gladiator = new Gladiator(); 
+        Square initialSquare = new Initial(); 
         //Act
-        initialSquare.receiveGladiator(gladiator);
+        initialSquare.receiveGladiator(gladiator); //Should start with 20 energy
         var energy = gladiator.getEnergy();
         int energyPoints = energy.getPoints();
         //Assert
