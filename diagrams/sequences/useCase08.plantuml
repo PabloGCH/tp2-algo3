@@ -4,6 +4,8 @@ autonumber
 
 actor Actor
 
+activate Actor
+
 Actor -> Gladiador : <<Create>> Gladiador()
 activate Gladiador
     Gladiador -> Rank :  <<Create>> Rank() 
@@ -46,5 +48,7 @@ Actor -> Energy : getPoints
 activate Energy
 Energy --> Actor : 5
 deactivate Energy
+
+deactivate Actor
 
 @enduml

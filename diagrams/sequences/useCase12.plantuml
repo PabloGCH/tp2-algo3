@@ -2,6 +2,8 @@
 
 autonumber
 
+activate Actor
+
 actor Actor
 Actor -> Game : <<Create>> Game(gladiators,map)
 activate Game
@@ -18,4 +20,7 @@ activate Game
     Game --> Actor : true
 deactivate Game
 end loop
+
+deactivate Actor
+
 @enduml
