@@ -4,8 +4,8 @@
 class SemiSenior {
     -shift: int
     +SemiSenior()
-    +energyFromExperience(unaCantidad: Energy): Energy
+    +energyFromExperience(amount: Energy): Energy
     +ascent(): Rank
 }
-SemiSenior ..|> Energy
+SemiSenior ..> Energy
 @enduml

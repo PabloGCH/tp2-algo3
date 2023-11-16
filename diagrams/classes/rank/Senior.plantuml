@@ -2,8 +2,8 @@
 !include ../Energy/Energy.plantuml
 
 class Senior {
-    +energyFromExperience(unaCantidad: Energy): Energy
+    +energyFromExperience(amount: Energy): Energy
     +ascent(): Rank
 }
-Senior ..|> Energy
+Senior ..> Energy
 @enduml
