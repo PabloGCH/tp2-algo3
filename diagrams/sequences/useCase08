@@ -4,74 +4,36 @@ actor Actor
 
 Actor -> Gladiador : <<Create>> Gladiador()
 activate Gladiador
-    Gladiador -> Rookie :  <<Create>> Rookie() 
+    Gladiador -> Rank :  <<Create>> Rank() 
     Gladiador -> Energy : <<Create>> Energy(0)
-    Gladiador -> NullEquipment : <<Create>> NullEquipment()
+    Gladiador -> Equipment : <<Create>> Equipment()
+    Gladiador -> State : <<Create>> State()
 deactivate Gladiador
-
-Actor -> Initial : <<Create>> Initial()
-activate Initial 
-    Initial -> InitialEffect : <<Create>>
-deactivate Initial
-
-Actor -> Initial : receiveGladiator(Gladiator)
-activate Initial
-    Initial -> Initial : add(Gladiador)
-    Initial -> InitialEffect : affect(Gladiador)
-deactivate Initial
-
-activate InitialEffect
-    InitialEffect -> Gladiador : setInitialEnergy(Energy(20))
-deactivate InitialEffect
-activate Gladiador
-    Gladiador -> Energy : add(Energy(20))
-    activate Energy
-        Energy -> Energy : getPoints()
-        Energy --> Gladiador : Energy(20)
-    deactivate Energy
-deactivate Gladiador
-
 
 Actor -> Gladiador : turn()
-loop I represent its use 7 times in the use case
+loop I represent its use 8 times in the use case
 activate Gladiador
     Gladiador -> Gladiador : update()
     activate Gladiador
 
-        Gladiador -> Rookie : ascent()
-        activate Rookie
-            Rookie --> Gladiador : this
-        deactivate Rookie
+        Gladiador -> Rank : ascent()
+        activate Rank
+            Rank --> Gladiador : Rank
+        deactivate Rank
 
-        Gladiador -> Rookie : energyFromExperience(this.energy)
-        activate Rookie
-            Rookie --> Gladiador : Energy(20)
-        deactivate Rookie
+        Gladiador -> Rank : energyFromExperience(this.energy)
+        activate Rank
+            Rank --> Gladiador : Energy()
+        deactivate Rank
     
     deactivate Gladiador
-    Gladiador --> Actor : 3 
+    Gladiador -> State : move()
+    activate State
+    State --> Gladiador: int between 0 and 6
+    deactivate State
+    Gladiador --> Actor : int between 0 and 6
 deactivate Gladiador
 end loop
-
-Actor -> Gladiador : turn()
-activate Gladiador
-    Gladiador -> Gladiador : update()
-    activate Gladiador
-
-        Gladiador -> Rookie : ascent()
-        activate Rookie
-            Rookie --> Gladiador : this
-        deactivate Rookie
-
-        Gladiador -> Rookie : energyFromExperience(this.energy)
-        activate Rookie
-            Rookie -> Energy : add(Energy(5))
-            Rookie --> Gladiador : Energy(25)
-        deactivate Rookie
-
-    deactivate Gladiador
-    Gladiador --> Actor : 3 
-deactivate Gladiador
 
 Actor -> Gladiador : getEnergy
 activate Gladiador
@@ -80,7 +42,7 @@ deactivate Gladiador
 
 Actor -> Energy : getPoints
 activate Energy
-Energy --> Actor : 25
+Energy --> Actor : 5
 deactivate Energy
 
 @enduml
