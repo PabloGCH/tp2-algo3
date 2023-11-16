@@ -1,5 +1,6 @@
 @startuml
 autonumber
+actor Actor
 Actor -->> Gladiator: <<create>> Gladiator()
 Actor -->> initialSquare: <<create>> Initial()
 Actor --> initialSquare: receiveGladiator(gladiator: Gladiator)
