@@ -10,7 +10,7 @@ public class Energy {
     public Energy substract(Energy energy) {
         return new Energy(this.getPoints() - energy.getPoints());
     }
-  
+
     public Energy(int pointsAmount) {
         this.points = pointsAmount;
     }

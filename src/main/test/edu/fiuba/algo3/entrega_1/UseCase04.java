@@ -13,7 +13,9 @@ public class UseCase04 {
         Gladiator gladiator = new Gladiator();
         // Act
         gladiator.eat();
+
         int energyPoints = gladiator.getEnergy().getPoints();
+
         // Assert
         assertTrue(energyPoints == 35);
     }

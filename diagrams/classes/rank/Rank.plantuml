@@ -2,14 +2,12 @@
 !include Senior.plantuml
 !include Rookie.plantuml
 !include SemiSenior.plantuml
-class Range {
+interface Rank {
     +energyFromExperience(unaCantidad: Energy): Energy
-    +ascent()
+    +ascent(): Rank
 }
-Range <... Senior
-Range <... SemiSenior
-Range <... Rookie
-Rookie -> SemiSenior
-SemiSenior -> Senior
+Rank <|-- Senior
+Rank <|-- SemiSenior
+Rank <|-- Rookie
 
 @enduml
