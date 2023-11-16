@@ -12,7 +12,7 @@ public class Gladiator {
     private Rank rank;
 
     public Gladiator() {
-        this.energy = new Energy(20);
+        this.energy = new Energy(0);
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
     }
@@ -43,6 +43,9 @@ public class Gladiator {
     }
     public Equipment getEquipment() {
         return this.equipment;
+    }
+    public void setInitialEnergy(Energy energy) {
+        this.energy = this.energy.add(energy);
     }
 
 }
