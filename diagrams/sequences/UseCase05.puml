@@ -1,0 +1,15 @@
+@startuml
+autonumber
+actor Actor
+Actor --> Gladiator: <<create>> Gladiator()
+Gladiator -->> Actor:
+Actor -->> initialSquare: <<create>> Initial()
+initialSquare -->> Actor:
+Actor --> initialSquare: receiveGladiator(gladiator: Gladiator)
+Actor --> Gladiator: upgrade()
+Actor --> Gladiator: fightWithBeast()
+Actor --> Gladiator: getEnergy(): Energy
+Gladiator -->> Actor:
+Actor --> Energy: getPoints():int
+Energy --> Actor:
+@enduml
