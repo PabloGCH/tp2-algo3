@@ -4,9 +4,12 @@ import edu.fiuba.algo3.modelo.energy.Energy;
 import edu.fiuba.algo3.modelo.rank.Rank;
 import edu.fiuba.algo3.modelo.rank.Rookie;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
+import edu.fiuba.algo3.modelo.state.State;
+import edu.fiuba.algo3.modelo.state.Tired;
 
 public class Gladiator {
     private String name;
+    private State state = new Tired();
     private Energy energy;
     private Equipment equipment;
     private Rank rank;
@@ -18,18 +21,15 @@ public class Gladiator {
         this.rank = new Rookie();
     }
     
-    public void move() {
-        evolution();
-        seniority();
+    public int turn() {;
+        update();
+        return  state.move();
     }
     
     public void drinkWine(int cupsOfWineAmount) {}
 
-    private void evolution(){
+    private void update(){
         this.rank = this.rank.ascent();
-    }
-
-    private void seniority(){
         this.energy = this.rank.energyFromExperience(this.energy);
     }
 
