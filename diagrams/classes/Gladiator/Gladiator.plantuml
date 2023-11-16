@@ -6,7 +6,6 @@ class Gladiator {
     +drinkWine()
     +eat()
     +fightWithBeast()
-    +increaseEnergyByRank()
     +upgrade()
 }
 @enduml
