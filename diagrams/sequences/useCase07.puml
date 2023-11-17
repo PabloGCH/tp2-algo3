@@ -6,9 +6,21 @@ autonumber
 actor Actor
 
 activate Actor
-Actor -> Gladiator: <<create>> Gladiator()
-Actor -> Gladiator: upgrade()
 
+create Gladiator
+Actor -> Gladiator : <<Create>> Gladiator()
+activate Gladiator
+    create Rank
+    Gladiator -> Rank :  <<Create>> Rank() 
+    create Energy
+    Gladiator -> Energy : <<Create>> Energy(0)
+    create Equipment
+    Gladiator -> Equipment : <<Create>> Equipment()
+    Create State
+    Gladiator -> State : <<Create>> State()
+deactivate Gladiator
+
+Actor -> Gladiator: upgrade()
 activate Gladiator
     Gladiator -> Equipment: upgrade()   
     activate Equipment

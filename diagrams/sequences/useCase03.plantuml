@@ -1,0 +1,36 @@
+@startuml
+
+autonumber
+
+actor Actor
+
+activate Actor
+
+create Gladiator
+Actor -> Gladiator : <<Create>> Gladiator()
+activate Gladiator
+create Rank
+    Gladiator -> Rank :  <<Create>> Rank() 
+    create Energy
+    Gladiator -> Energy : <<Create>> Energy(0)
+    create Equipment
+    Gladiator -> Equipment : <<Create>> Equipment()
+    Create State
+    Gladiator -> State : <<Create>> State()
+deactivate Gladiator
+
+Actor -> Gladiator : turn()
+activate Gladiator
+    Gladiator -> Gladiator : update()
+    activate Gladiator
+    deactivate Gladiator
+    Gladiator -> State : move()
+    activate State 
+        State --> Gladiator : 0
+    deactivate State
+    Gladiator --> Actor : 0
+deactivate Gladiator
+
+deactivate Actor
+
+@enduml
