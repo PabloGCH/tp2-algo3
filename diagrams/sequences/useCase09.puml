@@ -1,0 +1,30 @@
+@startuml
+
+autonumber
+
+activate Actor
+
+actor Actor
+create collections Gladiators
+Actor -> Gladiators: <<create>>
+activate Gladiators
+Actor -> Gladiators:add(aGladiator)
+
+
+create collections Map
+Actor -> Map: <<create>>
+activate Map
+Actor -> Map: add(Square)
+
+create Game
+Actor -> Game : <<Create>> Game(gladiators,map)
+activate Game
+deactivate Gladiators
+deactivate Map
+Actor -> Game : startGame()
+Game --> Actor : true
+deactivate Game
+
+deactivate Actor
+
+@enduml
