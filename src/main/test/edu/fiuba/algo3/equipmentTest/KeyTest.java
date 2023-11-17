@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
+import edu.fiuba.algo3.modelo.energy.Energy;
+import edu.fiuba.algo3.modelo.equipment.Key;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
@@ -24,5 +26,15 @@ public class KeyTest {
         int energyPoints = energy.getPoints();
         //Assert
         assertEquals(20, energyPoints);//Gladiator with Key receives 0 damage fighting with a beast
+    }
+    @Test void receiveAttackReturnsCorrectDamage(){
+        //Arrange
+        Key newEquipment = new Key();
+        Energy energy = new Energy(20);
+        //Act
+        energy = newEquipment.receiveAttack(energy);
+        int energyPoints = energy.getPoints();
+        //Assert
+        assertEquals(20, energyPoints);
     }
 }

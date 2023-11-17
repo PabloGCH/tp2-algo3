@@ -1,12 +1,14 @@
 package edu.fiuba.algo3.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
+import edu.fiuba.algo3.modelo.energy.Energy;
+import edu.fiuba.algo3.modelo.equipment.ShieldSword;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
-public class ShieldSword {
+public class ShieldSwordTest {
     @Test void upgradeReturnsHelmet(){
         //Arrange
         Gladiator gladiator = new Gladiator(); //Should start with 20 energy
@@ -23,5 +25,15 @@ public class ShieldSword {
         int energyPoints = energy.getPoints();
         //Assert
         assertEquals(20, energyPoints);//Gladiator with Key receives 0 damage fighting with a beast
+    }
+    @Test void receiveAttackReturnsCorrectDamage(){
+        //Arrange
+        ShieldSword newEquipment = new ShieldSword();
+        Energy energy = new Energy(20);
+        //Act
+        energy = newEquipment.receiveAttack(energy);
+        int energyPoints = energy.getPoints();
+        //Assert
+        assertEquals(18, energyPoints);
     }
 }

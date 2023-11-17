@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
+
+import edu.fiuba.algo3.modelo.energy.Energy;
+import edu.fiuba.algo3.modelo.equipment.Helmet;
 import org.junit.jupiter.api.Test;
 
 
@@ -22,5 +25,15 @@ public class HelmetTest {
         int energyPoints = energy.getPoints();
         //Assert
         assertEquals(10, energyPoints);//Gladiator with Armor receives 10 damage fighting with a beast
+    }
+    @Test void receiveAttackReturnsCorrectDamage(){
+        //Arrange
+        Helmet newEquipment = new Helmet();
+        Energy energy = new Energy(20);
+        //Act
+        energy = newEquipment.receiveAttack(energy);
+        int energyPoints = energy.getPoints();
+        //Assert
+        assertEquals(5, energyPoints);
     }
 }
