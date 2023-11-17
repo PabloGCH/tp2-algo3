@@ -3,19 +3,29 @@ autonumber
 actor Actor
 Actor -->> Gladiator: <<create>> Gladiator()
 Actor -->> initialSquare: <<create>> Initial()
-Actor --> initialSquare: receiveGladiator(gladiator: Gladiator)
-Actor --> Gladiator: upgrade()
-Actor --> Gladiator: upgrade()
-Actor --> Gladiator: upgrade()
-Actor --> Gladiator: upgrade()
-Actor --> Gladiator: fightWithBeast()
-Actor --> Gladiator: getEnergy(): Energy
+Actor -> initialSquare: receiveGladiator(gladiator: Gladiator)
+activate initialSquare
+deactivate initialSquare
+Actor -> Gladiator: upgrade()
+activate Gladiator
+Actor -> Gladiator: upgrade()
+Actor -> Gladiator: upgrade()
+Actor -> Gladiator: upgrade()
+Actor -> Gladiator: fightWithBeast()
+Actor -> Gladiator: getEnergy(): Energy
 Gladiator -->> Actor: energy
-Actor --> Energy: getPoints():int
+deactivate Gladiator
+Actor -> Energy: getPoints():int
+activate Energy
 Energy -->> Actor: energyPoints
-Actor --> Gladiator: upgrade()
-Actor --> Gladiator: getEnergy(): Energy
+deactivate Energy
+Actor -> Gladiator: upgrade()
+activate Gladiator
+Actor -> Gladiator: getEnergy(): Energy
 Gladiator -->> Actor: energy
-Actor --> Energy: getPoints():int
+deactivate Gladiator
+Actor -> Energy: getPoints():int
+activate Energy
 Energy -->> Actor: energyPoints
+deactivate Energy
 @enduml
