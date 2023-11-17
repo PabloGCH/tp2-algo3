@@ -4,11 +4,19 @@ actor Actor
 Actor -->> Gladiator: <<create>> Gladiator()
 Actor -->> initialSquare: <<create>> Initial()
 Actor -->> Game: <<create>> Game(gladiator, map)
-Game --> initialSquare: receiveGladiator(Gladiator)
+Game -> initialSquare: receiveGladiator(Gladiator)
+activate initialSquare
+deactivate initialSquare
 initialSquare --> Energy: <<create>>
-initialSquare --> Gladiator: setInitialEnergy(energy : Energy)
-Actor --> Gladiator: getEnergy(): Energy
+initialSquare -> Gladiator: setInitialEnergy(energy : Energy)
+activate Gladiator
+deactivate Gladiator
+Actor -> Gladiator: getEnergy(): Energy
+activate Gladiator
 Gladiator -->> Actor: energy
-Actor --> Energy: getPoints():int
+deactivate Gladiator
+Actor -> Energy: getPoints():int
+activate Energy
 Energy -->> Actor: energyPoints
+deactivate Energy
 @enduml
