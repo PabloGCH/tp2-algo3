@@ -6,8 +6,14 @@ actor Actor
 Actor -->> Gladiator: <<create>> Gladiator()
 Actor -->> initialSquare: <<create>> Initial()
 Actor --> initialSquare: receiveGladiator(gladiator: Gladiator)
+activate initialSquare
+deactivate initialSquare
 Actor --> Gladiator: getEnergy(): Energy
+activate Gladiator
 Gladiator -->> Actor: energy
+deactivate Gladiator
 Actor --> Energy: getPoints():int
+activate Energy
 Energy -->> Actor: energyPoints
+deactivate Energy
 @enduml
