@@ -6,10 +6,10 @@
 !include Armor.puml
 !include ShieldSword.puml
 !include Key.puml
-Equipment ..|> NullEquipment
-Equipment ..|> Helmet
-Equipment ..|> Armor
-Equipment ..|> ShieldSword
-Equipment ..|> Key
+Equipment <|.. NullEquipment
+Equipment <|.. Helmet
+Equipment <|.. Armor
+Equipment <|.. ShieldSword
+Equipment <|.. Key
 
 @enduml
