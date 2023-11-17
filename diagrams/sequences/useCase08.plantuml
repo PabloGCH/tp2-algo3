@@ -5,44 +5,48 @@ autonumber
 actor Actor
 
 activate Actor
+create Gladiator
+Actor -> Gladiator : <<Create>> Gladiator()
+activate Gladiator
+    create Rank
+    Gladiator -> Rank :  <<Create>> Rank() 
+    create Energy
+    Gladiator -> Energy : <<Create>> Energy(0)
+    create Equipment
+    Gladiator -> Equipment : <<Create>> Equipment()
+    Create State
+    Gladiator -> State : <<Create>> State()
+deactivate Gladiator
 
-Actor -> Gladiador : <<Create>> Gladiador()
-activate Gladiador
-    Gladiador -> Rank :  <<Create>> Rank() 
-    Gladiador -> Energy : <<Create>> Energy(0)
-    Gladiador -> Equipment : <<Create>> Equipment()
-    Gladiador -> State : <<Create>> State()
-deactivate Gladiador
-
-Actor -> Gladiador : turn()
+Actor -> Gladiator : turn()
 loop I represent its use 8 times in the use case
-activate Gladiador
-    Gladiador -> Gladiador : update()
-    activate Gladiador
+activate Gladiator
+    Gladiator -> Gladiator : update()
+    activate Gladiator
 
-        Gladiador -> Rank : ascent()
+        Gladiator -> Rank : ascent()
         activate Rank
-            Rank --> Gladiador : Rank
+            Rank --> Gladiator : Rank
         deactivate Rank
 
-        Gladiador -> Rank : energyFromExperience(this.energy)
+        Gladiator -> Rank : energyFromExperience(this.energy)
         activate Rank
-            Rank --> Gladiador : Energy()
+            Rank --> Gladiator : Energy()
         deactivate Rank
     
-    deactivate Gladiador
-    Gladiador -> State : move()
+    deactivate Gladiator
+    Gladiator -> State : move()
     activate State
-    State --> Gladiador: int between 0 and 6
+    State --> Gladiator: int between 0 and 6
     deactivate State
-    Gladiador --> Actor : int between 0 and 6
-deactivate Gladiador
+    Gladiator --> Actor : int between 0 and 6
+deactivate Gladiator
 end loop
 
-Actor -> Gladiador : getEnergy
-activate Gladiador
-Gladiador --> Actor : Energy()
-deactivate Gladiador
+Actor -> Gladiator : getEnergy
+activate Gladiator
+Gladiator --> Actor : Energy()
+deactivate Gladiator
 
 Actor -> Energy : getPoints
 activate Energy
