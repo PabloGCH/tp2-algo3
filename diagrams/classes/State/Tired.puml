@@ -1,0 +1,6 @@
+@startuml
+class Tired{
+    +move(): Int
+    +update(): State
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class Active{
+    +move(): Int
+    +update(): State
+}
+@enduml
