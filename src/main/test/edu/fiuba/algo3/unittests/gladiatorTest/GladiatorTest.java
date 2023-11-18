@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.gladiatorTest;
+package edu.fiuba.algo3.unittests.gladiatorTest;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
