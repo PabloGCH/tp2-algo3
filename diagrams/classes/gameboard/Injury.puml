@@ -2,8 +2,9 @@
 'https://plantuml.com/class-diagram
 
 package Model {
-    class Initial {
+    class Injury {
+        + affect(aGladiator: Gladiator): void
     }
- }
+}
 
 @enduml

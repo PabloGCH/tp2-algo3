@@ -3,7 +3,7 @@
 
 package Model {
     class Middle {
-
+        + Middle(effect: Effect)
     }
 }
 
