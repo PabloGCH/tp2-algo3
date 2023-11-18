@@ -1,0 +1,11 @@
+@startuml
+package Model {
+    abstract class Square {
+        - gladiators: Gladiator
+        - effect: Effect
+        + Square(anEffect: Effect)
+        + receiveGladiator(aGladiator: Gladiator)
+    }
+}
+
+@enduml

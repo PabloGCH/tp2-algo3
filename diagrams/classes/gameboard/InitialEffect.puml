@@ -2,7 +2,8 @@
 'https://plantuml.com/class-diagram
 
 package Model {
-    class Obstacle {
+    class InitialEffect {
+        + affect(aGladiator: Gladiator): void
     }
 }
 
