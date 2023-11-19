@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.energy.Energy;
 import edu.fiuba.algo3.modelo.rank.Rank;
 import edu.fiuba.algo3.modelo.rank.Rookie;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
+import edu.fiuba.algo3.modelo.state.Injured;
 import edu.fiuba.algo3.modelo.state.State;
 import edu.fiuba.algo3.modelo.state.Tired;
 
@@ -54,6 +55,15 @@ public class Gladiator {
 
     public void upgrade(){
         this.equipment = this.equipment.upgrade();
+    }
+
+    public void injured(){
+        this.state = new Injured();
+    }
+
+    public int choice(){
+        this.state = this.state.update();
+        return this.state.move();
     }
 
 }
