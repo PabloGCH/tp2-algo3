@@ -1,6 +1,6 @@
 @startuml
 interface State {
     +move(): Int
-    +update():State
+    +update(Energy energy):State
 }
 @enduml

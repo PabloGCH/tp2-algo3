@@ -1,6 +1,10 @@
 @startuml
+!include ../Dice/dice.plantuml
 class Active{
+    +Active()
     +move(): Int
     +update(): State
 }
+
+Active --> Dice
 @enduml
