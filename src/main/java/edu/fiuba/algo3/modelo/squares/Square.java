@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class Square {
     private ArrayList<Gladiator> gladiators = new ArrayList();
-    private Effect effect;
+    protected Effect effect;
     public Square(Effect anEffect) {
         this.effect = anEffect;
     }
