@@ -23,18 +23,24 @@ import edu.fiuba.algo3.modelo.squares.Square;
 public class MapJsonParser {
     public ArrayList<Square> loadMap(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
         ArrayList<Square> map = new ArrayList<>();
-        JSONObject mapJsonObject = this.getMapObject(filePath);
-        JSONArray squaresJsonArray = (JSONArray) mapJsonObject.get(fileName);
-        int middleSquareIndex = (int) squaresJsonArray.size() / 2;
-        Square middleSquare = new Middle(new NullEffect());
-        for(int i = 0; i < squaresJsonArray.size(); i++) {
-            Object element = squaresJsonArray.get(i);
-            String value = element.toString();
-            Square newSquare = this.createSquare(value, middleSquare);
-            middleSquare = middleSquareIndex == i ? newSquare : middleSquare;
-            map.add(newSquare);
+        try {
+            JSONObject mapJsonObject = this.getMapObject(filePath);
+            JSONArray squaresJsonArray;
+            squaresJsonArray = (JSONArray) mapJsonObject.get(fileName);
+            int middleSquareIndex = (int) squaresJsonArray.size() / 2;
+            Square middleSquare = new Middle(new NullEffect());
+            for(int i = 0; i < squaresJsonArray.size(); i++) {
+                Object element = squaresJsonArray.get(i);
+                String value = element.toString();
+                Square newSquare = this.createSquare(value, middleSquare);
+                middleSquare = middleSquareIndex == i ? newSquare : middleSquare;
+                map.add(newSquare);
+            }
+        } catch(ClassCastException e) {
+            //IT CAN BE ASSUMED THAT IF IT FAILS TO CAST AN OBJECT IS BECAUSE THE JSON IS INVALID
+            //SINCE IS ONLY CASTING AFTER GETTING VALUES FROM THE FILE
+            throw new InvalidMapFile();
         }
-        //BUILDS MAP WITH JSON
         return map;
     }
 
