@@ -1,4 +1,4 @@
-package edu.fiuba.squareTest;
+package edu.fiuba.algo3.unittests.squareTest;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.*;
@@ -80,5 +80,28 @@ public class squareTest {
 
         // We can not ensure the exact amount of wine the gladiator will drink. But we can ensure that the gladiator must increase its energy.
         assertTrue(finalEnergy > initialEnergy);
+    }
+
+    @Test
+    public void test05ASquareWithNullEffectDoesNotChangeAGladiatorsEnergy() {
+        Gladiator aGladiator = new Gladiator();
+        Effect aNullEffect = new NullEffect();
+        int initialEnergy;
+        int finalEnergy;
+        int initialExpectedEnergy = 0;
+        int finalExpectedEnergy = 0;
+
+        initialEnergy = aGladiator.getEnergy().getPoints();
+        assertEquals(initialEnergy, initialExpectedEnergy);
+        aNullEffect.affect(aGladiator);
+
+        finalEnergy = aGladiator.getEnergy().getPoints();
+
+        assertEquals(finalEnergy, finalExpectedEnergy);
+    }
+
+    @Test
+    public void test06() {
+
     }
 }
