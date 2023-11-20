@@ -3,6 +3,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import edu.fiuba.algo3.modelo.squares.Initial;
+import edu.fiuba.algo3.modelo.squares.Square;
 
 
 public class GladiatorTest {
@@ -147,5 +149,19 @@ public class GladiatorTest {
         energyPoints = energy.getPoints();
         // Assert
         assertEquals(30, energyPoints);
+    }
+
+    @Test void SeeTheNewPositionTheGladiatorIsIn() {
+        // Arrange
+        Gladiator gladiator = new Gladiator();
+        Square initialSquare = new Initial(); 
+        //Act
+        
+        initialSquare.receiveGladiator(gladiator); //Should start with 20 energy
+        int position = gladiator.turn();
+        // Assert
+
+        assertTrue(position >= 1);
+        assertTrue(position <=6);
     }
 }

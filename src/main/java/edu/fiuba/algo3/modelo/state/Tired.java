@@ -7,7 +7,9 @@ public class Tired implements State{
         return 0;
     }
     public State update(Energy energy){
-        //TODO implement when energy > 0
-        return new Active();
+        if (energy.getPoints() > 0) {
+            return new Active();
+        }
+        return this;
     }
 }

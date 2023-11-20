@@ -14,6 +14,7 @@ public class Gladiator {
     private Energy energy;
     private Equipment equipment;
     private Rank rank;
+    private int position;
 
     public Gladiator() {
 
@@ -21,11 +22,12 @@ public class Gladiator {
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
         this.state = new Tired();
+        this.position = 0;
     }
     
     public int turn() {;
         update();
-        return  state.move();
+        return choice();
     }
     
     public void drinkWine(int cupsOfWineAmount) {}
@@ -62,8 +64,9 @@ public class Gladiator {
     }
 
     public int choice(){
-        this.state = this.state.update();
-        return this.state.move();
+        this.state = this.state.update(this.energy);
+        this.position += this.state.move();
+        return this.position;
     }
 
 }

@@ -1,0 +1,8 @@
+@startuml
+class Dice{
+    -Random throwResult
+    -int diceFaces
+    +Dice()
+    +throwDice(): int
+}
+@enduml
