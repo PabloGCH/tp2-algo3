@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.equipment.NullEquipment;
 import edu.fiuba.algo3.modelo.state.Injured;
 import edu.fiuba.algo3.modelo.state.State;
 import edu.fiuba.algo3.modelo.state.Tired;
+import edu.fiuba.algo3.modelo.Config;
 
 public class Gladiator {
     private String name;
@@ -30,7 +31,10 @@ public class Gladiator {
         return choice();
     }
     
-    public void drinkWine(int cupsOfWineAmount) {}
+    public void drinkWine(int cupsOfWineAmount) {
+        int energyLostForEachCup = Config.ENERGY_LOST_FOR_EACH_CUP_OF_WINE.getValue();
+        this.energy = this.energy.add(new Energy(energyLostForEachCup * cupsOfWineAmount));
+    }
 
     private void update(){
         this.rank = this.rank.ascent();
