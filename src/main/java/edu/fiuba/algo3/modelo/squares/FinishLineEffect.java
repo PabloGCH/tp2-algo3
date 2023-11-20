@@ -7,8 +7,10 @@ import java.io.IOException;
 
 public class FinishLineEffect implements Effect{
     private Square middleSquare;
-    public FinishLineEffect(Square middleSquare) {
+    private Square lastSquare;
+    public FinishLineEffect(Square middleSquare, Square lastSquare) {
         this.middleSquare = middleSquare;
+        this.lastSquare = lastSquare;
     }
     @Override
     public void affect(Gladiator aGladiator) {
@@ -16,6 +18,7 @@ public class FinishLineEffect implements Effect{
             testException();
         } catch (IOException e) {
             this.middleSquare.receiveGladiator(aGladiator);
+            this.lastSquare.unsetGladiator(aGladiator);
         }
     }
 
