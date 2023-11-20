@@ -64,4 +64,21 @@ public class squareTest {
 
         assertEquals(finalEnergy, finalExpectedEnergy);
     }
+
+    @Test
+    public void test04AGladiatorLoosesExpectedEnergyAfterDrinkingWine() {
+        Gladiator aGladiator = new Gladiator();
+        Effect aBacchanalia = new Bacchanalia();
+        int initialEnergy;
+        int initialExpectedEnergy = 0;
+        int finalEnergy;
+
+        initialEnergy = aGladiator.getEnergy().getPoints();
+        assertEquals(initialEnergy, initialExpectedEnergy);
+        aBacchanalia.affect(aGladiator);
+        finalEnergy = aGladiator.getEnergy().getPoints();
+
+        // We can not ensure the exact amount of wine the gladiator will drink. But we can ensure that the gladiator must increase its energy.
+        assertTrue(finalEnergy > initialEnergy);
+    }
 }
