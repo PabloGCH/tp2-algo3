@@ -4,10 +4,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import edu.fiuba.algo3.modelo.squares.Beast;
 
 public class EnemyParser {
-    public ArrayList<Beast> loadMap(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
+    public ArrayList<Beast> loadMap(String filePath, String fileName) throws  MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
         ArrayList<Beast> enemies = new ArrayList<>();
         try {
             JSONObject enemiesJsonObject = this.getEnemiesObject(filePath);
