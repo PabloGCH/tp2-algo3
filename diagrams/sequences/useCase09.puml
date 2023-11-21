@@ -7,22 +7,28 @@ activate Actor
 actor Actor
 create collections Gladiators
 Actor -> Gladiators: <<create>>
+create Gladiator
+Actor -> Gladiator: <<create>>
 activate Gladiators
-Actor -> Gladiators:add(aGladiator)
+Actor -> Gladiators:add(gladiator)
 
 
-create collections Map
+create Map
 Actor -> Map: <<create>>
+loop  6 empty squares and one more in the middle with food (middleSquare)
 activate Map
 Actor -> Map: add(Square)
-
+end loop
 create Game
 Actor -> Game : <<Create>> Game(gladiators,map)
 activate Game
 deactivate Gladiators
 deactivate Map
-Actor -> Game : startGame()
-Game --> Actor : true
+activate finalSquare
+Actor -> finalSquare: receiveGladiator(gladiator))
+activate Gladiator
+Actor -> Gladiator: getEnergy().getPoints()
+Gladiator --> Actor: energyPoints
 deactivate Game
 
 deactivate Actor
