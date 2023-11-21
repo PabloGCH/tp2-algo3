@@ -10,21 +10,18 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import edu.fiuba.algo3.modelo.squares.Bacchanalia;
-import edu.fiuba.algo3.modelo.squares.Beast;
-import edu.fiuba.algo3.modelo.squares.Food;
-import edu.fiuba.algo3.modelo.squares.Injury;
-import edu.fiuba.algo3.modelo.squares.NullEffect;
 
 
 public class ObstaclesRewardsParser {
     public ArrayList<Effect> loadEffects(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
         ArrayList<Effect> effects = new ArrayList<>();
         try {
-            JSONArray effectsJsonArray = this.getEffectsObject(filePath);
-            for (Object element : effectsJsonArray) {
-                JSONObject object = (JSONObject) element;
-                String value = (String) object.get("effect");
+            JSONObject mapJsonObject = this.getEffectsObject(filePath);
+            JSONArray effectsJsonArray;
+            effectsJsonArray = (JSONArray) mapJsonObject.get(fileName);
+            for(int i = 0; i < effectsJsonArray.size(); i++) {
+                Object element = effectsJsonArray.get(i);
+                String value = element.toString();
                 Effect newEffect = this.createEffect(value);
                 effects.add(newEffect);
             }
@@ -53,7 +50,7 @@ public class ObstaclesRewardsParser {
         }
     }
 
-    private JSONArray getEffectsObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    private JSONObject getEffectsObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
         //TRIES TO READ MAP FILE
         try {
@@ -68,7 +65,7 @@ public class ObstaclesRewardsParser {
             if(!mapjsonObject.containsKey("effects")){
                 throw new InvalidMapFile();
             }
-            return (JSONArray) mapjsonObject.get("effects");
+            return (JSONObject) mapjsonObject.get("effects");
         } catch(FileNotFoundException e) {
             throw new MapFileNotFound();
         } catch(IOException e) {

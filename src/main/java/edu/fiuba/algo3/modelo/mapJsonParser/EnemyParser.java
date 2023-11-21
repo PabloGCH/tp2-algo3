@@ -3,23 +3,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import edu.fiuba.algo3.modelo.squares.Beast;
 
-
-
-
 public class EnemyParser {
-    public ArrayList<Beast> loadEnemies(String filePath, String fileName) throws  MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
+    public ArrayList<Beast> loadMap(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
         ArrayList<Beast> enemies = new ArrayList<>();
         try {
-            JSONArray enemiesJsonArray = this.getEnemiesObject(filePath);
+            JSONObject enemiesJsonObject = this.getEnemiesObject(filePath);
+            JSONArray enemiesJsonArray;
+            enemiesJsonArray = (JSONArray) enemiesJsonObject.get(fileName);
             for (Object element : enemiesJsonArray) {
-                JSONObject object = (JSONObject) element;
-                String value = (String) object.get("Enemy");
+                String value = element.toString();
                 Beast newBeast = new Beast(); //It may require to implement a constructor with the name of the enemy
                 enemies.add(newBeast);
             }
@@ -31,8 +25,7 @@ public class EnemyParser {
         return enemies;
     }
 
-    public JSONArray getEnemiesObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-
+    private JSONObject getEnemiesObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
         //TRIES TO READ MAP FILE
         try {
@@ -47,7 +40,7 @@ public class EnemyParser {
             if(!mapjsonObject.containsKey("enemies")){
                 throw new InvalidMapFile();
             }
-            return (JSONArray) mapjsonObject.get("enemies");
+            return (JSONObject) mapjsonObject.get("enemies");
         } catch(FileNotFoundException e) {
             throw new MapFileNotFound();
         } catch(IOException e) {
@@ -56,4 +49,5 @@ public class EnemyParser {
             throw new MapFileCouldNotBeParsed();
         }
     }
+
 }
