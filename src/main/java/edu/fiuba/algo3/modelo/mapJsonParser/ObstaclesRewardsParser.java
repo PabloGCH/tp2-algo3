@@ -16,6 +16,7 @@ import edu.fiuba.algo3.modelo.squares.Food;
 import edu.fiuba.algo3.modelo.squares.Injury;
 import edu.fiuba.algo3.modelo.squares.NullEffect;
 
+
 public class ObstaclesRewardsParser {
     public ArrayList<Effect> loadEffects(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
         ArrayList<Effect> effects = new ArrayList<>();

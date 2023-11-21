@@ -3,13 +3,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import edu.fiuba.algo3.modelo.squares.Beast;
+
+
+
 
 public class EnemyParser {
     public ArrayList<Beast> loadEnemies(String filePath, String fileName) throws  MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
@@ -31,6 +32,7 @@ public class EnemyParser {
     }
 
     public JSONArray getEnemiesObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+
         FileReader reader;
         //TRIES TO READ MAP FILE
         try {
