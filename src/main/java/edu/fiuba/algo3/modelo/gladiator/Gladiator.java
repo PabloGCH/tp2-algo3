@@ -27,11 +27,15 @@ public class Gladiator {
         return  state.move();
     }
     
-    public void drinkWine(int cupsOfWineAmount) {}
+    public void drinkWine(int cupsOfWineAmount) {
+        Energy newEnergy = new Energy(cupsOfWineAmount * 4);
+        this.energy = this.energy.substract(newEnergy);
+    }
 
     private void update(){
         this.rank = this.rank.ascent();
         this.energy = this.rank.energyFromExperience(this.energy);
+        this.state = this.state.update();
     }
 
     public void eat() {
