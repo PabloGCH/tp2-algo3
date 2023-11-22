@@ -26,6 +26,7 @@ public class UseCase17 {
         assertEquals(expectedInitialEnergy, aGladiator.getEnergy().getPoints());
         map.get(0).receiveGladiator(aGladiator);
         assertEquals(expectedSecondEnergy, aGladiator.getEnergy().getPoints());
-        map.get(0).uns
+
+        map.get(0).unsetGladiator(aGladiator);
     }
 }
