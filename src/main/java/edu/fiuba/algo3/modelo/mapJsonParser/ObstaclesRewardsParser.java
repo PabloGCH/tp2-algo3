@@ -20,12 +20,10 @@ public class ObstaclesRewardsParser {
     public ArrayList<Effect> loadEffects(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
         ArrayList<Effect> effects = new ArrayList<>();
         try {
-            JSONObject mapJsonObject = this.getEffectsObject(filePath);
-            JSONArray effectsJsonArray;
-            effectsJsonArray = (JSONArray) mapJsonObject.get(fileName);
-            for(int i = 0; i < effectsJsonArray.size(); i++) {
-                Object element = effectsJsonArray.get(i);
-                String value = element.toString();
+            JSONArray effectsJsonArray = this.getEffectsObject(filePath);
+            for (Object element : effectsJsonArray) {
+                JSONObject object = (JSONObject) element;
+                String value = (String) object.get("effect");
                 Effect newEffect = this.createEffect(value);
                 effects.add(newEffect);
             }
@@ -54,7 +52,7 @@ public class ObstaclesRewardsParser {
         }
     }
 
-    private JSONObject getEffectsObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    private JSONArray getEffectsObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
         //TRIES TO READ MAP FILE
         try {
@@ -69,7 +67,7 @@ public class ObstaclesRewardsParser {
             if(!mapjsonObject.containsKey("effects")){
                 throw new InvalidMapFile();
             }
-            return (JSONObject) mapjsonObject.get("effects");
+            return (JSONArray) mapjsonObject.get("effects");
         } catch(FileNotFoundException e) {
             throw new MapFileNotFound();
         } catch(IOException e) {

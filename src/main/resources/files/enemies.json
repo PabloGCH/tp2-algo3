@@ -1,0 +1,13 @@
+{
+  "enemies": [{
+    "Enemy": "BEAST"
+  }, {
+    "Enemy": "Gladiator"
+  }, {
+    "Enemy": "HIPPOGRIFF"
+  }, {
+    "Enemy": "TITAN"
+  }, {
+    "Enemy": "ARCHER"
+  }]
+}
