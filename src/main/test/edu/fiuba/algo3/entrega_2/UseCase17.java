@@ -20,7 +20,7 @@ public class UseCase17 {
         Gladiator aGladiator = new Gladiator();
         int expectedInitialEnergy = 0;
         int expectedSecondEnergy = 20;
-        int expectedThirdEnergy;
+        int expectedThirdEnergy = 0;
 
         map = facade.loadMap();
         assertEquals(expectedInitialEnergy, aGladiator.getEnergy().getPoints());
@@ -28,5 +28,8 @@ public class UseCase17 {
         assertEquals(expectedSecondEnergy, aGladiator.getEnergy().getPoints());
 
         map.get(0).unsetGladiator(aGladiator);
+        map.get(1).receiveGladiator(aGladiator);
+
+        assertEquals(expectedInitialEnergy, aGladiator.getEnergy().getPoints());
     }
 }
