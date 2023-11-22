@@ -14,8 +14,6 @@ public class UseCase03 {
     @Test
     public void test03APlayerCantMoveWithoutEnergy() {
         Gladiator aGladiator = new Gladiator();
-        Square initialSquare = new Initial();
-        initialSquare.receiveGladiator(aGladiator);
         Assertions.assertTrue(aGladiator.turn() == 0);
     }
 }
