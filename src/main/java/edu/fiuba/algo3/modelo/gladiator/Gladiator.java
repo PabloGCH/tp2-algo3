@@ -35,7 +35,7 @@ public class Gladiator {
     private void update(){
         this.rank = this.rank.ascent();
         this.energy = this.rank.energyFromExperience(this.energy);
-        this.state = this.state.update();
+        this.state = this.state.update(this.energy);
     }
 
     public void eat() {
