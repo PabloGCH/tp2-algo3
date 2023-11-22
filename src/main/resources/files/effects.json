@@ -1,0 +1,13 @@
+{
+  "effects": [{
+    "effect": "FOOD"
+  }, {
+    "effect": "UPGRADE"
+  }, {
+    "effect": "WINE"
+  }, {
+    "effect": "BEAST"
+  }, {
+    "effect": "INJURY"
+  }]
+}
