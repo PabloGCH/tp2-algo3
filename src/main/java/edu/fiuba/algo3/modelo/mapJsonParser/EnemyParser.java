@@ -12,14 +12,13 @@ import org.json.simple.parser.ParseException;
 import edu.fiuba.algo3.modelo.squares.Beast;
 
 public class EnemyParser {
-    public ArrayList<Beast> loadMap(String filePath, String fileName) throws  MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
+    public ArrayList<Beast> loadEnemies(String filePath, String fileName) throws  MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
         ArrayList<Beast> enemies = new ArrayList<>();
         try {
-            JSONObject enemiesJsonObject = this.getEnemiesObject(filePath);
-            JSONArray enemiesJsonArray;
-            enemiesJsonArray = (JSONArray) enemiesJsonObject.get(fileName);
+            JSONArray enemiesJsonArray = this.getEnemiesObject(filePath);
             for (Object element : enemiesJsonArray) {
-                String value = element.toString();
+                JSONObject object = (JSONObject) element;
+                String value = (String) object.get("Enemy");
                 Beast newBeast = new Beast(); //It may require to implement a constructor with the name of the enemy
                 enemies.add(newBeast);
             }
@@ -31,7 +30,7 @@ public class EnemyParser {
         return enemies;
     }
 
-    private JSONObject getEnemiesObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public JSONArray getEnemiesObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
         //TRIES TO READ MAP FILE
         try {
@@ -46,7 +45,7 @@ public class EnemyParser {
             if(!mapjsonObject.containsKey("enemies")){
                 throw new InvalidMapFile();
             }
-            return (JSONObject) mapjsonObject.get("enemies");
+            return (JSONArray) mapjsonObject.get("enemies");
         } catch(FileNotFoundException e) {
             throw new MapFileNotFound();
         } catch(IOException e) {
@@ -55,5 +54,4 @@ public class EnemyParser {
             throw new MapFileCouldNotBeParsed();
         }
     }
-
 }
