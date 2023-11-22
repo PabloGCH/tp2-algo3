@@ -1,18 +1,21 @@
 package edu.fiuba.algo3.modelo.energy;
 
 public class Energy {
-    private interface EnergyCalculator {
-        Energy calculate(Energy energy);
+    private int points;
+
+    public Energy add(Energy energy) {
+        return new Energy(this.getPoints() + energy.getPoints());
     }
-    private interface Points {}
-    private Points points;
-    public Energy calculate(EnergyCalculator calculator) {
-        return this;
+
+    public Energy substract(Energy energy) {
+        return new Energy(this.getPoints() - energy.getPoints());
     }
-    public Energy spendEnergyByWineConsumption(int cupsOfWine) {
-        return this;
+
+    public Energy(int pointsAmount) {
+        this.points = pointsAmount;
     }
-    Energy(Points points) {
-        this.points = points;
+
+    public int getPoints() {
+        return this.points;
     }
 }

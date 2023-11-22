@@ -1,0 +1,5 @@
+@startuml
+!include Equipment.puml
+!include ../Energy/Energy.plantuml
+Equipment -> Energy
+@enduml

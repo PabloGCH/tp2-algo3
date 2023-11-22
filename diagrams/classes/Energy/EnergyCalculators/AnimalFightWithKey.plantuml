@@ -1,7 +1,0 @@
-@startuml
-!include EnergyCalculator.plantuml
-EnergyCalculator <|.. AnimalFightWithKey
-class AnimalFightWithKey {
-    calculate(energy :Energy) :Energy
-}
-@enduml

@@ -1,7 +1,0 @@
-@startuml
-!include EnergyCalculator.plantuml
-EnergyCalculator <|.. NoviceRankEnergyIncrease
-class NoviceRankEnergyIncrease {
-    calculate(energy :Energy) :Energy
-}
-@enduml

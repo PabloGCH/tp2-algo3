@@ -1,6 +1,6 @@
 @startuml
 class Helmet {
     +upgrade(): Armor
-    +energyConsumptionByFight(Energy: Energy): Energy
+    +receiveAttack(Energy: energyPoints): Energy
 }
 @enduml

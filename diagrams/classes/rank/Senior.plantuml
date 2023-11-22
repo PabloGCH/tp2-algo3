@@ -1,0 +1,9 @@
+@startuml
+!include ../Energy/Energy.plantuml
+
+class Senior {
+    +energyFromExperience(amount: Energy): Energy
+    +ascent(): Rank
+}
+Senior ..> Energy
+@enduml

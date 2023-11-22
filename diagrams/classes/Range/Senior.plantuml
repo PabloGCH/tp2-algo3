@@ -1,8 +1,0 @@
-@startuml
-!include ../Energy/Energy.plantuml
-
-class Senior {
-    +energyFromExperience(unaCantidad: Energy): Energy
-}
-Senior ..> Energy
-@enduml

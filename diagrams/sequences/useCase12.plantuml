@@ -1,0 +1,26 @@
+@startuml
+
+autonumber
+
+activate Actor
+
+actor Actor
+Actor -> Game : <<Create>> Game(gladiators,map)
+activate Game
+    loop until all gladiators are saved and does not exceed the maximum of 6 gladiators 
+    Game -> Game : addGladiator(Gladiator)
+    activate Game
+    deactivate Game
+    end loop
+deactivate Game
+
+Actor -> Game : startGame()
+loop until turn is greater than or equal to 30
+activate Game
+    Game --> Actor : true
+deactivate Game
+end loop
+
+deactivate Actor
+
+@enduml
