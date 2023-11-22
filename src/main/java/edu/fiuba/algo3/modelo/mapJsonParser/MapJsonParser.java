@@ -24,14 +24,12 @@ public class MapJsonParser {
     public ArrayList<Square> loadMap(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
         ArrayList<Square> map = new ArrayList<>();
         try {
-            JSONObject mapJsonObject = this.getMapObject(filePath);
-            JSONArray squaresJsonArray;
-            squaresJsonArray = (JSONArray) mapJsonObject.get(fileName);
-            int middleSquareIndex = (int) squaresJsonArray.size() / 2;
+            JSONArray mapJsonArray = this.getMapObject(filePath);
+            int middleSquareIndex = (int) mapJsonArray.size() / 2;
             Square middleSquare = new Middle(new NullEffect());
-            for(int i = 0; i < squaresJsonArray.size(); i++) {
-                Object element = squaresJsonArray.get(i);
-                String value = element.toString();
+            for(int i = 0; i < mapJsonArray.size(); i++) {
+                JSONObject element = (JSONObject) mapJsonArray.get(i);
+                String value = (String) element.get("square");
                 Square newSquare = this.createSquare(value, middleSquare);
                 middleSquare = middleSquareIndex == i ? newSquare : middleSquare;
                 map.add(newSquare);
@@ -66,7 +64,7 @@ public class MapJsonParser {
         }
     }
 
-    private JSONObject getMapObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    private JSONArray getMapObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
         //TRIES TO READ MAP FILE
         try {
@@ -81,7 +79,7 @@ public class MapJsonParser {
             if(!mapjsonObject.containsKey("map")){
                 throw new InvalidMapFile();
             }
-            return (JSONObject) mapjsonObject.get("map");
+            return (JSONArray) mapjsonObject.get("map");
         } catch(FileNotFoundException e) {
             throw new MapFileNotFound();
         } catch(IOException e) {
