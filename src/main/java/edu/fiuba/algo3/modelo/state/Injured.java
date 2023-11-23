@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.energy.Energy;
 
 public class Injured implements State{
     private int shift;
+    private final int TURNS_TO_BE_INJURED = 1;
 
     public Injured(){
         this.shift = 0;
@@ -14,7 +15,7 @@ public class Injured implements State{
     }
 
     public State update(Energy energy){
-        if (shift == 1 ) {
+        if (shift == TURNS_TO_BE_INJURED ) {
             return new Active();
         }
         shift++;
