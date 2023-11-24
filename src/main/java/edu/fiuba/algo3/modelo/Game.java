@@ -27,6 +27,8 @@ public class Game {
     public boolean startGame() {
         while(turns <30) {
             for (Gladiator aGladiator : gladiators) {
+                int squaresAhead = aGladiator.turn();
+                map.get(squaresAhead).receiveGladiator(aGladiator);
             }
             turns ++;
         }
