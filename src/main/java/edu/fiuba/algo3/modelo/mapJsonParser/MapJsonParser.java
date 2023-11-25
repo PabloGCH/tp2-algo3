@@ -27,6 +27,7 @@ public class MapJsonParser {
             JSONArray mapJsonArray = this.getMapObject(filePath);
             int middleSquareIndex = (int) mapJsonArray.size() / 2;
             Square middleSquare = new Middle(new NullEffect());
+
             for(int i = 0; i < mapJsonArray.size(); i++) {
                 JSONObject element = (JSONObject) mapJsonArray.get(i);
                 String value = (String) element.get("square");
@@ -63,6 +64,7 @@ public class MapJsonParser {
                 return new Middle(new NullEffect());
         }
     }
+
 
     private JSONArray getMapObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;

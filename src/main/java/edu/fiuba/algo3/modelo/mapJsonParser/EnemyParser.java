@@ -18,7 +18,7 @@ public class EnemyParser {
             JSONArray enemiesJsonArray = this.getEnemiesObject(filePath);
             for (Object element : enemiesJsonArray) {
                 JSONObject object = (JSONObject) element;
-                String value = element.toString();
+                String value = (String) object.get("Enemy");
                 Beast newBeast = new Beast(); //It may require to implement a constructor with the name of the enemy
                 enemies.add(newBeast);
             }
@@ -30,7 +30,7 @@ public class EnemyParser {
         return enemies;
     }
 
-    private JSONArray getEnemiesObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public JSONArray getEnemiesObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
         //TRIES TO READ MAP FILE
         try {
@@ -54,5 +54,4 @@ public class EnemyParser {
             throw new MapFileCouldNotBeParsed();
         }
     }
-
 }
