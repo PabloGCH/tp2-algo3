@@ -1,4 +1,4 @@
-package edu.fiuba.rankTest;
+package edu.fiuba.algo3.unittests.rankTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
