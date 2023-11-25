@@ -18,6 +18,7 @@ import edu.fiuba.algo3.modelo.squares.Injury;
 import edu.fiuba.algo3.modelo.squares.Middle;
 import edu.fiuba.algo3.modelo.squares.NullEffect;
 import edu.fiuba.algo3.modelo.squares.Square;
+import edu.fiuba.algo3.modelo.squares.Upgrade;
 
 
 public class MapJsonParser {
@@ -53,7 +54,7 @@ public class MapJsonParser {
                 return new Middle(new Bacchanalia());
             case "EQUIPMENT_UPGRADE":
                 //NEEDS EQUIPMENT EFFECT
-                return new Middle(new NullEffect());
+                return new Middle(new Upgrade());
             case "FOOD":
                 return new Middle(new Food());
             case "INJURY":
