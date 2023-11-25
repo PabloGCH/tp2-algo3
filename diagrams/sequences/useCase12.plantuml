@@ -2,9 +2,11 @@
 
 autonumber
 
+actor Actor
+
 activate Actor
 
-actor Actor
+create Game
 Actor -> Game : <<Create>> Game(gladiators,map)
 activate Game
     loop until all gladiators are saved and does not exceed the maximum of 6 gladiators 

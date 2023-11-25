@@ -1,0 +1,70 @@
+@startuml
+
+autonumber
+
+actor Actor
+
+activate Actor
+
+create Gladiator
+Actor -> Gladiator : <<Create>> Gladiator()
+activate Gladiator
+    create Rank
+    Gladiator -> Rank :  <<Create>> Rank() 
+    create Energy
+    Gladiator -> Energy : <<Create>> Energy(0)
+    create Equipment
+    Gladiator -> Equipment : <<Create>> Equipment()
+    Create State
+    Gladiator -> State : <<Create>> State()
+deactivate Gladiator
+
+create Initial
+Actor -> Initial: <<Create>> Initial()
+activate Initial
+    create InitialEffect
+    Initial -> InitialEffect : <<Create>> InitialEffect()
+deactivate Initial
+
+Actor -> Initial : receiveGladiator(Gladiator)
+activate Initial
+    Initial -> Initial : add(Gladiator)
+    activate Initial
+    deactivate Initial
+    Initial -> InitialEffect : affect(Gladiator)
+    activate InitialEffect
+        InitialEffect --> Gladiator: setInitialEnergy(Energy(20))
+    deactivate InitialEffect
+deactivate Initial
+
+loop until you have a key
+Actor -> Gladiator: upgrade()
+activate Gladiator
+    Gladiator -> Equipment : upgrade()
+    activate Equipment
+        Equipment --> Gladiator : Equipment
+    deactivate Equipment
+deactivate Gladiator
+end loop
+
+Actor -> Gladiator: fightWithBeast()
+activate Gladiator
+    Gladiator -> Equipment : receiveAttack(this.energy)
+    activate Equipment
+        Equipment --> Gladiator : Energy
+    deactivate Equipment
+deactivate Gladiator
+
+Actor -> Gladiator : getEnergy
+activate Gladiator
+Gladiator --> Actor : Energy()
+deactivate Gladiator
+
+Actor -> Energy : getPoints
+activate Energy
+Energy --> Actor : 20
+deactivate Energy
+
+deactivate Actor
+
+@enduml
