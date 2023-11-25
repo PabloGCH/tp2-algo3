@@ -9,8 +9,6 @@ import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-
 import static org.mockito.Mockito.mock;
 
 import java.util.ArrayList;

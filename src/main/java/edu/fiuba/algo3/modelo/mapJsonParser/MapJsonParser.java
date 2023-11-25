@@ -18,6 +18,7 @@ import edu.fiuba.algo3.modelo.squares.Injury;
 import edu.fiuba.algo3.modelo.squares.Middle;
 import edu.fiuba.algo3.modelo.squares.NullEffect;
 import edu.fiuba.algo3.modelo.squares.Square;
+import edu.fiuba.algo3.modelo.squares.Upgrade;
 
 
 public class MapJsonParser {
@@ -27,6 +28,7 @@ public class MapJsonParser {
             JSONArray mapJsonArray = this.getMapObject(filePath);
             int middleSquareIndex = (int) mapJsonArray.size() / 2;
             Square middleSquare = new Middle(new NullEffect());
+
             for(int i = 0; i < mapJsonArray.size(); i++) {
                 JSONObject element = (JSONObject) mapJsonArray.get(i);
                 String value = (String) element.get("square");
@@ -52,7 +54,7 @@ public class MapJsonParser {
                 return new Middle(new Bacchanalia());
             case "EQUIPMENT_UPGRADE":
                 //NEEDS EQUIPMENT EFFECT
-                return new Middle(new NullEffect());
+                return new Middle(new Upgrade());
             case "FOOD":
                 return new Middle(new Food());
             case "INJURY":
@@ -63,6 +65,7 @@ public class MapJsonParser {
                 return new Middle(new NullEffect());
         }
     }
+
 
     private JSONArray getMapObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;

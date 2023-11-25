@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_2;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapJsonParser;
 
@@ -21,7 +22,7 @@ public class UseCase13 {
     }
     @Test
     public void validateJSONHasWrongSyntax() {
-        assertThrows(InvalidMapFile.class, () -> {
+        assertThrows(MapFileCouldNotBeParsed.class, () -> {
             var mapParser = new MapJsonParser();
             mapParser.loadMap(
                 "src/main/resources/files/mapTestInvalidJsonSyntax.json",
