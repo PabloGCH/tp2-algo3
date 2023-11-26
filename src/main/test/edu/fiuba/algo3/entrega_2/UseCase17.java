@@ -23,13 +23,13 @@ public class UseCase17 {
         int expectedThirdEnergy = 0;
 
         map = facade.loadMap();
-        assertEquals(expectedInitialEnergy, aGladiator.getEnergy().getPoints());
+        assertEquals(expectedInitialEnergy, aGladiator.getEnergy());
         map.get(0).receiveGladiator(aGladiator);
-        assertEquals(expectedSecondEnergy, aGladiator.getEnergy().getPoints());
+        assertEquals(expectedSecondEnergy, aGladiator.getEnergy());
 
         map.get(0).unsetGladiator(aGladiator);
         map.get(1).receiveGladiator(aGladiator);
 
-        assertEquals(expectedThirdEnergy, aGladiator.getEnergy().getPoints());
+        assertEquals(expectedThirdEnergy, aGladiator.getEnergy());
     }
 }

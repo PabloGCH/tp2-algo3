@@ -49,8 +49,8 @@ public class Gladiator {
         this.energy = this.equipment.receiveAttack(this.energy);
     }
 
-    public Energy getEnergy() {
-        return this.energy;
+    public int getEnergy() {
+        return this.energy.getPoints();
     }
     public Equipment getEquipment() {
         return this.equipment;

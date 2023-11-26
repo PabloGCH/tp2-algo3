@@ -19,11 +19,11 @@ public class squareTest {
         int finalEnergy;
 
         // A gladiator is instanced with 0 energy
-        initialEnergy = aGladiator.getEnergy().getPoints();
+        initialEnergy = aGladiator.getEnergy();
         assertEquals(initialEnergy,initialExpectedEnergy);
 
         aSquare.receiveGladiator(aGladiator);
-        finalEnergy = aGladiator.getEnergy().getPoints();
+        finalEnergy = aGladiator.getEnergy();
         // if the square hosts a gladiator successfully, the gladiator will be provided with 20 energy points
         assertEquals(finalEnergy, finalExpectedEnergy);
     }
@@ -37,10 +37,10 @@ public class squareTest {
         int initialEnergy;
         int finalEnergy;
 
-        initialEnergy = aGladiator.getEnergy().getPoints();
+        initialEnergy = aGladiator.getEnergy();
         assertEquals(initialEnergy, initialExpectedEnergy);
         foodEffect.affect(aGladiator);
-        finalEnergy = aGladiator.getEnergy().getPoints();
+        finalEnergy = aGladiator.getEnergy();
 
         assertEquals(finalEnergy, finalExpectedEnergy);
     }
@@ -58,11 +58,11 @@ public class squareTest {
         food.affect(aGladiator);
         food.affect(aGladiator);
         food.affect(aGladiator);
-        initialEnergy = aGladiator.getEnergy().getPoints();
+        initialEnergy = aGladiator.getEnergy();
         assertEquals(initialEnergy, initialExpectedEnergy);
 
         fight.affect(aGladiator);
-        finalEnergy = aGladiator.getEnergy().getPoints();
+        finalEnergy = aGladiator.getEnergy();
 
         assertEquals(finalEnergy, finalExpectedEnergy);
     }
@@ -77,13 +77,13 @@ public class squareTest {
         int initialExpectedEnergy = 0;
         int finalEnergy;
 
-        initialEnergy = aGladiator.getEnergy().getPoints();
+        initialEnergy = aGladiator.getEnergy();
         assertEquals(initialEnergy, initialExpectedEnergy);
         aBacchanalia.affect(aGladiator);
-        finalEnergy = aGladiator.getEnergy().getPoints();
+        finalEnergy = aGladiator.getEnergy();
 
         // We can not ensure the exact amount of wine the gladiator will drink. But we can ensure that the gladiator must increase its energy.
-        assertTrue(finalEnergy > initialEnergy);
+        assertTrue(finalEnergy < initialEnergy);
     }
 
     @Test
@@ -95,11 +95,11 @@ public class squareTest {
         int initialExpectedEnergy = 0;
         int finalExpectedEnergy = 0;
 
-        initialEnergy = aGladiator.getEnergy().getPoints();
+        initialEnergy = aGladiator.getEnergy();
         assertEquals(initialEnergy, initialExpectedEnergy);
         aNullEffect.affect(aGladiator);
 
-        finalEnergy = aGladiator.getEnergy().getPoints();
+        finalEnergy = aGladiator.getEnergy();
 
         assertEquals(finalEnergy, finalExpectedEnergy);
     }

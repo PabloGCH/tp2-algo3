@@ -20,8 +20,7 @@ public class UseCase06 {
         gladiator.upgrade();
         gladiator.upgrade();
         gladiator.fightWithBeast();
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();;
         //Assert
         assertEquals(18, energyPoints);
     }
