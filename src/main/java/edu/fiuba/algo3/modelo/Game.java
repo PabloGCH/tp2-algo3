@@ -31,7 +31,7 @@ public class Game {
             }
             turns ++;
         }
-        return true;
+        return true;//TODO Implement and use method
     }
 
     public void addGladiator(Gladiator aGladiator) {

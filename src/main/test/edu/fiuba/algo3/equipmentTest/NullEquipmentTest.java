@@ -18,8 +18,7 @@ public class NullEquipmentTest {
         //Act
         gladiator.upgrade();
         gladiator.fightWithBeast();
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();
         //Assert
         assertEquals(5, energyPoints);//Gladiator with Helmet receives 15 damage fighting with a beast
     }

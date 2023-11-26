@@ -17,7 +17,7 @@ public class UseCase04 {
         // Act
         gladiator.eat();
 
-        int energyPoints = gladiator.getEnergy().getPoints();
+        int energyPoints = gladiator.getEnergy();
 
         // Assert
         assertTrue(energyPoints == 15);
