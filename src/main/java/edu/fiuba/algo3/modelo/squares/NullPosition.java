@@ -8,4 +8,5 @@ public class NullPosition implements Position {
     public Position next() {
         return this;
     }
+    public void positionSelf(PositionCollection collection) {}
 }
