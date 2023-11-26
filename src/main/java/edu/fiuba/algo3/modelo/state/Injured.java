@@ -20,7 +20,7 @@ public class Injured implements State{
         if (shift == TURNS_TO_BE_INJURED) {
             var diceFactory = new DiceFactory();
             RandomResult dice = diceFactory.createRandomGenerator();
-            return new Active();
+            return new Active(dice);
         }
         shift++;
         return this;
