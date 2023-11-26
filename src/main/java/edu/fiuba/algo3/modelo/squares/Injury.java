@@ -5,6 +5,6 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 public class Injury implements Effect {
     @Override
     public void affect(Gladiator aGladiator) {
-        // TODO manage behaviour
+        aGladiator.injured();
     }
 }

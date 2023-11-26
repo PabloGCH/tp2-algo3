@@ -11,13 +11,7 @@ public abstract class Square {
         this.effect = anEffect;
     }
     public void receiveGladiator(Gladiator aGladiator){
-        this.gladiators.add(aGladiator);
         this.effect.affect(aGladiator);
-    }
-    public void unsetGladiator(Gladiator aGladiator) {
-        if (gladiators.contains(aGladiator)) {
-            gladiators.remove(aGladiator);
-        }
     }
     public int display() {
         return (int) gladiators.stream().count();

@@ -67,6 +67,10 @@ public class Gladiator {
         this.state = new Injured();
     }
 
+    public void backToTheMiddle(){
+        this.position = position / 2;
+    }
+
     public int choice(){
         this.state = this.state.update(this.energy);
         this.position += this.state.move();
