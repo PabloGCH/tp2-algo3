@@ -1,18 +1,19 @@
 package edu.fiuba.algo3.modelo.state;
 
+import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.energy.Energy;
 
 import edu.fiuba.algo3.modelo.Dice;
 
 public class Active implements State{
-    private Dice dice;
+    private RandomResult randomResult;
 
-    public Active(){
-        this.dice = new Dice();
+    public Active(RandomResult newRandomResult){
+        this.randomResult = newRandomResult;
     }
 
     public int move(){
-        return this.dice.throwDice();
+        return this.randomResult.throwNumber();
     }
     
     public State update(Energy energy){
