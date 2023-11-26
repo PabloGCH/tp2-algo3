@@ -23,9 +23,7 @@ public class UseCase08 {
         gladiator.turn();
         gladiator.turn();
         gladiator.turn();
-
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();;
 
         // Assert
 

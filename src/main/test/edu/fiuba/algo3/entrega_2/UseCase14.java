@@ -22,7 +22,7 @@ public class UseCase14 {
             Gladiator gladiator = new Gladiator();
             Square square = map.get(8); // FOOD SQUARE
             square.receivePiece(gladiator);
-            int energyPoints = gladiator.getEnergy().getPoints();
+            int energyPoints = gladiator.getEnergy();
             assertEquals(15, energyPoints);
         } catch(Exception e) {
             
@@ -40,16 +40,16 @@ public class UseCase14 {
 
             Square square = map.get(0); // INITIAL SQUARE
             square.receivePiece(gladiator); //GETS 20 ENERGY
-            int energyPoints = gladiator.getEnergy().getPoints();
+            int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
 
             square = map.get(4); // EQUIPMENT SQUARE
-            square.receivePiece(gladiator); 
+            square.receivePiece(gladiator);
 
 
             gladiator.fightWithBeast(); //LOSES 15 ENERGY
-            energyPoints = gladiator.getEnergy().getPoints();
+            energyPoints = gladiator.getEnergy();
             assertEquals(5, energyPoints);
 
         } catch(Exception e) {
@@ -70,7 +70,7 @@ public class UseCase14 {
 
             Square square = map.get(0); // INITIAL SQUARE
             square.receivePiece(gladiator); //GETS 20 ENERGY
-            int energyPoints = gladiator.getEnergy().getPoints();
+            int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
 
@@ -78,7 +78,7 @@ public class UseCase14 {
             square.receivePiece(gladiator); //LOSES 20 ENERGY
 
 
-            energyPoints = gladiator.getEnergy().getPoints();
+            energyPoints = gladiator.getEnergy();
             assertEquals(0, energyPoints);
 
         } catch(Exception e) {}
@@ -96,7 +96,7 @@ public class UseCase14 {
 
             Square square = map.get(0); // INITIAL SQUARE
             square.receivePiece(gladiator); //GETS 20 ENERGY
-            int energyPoints = gladiator.getEnergy().getPoints();
+            int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
 
@@ -104,7 +104,7 @@ public class UseCase14 {
             square.receivePiece(gladiator); //LOSES x ENERGY (ALWAYS MORE THAN 0)
 
 
-            energyPoints = gladiator.getEnergy().getPoints();
+            energyPoints = gladiator.getEnergy();
             assertTrue(energyPoints < 20);
 
         } catch(Exception e) {}

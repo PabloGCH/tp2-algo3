@@ -20,8 +20,7 @@ public class ArmorTest {
         gladiator.upgrade();//Helmet upgrades to Armor
         gladiator.upgrade();//Armor upgrades to ShieldSword
         gladiator.fightWithBeast();
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();;
         //Assert
         assertEquals(18, energyPoints);//Gladiator with ShieldSword receives 2 damage fighting with a beast
     }

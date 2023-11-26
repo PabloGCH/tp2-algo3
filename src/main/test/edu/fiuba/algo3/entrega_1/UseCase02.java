@@ -27,6 +27,6 @@ public class UseCase02 {
         map.add(new FinishLine(map.get(middleIndex)));
         gladiators.add(aGladiator);
         Game aGame = new Game(gladiators, map);
-        Assertions.assertTrue(aGladiator.getEnergy().getPoints() == 20);
+        Assertions.assertTrue(aGladiator.getEnergy() == 20);
     }
 }

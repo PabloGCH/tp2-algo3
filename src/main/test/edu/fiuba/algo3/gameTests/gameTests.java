@@ -56,8 +56,7 @@ public class gameTests {
 
        // Act
 
-       var energy = gladiator1.getEnergy();
-       int energyPoints = energy.getPoints();
+       int energyPoints = gladiator1.getEnergy();
 
        // Assert
 
