@@ -70,6 +70,7 @@ public class Gladiator {
         this.state = new Injured();
     }
 
+
     public void move(int distance) {
         Position newPosition = this.position;
         for(int i = 0; i < distance; i++) {

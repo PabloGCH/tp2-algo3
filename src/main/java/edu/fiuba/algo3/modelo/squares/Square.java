@@ -28,6 +28,7 @@ public abstract class Square implements Position {
         pieces.remove(piece);
     }
 
+
     public int display() {
         return (int) pieces.stream().count();
     }

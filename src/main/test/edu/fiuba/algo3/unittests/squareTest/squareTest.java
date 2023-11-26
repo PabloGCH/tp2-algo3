@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class squareTest {
@@ -78,8 +80,8 @@ public class squareTest {
         aBacchanalia.affect(aGladiator);
         finalEnergy = aGladiator.getEnergy().getPoints();
 
-        // We can not ensure the exact amount of wine the gladiator will drink. But we can ensure that the gladiator must increase its energy.
-        assertTrue(finalEnergy > initialEnergy);
+        // We can not ensure the exact amount of wine the gladiator will drink. But we can ensure that the gladiator must decrease its energy.
+        assertTrue(finalEnergy < initialEnergy);
     }
 
     @Test
@@ -101,7 +103,43 @@ public class squareTest {
     }
 
     @Test
-    public void test06() {
+    public void test06AGladiatorStepsOnTheFinishLineWithoutKeyAndIsSetOnTheMiddleSquare() {
+        Square middleSquare = new Middle(new Food());
+        Square finish = new FinishLine(middleSquare);
+        Gladiator aGladiator = new Gladiator();
+        int expectedInitialEnergy = 0;
+        int expectedFinishEnergy = 15;
+
+        assertEquals(expectedInitialEnergy, aGladiator.getEnergy().getPoints());
+        finish.receiveGladiator(aGladiator);
+
+        assertEquals(expectedFinishEnergy, aGladiator.getEnergy().getPoints());
+    }
+
+    @Test
+    public void test07AGladiatorStepsOnAnInjurySquareBecomesUnableToMove() {
+        Square firstNullSquare = new Middle(new NullEffect());
+        Square middleSquare = new Middle(new Injury());
+        Square secondNullEffectSquare = new Middle(new Food());
+        ArrayList<Square> squares = new ArrayList<>();
+        squares.add(firstNullSquare);
+        squares.add(middleSquare);
+        squares.add(secondNullEffectSquare);
+        Gladiator aGladiator = new Gladiator();
+        int expectedInitialEnergy = 0;
+        int expectedEnergyWhenInjured = 0;
+        int expectedEnergyWhenEnabledToMove = 15;
+
+        firstNullSquare.receiveGladiator(aGladiator);
+        assertEquals(expectedInitialEnergy, aGladiator.getEnergy().getPoints());
+        squares.get(aGladiator.turn()).receiveGladiator(aGladiator);
+        assertEquals(expectedEnergyWhenInjured, aGladiator.getEnergy().getPoints());
+        squares.get(aGladiator.turn()).receiveGladiator(aGladiator);
+        assertEquals(expectedEnergyWhenInjured, aGladiator.getEnergy().getPoints());
+        squares.get(aGladiator.turn()).receiveGladiator(aGladiator);
+
+        assertEquals(expectedEnergyWhenEnabledToMove, aGladiator.getEnergy().getPoints());
+
 
     }
 }
