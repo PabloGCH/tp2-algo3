@@ -6,19 +6,13 @@ import java.io.IOError;
 import java.io.IOException;
 
 public class FinishLineEffect implements Effect{
-    private Square middleSquare;
-    private Square lastSquare;
-    public FinishLineEffect(Square middleSquare, Square lastSquare) {
-        this.middleSquare = middleSquare;
-        this.lastSquare = lastSquare;
-    }
+
     @Override
     public void affect(Gladiator aGladiator) {
         try {
             testException();
         } catch (IOException e) {
-            this.middleSquare.receiveGladiator(aGladiator);
-            this.lastSquare.unsetGladiator(aGladiator);
+            aGladiator.backToTheMiddle();
         }
     }
 

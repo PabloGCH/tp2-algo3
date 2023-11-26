@@ -1,10 +1,13 @@
 package edu.fiuba.algo3.modelo.squares;
 
+
+import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
-public class Injury implements Effect {
+public class Upgrade implements Effect{
     @Override
     public void affect(Gladiator aGladiator) {
-        aGladiator.injured();
+        aGladiator.upgrade();
     }
 }
+

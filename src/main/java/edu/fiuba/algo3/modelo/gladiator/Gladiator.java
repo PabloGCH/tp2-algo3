@@ -33,7 +33,7 @@ public class Gladiator {
     
     public void drinkWine(int cupsOfWineAmount) {
         int energyLostForEachCup = Config.ENERGY_LOST_FOR_EACH_CUP_OF_WINE.getValue();
-        this.energy = this.energy.add(new Energy(energyLostForEachCup * cupsOfWineAmount));
+        this.energy = this.energy.substract(new Energy(energyLostForEachCup * cupsOfWineAmount));
     }
 
     private void update(){
@@ -65,6 +65,10 @@ public class Gladiator {
 
     public void injured(){
         this.state = new Injured();
+    }
+
+    public void backToTheMiddle(){
+        this.position = position / 2;
     }
 
     public int choice(){
