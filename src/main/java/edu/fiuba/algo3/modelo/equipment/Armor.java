@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.equipment;
-
 import edu.fiuba.algo3.modelo.energy.Energy;
-
 public class Armor implements Equipment{
     public Equipment upgrade() {
         return new ShieldSword();

@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
+import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -51,7 +53,9 @@ public class MapJsonParser {
             case "BEAST":
                 return new Middle(new Beast());
             case "WINE":
-                return new Middle(new Bacchanalia());
+                var diceFactory = new DiceFactory();
+                RandomResult dice = diceFactory.createRandomGenerator();
+                return new Middle(new Bacchanalia(dice));
             case "EQUIPMENT_UPGRADE":
                 //NEEDS EQUIPMENT EFFECT
                 return new Middle(new Upgrade());
