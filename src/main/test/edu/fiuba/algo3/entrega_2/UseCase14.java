@@ -21,7 +21,7 @@ public class UseCase14 {
             );
             Gladiator gladiator = new Gladiator();
             Square square = map.get(8); // FOOD SQUARE
-            square.receiveGladiator(gladiator);
+            square.receivePiece(gladiator);
             int energyPoints = gladiator.getEnergy().getPoints();
             assertEquals(15, energyPoints);
         } catch(Exception e) {
@@ -39,13 +39,13 @@ public class UseCase14 {
             Gladiator gladiator = new Gladiator();
 
             Square square = map.get(0); // INITIAL SQUARE
-            square.receiveGladiator(gladiator); //GETS 20 ENERGY
+            square.receivePiece(gladiator); //GETS 20 ENERGY
             int energyPoints = gladiator.getEnergy().getPoints();
             assertEquals(20, energyPoints);
 
 
             square = map.get(4); // EQUIPMENT SQUARE
-            square.receiveGladiator(gladiator); 
+            square.receivePiece(gladiator); 
 
 
             gladiator.fightWithBeast(); //LOSES 15 ENERGY
@@ -69,13 +69,13 @@ public class UseCase14 {
             Gladiator gladiator = new Gladiator();
 
             Square square = map.get(0); // INITIAL SQUARE
-            square.receiveGladiator(gladiator); //GETS 20 ENERGY
+            square.receivePiece(gladiator); //GETS 20 ENERGY
             int energyPoints = gladiator.getEnergy().getPoints();
             assertEquals(20, energyPoints);
 
 
             square = map.get(1); // EQUIPMENT SQUARE
-            square.receiveGladiator(gladiator); //LOSES 20 ENERGY
+            square.receivePiece(gladiator); //LOSES 20 ENERGY
 
 
             energyPoints = gladiator.getEnergy().getPoints();
@@ -95,13 +95,13 @@ public class UseCase14 {
             Gladiator gladiator = new Gladiator();
 
             Square square = map.get(0); // INITIAL SQUARE
-            square.receiveGladiator(gladiator); //GETS 20 ENERGY
+            square.receivePiece(gladiator); //GETS 20 ENERGY
             int energyPoints = gladiator.getEnergy().getPoints();
             assertEquals(20, energyPoints);
 
 
             square = map.get(3); // WINE SQUARE
-            square.receiveGladiator(gladiator); //LOSES x ENERGY (ALWAYS MORE THAN 0)
+            square.receivePiece(gladiator); //LOSES x ENERGY (ALWAYS MORE THAN 0)
 
 
             energyPoints = gladiator.getEnergy().getPoints();

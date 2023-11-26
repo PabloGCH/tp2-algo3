@@ -24,11 +24,11 @@ public class UseCase17 {
 
         map = facade.loadMap();
         assertEquals(expectedInitialEnergy, aGladiator.getEnergy().getPoints());
-        map.get(0).receiveGladiator(aGladiator);
+        map.get(0).receivePiece(aGladiator);
         assertEquals(expectedSecondEnergy, aGladiator.getEnergy().getPoints());
 
-        map.get(0).unsetGladiator(aGladiator);
-        map.get(1).receiveGladiator(aGladiator);
+        map.get(0).removePiece(aGladiator);
+        map.get(1).receivePiece(aGladiator);
 
         assertEquals(expectedThirdEnergy, aGladiator.getEnergy().getPoints());
     }

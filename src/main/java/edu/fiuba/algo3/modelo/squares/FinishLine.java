@@ -9,4 +9,5 @@ public class FinishLine extends Square{
     private void setFinishLineEffect(Square middleSquare) {
         this.effect = new FinishLineEffect(middleSquare, this);
     }
+
 }

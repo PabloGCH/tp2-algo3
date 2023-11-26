@@ -27,6 +27,7 @@ public class Game {
     public boolean startGame() {
         while(turns <30) {
             for (Gladiator aGladiator : gladiators) {
+                aGladiator.turn();
             }
             turns ++;
         }
@@ -35,7 +36,7 @@ public class Game {
 
     public void addGladiator(Gladiator aGladiator) {
         this.gladiators.add(aGladiator);
-        this.map.get(0).receiveGladiator(aGladiator);
+        this.map.get(0).receivePiece(aGladiator);
     }
 
     public void createMap() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {

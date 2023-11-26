@@ -17,8 +17,8 @@ public class FinishLineEffect implements Effect{
         try {
             testException();
         } catch (IOException e) {
-            this.middleSquare.receiveGladiator(aGladiator);
-            this.lastSquare.unsetGladiator(aGladiator);
+            this.middleSquare.receivePiece(aGladiator);
+            this.lastSquare.removePiece(aGladiator);
         }
     }
 

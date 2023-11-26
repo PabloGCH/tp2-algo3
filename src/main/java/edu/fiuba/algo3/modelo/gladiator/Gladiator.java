@@ -8,6 +8,8 @@ import edu.fiuba.algo3.modelo.state.Injured;
 import edu.fiuba.algo3.modelo.state.State;
 import edu.fiuba.algo3.modelo.state.Tired;
 import edu.fiuba.algo3.modelo.Config;
+import edu.fiuba.algo3.modelo.squares.NullPosition;
+import edu.fiuba.algo3.modelo.squares.Position;
 
 public class Gladiator {
     private String name;
@@ -15,20 +17,21 @@ public class Gladiator {
     private Energy energy;
     private Equipment equipment;
     private Rank rank;
-    private int position;
+    private Position position;
 
     public Gladiator() {
-
         this.energy = new Energy(0);
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
         this.state = new Tired();
-        this.position = 0;
+        this.position = new NullPosition();
     }
     
-    public int turn() {;
+    public void turn() {;
         update();
-        return choice();
+        this.state = this.state.update(this.energy);
+        int distanceToMove = this.state.move();
+        this.move(distanceToMove);
     }
     
     public void drinkWine(int cupsOfWineAmount) {
@@ -67,10 +70,13 @@ public class Gladiator {
         this.state = new Injured();
     }
 
-    public int choice(){
-        this.state = this.state.update(this.energy);
-        this.position += this.state.move();
-        return this.position;
+    public void move(int distance) {
+        Position newPosition = this.position;
+        for(int i = 0; i < distance; i++) {
+            newPosition = newPosition.next();
+        }
+        this.position.removePiece(this);
+        this.position = newPosition;
+        this.position.receivePiece(this);
     }
-
 }

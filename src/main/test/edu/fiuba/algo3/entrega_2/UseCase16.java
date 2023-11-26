@@ -46,7 +46,7 @@ public class UseCase16 {
     void secondEffectIsUpgrade(){
         Gladiator gladiator = new Gladiator();//Should start with 0 energy points
         Square initialSquare = new Initial();
-        initialSquare.receiveGladiator(gladiator);
+        initialSquare.receivePiece(gladiator);
         //Act
         effects.get(1).affect(gladiator);
         gladiator.fightWithBeast();
@@ -59,7 +59,7 @@ public class UseCase16 {
     void thirdEffectIsWine(){
         Gladiator gladiator = new Gladiator();//Should start with 20 energy points
         Square initialSquare = new Initial();
-        initialSquare.receiveGladiator(gladiator);
+        initialSquare.receivePiece(gladiator);
         var initialEnergy = gladiator.getEnergy();
         //Act
         effects.get(2).affect(gladiator);
@@ -73,7 +73,7 @@ public class UseCase16 {
         //Arrange
         Gladiator gladiator = new Gladiator(); //Should start with 20 energy
         Square initialSquare = new Initial();
-        initialSquare.receiveGladiator(gladiator);
+        initialSquare.receivePiece(gladiator);
 
         //Act
         effects.get(3).affect(gladiator);
@@ -87,7 +87,7 @@ public class UseCase16 {
         //Arrange
         Gladiator gladiator = new Gladiator(); //Should start with 20 energy
         Square initialSquare = new Initial();
-        initialSquare.receiveGladiator(gladiator);
+        initialSquare.receivePiece(gladiator);
 
         //Act
         effects.get(3).affect(gladiator);

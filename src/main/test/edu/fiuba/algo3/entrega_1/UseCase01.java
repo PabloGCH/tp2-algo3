@@ -17,7 +17,7 @@ public class UseCase01 {
         Gladiator gladiator = new Gladiator(); 
         Square initialSquare = new Initial(); 
         //Act
-        initialSquare.receiveGladiator(gladiator); //Should start with 20 energy
+        initialSquare.receivePiece(gladiator); //Should start with 20 energy
         var energy = gladiator.getEnergy();
         int energyPoints = energy.getPoints();
         //Assert
@@ -28,7 +28,7 @@ public class UseCase01 {
         //Arrange
         Gladiator gladiator = new Gladiator(); //Should start with NullEquipment
         Square initialSquare = new Initial();
-        initialSquare.receiveGladiator(gladiator); //Should start with 20 energy
+        initialSquare.receivePiece(gladiator); //Should start with 20 energy
         //Act
         gladiator.fightWithBeast(); //With null equipment looses 20 energy
         var energy = gladiator.getEnergy();
