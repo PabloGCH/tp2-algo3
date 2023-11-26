@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.squares.PositionCollection;
 public class Map implements PositionCollection {
     private ArrayList<ArrayList<Position>> map;
 
-    Map(int width, int height, ArrayList<Position> path) {
+    public Map(int width, int height, ArrayList<Position> path) {
         this.buildMap(width, height);
         for (Position position : path) {
             position.positionSelf(this);
