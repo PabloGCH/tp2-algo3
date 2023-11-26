@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
+import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -44,7 +46,9 @@ public class ObstaclesRewardsParser {
             case "UPGRADE":
                 return new Upgrade();
             case "WINE":
-                return new Bacchanalia();
+                var diceFactory = new DiceFactory();
+                RandomResult dice = diceFactory.createRandomGenerator();
+                return new Bacchanalia(dice);
             case "BEAST":
                 return new Beast();
             case "INJURY":

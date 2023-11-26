@@ -27,6 +27,6 @@ public class UseCase09 {
         gladiators.add(aGladiator);
         Game aGame = new Game(gladiators, map);
         lastSquare.receiveGladiator(aGladiator);
-        Assertions.assertTrue(aGladiator.getEnergy().getPoints() == 35);
+        Assertions.assertEquals(aGladiator.getEnergy().getPoints(), 35);
     }
 }

@@ -25,7 +25,7 @@ public class Game {
         }
     }
     public boolean startGame() {
-        while(turns <30) {
+        while(turns < Config.MAX_TURNS_IN_A_GAME.getValue()) {
             for (Gladiator aGladiator : gladiators) {
             }
             turns ++;

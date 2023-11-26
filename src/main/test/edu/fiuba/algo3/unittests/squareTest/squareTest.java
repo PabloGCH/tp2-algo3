@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.unittests.squareTest;
 
+import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
+import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
@@ -67,8 +69,10 @@ public class squareTest {
 
     @Test
     public void test04AGladiatorLoosesExpectedEnergyAfterDrinkingWine() {
+        var diceFactory = new DiceFactory();
+        RandomResult dice = diceFactory.createRandomGenerator();
         Gladiator aGladiator = new Gladiator();
-        Effect aBacchanalia = new Bacchanalia();
+        Effect aBacchanalia = new Bacchanalia(dice);
         int initialEnergy;
         int initialExpectedEnergy = 0;
         int finalEnergy;
