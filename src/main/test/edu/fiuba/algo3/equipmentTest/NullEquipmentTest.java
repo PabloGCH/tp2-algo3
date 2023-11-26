@@ -13,7 +13,7 @@ public class NullEquipmentTest {
         //Arrange
         Gladiator gladiator = new Gladiator(); //Should start with 20 energy
         Square initialSquare = new Initial();
-        initialSquare.receiveGladiator(gladiator);
+        initialSquare.receivePiece(gladiator);
 
         //Act
         gladiator.upgrade();
