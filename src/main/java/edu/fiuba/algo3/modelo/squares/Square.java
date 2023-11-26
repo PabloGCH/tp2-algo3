@@ -8,10 +8,14 @@ public abstract class Square implements Position {
     private ArrayList<Gladiator> pieces = new ArrayList();
     private Position nextPosition;
     protected Effect effect;
+    private int x;
+    private int y;
 
     public Square(Effect anEffect) {
         this.effect = anEffect;
         this.nextPosition = this;
+        this.x = 0;
+        this.y = 0;
     }
     
     public void receivePiece(Gladiator piece){
@@ -34,5 +38,9 @@ public abstract class Square implements Position {
 
     public void setNextPosition(Position position) {
         this.nextPosition = position;
+    }
+
+    public void positionSelf(PositionCollection collection) {
+        collection.setPosition(x, y, this);
     }
 }
