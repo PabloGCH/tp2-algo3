@@ -31,9 +31,9 @@ public class Game {
             int player = 0;
             while (player < gladiators.size() && this.winner == false) {
                 this.winner = gladiators.get(player).turn();
+                lastPlayerToPlay = player;
                 player++;
             }
-            lastPlayerToPlay = player;
             turns ++;
         }
         return result(lastPlayerToPlay);

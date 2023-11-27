@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
+import edu.fiuba.algo3.modelo.equipment.Armor;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
 import edu.fiuba.algo3.modelo.energy.Energy;
 
@@ -32,5 +33,15 @@ public class NullEquipmentTest {
         int energyPoints = energy.getPoints();
         //Assert
         assertEquals(0, energyPoints);
+    }
+
+    @Test void armorIsNotComplete(){
+        boolean fullArmor = true;
+        //Arrange
+        NullEquipment newEquipment = new NullEquipment();
+        //Act
+        fullArmor = newEquipment.complete();
+        //Assert
+        assertFalse(fullArmor);
     }
 }

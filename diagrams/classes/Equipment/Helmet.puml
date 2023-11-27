@@ -2,5 +2,6 @@
 class Helmet {
     +upgrade(): Armor
     +receiveAttack(Energy: energyPoints): Energy
+    +complete(): boolean
 }
 @enduml

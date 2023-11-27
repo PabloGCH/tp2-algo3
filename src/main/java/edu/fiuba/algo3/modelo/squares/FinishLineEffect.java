@@ -18,7 +18,6 @@ public class FinishLineEffect implements Effect{
     public void affect(Gladiator aGladiator) {
         if (aGladiator.completeArmament() == true) {
             aGladiator.gameOver();
-            System.out.println("Felicidades Ganaste");
         }else{
             this.middleSquare.receivePiece(aGladiator);
             this.lastSquare.removePiece(aGladiator);

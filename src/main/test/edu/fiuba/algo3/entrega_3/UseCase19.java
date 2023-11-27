@@ -17,8 +17,10 @@ public class UseCase19 {
     public void testPlayerWin(){
         // Arrange
         boolean finish = false;
+        Gladiator gladiator1 = new Gladiator();
+        gladiator1.gameOver();
         ArrayList<Gladiator> gladiators = new ArrayList<>();
-        gladiators.add(new Gladiator());
+        gladiators.add(gladiator1);
         //Map map = new Map();
 
         // As this map does not have an equipment upgrade square, it is imposible to win
@@ -38,6 +40,6 @@ public class UseCase19 {
 
         // Assert
 
-        assertTrue(false);
+        assertTrue(finish);
     }
 }

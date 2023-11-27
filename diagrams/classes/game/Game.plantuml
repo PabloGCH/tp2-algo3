@@ -1,0 +1,9 @@
+@startuml
+class Game {
+    -turns: int
+    +Game(ArrayList<Gladiator> gladiators, Map map)
+    +startGame(): boolean
+    +addGladiator()
+    +result(): boolean
+}
+@enduml

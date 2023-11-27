@@ -2,6 +2,7 @@ package edu.fiuba.algo3.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
+import edu.fiuba.algo3.modelo.equipment.Armor;
 import edu.fiuba.algo3.modelo.equipment.Helmet;
 import org.junit.jupiter.api.Test;
 
@@ -35,5 +36,15 @@ public class HelmetTest {
         int energyPoints = energy.getPoints();
         //Assert
         assertEquals(5, energyPoints);
+    }
+
+      @Test void armorIsNotComplete(){
+        boolean fullArmor = true;
+        //Arrange
+        Helmet newEquipment = new Helmet();
+        //Act
+        fullArmor = newEquipment.complete();
+        //Assert
+        assertFalse(fullArmor);
     }
 }

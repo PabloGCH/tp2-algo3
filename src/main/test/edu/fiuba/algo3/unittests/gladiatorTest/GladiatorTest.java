@@ -165,4 +165,19 @@ public class GladiatorTest {
 //        assertTrue(position >= 1);
 //        assertTrue(position <=6);
     }
+
+    @Test void GladiatorWonTheGame() {
+        // Arrange
+        boolean winner = false;
+        Gladiator gladiator = new Gladiator();
+        
+        //Act
+        gladiator.gameOver();
+        winner = gladiator.turn();
+       
+        // Assert
+        assertTrue(winner);
+
+    }
+    
 }

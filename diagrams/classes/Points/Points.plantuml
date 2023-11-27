@@ -1,8 +1,0 @@
-@startuml
-class Points {
-    -amount :int
-    +EnergyPoints(amount :int)
-    +addEnergyPoints(energyPoints :EnergyPoints) :EnergyPoints
-    +substractEnergyPoints(energyPoints :EnergyPoints) :EnergyPoints
-}
-@enduml

@@ -1,0 +1,7 @@
+@startuml
+!include ../Gladiator/Gladiator.plantuml
+!include Game.plantuml
+
+Game --> "2..6 " Gladiator
+
+@enduml
