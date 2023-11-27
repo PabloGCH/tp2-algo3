@@ -13,7 +13,7 @@ public class UseCase09 {
     public void test09AGladiatorReturnsToMiddleSquare() {
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         Gladiator aGladiator = new Gladiator();
-        ArrayList<Square> map = new ArrayList<>();
+        ArrayList<Position> map = new ArrayList<>();
         map.add(new Initial());
         map.add(new Middle(new NullEffect()));
         map.add(new Middle(new NullEffect()));
@@ -22,11 +22,11 @@ public class UseCase09 {
         map.add(new Middle(new NullEffect()));
         map.add(new Middle(new NullEffect()));
         int middleIndex = (int) (map.stream().count() + 1) / 2;
-        var lastSquare = new FinishLine(map.get(middleIndex));
+        var lastSquare = new FinishLine((Square) map.get(middleIndex));
         map.add(lastSquare);
         gladiators.add(aGladiator);
         Game aGame = new Game(gladiators, map);
-        lastSquare.receiveGladiator(aGladiator);
+        lastSquare.receivePiece(aGladiator);
         Assertions.assertEquals(aGladiator.getEnergy(), 35);
     }
 }

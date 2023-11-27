@@ -23,7 +23,7 @@ public class squareTest {
 
         // A gladiator is instanced with 0 energy
         initialEnergy = aGladiator.getEnergy();
-        assertEquals(initialEnergy,initialExpectedEnergy);
+        assertEquals(initialEnergy, initialExpectedEnergy);
 
         aSquare.receivePiece(aGladiator);
         finalEnergy = aGladiator.getEnergy();
@@ -107,6 +107,7 @@ public class squareTest {
         assertEquals(finalEnergy, finalExpectedEnergy);
     }
 
+    @Test
     public void test06AGladiatorStepsOnTheFinishLineWithoutKeyAndIsSetOnTheMiddleSquare() {
         Square middleSquare = new Middle(new Food());
         Square finish = new FinishLine(middleSquare);
@@ -114,10 +115,10 @@ public class squareTest {
         int expectedInitialEnergy = 0;
         int expectedFinishEnergy = 15;
 
-        assertEquals(expectedInitialEnergy, aGladiator.getEnergy().getPoints());
+        assertEquals(expectedInitialEnergy, aGladiator.getEnergy());
         finish.receivePiece(aGladiator);
 
-        assertEquals(expectedFinishEnergy, aGladiator.getEnergy().getPoints());
+        assertEquals(expectedFinishEnergy, aGladiator.getEnergy());
     }
 
     @Test
@@ -145,4 +146,5 @@ public class squareTest {
 //
 //        assertEquals(expectedEnergyWhenEnabledToMove, aGladiator.getEnergy().getPoints());
 
+    }
 }

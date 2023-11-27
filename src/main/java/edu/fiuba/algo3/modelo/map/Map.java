@@ -8,9 +8,11 @@ import edu.fiuba.algo3.modelo.squares.PositionCollection;
 
 public class Map implements PositionCollection {
     private ArrayList<ArrayList<Position>> map;
+    private ArrayList<Position> path;
 
     public Map(int width, int height, ArrayList<Position> path) {
         this.buildMap(width, height);
+        this.path = path;
         for (Position position : path) {
             position.positionSelf(this);
         }
@@ -31,4 +33,8 @@ public class Map implements PositionCollection {
     }
 
     public void draw() {}
+
+    public ArrayList<Position> getPath(){
+        return path;
+    }
 }
