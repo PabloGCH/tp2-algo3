@@ -16,18 +16,21 @@ public class Game {
     private int turns = 0;
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
     private ArrayList<Square> map;
-    private Dice dice = new Dice();
+    private boolean gameOver;
 
     public Game(ArrayList<Gladiator> gladiators, ArrayList<Square> map) {
+        this.gameOver = false;
         this.map = map;
         for (Gladiator aGladiator : gladiators) {
             this.addGladiator(aGladiator);
         }
     }
     public boolean startGame() {
-        while(turns <30) {
-            for (Gladiator aGladiator : gladiators) {
-                aGladiator.turn();
+        while(turns < 30 && gameOver != true) {
+            int player = 0;
+            while (player < gladiators.size() && gameOver != true) {
+                gameOver = gladiators.get(player).turn();
+                player++;
             }
             turns ++;
         }

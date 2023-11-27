@@ -18,6 +18,7 @@ public class Gladiator {
     private Equipment equipment;
     private Rank rank;
     private Position position;
+    private boolean win;
 
     public Gladiator() {
         this.energy = new Energy(0);
@@ -25,13 +26,15 @@ public class Gladiator {
         this.rank = new Rookie();
         this.state = new Tired();
         this.position = new NullPosition();
+        this.win = false;
     }
     
-    public void turn() {;
+    public boolean turn() {;
         update();
         this.state = this.state.update(this.energy);
         int distanceToMove = this.state.move();
         this.move(distanceToMove);
+        return this.win;
     }
     
     public void drinkWine(int cupsOfWineAmount) {
@@ -55,8 +58,8 @@ public class Gladiator {
     public Energy getEnergy() {
         return this.energy;
     }
-    public Equipment getEquipment() {
-        return this.equipment;
+    public boolean completeArmament() {
+        return this.equipment.complete();
     }
     public void setInitialEnergy(Energy energy) {
         this.energy = this.energy.add(energy);
@@ -79,5 +82,9 @@ public class Gladiator {
         this.position.removePiece(this);
         this.position = newPosition;
         this.position.receivePiece(this);
+    }
+
+    public void GameOver(){
+        this.win = true;
     }
 }
