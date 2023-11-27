@@ -17,7 +17,7 @@ public class FinishLineEffect implements Effect{
     @Override
     public void affect(Gladiator aGladiator) {
         if (aGladiator.completeArmament() == true) {
-            aGladiator.GameOver();
+            aGladiator.gameOver();
             System.out.println("Felicidades Ganaste");
         }else{
             this.middleSquare.receivePiece(aGladiator);

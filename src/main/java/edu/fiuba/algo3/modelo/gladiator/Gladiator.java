@@ -21,6 +21,7 @@ public class Gladiator {
     private boolean win;
 
     public Gladiator() {
+        this.name = "Jose Luis";
         this.energy = new Energy(0);
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
@@ -84,7 +85,11 @@ public class Gladiator {
         this.position.receivePiece(this);
     }
 
-    public void GameOver(){
+    public void gameOver(){
         this.win = true;
+    }
+
+    public String getName(){
+        return this.name;
     }
 }
