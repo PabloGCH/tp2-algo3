@@ -16,22 +16,27 @@ public class Game {
     private int turns = 0;
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
     private ArrayList<Square> map;
-    private Dice dice = new Dice();
+    private boolean winner;
 
     public Game(ArrayList<Gladiator> gladiators, ArrayList<Square> map) {
+        this.winner = false;
         this.map = map;
         for (Gladiator aGladiator : gladiators) {
             this.addGladiator(aGladiator);
         }
     }
     public boolean startGame() {
-        while(turns <30) {
-            for (Gladiator aGladiator : gladiators) {
-                aGladiator.turn();
+        int lastPlayerToPlay = 0;
+        while(turns < 30 && this.winner == false) {
+            int player = 0;
+            while (player < gladiators.size() && this.winner == false) {
+                this.winner = gladiators.get(player).turn();
+                lastPlayerToPlay = player;
+                player++;
             }
             turns ++;
         }
-        return true;
+        return result(lastPlayerToPlay);
     }
 
     public void addGladiator(Gladiator aGladiator) {
@@ -53,5 +58,15 @@ public class Game {
         for (Square square : map) {
             System.out.println(square.display());
         }
+    }
+
+    public boolean result(int player){
+       if (this.winner == true) {
+            System.out.println("Felicidades " + gladiators.get(player).getName() + "ganaste la partida");
+            return true;
+       }
+
+       System.out.println("No hubo ganadores, suerte la proxima vez");
+       return false;
     }
 }

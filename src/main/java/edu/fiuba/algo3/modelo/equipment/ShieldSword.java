@@ -11,4 +11,8 @@ public class ShieldSword implements Equipment{
     public Energy receiveAttack(Energy energy){
         return energy.substract(new Energy(2));
     }
+
+    public boolean complete(){
+        return false;
+    }
 }

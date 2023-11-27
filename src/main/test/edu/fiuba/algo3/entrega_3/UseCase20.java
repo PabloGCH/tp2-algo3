@@ -1,20 +1,19 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.entrega_3;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import edu.fiuba.algo3.modelo.squares.*;
-import org.junit.jupiter.api.Test;
-
-import edu.fiuba.algo3.modelo.Game;
-
-import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.Test;
 
-public class UseCase12 {
+import edu.fiuba.algo3.modelo.Game;
+import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import edu.fiuba.algo3.modelo.squares.*;
+
+public class UseCase20 {
     @Test
-    public void testGameEnds(){
+    public void testPlayerLose(){
         // Arrange
         boolean finish = false;
         ArrayList<Gladiator> gladiators = new ArrayList<>();
@@ -25,7 +24,7 @@ public class UseCase12 {
         map.add(new Initial());
         map.add(new Middle(new Food()));
         map.add(new Middle(new NullEffect()));
-        map.add(new Middle(new Bacchanalia()));
+        map.add(new Middle(new Food()));
         int middleIndex = (int) (map.stream().count() + 1) / 2;
         map.add(new FinishLine(map.get(middleIndex)));
 

@@ -35,4 +35,14 @@ public class ArmorTest {
         //Assert
         assertEquals(10, energyPoints);
     }
+
+    @Test void armorIsNotComplete(){
+        boolean fullArmor = true;
+        //Arrange
+        Armor newEquipment = new Armor();
+        //Act
+        fullArmor = newEquipment.complete();
+        //Assert
+        assertFalse(fullArmor);
+    }
 }

@@ -2,5 +2,6 @@
 class ShieldSword {
     +upgrade(): Key
     +receiveAttack(Energy: energyPoints): Energy
+    +complete(): boolean
 }
 @enduml
