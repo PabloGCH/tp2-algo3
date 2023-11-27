@@ -21,9 +21,9 @@ public class UseCase14 {
                 "src/main/resources/files/mapTest.json",
                 "mapTest.json"
             );
-
             Gladiator gladiator = new Gladiator();
             ArrayList<Position> path = map.getPath();
+
             Position position = path.get(0); // FOOD SQUARE
             position.receivePiece(gladiator);
             int energyPoints = gladiator.getEnergy();
@@ -32,7 +32,7 @@ public class UseCase14 {
             
         }
     }
-    /*
+
     @Test
     public void validateEquipmentUpgradeSquareCreationFromMapJson() {
         try {
@@ -41,16 +41,17 @@ public class UseCase14 {
                 "src/main/resources/files/mapTest.json",
                 "mapTest.json"
             );
+            ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator();
 
-            Square square = map.get(0); // INITIAL SQUARE
-            square.receivePiece(gladiator); //GETS 20 ENERGY
+            Position position = path.get(0); // INITIAL SQUARE
+            position.receivePiece(gladiator); //GETS 20 ENERGY
             int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
 
-            square = map.get(4); // EQUIPMENT SQUARE
-            square.receivePiece(gladiator);
+            position = path.get(4); // EQUIPMENT SQUARE
+            position.receivePiece(gladiator);
 
 
             gladiator.fightWithBeast(); //LOSES 15 ENERGY
@@ -71,16 +72,17 @@ public class UseCase14 {
                 "src/main/resources/files/mapTest.json",
                 "mapTest.json"
             );
+            ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator();
 
-            Square square = map.get(0); // INITIAL SQUARE
-            square.receivePiece(gladiator); //GETS 20 ENERGY
+            Position position = path.get(0); // INITIAL SQUARE
+            position.receivePiece(gladiator); //GETS 20 ENERGY
             int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
 
-            square = map.get(1); // EQUIPMENT SQUARE
-            square.receivePiece(gladiator); //LOSES 20 ENERGY
+            position = path.get(1); // EQUIPMENT SQUARE
+            position.receivePiece(gladiator); //LOSES 20 ENERGY
 
 
             energyPoints = gladiator.getEnergy();
@@ -97,16 +99,18 @@ public class UseCase14 {
                 "src/main/resources/files/mapTest.json",
                 "mapTest.json"
             );
+            ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator();
 
-            Square square = map.get(0); // INITIAL SQUARE
-            square.receivePiece(gladiator); //GETS 20 ENERGY
+
+            Position position = path.get(0); // INITIAL SQUARE
+            position.receivePiece(gladiator); //GETS 20 ENERGY
             int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
 
-            square = map.get(3); // WINE SQUARE
-            square.receivePiece(gladiator); //LOSES x ENERGY (ALWAYS MORE THAN 0)
+            position = path.get(3); // WINE SQUARE
+            position.receivePiece(gladiator); //LOSES x ENERGY (ALWAYS MORE THAN 0)
 
 
             energyPoints = gladiator.getEnergy();
@@ -124,9 +128,24 @@ public class UseCase14 {
                 "src/main/resources/files/mapTest.json",
                 "mapTest.json"
             );
+            ArrayList<Position> path = map.getPath();
+            Gladiator gladiator = new Gladiator();
+
+            Position position = path.get(0); // INITIAL SQUARE
+            position.receivePiece(gladiator); //GETS 20 ENERGY
+            int energyPoints = gladiator.getEnergy();
+            assertEquals(20, energyPoints);
+
+
+            position = path.get(3); // WINE SQUARE
+            position.receivePiece(gladiator); //LOSES x ENERGY (ALWAYS MORE THAN 0)
+
+
+            energyPoints = gladiator.getEnergy();
+            assertTrue(energyPoints < 20);
         } catch(Exception e) {
 
         }
     }
-*/
+
 }
