@@ -25,13 +25,13 @@ public class UseCase12 {
         gladiators.add(new Gladiator());
 
         // As this map does not have an equipment upgrade square, it is imposible to win
-        ArrayList<Square> map = new ArrayList<>();
+        ArrayList<Position> map = new ArrayList<>();
         map.add(new Initial());
         map.add(new Middle(new Food()));
         map.add(new Middle(new NullEffect()));
         map.add(new Middle(new Bacchanalia(dice)));
         int middleIndex = (int) (map.stream().count() + 1) / 2;
-        map.add(new FinishLine(map.get(middleIndex)));
+        map.add(new FinishLine((Square) map.get(middleIndex)));
 
         Game game = new Game(gladiators, map);
 

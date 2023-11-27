@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import edu.fiuba.algo3.modelo.map.Map;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
@@ -15,11 +16,12 @@ import java.util.ArrayList;
 public class Game {
     private int turns = 0;
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
-    private ArrayList<Square> map;
+    private ArrayList<Position> path;
+    private Map map;
     private Dice dice = new Dice();
 
-    public Game(ArrayList<Gladiator> gladiators, ArrayList<Square> map) {
-        this.map = map;
+    public Game(ArrayList<Gladiator> gladiators, ArrayList<Position> map) {
+        this.path = map;
         for (Gladiator aGladiator : gladiators) {
             this.addGladiator(aGladiator);
         }
@@ -36,7 +38,7 @@ public class Game {
 
     public void addGladiator(Gladiator aGladiator) {
         this.gladiators.add(aGladiator);
-        this.map.get(0).receivePiece(aGladiator);
+        this.path.get(0).receivePiece(aGladiator);
     }
 
     public void createMap() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
@@ -47,11 +49,12 @@ public class Game {
         int middleIndex = (int) (map.stream().count() + 1) / 2;
         map.add(new FinishLine(map.get(middleIndex))); */
         this.map = new MapFacade().loadMap();
+        path = map.getPath();
     }
-
+/*
     public void displayMap() {
-        for (Square square : map) {
+        for (Square square : path) {
             System.out.println(square.display());
         }
-    }
+    }*/
 }

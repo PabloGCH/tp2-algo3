@@ -27,6 +27,6 @@ public class UseCase03 {
         aGladiator.turn();
 
         //Assert
-        Assertions.assertTrue(aGladiator.getEnergy().getPoints() == 0);
+        Assertions.assertEquals(aGladiator.getEnergy(), 0);
     }
 }

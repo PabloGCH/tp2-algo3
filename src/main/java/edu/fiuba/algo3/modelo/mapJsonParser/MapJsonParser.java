@@ -6,54 +6,47 @@ import java.util.ArrayList;
 
 import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
 import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
+import edu.fiuba.algo3.modelo.map.Map;
+import edu.fiuba.algo3.modelo.squares.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import edu.fiuba.algo3.modelo.squares.Bacchanalia;
-import edu.fiuba.algo3.modelo.squares.Beast;
-import edu.fiuba.algo3.modelo.squares.FinishLine;
-import edu.fiuba.algo3.modelo.squares.Food;
-import edu.fiuba.algo3.modelo.squares.Initial;
-import edu.fiuba.algo3.modelo.squares.Injury;
-import edu.fiuba.algo3.modelo.squares.Middle;
-import edu.fiuba.algo3.modelo.squares.NullEffect;
-import edu.fiuba.algo3.modelo.squares.Square;
-import edu.fiuba.algo3.modelo.squares.Upgrade;
-
 
 public class MapJsonParser implements Parser {
-    //TODO implement Map class
     public Map loadMap(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        int length;
+        int height;
         int width;
+        Map map;
         try {
-            ArrayList<Square> path = new ArrayList<>();
+            ArrayList<Position> path = new ArrayList<>();
             Square previousSquare;
+            JSONObject measures = this.getMapObject(filePath);
+            width = Math.toIntExact((long)measures.get("ancho"));
+            height = Math.toIntExact((long)measures.get("largo"));
             JSONArray pathJsonArray = this.getPathObject(filePath);
             int middleSquareIndex = (int) pathJsonArray.size() / 2;
             Square middleSquare = new Middle(new NullEffect());
-            JSONObject measures = this.getMapObject(filePath);
-            length = (int) measures.get("largo");
-            width = (int) measures.get("ancho");
+
 
             JSONObject element = (JSONObject) pathJsonArray.get(0);
-            String value = (String) element.get("square");
+            String value = (String) element.get("tipo");
             Square newSquare = this.createSquare(value, middleSquare);
             middleSquare = middleSquareIndex == 0 ? newSquare : middleSquare;
             previousSquare = newSquare;
             path.add(newSquare);
 
             for (int i = 1; i < pathJsonArray.size(); i++) {
-                JSONObject element = (JSONObject) pathJsonArray.get(i);
-                String value = (String) element.get("square");
-                Square newSquare = this.createSquare(value, middleSquare);
+                element = (JSONObject) pathJsonArray.get(i);
+                value = (String) element.get("tipo");
+                newSquare = this.createSquare(value, middleSquare);
                 middleSquare = middleSquareIndex == i ? newSquare : middleSquare;
-                previousSquare.setNextSquare(newSquare);
+                previousSquare.setNextPosition(newSquare);
                 path.add(newSquare);
+                previousSquare = newSquare;
             }
-            Map map = new Map(length, width, path);
+            map = new Map(width, height, path);
         } catch (ClassCastException e) {
             //IT CAN BE ASSUMED THAT IF IT FAILS TO CAST AN OBJECT IS BECAUSE THE JSON IS INVALID
             //SINCE IS ONLY CASTING AFTER GETTING VALUES FROM THE FILE
@@ -64,22 +57,22 @@ public class MapJsonParser implements Parser {
 
     private Square createSquare(String type, Square middleSquare) {
         switch (type) {
-            case "INITIAL":
+            case "Salida":
                 return new Initial();
-            case "BEAST":
+            case "Fiera":
                 return new Middle(new Beast());
-            case "WINE":
+            case "Bacanal":
                 var diceFactory = new DiceFactory();
                 RandomResult dice = diceFactory.createRandomGenerator();
                 return new Middle(new Bacchanalia(dice));
-            case "EQUIPMENT_UPGRADE":
+            case "Equipamiento":
                 //NEEDS EQUIPMENT EFFECT
                 return new Middle(new Upgrade());
-            case "FOOD":
+            case "Comida":
                 return new Middle(new Food());
-            case "INJURY":
+            case "Lesion":
                 return new Middle(new Injury());
-            case "FINAL":
+            case "Llegada":
                 return new FinishLine(middleSquare);
             default:
                 return new Middle(new NullEffect());
@@ -127,10 +120,11 @@ public class MapJsonParser implements Parser {
             if(!mapjsonObject.containsKey("camino")){
                 throw new InvalidMapFile();
             }
-            if(!mapjsonObject.containsKey("celdas")){
+            JSONObject pathjsonObject = (JSONObject)mapjsonObject.get("camino");
+            if(!pathjsonObject.containsKey("celdas")){
                 throw new InvalidMapFile();
             }
-            return (JSONArray) mapjsonObject.get("celdas");
+            return (JSONArray) pathjsonObject.get("celdas");
         } catch (FileNotFoundException e) {
             throw new MapFileNotFound();
         } catch (IOException e) {

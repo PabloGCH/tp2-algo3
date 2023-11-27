@@ -21,11 +21,11 @@ public class gameTests {
        gladiators.add(new Gladiator());
 
        // As this map does not have an equipment upgrade square, it is imposible to win
-       ArrayList<Square> map = new ArrayList<>();
+       ArrayList<Position> map = new ArrayList<>();
        map.add(new Initial());
        map.add(new Middle(new Food()));
        int middleIndex = (int) (map.stream().count() + 1) / 2;
-       map.add(new FinishLine(map.get(middleIndex)));
+       map.add(new FinishLine((Square) map.get(middleIndex)));
 
        Game game = new Game(gladiators, map);
 
@@ -46,11 +46,11 @@ public class gameTests {
        gladiators.add(gladiator1);
 
        // As this map does not have an equipment upgrade square, it is imposible to win
-       ArrayList<Square> map = new ArrayList<>();
+       ArrayList<Position> map = new ArrayList<>();
        map.add(new Initial());
        map.add(new Middle(new Food()));
        int middleIndex = (int) (map.stream().count() + 1) / 2;
-       map.add(new FinishLine(map.get(middleIndex)));
+       map.add(new FinishLine((Square) map.get(middleIndex)));
 
        Game game = new Game(gladiators, map); // When adding the gladiator to the game, enter the initial space, giving him 20 energy.
 
