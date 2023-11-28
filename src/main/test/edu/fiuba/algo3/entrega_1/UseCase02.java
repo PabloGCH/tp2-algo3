@@ -15,17 +15,27 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UseCase02 {
     @Test
     public void test02ANewPlayersGladiatorStartsAtTheInitialSquare() {
-        var diceFactory = new DiceFactory();
-        RandomResult dice = diceFactory.createRandomGenerator();
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         Gladiator aGladiator = new Gladiator();
         ArrayList<Position> map = new ArrayList<>();
-        map.add(new Initial());
-        map.add(new Middle(new Food()));
-        map.add(new Middle(new NullEffect()));
-        map.add(new Middle(new Bacchanalia(dice)));
-        int middleIndex = (int) (map.stream().count() + 1) / 2;
-        map.add(new FinishLine((Square) map.get(middleIndex)));
+        SquareFactory squareFactory = new InitialFactory();
+        EffectFactory nullEffectFactory = new NullEffectFactory();
+        EffectFactory effectFactory = new InitialEffectFactory();
+        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect()));
+        //map.add(new Initial());
+        squareFactory = new MiddleFactory();
+        effectFactory = new FoodFactory();
+        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect()));
+       // map.add(new Middle(new Food()));
+        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
+        //map.add(new Middle(new NullEffect()));
+        effectFactory = new BacchanaliaFactory();
+        map.add(squareFactory.createSquare(effectFactory.createEffect(), nullEffectFactory.createEffect()));
+        //map.add(new Middle(new Bacchanalia()));
+        //int middleIndex = (int) (map.stream().count() + 1) / 2;
+        squareFactory = new FinishLineFactory();
+        effectFactory = new FinishLineEffectFactory();
+        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect()));
         gladiators.add(aGladiator);
         Game aGame = new Game(gladiators, map);
         Assertions.assertEquals(aGladiator.getEnergy(), 20);
