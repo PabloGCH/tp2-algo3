@@ -26,9 +26,10 @@ public class Game {
     static final int able = Config.ABLE_TO_WIN.getValue();
 
 
-    public Game(ArrayList<Gladiator> gladiators, ArrayList<Position> map) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        createMap();
-        this.path = map;
+    public Game(ArrayList<Gladiator> gladiators, ArrayList<Position> path) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        //createMap();
+        map = new Map(1,path.size(),path);
+        this.path = path;
         for (Gladiator aGladiator : gladiators) {
             this.addGladiator(aGladiator);
         }
@@ -75,6 +76,7 @@ public class Game {
         switch (aGladiator.candidateToWin()){
             case 1:
                 map.sendGladiatorToMiddle(aGladiator);
+                aGladiator.notWorthy();
             case 2:
                 winner = aGladiator;
         }

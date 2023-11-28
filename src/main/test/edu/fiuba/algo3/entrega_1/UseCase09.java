@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Config;
 import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
@@ -21,7 +22,8 @@ public class UseCase09 {
         SquareFactory squareFactory = new InitialFactory();
         EffectFactory nullEffectFactory = new NullEffectFactory();
         EffectFactory effectFactory = new InitialEffectFactory();
-        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect()));
+        Square initialSquare = squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect());
+        map.add(initialSquare);
         //map.add(new Initial());
         squareFactory = new MiddleFactory();
         map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
@@ -42,10 +44,16 @@ public class UseCase09 {
         var lastSquare = squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect());
         //var lastSquare = new FinishLine((Square) map.get(middleIndex));
         map.add(lastSquare);
+
         gladiators.add(aGladiator);
         Game aGame = new Game(gladiators, map);
-        //lastSquare.receivePiece(aGladiator);
+        initialSquare.receivePiece(aGladiator);//player starts at initial square and receive 20 energy points
+        initialSquare.removePiece(aGladiator);
+        lastSquare.receivePiece(aGladiator);// Player reach the finish line: if they have a key, gladiator´s worthy value equals ABLE_TO_WIN (2)
         aGame.startGame(1);
-        Assertions.assertEquals(60, aGladiator.getEnergy());//20 (initial effect) + 15 (Food effect middle square) + 15 (returned to middle square, another food effect) = 60
+        /*As the player reached the finishline without a key, they are sent to the middle and gladiator´s worthy is UNABLE_TO_WIN (0),
+         only when is standing on the finish line without the key worthy equals UNABLE_TO_WIN_ON_FINISH_LINE*/
+        Assertions.assertEquals(Config.UNABLE_TO_WIN.getValue(), aGladiator.candidateToWin());
+        Assertions.assertEquals(35, aGladiator.getEnergy());//
     }
 }

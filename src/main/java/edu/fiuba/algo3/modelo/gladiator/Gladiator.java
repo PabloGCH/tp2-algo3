@@ -76,7 +76,9 @@ public class Gladiator {
         if(equipment.worthy()){
             worthy = Config.ABLE_TO_WIN.getValue();
         }
-        worthy = Config.UNABLE_TO_WIN_ON_FINISH_LINE.getValue();
+        else{
+            worthy = Config.UNABLE_TO_WIN_ON_FINISH_LINE.getValue();
+        }
     }
 
     public int candidateToWin(){
@@ -90,5 +92,8 @@ public class Gladiator {
         this.position.removePiece(this);
         this.position = newPosition;
         this.position.receivePiece(this);
+    }
+    public void notWorthy(){
+        worthy = Config.UNABLE_TO_WIN.getValue();
     }
 }
