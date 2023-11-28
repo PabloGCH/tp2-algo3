@@ -20,6 +20,9 @@ public class MapJsonParser implements Parser {
         int width;
         Map map;
         try {
+            SquareFactory squareFactory = new MiddleFactory();
+            EffectFactory nullEffectFactory = new NullEffectFactory();
+            EffectFactory effectFactory = new InitialEffectFactory();
             ArrayList<Position> path = new ArrayList<>();
             Square previousSquare;
             JSONObject measures = this.getMapObject(filePath);
@@ -27,7 +30,8 @@ public class MapJsonParser implements Parser {
             height = Math.toIntExact((long)measures.get("largo"));
             JSONArray pathJsonArray = this.getPathObject(filePath);
             int middleSquareIndex = (int) pathJsonArray.size() / 2;
-            Square middleSquare = new Middle(new NullEffect());
+            Square middleSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
+            //Square middleSquare = new Middle(new NullEffect());
 
 
             JSONObject element = (JSONObject) pathJsonArray.get(0);
@@ -56,6 +60,7 @@ public class MapJsonParser implements Parser {
     }
 
     private Square createSquare(String type, Square middleSquare) {
+
         switch (type) {
             case "Salida":
                 return new Initial();

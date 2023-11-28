@@ -20,6 +20,9 @@ public class Game {
     private Map map;
     private Dice dice = new Dice();
 
+    private Gladiator winner;
+
+
     public Game(ArrayList<Gladiator> gladiators, ArrayList<Position> map) {
         this.path = map;
         for (Gladiator aGladiator : gladiators) {
@@ -30,6 +33,10 @@ public class Game {
         while(turns < Config.MAX_TURNS_IN_A_GAME.getValue()) {
             for (Gladiator aGladiator : gladiators) {
                 aGladiator.turn();
+                if(aGladiator.candidateToWin() == true){
+                    //TODO implement message for winner
+                    break;
+                }
             }
             turns ++;
         }

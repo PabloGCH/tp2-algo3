@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.gladiator;
 import edu.fiuba.algo3.modelo.equipment.Equipment;
 import edu.fiuba.algo3.modelo.energy.Energy;
+import edu.fiuba.algo3.modelo.equipment.Key;
 import edu.fiuba.algo3.modelo.rank.Rank;
 import edu.fiuba.algo3.modelo.rank.Rookie;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
@@ -18,6 +19,7 @@ public class Gladiator {
     private Equipment equipment;
     private Rank rank;
     private Position position;
+    private boolean worthy; //Worthy enough to reach Pompeya and win the game
 
     public Gladiator() {
         this.energy = new Energy(0);
@@ -70,7 +72,13 @@ public class Gladiator {
         this.state = new Injured();
     }
 
+    public void worthy(){//Only used by "FinishLineEffect", if a player reach the finish line without the key --> worthy == false.
+        worthy = equipment.worthy();
+    }
 
+    public boolean candidateToWin(){
+        return worthy;
+    }
     public void move(int distance) {
         Position newPosition = this.position;
         for(int i = 0; i < distance; i++) {

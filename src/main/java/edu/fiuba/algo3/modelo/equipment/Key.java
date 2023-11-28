@@ -10,4 +10,8 @@ public class Key implements Equipment{
     public Energy receiveAttack(Energy energy){
         return energy;
     }
+    public boolean worthy(){
+        return true;
+    }
 }
+

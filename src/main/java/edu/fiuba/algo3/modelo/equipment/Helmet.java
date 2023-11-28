@@ -9,4 +9,8 @@ public class Helmet implements Equipment{
     public Energy receiveAttack(Energy energy){
         return energy.substract(new Energy(15));
     }
+    public boolean worthy(){
+        return false;
+    }
 }
+

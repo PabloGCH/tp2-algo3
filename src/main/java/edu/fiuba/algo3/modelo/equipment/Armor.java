@@ -7,4 +7,7 @@ public class Armor implements Equipment{
     public Energy receiveAttack(Energy energy){
         return energy.substract(new Energy(10));
     }
+    public boolean worthy(){
+        return false;
+    }
 }

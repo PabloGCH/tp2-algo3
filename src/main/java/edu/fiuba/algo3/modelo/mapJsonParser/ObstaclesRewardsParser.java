@@ -46,9 +46,7 @@ public class ObstaclesRewardsParser {
             case "UPGRADE":
                 return new Upgrade();
             case "WINE":
-                var diceFactory = new DiceFactory();
-                RandomResult dice = diceFactory.createRandomGenerator();
-                return new Bacchanalia(dice);
+                return new Bacchanalia();
             case "BEAST":
                 return new Beast();
             case "INJURY":
