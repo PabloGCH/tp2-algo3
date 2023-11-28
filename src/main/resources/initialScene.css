@@ -1,0 +1,15 @@
+.plus-sign {
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(1, 1, 1, 0);
+}
+
+.plus-sign:hover {
+    -fx-cursor: hand;
+}
+
+.gladiator-card {
+    -fx-border-width: 1;
+    -fx-border-style: dashed;
+    -fx-border-color: black;
+    -fx-background-color: rgb(119, 79, 79);
+}
