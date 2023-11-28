@@ -20,20 +20,26 @@ public class Game {
     private Map map;
     private Dice dice = new Dice();
 
-    private Gladiator winner;
+    private Gladiator winner = null;
+
+    static final int unableNoKey = Config.UNABLE_TO_WIN_ON_FINISH_LINE.getValue();
+    static final int able = Config.ABLE_TO_WIN.getValue();
 
 
-    public Game(ArrayList<Gladiator> gladiators, ArrayList<Position> map) {
+    public Game(ArrayList<Gladiator> gladiators, ArrayList<Position> map) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        createMap();
         this.path = map;
         for (Gladiator aGladiator : gladiators) {
             this.addGladiator(aGladiator);
         }
     }
-    public boolean startGame() {
-        while(turns < Config.MAX_TURNS_IN_A_GAME.getValue()) {
+    public boolean startGame(int maxTurns) {
+        //while(turns < Config.MAX_TURNS_IN_A_GAME.getValue()) {
+        while(turns < maxTurns) {
             for (Gladiator aGladiator : gladiators) {
                 aGladiator.turn();
-                if(aGladiator.candidateToWin() == true){
+                canGladiatorWin(aGladiator);
+                if(winner != null){
                     //TODO implement message for winner
                     break;
                 }
@@ -64,4 +70,14 @@ public class Game {
             System.out.println(square.display());
         }
     }*/
+    private void canGladiatorWin(Gladiator aGladiator){//Sacar numeros magicos
+
+        switch (aGladiator.candidateToWin()){
+            case 1:
+                map.sendGladiatorToMiddle(aGladiator);
+            case 2:
+                winner = aGladiator;
+        }
+
+    }
 }

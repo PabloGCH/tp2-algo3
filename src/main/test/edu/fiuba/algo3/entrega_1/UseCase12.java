@@ -2,8 +2,13 @@ package edu.fiuba.algo3.entrega_1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import edu.fiuba.algo3.modelo.Config;
 import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
 import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
+import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +21,7 @@ import java.util.ArrayList;
 
 public class UseCase12 {
     @Test
-    public void tetsGameEnds(){
+    public void tetsGameEnds() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         // Arrange
         var diceFactory = new DiceFactory();
         RandomResult dice = diceFactory.createRandomGenerator();
@@ -50,7 +55,7 @@ public class UseCase12 {
 
         // Act
 
-        finish = game.startGame();
+        finish = game.startGame(Config.MAX_TURNS_IN_A_GAME.getValue());
 
         // Assert
 

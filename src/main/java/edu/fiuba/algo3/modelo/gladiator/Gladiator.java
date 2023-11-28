@@ -19,7 +19,7 @@ public class Gladiator {
     private Equipment equipment;
     private Rank rank;
     private Position position;
-    private boolean worthy; //Worthy enough to reach Pompeya and win the game
+    private int worthy = Config.UNABLE_TO_WIN.getValue();//Worthy enough to reach Pompeya and win the game
 
     public Gladiator() {
         this.energy = new Energy(0);
@@ -73,10 +73,13 @@ public class Gladiator {
     }
 
     public void worthy(){//Only used by "FinishLineEffect", if a player reach the finish line without the key --> worthy == false.
-        worthy = equipment.worthy();
+        if(equipment.worthy()){
+            worthy = Config.ABLE_TO_WIN.getValue();
+        }
+        worthy = Config.UNABLE_TO_WIN_ON_FINISH_LINE.getValue();
     }
 
-    public boolean candidateToWin(){
+    public int candidateToWin(){
         return worthy;
     }
     public void move(int distance) {

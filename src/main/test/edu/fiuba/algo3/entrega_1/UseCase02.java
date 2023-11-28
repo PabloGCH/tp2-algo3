@@ -3,6 +3,10 @@ import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
 import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.*;
 import javafx.geometry.Pos;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UseCase02 {
     @Test
-    public void test02ANewPlayersGladiatorStartsAtTheInitialSquare() {
+    public void test02ANewPlayersGladiatorStartsAtTheInitialSquare() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         Gladiator aGladiator = new Gladiator();
         ArrayList<Position> map = new ArrayList<>();

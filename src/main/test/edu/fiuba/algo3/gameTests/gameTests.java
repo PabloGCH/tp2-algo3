@@ -2,6 +2,11 @@ package edu.fiuba.algo3.gameTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import edu.fiuba.algo3.modelo.Config;
+import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +18,7 @@ import java.util.ArrayList;
 
 
 public class gameTests {
-     @Test void StartGameAndPlayUntilFinish() {
+     @Test void StartGameAndPlayUntilFinish() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
        // Arrange
        boolean finish = false;
        ArrayList<Gladiator> gladiators = new ArrayList<>();
@@ -22,23 +27,32 @@ public class gameTests {
 
        // As this map does not have an equipment upgrade square, it is imposible to win
        ArrayList<Position> map = new ArrayList<>();
-       map.add(new Initial());
-       map.add(new Middle(new Food()));
-       int middleIndex = (int) (map.stream().count() + 1) / 2;
-       map.add(new FinishLine((Square) map.get(middleIndex)));
+       SquareFactory squareFactory = new InitialFactory();
+       EffectFactory nullEffectFactory = new NullEffectFactory();
+       EffectFactory effectFactory = new InitialEffectFactory();
+       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
+       //map.add(new Initial());
+       squareFactory = new MiddleFactory();
+       effectFactory = new FoodFactory();
+       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
+       //map.add(new Middle(new Food()));
+       effectFactory = new FinishLineEffectFactory();
+       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect()));
+       //int middleIndex = (int) (map.stream().count() + 1) / 2;
+       //map.add(new FinishLine((Square) map.get(middleIndex)));
 
        Game game = new Game(gladiators, map);
 
        // Act
 
-       finish = game.startGame();
+       finish = game.startGame(Config.MAX_TURNS_IN_A_GAME.getValue());
 
        // Assert
 
        assertTrue(finish);
     }
 
-      @Test void GladiatorIsSuccessfullyAddedToTheGame() {
+      @Test void GladiatorIsSuccessfullyAddedToTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
        // Arrange
        
        Gladiator gladiator1 = new Gladiator();
@@ -47,10 +61,19 @@ public class gameTests {
 
        // As this map does not have an equipment upgrade square, it is imposible to win
        ArrayList<Position> map = new ArrayList<>();
-       map.add(new Initial());
-       map.add(new Middle(new Food()));
-       int middleIndex = (int) (map.stream().count() + 1) / 2;
-       map.add(new FinishLine((Square) map.get(middleIndex)));
+       SquareFactory squareFactory = new InitialFactory();
+       EffectFactory nullEffectFactory = new NullEffectFactory();
+       EffectFactory effectFactory = new InitialEffectFactory();
+       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
+       //map.add(new Initial());
+       squareFactory = new MiddleFactory();
+       effectFactory = new FoodFactory();
+       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
+       //map.add(new Middle(new Food()));
+       effectFactory = new FinishLineEffectFactory();
+       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect()));
+       /*int middleIndex = (int) (map.stream().count() + 1) / 2;
+       map.add(new FinishLine((Square) map.get(middleIndex)));*/
 
        Game game = new Game(gladiators, map); // When adding the gladiator to the game, enter the initial space, giving him 20 energy.
 
