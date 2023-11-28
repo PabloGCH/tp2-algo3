@@ -5,6 +5,7 @@ import java.util.Map;
 
 import edu.fiuba.algo3.controller.MapController;
 import edu.fiuba.algo3.modelo.Game;
+import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.PositionCollection;
 import edu.fiuba.algo3.modelo.squares.Square;
@@ -38,12 +39,15 @@ public class App extends Application {
     }
 
     public Scene mapScene() {
+        MapFacade mapFacade = new MapFacade();
+
         edu.fiuba.algo3.modelo.map.Map map =
         new edu.fiuba.algo3.modelo.map.Map(
-            10,
-            10,
+            15,
+            15,
             new ArrayList<Position>()
-        );
+        ); //SHOULD BE REPLACED BY "mapFacade.loadMap()"
+        
         MapController mapController = new MapController(map);
         return new Scene(mapController.draw());
     }

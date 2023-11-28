@@ -13,14 +13,10 @@ public class MapController {
     }
 
     public Pane draw() {
-        int cols = 10;
-        int rows = 10;
-
+        int cols = this.map.getColumns();
+        int rows = this.map.getRows();
         GridPane mapGridPane = new GridPane();
-        mapGridPane.getStylesheets().add(getClass().getResource(Resources.MAP_STYLE_PATH.getValue()).toExternalForm());
-        mapGridPane.setPrefSize(600, 600);
-        mapGridPane.getStyleClass().add("map-grid");
-
+        this.setUpStyles(mapGridPane);
         this.setUpRows(mapGridPane, rows);
         this.setUpCols(mapGridPane, cols);
         for(int c = 0; c < cols; c ++) {
@@ -34,10 +30,15 @@ public class MapController {
                 );
             }
         }
-
-
         return mapGridPane;
     }
+
+    private void setUpStyles(Pane pane) {
+        pane.getStylesheets().add(getClass().getResource(Resources.MAP_STYLE_PATH.getValue()).toExternalForm());
+        pane.setPrefSize(600, 600);
+        pane.getStyleClass().add("map-grid");
+    }
+
 
     private void setUpRows(GridPane mapGridPane, int rows) {
         for(int i = 0; i < rows; i++) {
