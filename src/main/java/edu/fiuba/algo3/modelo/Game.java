@@ -21,7 +21,11 @@ public class Game {
     private Dice dice = new Dice();
     private boolean winner;
 
-    public Game(ArrayList<Gladiator> gladiators, ArrayList<Position> path) {
+    static final int unableNoKey = Config.UNABLE_TO_WIN_ON_FINISH_LINE.getValue();
+    static final int able = Config.ABLE_TO_WIN.getValue();
+
+
+    public Game(ArrayList<Gladiator> gladiators, ArrayList<Position> map) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         this.winner = false;
         this.path = path;
         for (Gladiator aGladiator : gladiators) {
@@ -34,7 +38,7 @@ public class Game {
             int player = 0;
             while (player < gladiators.size() && this.winner == false) {
                 this.winner = gladiators.get(player).turn();
-                canGladiatorWin(aGladiator);
+                canGladiatorWin(gladiators.get(player));
                 lastPlayerToPlay = player;
                 player++;
             }
@@ -71,6 +75,7 @@ public class Game {
         switch (aGladiator.candidateToWin()){
             case 1:
                 map.sendGladiatorToMiddle(aGladiator);
+                aGladiator.notWorthy();
             case 2:
                 winner = true;
         }
