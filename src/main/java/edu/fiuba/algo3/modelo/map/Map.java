@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.modelo.map;
 import java.util.ArrayList;
 
+import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.NullPosition;
 import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.PositionCollection;
+import edu.fiuba.algo3.modelo.squares.Square;
 
 
 public class Map implements PositionCollection {
@@ -36,5 +38,13 @@ public class Map implements PositionCollection {
 
     public ArrayList<Position> getPath(){
         return path;
+    }
+
+    public void sendGladiatorToMiddle(Gladiator aGladiator){
+        int middleIndex = (int) (path.stream().count() + 1) / 2;
+        Position middleSquare = path.get(middleIndex);
+        Position lastSquare = path.get(path.size() -1);
+        middleSquare.receivePiece(aGladiator);
+        lastSquare.removePiece(aGladiator);
     }
 }

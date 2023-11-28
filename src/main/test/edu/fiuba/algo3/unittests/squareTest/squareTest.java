@@ -72,10 +72,8 @@ public class squareTest {
 
     @Test
     public void test04AGladiatorLoosesExpectedEnergyAfterDrinkingWine() {
-        var diceFactory = new DiceFactory();
-        RandomResult dice = diceFactory.createRandomGenerator();
         Gladiator aGladiator = new Gladiator();
-        Effect aBacchanalia = new Bacchanalia(dice);
+        Effect aBacchanalia = new Bacchanalia();
         int initialEnergy;
         int initialExpectedEnergy = 0;
         int finalEnergy;
@@ -109,8 +107,15 @@ public class squareTest {
 
     @Test
     public void test06AGladiatorStepsOnTheFinishLineWithoutKeyAndIsSetOnTheMiddleSquare() {
-        Square middleSquare = new Middle(new Food());
-        Square finish = new FinishLine(middleSquare);
+        SquareFactory squareFactory = new MiddleFactory();
+        EffectFactory nullEffectFactory = new NullEffectFactory();
+        EffectFactory effectFactory = new InitialEffectFactory();
+        Square middleSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
+        //Square middleSquare = new Middle(new Food());
+        squareFactory = new FinishLineFactory();
+        effectFactory = new FinishLineEffectFactory();
+        Square finish = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
+        //Square finish = new FinishLine(middleSquare);
         Gladiator aGladiator = new Gladiator();
         int expectedInitialEnergy = 0;
         int expectedFinishEnergy = 15;
@@ -123,9 +128,18 @@ public class squareTest {
 
     @Test
     public void test07AGladiatorStepsOnAnInjurySquareBecomesUnableToMove() {
-        Square firstNullSquare = new Middle(new NullEffect());
-        Square middleSquare = new Middle(new Injury());
-        Square secondNullEffectSquare = new Middle(new Food());
+        SquareFactory squareFactory = new InitialFactory();
+        EffectFactory nullEffectFactory = new NullEffectFactory();
+        EffectFactory effectFactory = new InitialEffectFactory();
+        Square firstNullSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
+        //Square firstNullSquare = new Middle(new NullEffect());
+        squareFactory = new MiddleFactory();
+        effectFactory = new InjuryFactory();
+        Square middleSquare = squareFactory.createSquare(effectFactory.createEffect(),nullEffectFactory.createEffect());
+        //Square middleSquare = new Middle(new Injury());
+        effectFactory = new FoodFactory();
+        Square secondNullEffectSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
+        //Square secondNullEffectSquare = new Middle(new Food());
         ArrayList<Square> squares = new ArrayList<>();
         squares.add(firstNullSquare);
         squares.add(middleSquare);

@@ -34,6 +34,7 @@ public class Game {
             int player = 0;
             while (player < gladiators.size() && this.winner == false) {
                 this.winner = gladiators.get(player).turn();
+                canGladiatorWin(aGladiator);
                 lastPlayerToPlay = player;
                 player++;
             }
@@ -56,20 +57,23 @@ public class Game {
         map.add(new FinishLine(map.get(middleIndex))); */
         //this.map = new MapFacade().loadMap();
     }
-
-    public void displayMap() {
-        for (Square square : map) {
-            System.out.println(square.display());
-        }
-    }
-
     public boolean result(int player){
-       if (this.winner == true) {
+       if (this.winner) {
             System.out.println("Felicidades " + gladiators.get(player).getName() + "ganaste la partida");
             return true;
        }
 
        System.out.println("No hubo ganadores, suerte la proxima vez");
        return false;
+    }
+    private void canGladiatorWin(Gladiator aGladiator){//Sacar numeros magicos
+
+        switch (aGladiator.candidateToWin()){
+            case 1:
+                map.sendGladiatorToMiddle(aGladiator);
+            case 2:
+                winner = true;
+        }
+
     }
 }

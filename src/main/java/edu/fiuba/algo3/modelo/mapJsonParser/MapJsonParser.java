@@ -21,8 +21,8 @@ public class MapJsonParser implements Parser {
         Map map;
         try {
             SquareFactory squareFactory = new MiddleFactory();
-            EffectFactory nullEffectFactory = new NullEffectFactory();
-            EffectFactory effectFactory = new InitialEffectFactory();
+            EffectFactory prizeFactory = new InitialEffectFactory();
+            EffectFactory obstacleFactory = new NullEffectFactory();
             ArrayList<Position> path = new ArrayList<>();
             Square previousSquare;
             JSONObject measures = this.getMapObject(filePath);
@@ -30,21 +30,39 @@ public class MapJsonParser implements Parser {
             height = Math.toIntExact((long)measures.get("largo"));
             JSONArray pathJsonArray = this.getPathObject(filePath);
             int middleSquareIndex = (int) pathJsonArray.size() / 2;
-            Square middleSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
+            Square middleSquare = squareFactory.createSquare(obstacleFactory.createEffect(),prizeFactory.createEffect());
             //Square middleSquare = new Middle(new NullEffect());
 
 
             JSONObject element = (JSONObject) pathJsonArray.get(0);
+            //Obtaining square type
             String value = (String) element.get("tipo");
-            Square newSquare = this.createSquare(value, middleSquare);
+            squareFactory = obtainSquare(value);
+            //Obtaining obstacle
+            value = (String) element.get("obstaculo");
+            obstacleFactory = obtainObstacle(value);
+            //Obtaining prize
+            value = (String) element.get("premio");
+            prizeFactory = obtainPrize(value);
+            Square newSquare = constructor(squareFactory, obstacleFactory, prizeFactory);
+            //Square newSquare = this.createSquare(value, middleSquare);
             middleSquare = middleSquareIndex == 0 ? newSquare : middleSquare;
             previousSquare = newSquare;
             path.add(newSquare);
 
             for (int i = 1; i < pathJsonArray.size(); i++) {
                 element = (JSONObject) pathJsonArray.get(i);
+                //Obtaining square type
                 value = (String) element.get("tipo");
-                newSquare = this.createSquare(value, middleSquare);
+                squareFactory = obtainSquare(value);
+                //Obtaining obstacle
+                value = (String) element.get("obstaculo");
+                obstacleFactory = obtainObstacle(value);
+                //Obtaining prize
+                value = (String) element.get("premio");
+                prizeFactory = obtainPrize(value);
+                newSquare = constructor(squareFactory, obstacleFactory, prizeFactory);
+                //newSquare = this.createSquare(value, middleSquare);
                 middleSquare = middleSquareIndex == i ? newSquare : middleSquare;
                 previousSquare.setNextPosition(newSquare);
                 path.add(newSquare);
@@ -59,6 +77,43 @@ public class MapJsonParser implements Parser {
         return map;
     }
 
+    private Square constructor(SquareFactory squareFactory,EffectFactory obtacleFactory, EffectFactory prizeFactory){
+        return squareFactory.createSquare(obtacleFactory.createEffect(),prizeFactory.createEffect());
+    }
+
+    private SquareFactory obtainSquare(String type){
+        switch (type) {
+            case "Salida":
+                return new InitialFactory();
+            case "Llegada":
+                return new FinishLineFactory();
+            default:
+                return new MiddleFactory();
+        }
+    }
+    private EffectFactory obtainObstacle(String type){
+        switch (type) {
+            case "Fiera":
+                return new BeastFactory();
+            case "Bacanal":
+                return new BacchanaliaFactory();
+            case "Lesion":
+                return new InjuryFactory();
+            default:
+                return new NullEffectFactory();
+        }
+    }
+    private EffectFactory obtainPrize(String type){
+        switch (type) {
+            case "Equipamiento":
+                return new UpgradeFactory();
+            case "Comida":
+                return new FoodFactory();
+            default:
+                return new NullEffectFactory();
+        }
+    }
+    /*
     private Square createSquare(String type, Square middleSquare) {
 
         switch (type) {
@@ -83,7 +138,7 @@ public class MapJsonParser implements Parser {
                 return new Middle(new NullEffect());
         }
     }
-
+*/
 
     private JSONObject getMapObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
