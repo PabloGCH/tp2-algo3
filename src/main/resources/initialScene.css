@@ -34,3 +34,8 @@
 .name-field {
     -fx-background-color: rgba(255, 255, 255, 0.2);
 }
+
+.start-game-btn {
+    -fx-pref-height: 40px;
+    -fx-pref-width: 150px;
+}

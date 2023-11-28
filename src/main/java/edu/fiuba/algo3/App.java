@@ -31,14 +31,6 @@ public class App extends Application {
         VBox mainContainer = new VBox();
         GridPane grid = new GridPane();
 
-//        RowConstraints rowConstraints = new RowConstraints();
-//        rowConstraints.setPercentHeight(300.0 / 2);
-//        grid.getRowConstraints().addAll(rowConstraints, rowConstraints);
-//
-//        ColumnConstraints colConstraints = new ColumnConstraints();
-//        colConstraints.setPercentWidth(300.0 / 3);
-//        grid.getColumnConstraints().addAll(colConstraints, colConstraints, colConstraints);
-
         grid.add(createDefaultGladiator(), 0, 0);
         grid.add(createDefaultGladiator(), 1, 0);
         grid.add(newAddCard(), 2, 0);
@@ -63,7 +55,7 @@ public class App extends Application {
 
     public VBox newAddCard() {
         VBox aVBox = new VBox();
-        aVBox.setPrefSize(100, 150);
+        aVBox.setPrefSize(150, 150);
         aVBox.getStyleClass().add("gladiator-card");
         aVBox.setAlignment(Pos.CENTER);
         aVBox.setPadding(new Insets(5));
@@ -79,7 +71,7 @@ public class App extends Application {
     }
     public VBox createDefaultGladiator() {
         VBox newGladiatorInfo = new VBox();
-        newGladiatorInfo.setPrefSize(100, 150);
+        newGladiatorInfo.setPrefSize(150, 150);
         newGladiatorInfo.getStyleClass().add("gladiator-card");
         newGladiatorInfo.setAlignment(Pos.CENTER);
         newGladiatorInfo.setPadding(new Insets(5));
