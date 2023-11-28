@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.squares.NullPosition;
 import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.PositionCollection;
+import edu.fiuba.algo3.modelo.squares.SquareModel;
 
 
 public class Map implements PositionCollection {
@@ -30,5 +31,8 @@ public class Map implements PositionCollection {
         this.map.get(x).set(y, position);
     }
 
-    public void draw() {}
+    public Position getPosition(int row, int column) {
+        return this.map.get(row).get(column);
+    }
+
 }

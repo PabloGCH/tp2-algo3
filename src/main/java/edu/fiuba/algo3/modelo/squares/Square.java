@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 import java.util.ArrayList;
 
-public abstract class Square implements Position {
+public abstract class Square implements Position, SquareModel {
     private ArrayList<Gladiator> pieces = new ArrayList();
     private Position nextPosition;
     protected Effect effect;
