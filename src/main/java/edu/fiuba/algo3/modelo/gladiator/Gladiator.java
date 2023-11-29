@@ -9,8 +9,7 @@ import edu.fiuba.algo3.modelo.state.Injured;
 import edu.fiuba.algo3.modelo.state.State;
 import edu.fiuba.algo3.modelo.state.Tired;
 import edu.fiuba.algo3.modelo.Config;
-import edu.fiuba.algo3.modelo.squares.NullPosition;
-import edu.fiuba.algo3.modelo.squares.Position;
+import edu.fiuba.algo3.modelo.squares.*;
 
 public class Gladiator {
     private String name;
@@ -93,7 +92,6 @@ public class Gladiator {
         for(int i = 0; i < distance; i++) {
             newPosition = newPosition.next();
         }
-        this.position.removePiece(this);
         this.position = newPosition;
         this.position.receivePiece(this);
     }
@@ -107,5 +105,9 @@ public class Gladiator {
 
     public String getName(){
         return this.name;
+    }
+
+    public void runEffect(Effect effect){
+        this.state.runEffect(effect, this);
     }
 }

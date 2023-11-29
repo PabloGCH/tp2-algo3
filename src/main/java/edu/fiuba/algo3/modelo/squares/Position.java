@@ -6,6 +6,5 @@ public interface Position {
     public void setNextPosition(Position position);
     public Position next();
     public void receivePiece(Gladiator piece);
-    public void removePiece(Gladiator piece);
     public void positionSelf(PositionCollection collection);
 }

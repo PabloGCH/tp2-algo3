@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.state;
 
 import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.energy.Energy;
+import edu.fiuba.algo3.modelo.squares.*;
+import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 import edu.fiuba.algo3.modelo.Dice;
 
@@ -21,5 +23,9 @@ public class Active implements State{
             return new Tired();
         }
         return this;
+    }
+
+    public void runEffect(Effect effect, Gladiator gladiator){
+        effect.affect(gladiator);
     }
 }
