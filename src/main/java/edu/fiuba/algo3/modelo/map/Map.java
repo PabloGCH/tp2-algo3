@@ -34,7 +34,17 @@ public class Map implements PositionCollection {
         this.map.get(x).set(y, position);
     }
 
-    public void draw() {}
+    public Position getPosition(int row, int column) {
+        return this.map.get(row).get(column);
+    }
+
+
+    public int getRows() {
+        return this.map.size();
+    }
+    public int getColumns() {
+        return this.map.get(0).size();
+    }
 
     public ArrayList<Position> getPath(){
         return path;

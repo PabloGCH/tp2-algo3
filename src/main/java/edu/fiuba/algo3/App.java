@@ -1,5 +1,21 @@
 package edu.fiuba.algo3;
 
+import java.util.ArrayList;
+import java.util.Map;
+
+import edu.fiuba.algo3.controller.MapController;
+import edu.fiuba.algo3.modelo.Game;
+import edu.fiuba.algo3.modelo.facade.MapFacade;
+import edu.fiuba.algo3.modelo.squares.Position;
+import edu.fiuba.algo3.modelo.squares.PositionCollection;
+import edu.fiuba.algo3.modelo.squares.Square;
+
+
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,10 +29,11 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
+
     @Override
     public void start(Stage stage) {
 
-        Scene initialScene = initialScene();
+        Scene initialScene = initialScene(stage);
         initialScene.getStylesheets().add(getClass().getResource("/initialScene.css").toExternalForm());
         stage.setScene(initialScene);
         stage.setResizable(false);
@@ -27,7 +44,21 @@ public class App extends Application {
 
     }
 
-    public Scene initialScene() {
+    public Scene mapScene() {
+        MapFacade mapFacade = new MapFacade();
+
+        edu.fiuba.algo3.modelo.map.Map map =
+        new edu.fiuba.algo3.modelo.map.Map(
+            15,
+            15,
+            new ArrayList<Position>()
+        ); //SHOULD BE REPLACED BY "mapFacade.loadMap()"
+        
+        MapController mapController = new MapController(map);
+        return new Scene(mapController.draw());
+    }
+
+    public Scene initialScene(Stage stage) {
         VBox mainContainer = new VBox();
         GridPane grid = new GridPane();
 
@@ -43,6 +74,9 @@ public class App extends Application {
         mainContainer.getChildren().add(grid);
         Button startButton = new Button("StartGame");
         startButton.getStyleClass().add("start-game-btn");
+        startButton.setOnAction(event -> {
+          stage.setScene(mapScene());
+        });
         startButton.getStyleClass().add("btn");
         mainContainer.getChildren().add(startButton);
         mainContainer.setPadding(new Insets(0, 0, 10, 0));
