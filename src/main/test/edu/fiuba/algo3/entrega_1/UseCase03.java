@@ -18,8 +18,11 @@ public class UseCase03 {
 
         //Arrange
         Gladiator aGladiator = new Gladiator();
-        Square firstSquare = new Middle(new NullEffect());
-        Square lastSquare = new Middle(new Food());
+        SquareFactory squareFactory = new MiddleFactory();
+        EffectFactory nullEffectFactory = new NullEffectFactory();
+        EffectFactory effectFactory = new FoodFactory();
+        Square firstSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),nullEffectFactory.createEffect());
+        Square lastSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
         firstSquare.setNextPosition(lastSquare);
 
         //Act
@@ -27,6 +30,6 @@ public class UseCase03 {
         aGladiator.turn();
 
         //Assert
-        Assertions.assertTrue(aGladiator.getEnergy().getPoints() == 0);
+        Assertions.assertEquals(aGladiator.getEnergy(), 0);
     }
 }
