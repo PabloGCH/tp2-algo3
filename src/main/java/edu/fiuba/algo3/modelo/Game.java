@@ -2,13 +2,13 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.map.Map;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.*;
 
+import java.util.Map;
 import java.util.Scanner;
 
 import java.util.ArrayList;
@@ -60,6 +60,15 @@ public class Game {
 
        System.out.println("No hubo ganadores, suerte la proxima vez");
        return false;
+    public void createMap() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        /* map.add(new Initial());
+        map.add(new Middle(new Food()));
+        map.add(new Middle(new NullEffect()));
+        map.add(new Middle(new Bacchanalia()));
+        int middleIndex = (int) (map.stream().count() + 1) / 2;
+        map.add(new FinishLine(map.get(middleIndex))); */
+        this.map = new MapFacade().loadMap();
+        path = map.getPath();
     }
     private void canGladiatorWin(Gladiator aGladiator){
 
@@ -70,6 +79,5 @@ public class Game {
             case 2:
                 winner = true;
         }
-
     }
 }
