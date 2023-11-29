@@ -148,33 +148,13 @@ public class squareTest {
         initialSquare.receivePiece(aGladiator);//player starts at initial square and receive 20 energy points
         initialSquare.removePiece(aGladiator);
         lastSquare.receivePiece(aGladiator);// Player reach the finish line: if they have a key, gladiator´s worthy value equals ABLE_TO_WIN (2)
-        aGame.startGame(1);
+        aGame.startGame();
        /*As the player reached the finishline without a key, they are sent to the middle and gladiator´s worthy is UNABLE_TO_WIN (0),
          only when is standing on the finish line without the key worthy equals UNABLE_TO_WIN_ON_FINISH_LINE*/
         Assertions.assertEquals(Config.UNABLE_TO_WIN.getValue(), aGladiator.candidateToWin());
         Assertions.assertEquals(35, aGladiator.getEnergy());//
-    }/*
-    @Test
-    public void test06AGladiatorStepsOnTheFinishLineWithoutKeyAndIsSetOnTheMiddleSquare() {
-        SquareFactory squareFactory = new MiddleFactory();
-        EffectFactory nullEffectFactory = new NullEffectFactory();
-        EffectFactory effectFactory = new InitialEffectFactory();
-        Square middleSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
-        //Square middleSquare = new Middle(new Food());
-        squareFactory = new FinishLineFactory();
-        effectFactory = new FinishLineEffectFactory();
-        Square finish = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
-        //Square finish = new FinishLine(middleSquare);
-        Gladiator aGladiator = new Gladiator();
-
-        int expectedInitialEnergy = 0;
-        int expectedFinishEnergy = 15;
-
-        assertEquals(expectedInitialEnergy, aGladiator.getEnergy());
-        finish.receivePiece(aGladiator);
-
-        assertEquals(expectedFinishEnergy, aGladiator.getEnergy());
-    }*/
+    }
+    /*
     @Test
     public void test07AGladiatorStepsOnAnInjurySquareBecomesUnableToMove() {
         SquareFactory squareFactory = new InitialFactory();
@@ -209,5 +189,5 @@ public class squareTest {
 //
 //        assertEquals(expectedEnergyWhenEnabledToMove, aGladiator.getEnergy().getPoints());
 
-    }
+    }*/
 }

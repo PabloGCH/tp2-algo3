@@ -35,27 +35,26 @@ public class UseCase12 {
         EffectFactory nullEffectFactory = new NullEffectFactory();
         EffectFactory effectFactory = new InitialEffectFactory();
         map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
-        //map.add(new Initial());
+
         squareFactory = new MiddleFactory();
         effectFactory = new FoodFactory();
         map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
-        //map.add(new Middle(new Food()));
+
         map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),nullEffectFactory.createEffect()));
-        //map.add(new Middle(new NullEffect()));
+
         effectFactory = new BacchanaliaFactory();
         map.add(squareFactory.createSquare(effectFactory.createEffect(),nullEffectFactory.createEffect()));
-        //map.add(new Middle(new Bacchanalia(dice)));
+
         squareFactory = new FinishLineFactory();
         effectFactory = new FinishLineEffectFactory();
         map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
-        //int middleIndex = (int) (map.stream().count() + 1) / 2;
-        //map.add(new FinishLine((Square) map.get(middleIndex)));
+
 
         Game game = new Game(gladiators, map);
 
         // Act
 
-        finish = game.startGame(Config.MAX_TURNS_IN_A_GAME.getValue());
+        finish = game.startGame();
 
         // Assert
 
