@@ -34,9 +34,9 @@ public class Game {
     }
     public boolean startGame() {
         int lastPlayerToPlay = 0;
-        while(turns < 30 && this.winner == false) {
+        while(turns < Config.MAX_TURNS_IN_A_GAME.getValue() && !this.winner) {
             int player = 0;
-            while (player < gladiators.size() && this.winner == false) {
+            while (player < gladiators.size() && !this.winner) {
                 this.winner = gladiators.get(player).turn();
                 canGladiatorWin(gladiators.get(player));
                 lastPlayerToPlay = player;
@@ -52,15 +52,6 @@ public class Game {
         this.path.get(0).receivePiece(aGladiator);
     }
 
-    public void createMap() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        /* map.add(new Initial());
-        map.add(new Middle(new Food()));
-        map.add(new Middle(new NullEffect()));
-        map.add(new Middle(new Bacchanalia()));
-        int middleIndex = (int) (map.stream().count() + 1) / 2;
-        map.add(new FinishLine(map.get(middleIndex))); */
-        //this.map = new MapFacade().loadMap();
-    }
     public boolean result(int player){
        if (this.winner) {
             System.out.println("Felicidades " + gladiators.get(player).getName() + "ganaste la partida");
@@ -70,7 +61,7 @@ public class Game {
        System.out.println("No hubo ganadores, suerte la proxima vez");
        return false;
     }
-    private void canGladiatorWin(Gladiator aGladiator){//Sacar numeros magicos
+    private void canGladiatorWin(Gladiator aGladiator){
 
         switch (aGladiator.candidateToWin()){
             case 1:
