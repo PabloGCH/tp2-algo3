@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.gladiator;
 import edu.fiuba.algo3.modelo.equipment.Equipment;
 import edu.fiuba.algo3.modelo.energy.Energy;
+import edu.fiuba.algo3.modelo.equipment.Key;
 import edu.fiuba.algo3.modelo.rank.Rank;
 import edu.fiuba.algo3.modelo.rank.Rookie;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
@@ -18,6 +19,7 @@ public class Gladiator {
     private Equipment equipment;
     private Rank rank;
     private Position position;
+    private int worthy = Config.UNABLE_TO_WIN.getValue();//Worthy enough to reach Pompeya and win the game
     private boolean win;
 
     public Gladiator() {
@@ -56,8 +58,8 @@ public class Gladiator {
         this.energy = this.equipment.receiveAttack(this.energy);
     }
 
-    public Energy getEnergy() {
-        return this.energy;
+    public int getEnergy() {
+        return this.energy.getPoints();
     }
     public boolean completeArmament() {
         return this.equipment.complete();
@@ -74,7 +76,18 @@ public class Gladiator {
         this.state = new Injured();
     }
 
+    public void worthy(){//Only used by "FinishLineEffect", if a player reach the finish line without the key --> worthy == false.
+        if(equipment.complete()){
+            worthy = Config.ABLE_TO_WIN.getValue();
+        }
+        else{
+            worthy = Config.UNABLE_TO_WIN_ON_FINISH_LINE.getValue();
+        }
+    }
 
+    public int candidateToWin(){
+        return worthy;
+    }
     public void move(int distance) {
         Position newPosition = this.position;
         for(int i = 0; i < distance; i++) {
@@ -83,6 +96,9 @@ public class Gladiator {
         this.position.removePiece(this);
         this.position = newPosition;
         this.position.receivePiece(this);
+    }
+    public void notWorthy(){
+        worthy = Config.UNABLE_TO_WIN.getValue();
     }
 
     public void gameOver(){

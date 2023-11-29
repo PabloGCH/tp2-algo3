@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
+import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

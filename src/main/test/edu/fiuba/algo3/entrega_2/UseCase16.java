@@ -37,8 +37,7 @@ public class UseCase16 {
         Gladiator gladiator = new Gladiator();//Should start with 0 energy points
         //Act
         effects.get(0).affect(gladiator);
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();;
         //Assert
         assertEquals(15, energyPoints);
     }
@@ -50,8 +49,7 @@ public class UseCase16 {
         //Act
         effects.get(1).affect(gladiator);
         gladiator.fightWithBeast();
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();
         //Assert
                 assertEquals(5, energyPoints);
     }
@@ -63,10 +61,9 @@ public class UseCase16 {
         var initialEnergy = gladiator.getEnergy();
         //Act
         effects.get(2).affect(gladiator);
-        var newEnergy = gladiator.getEnergy();
-        int energyPoints = newEnergy.getPoints();
+        int energyPoints = gladiator.getEnergy();
         //Assert
-        assertTrue(initialEnergy.getPoints() > newEnergy.getPoints());
+        assertTrue(initialEnergy > energyPoints);
     }
     @Test
     public void fourthEffectIsBeast(){
@@ -77,8 +74,7 @@ public class UseCase16 {
 
         //Act
         effects.get(3).affect(gladiator);
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();;
         //Assert
         assertEquals(0, energyPoints);
     }
@@ -91,8 +87,7 @@ public class UseCase16 {
 
         //Act
         effects.get(3).affect(gladiator);
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();
         //Assert
         assertEquals(0, energyPoints);
     }

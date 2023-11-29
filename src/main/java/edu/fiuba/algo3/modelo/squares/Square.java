@@ -7,12 +7,14 @@ import java.util.ArrayList;
 public abstract class Square implements Position {
     private ArrayList<Gladiator> pieces = new ArrayList();
     private Position nextPosition;
-    protected Effect effect;
+    protected Effect prize;
+    protected Effect obstacle;
     private int x;
     private int y;
 
-    public Square(Effect anEffect) {
-        this.effect = anEffect;
+    public Square(Effect obstacle, Effect prize) {
+        this.prize = prize;
+        this.obstacle = obstacle;
         this.nextPosition = this;
         this.x = 0;
         this.y = 0;
@@ -21,7 +23,8 @@ public abstract class Square implements Position {
     public void receivePiece(Gladiator piece){
         if(pieces.contains(piece)) return;
         this.pieces.add(piece);
-        this.effect.affect(piece);
+        this.obstacle.affect(piece);
+        this.prize.affect(piece);
     }
 
     public void removePiece(Gladiator piece) {

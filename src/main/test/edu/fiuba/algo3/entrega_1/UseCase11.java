@@ -22,13 +22,11 @@ public class UseCase11 {
         gladiator.upgrade();
         gladiator.upgrade();
         gladiator.fightWithBeast();
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();;
         //Assert
         assertEquals(20, energyPoints);
         gladiator.upgrade();
-        energy = gladiator.getEnergy();
-        energyPoints = energy.getPoints();
+        energyPoints = gladiator.getEnergy();;
         assertEquals(20, energyPoints);
     }
 }
