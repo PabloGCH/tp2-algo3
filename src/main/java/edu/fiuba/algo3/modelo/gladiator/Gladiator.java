@@ -5,10 +5,10 @@ import edu.fiuba.algo3.modelo.equipment.Key;
 import edu.fiuba.algo3.modelo.rank.Rank;
 import edu.fiuba.algo3.modelo.rank.Rookie;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
-import edu.fiuba.algo3.modelo.state.Injured;
-import edu.fiuba.algo3.modelo.state.State;
-import edu.fiuba.algo3.modelo.state.Tired;
+import edu.fiuba.algo3.modelo.state.*;
 import edu.fiuba.algo3.modelo.Config;
+import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
+import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.squares.*;
 
 public class Gladiator {
@@ -22,11 +22,13 @@ public class Gladiator {
     private boolean win;
 
     public Gladiator() {
+        var diceFactory = new DiceFactory();
+        RandomResult dice = diceFactory.createRandomGenerator();
         this.name = "Jose Luis";
         this.energy = new Energy(0);
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
-        this.state = new Tired();
+        this.state = new Active(dice);
         this.position = new NullPosition();
         this.win = false;
     }
