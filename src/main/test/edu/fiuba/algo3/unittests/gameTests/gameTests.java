@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.gameTests;
+package edu.fiuba.algo3.unittests.gameTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.equipmentTest;
+package edu.fiuba.algo3.unittests.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Initial;
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.equipment.Armor;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
-import edu.fiuba.algo3.modelo.energy.Energy;
 
 public class NullEquipmentTest {
     @Test void upgradeReturnsHelmet(){
@@ -26,12 +25,11 @@ public class NullEquipmentTest {
     @Test void receiveAttackReturnsCorrectDamage(){
         //Arrange
         NullEquipment newEquipment = new NullEquipment();
-        Energy energy = new Energy(20);
+        int energy = 20;
         //Act
         energy = newEquipment.receiveAttack(energy);
-        int energyPoints = energy.getPoints();
         //Assert
-        assertEquals(0, energyPoints);
+        assertEquals(0, energy);
     }
 
     @Test void armorIsNotComplete(){

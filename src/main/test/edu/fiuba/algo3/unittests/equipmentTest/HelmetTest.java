@@ -1,14 +1,16 @@
-package edu.fiuba.algo3.equipmentTest;
+package edu.fiuba.algo3.unittests.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.fiuba.algo3.modelo.energy.Energy;
 import edu.fiuba.algo3.modelo.equipment.Armor;
+import edu.fiuba.algo3.modelo.equipment.Helmet;
+import org.junit.jupiter.api.Test;
+
+
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
-import org.junit.jupiter.api.Test;
 
-public class ArmorTest {
+public class HelmetTest {
     @Test void upgradeReturnsHelmet(){
         //Arrange
         Gladiator gladiator = new Gladiator(); //Should start with 20 energy
@@ -18,27 +20,25 @@ public class ArmorTest {
         //Act
         gladiator.upgrade();//NullEquipment upgrades to Helmet
         gladiator.upgrade();//Helmet upgrades to Armor
-        gladiator.upgrade();//Armor upgrades to ShieldSword
         gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();;
         //Assert
-        assertEquals(18, energyPoints);//Gladiator with ShieldSword receives 2 damage fighting with a beast
+        assertEquals(10, energyPoints);//Gladiator with Armor receives 10 damage fighting with a beast
     }
     @Test void receiveAttackReturnsCorrectDamage(){
         //Arrange
-        Armor newEquipment = new Armor();
-        Energy energy = new Energy(20);
+        Helmet newEquipment = new Helmet();
+        int energy = 20;
         //Act
         energy = newEquipment.receiveAttack(energy);
-        int energyPoints = energy.getPoints();
         //Assert
-        assertEquals(10, energyPoints);
+        assertEquals(5, energy);
     }
 
-    @Test void armorIsNotComplete(){
+      @Test void armorIsNotComplete(){
         boolean fullArmor = true;
         //Arrange
-        Armor newEquipment = new Armor();
+        Helmet newEquipment = new Helmet();
         //Act
         fullArmor = newEquipment.complete();
         //Assert

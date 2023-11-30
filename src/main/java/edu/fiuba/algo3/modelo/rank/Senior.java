@@ -1,15 +1,12 @@
 package edu.fiuba.algo3.modelo.rank;
 
-import edu.fiuba.algo3.modelo.energy.Energy;
-
 public class Senior implements Rank{
     //attributes
     
     //methods
     @Override
-    public Energy energyFromExperience(Energy amount){
-        Energy extraEnergy = new Energy(10);
-        return (amount.add(extraEnergy));
+    public int energyFromExperience(int amount){
+        return (amount + 10);
     }
 
     @Override

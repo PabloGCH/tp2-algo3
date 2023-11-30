@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.energy.Energy;
 import edu.fiuba.algo3.modelo.state.Tired;
 
 public class tiredTest {
@@ -22,7 +21,7 @@ public class tiredTest {
 
     @Test void ChangeToActiveShouldReturnMoveBetween1And6() {
         //Arrange
-        Energy energy = new Energy(5);
+        int energy = 5;
         Tired tired = new Tired();
 
         //Act
