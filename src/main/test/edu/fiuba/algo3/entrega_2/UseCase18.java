@@ -8,13 +8,8 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.mock;
 
 public class UseCase18 {
-    private Logger logger;
-    private Messenger newMessenger;
-    @BeforeEach
-    public void setUp(){
-        logger = mock(Logger.class);
-        newMessenger = new Messenger(logger);
-    }
+    private static Logger logger = mock(Logger.class);
+    private Messenger newMessenger = Messenger.getInstance(logger);
     @Test
     public void loggerCallsInfo() throws Exception {
         newMessenger.info("test");
@@ -27,7 +22,7 @@ public class UseCase18 {
     }
     @Test
     public void loggerCallsError() throws Exception {
-        newMessenger.warn("test");
-        Mockito.verify(logger).warn("test");
+        newMessenger.error("test");
+        Mockito.verify(logger).error("test");
     }
 }
