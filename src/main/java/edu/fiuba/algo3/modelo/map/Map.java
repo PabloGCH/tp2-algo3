@@ -55,6 +55,5 @@ public class Map implements PositionCollection {
         Position middleSquare = path.get(middleIndex - 1);
         Position lastSquare = path.get(path.size() - 1);
         middleSquare.receivePiece(aGladiator);
-        lastSquare.removePiece(aGladiator);
     }
 }

@@ -144,9 +144,7 @@ public class squareTest {
         map.add(lastSquare);
 
         gladiators.add(aGladiator);
-        Game aGame = new Game(gladiators, map);
-        initialSquare.receivePiece(aGladiator);//player starts at initial square and receive 20 energy points
-        initialSquare.removePiece(aGladiator);
+        Game aGame = new Game(gladiators, map);//player starts at initial square and receive 20 energy points
         lastSquare.receivePiece(aGladiator);// Player reach the finish line: if they have a key, gladiator´s worthy value equals ABLE_TO_WIN (2)
         aGame.startGame();
        /*As the player reached the finishline without a key, they are sent to the middle and gladiator´s worthy is UNABLE_TO_WIN (0),

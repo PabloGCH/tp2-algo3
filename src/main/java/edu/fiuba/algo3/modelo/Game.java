@@ -38,8 +38,7 @@ public class Game {
         while(turns < Config.MAX_TURNS_IN_A_GAME.getValue() && !this.winner) {
             int player = 0;
             while (player < gladiators.size() && !this.winner) {
-                this.winner = gladiators.get(player).turn();
-                canGladiatorWin(gladiators.get(player));
+                gladiators.get(player).turn();
                 canGladiatorWin(gladiators.get(player));
                 lastPlayerToPlay = player;
                 player++;
@@ -75,13 +74,14 @@ public class Game {
         this.map = new MapFacade().loadMap();
         path = map.getPath();
         }*/
+
     private void canGladiatorWin(Gladiator aGladiator) {
-            switch (aGladiator.candidateToWin()){
+        switch (aGladiator.candidateToWin()){
                 case 1:
                     map.sendGladiatorToMiddle(aGladiator);
                     aGladiator.notWorthy();
                 case 2:
-                    winner = true;
+                    this.winner = true;
             }
         }
 }

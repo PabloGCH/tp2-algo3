@@ -31,7 +31,6 @@ public class UseCase17 {
         path.get(0).receivePiece(aGladiator);
         assertEquals(expectedSecondEnergy, aGladiator.getEnergy());
 
-        path.get(0).removePiece(aGladiator);
         path.get(2).receivePiece(aGladiator);
 
         assertEquals(expectedThirdEnergy, aGladiator.getEnergy());
