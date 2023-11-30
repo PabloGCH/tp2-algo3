@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.squares;
 
 public class Middle extends Square{
-    public Middle(Effect effect) {
-        super(effect);
+    public Middle(Effect obstacle, Effect prize) {
+        super(obstacle, prize);
     }
 }

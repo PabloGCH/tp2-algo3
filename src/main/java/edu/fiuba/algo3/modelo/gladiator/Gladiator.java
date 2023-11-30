@@ -1,15 +1,15 @@
 package edu.fiuba.algo3.modelo.gladiator;
 import edu.fiuba.algo3.modelo.equipment.Equipment;
 import edu.fiuba.algo3.modelo.energy.Energy;
+import edu.fiuba.algo3.modelo.equipment.Key;
 import edu.fiuba.algo3.modelo.rank.Rank;
 import edu.fiuba.algo3.modelo.rank.Rookie;
 import edu.fiuba.algo3.modelo.equipment.NullEquipment;
-import edu.fiuba.algo3.modelo.state.Injured;
-import edu.fiuba.algo3.modelo.state.State;
-import edu.fiuba.algo3.modelo.state.Tired;
+import edu.fiuba.algo3.modelo.state.*;
 import edu.fiuba.algo3.modelo.Config;
-import edu.fiuba.algo3.modelo.squares.NullPosition;
-import edu.fiuba.algo3.modelo.squares.Position;
+import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
+import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
+import edu.fiuba.algo3.modelo.squares.*;
 
 public class Gladiator {
     private String name;
@@ -18,24 +18,24 @@ public class Gladiator {
     private Equipment equipment;
     private Rank rank;
     private Position position;
-    private boolean win;
+    private int worthy = Config.UNABLE_TO_WIN.getValue();//Worthy enough to reach Pompeya and win the game
 
     public Gladiator() {
+        var diceFactory = new DiceFactory();
+        RandomResult dice = diceFactory.createRandomGenerator();
         this.name = "Jose Luis";
         this.energy = new Energy(0);
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
-        this.state = new Tired();
+        this.state = new Active(dice);
         this.position = new NullPosition();
-        this.win = false;
     }
     
-    public boolean turn() {;
+    public void turn() {;
         update();
         this.state = this.state.update(this.energy);
         int distanceToMove = this.state.move();
         this.move(distanceToMove);
-        return this.win;
     }
     
     public void drinkWine(int cupsOfWineAmount) {
@@ -56,8 +56,8 @@ public class Gladiator {
         this.energy = this.equipment.receiveAttack(this.energy);
     }
 
-    public Energy getEnergy() {
-        return this.energy;
+    public int getEnergy() {
+        return this.energy.getPoints();
     }
     public boolean completeArmament() {
         return this.equipment.complete();
@@ -74,22 +74,34 @@ public class Gladiator {
         this.state = new Injured();
     }
 
+    public void result(){//Only used by "FinishLineEffect", if a player reach the finish line without the key --> worthy == false.
+        if(equipment.complete()){
+            worthy = Config.ABLE_TO_WIN.getValue();
+        }else{
+            worthy = Config.UNABLE_TO_WIN_ON_FINISH_LINE.getValue();
+        }
+    }
 
+    public int candidateToWin(){
+        return worthy;
+    }
     public void move(int distance) {
         Position newPosition = this.position;
         for(int i = 0; i < distance; i++) {
             newPosition = newPosition.next();
         }
-        this.position.removePiece(this);
         this.position = newPosition;
         this.position.receivePiece(this);
     }
-
-    public void gameOver(){
-        this.win = true;
+    public void notWorthy(){
+        worthy = Config.UNABLE_TO_WIN.getValue();
     }
 
     public String getName(){
         return this.name;
+    }
+
+    public void runEffect(Effect effect){
+        this.state.runEffect(effect, this);
     }
 }

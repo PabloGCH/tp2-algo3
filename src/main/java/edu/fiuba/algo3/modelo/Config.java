@@ -8,7 +8,11 @@ public enum Config {
     ENERGY_LOST_IN_FIGHT_W_HELMET(15),
     ENERGY_LOST_IN_FIGHT_W_ARMOR(10),
     ENERGY_LOST_IN_FIGHT_W_SWORD(2),
-    ENERGY_LOST_IN_FIGHT_W_KEY(0);
+    ENERGY_LOST_IN_FIGHT_W_KEY(0),
+    UNABLE_TO_WIN(0),
+    UNABLE_TO_WIN_ON_FINISH_LINE(1),
+    ABLE_TO_WIN(2);
+
 
     private final int value;
 

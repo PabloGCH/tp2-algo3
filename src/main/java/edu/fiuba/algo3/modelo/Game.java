@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import edu.fiuba.algo3.modelo.map.Map;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
@@ -15,22 +16,30 @@ import java.util.ArrayList;
 public class Game {
     private int turns = 0;
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
-    private ArrayList<Square> map;
+    private ArrayList<Position> path;
+    private Map map;
+    private Dice dice = new Dice();
     private boolean winner;
 
-    public Game(ArrayList<Gladiator> gladiators, ArrayList<Square> map) {
+    static final int unableNoKey = Config.UNABLE_TO_WIN_ON_FINISH_LINE.getValue();
+    static final int able = Config.ABLE_TO_WIN.getValue();
+
+
+    public Game(ArrayList<Gladiator> gladiators, ArrayList<Position> path) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         this.winner = false;
-        this.map = map;
+        this.path = path;
+        this.map = new Map(1,path.size(),path);
         for (Gladiator aGladiator : gladiators) {
             this.addGladiator(aGladiator);
         }
     }
-    public boolean startGame() {
+    public boolean startGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         int lastPlayerToPlay = 0;
-        while(turns < 30 && this.winner == false) {
+        while(turns < Config.MAX_TURNS_IN_A_GAME.getValue() && !this.winner) {
             int player = 0;
-            while (player < gladiators.size() && this.winner == false) {
-                this.winner = gladiators.get(player).turn();
+            while (player < gladiators.size() && !this.winner) {
+                gladiators.get(player).turn();
+                canGladiatorWin(gladiators.get(player));
                 lastPlayerToPlay = player;
                 player++;
             }
@@ -39,34 +48,40 @@ public class Game {
         return result(lastPlayerToPlay);
     }
 
+
+
     public void addGladiator(Gladiator aGladiator) {
         this.gladiators.add(aGladiator);
-        this.map.get(0).receivePiece(aGladiator);
+        this.path.get(0).receivePiece(aGladiator);
     }
 
-    public void createMap() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        /* map.add(new Initial());
+    public boolean result(int player) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        if (this.winner) {
+            System.out.println("Felicidades " + gladiators.get(player).getName() + "ganaste la partida");
+            return true;
+        }
+
+        System.out.println("No hubo ganadores, suerte la proxima vez");
+        return false;
+    }
+    /*public void createMap() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+         map.add(new Initial());
         map.add(new Middle(new Food()));
         map.add(new Middle(new NullEffect()));
         map.add(new Middle(new Bacchanalia()));
         int middleIndex = (int) (map.stream().count() + 1) / 2;
-        map.add(new FinishLine(map.get(middleIndex))); */
+        map.add(new FinishLine(map.get(middleIndex)));
         this.map = new MapFacade().loadMap();
-    }
+        path = map.getPath();
+        }*/
 
-    public void displayMap() {
-        for (Square square : map) {
-            System.out.println(square.display());
+    private void canGladiatorWin(Gladiator aGladiator) {
+        switch (aGladiator.candidateToWin()){
+                case 1:
+                    map.sendGladiatorToMiddle(aGladiator);
+                    aGladiator.notWorthy();
+                case 2:
+                    this.winner = true;
+            }
         }
-    }
-
-    public boolean result(int player){
-       if (this.winner == true) {
-            System.out.println("Felicidades " + gladiators.get(player).getName() + "ganaste la partida");
-            return true;
-       }
-
-       System.out.println("No hubo ganadores, suerte la proxima vez");
-       return false;
-    }
 }

@@ -18,8 +18,7 @@ public class UseCase01 {
         Square initialSquare = new Initial(); 
         //Act
         initialSquare.receivePiece(gladiator); //Should start with 20 energy
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();;
         //Assert
         assertEquals(20, energyPoints);
     }
@@ -31,8 +30,7 @@ public class UseCase01 {
         initialSquare.receivePiece(gladiator); //Should start with 20 energy
         //Act
         gladiator.fightWithBeast(); //With null equipment looses 20 energy
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
+        int energyPoints = gladiator.getEnergy();
         //Assert
         assertEquals(0, energyPoints);
     }
