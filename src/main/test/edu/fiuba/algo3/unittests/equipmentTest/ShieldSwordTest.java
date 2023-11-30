@@ -1,17 +1,14 @@
-package edu.fiuba.algo3.equipmentTest;
+package edu.fiuba.algo3.unittests.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.fiuba.algo3.modelo.energy.Energy;
 import edu.fiuba.algo3.modelo.equipment.Armor;
-import edu.fiuba.algo3.modelo.equipment.Helmet;
-import org.junit.jupiter.api.Test;
-
-
+import edu.fiuba.algo3.modelo.equipment.ShieldSword;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
+import org.junit.jupiter.api.Test;
 
-public class HelmetTest {
+public class ShieldSwordTest {
     @Test void upgradeReturnsHelmet(){
         //Arrange
         Gladiator gladiator = new Gladiator(); //Should start with 20 energy
@@ -21,26 +18,27 @@ public class HelmetTest {
         //Act
         gladiator.upgrade();//NullEquipment upgrades to Helmet
         gladiator.upgrade();//Helmet upgrades to Armor
+        gladiator.upgrade();//Armor upgrades to ShieldSword
+        gladiator.upgrade();//ShieldSword upgrades to Key
         gladiator.fightWithBeast();
-        int energyPoints = gladiator.getEnergy();;
+        int energyPoints = gladiator.getEnergy();
         //Assert
-        assertEquals(10, energyPoints);//Gladiator with Armor receives 10 damage fighting with a beast
+        assertEquals(20, energyPoints);//Gladiator with Key receives 0 damage fighting with a beast
     }
     @Test void receiveAttackReturnsCorrectDamage(){
         //Arrange
-        Helmet newEquipment = new Helmet();
-        Energy energy = new Energy(20);
+        ShieldSword newEquipment = new ShieldSword();
+        int energy = 20;
         //Act
         energy = newEquipment.receiveAttack(energy);
-        int energyPoints = energy.getPoints();
         //Assert
-        assertEquals(5, energyPoints);
+        assertEquals(18, energy);
     }
 
-      @Test void armorIsNotComplete(){
+    @Test void armorIsNotComplete(){
         boolean fullArmor = true;
         //Arrange
-        Helmet newEquipment = new Helmet();
+        ShieldSword newEquipment = new ShieldSword();
         //Act
         fullArmor = newEquipment.complete();
         //Assert

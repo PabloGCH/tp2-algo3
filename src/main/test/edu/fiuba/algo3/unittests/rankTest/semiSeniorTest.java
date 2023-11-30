@@ -4,14 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.energy.Energy;
 import edu.fiuba.algo3.modelo.rank.SemiSenior;
 
 public class semiSeniorTest {
     @Test void GoFromSemiSeniorToSenior() {
         //Arrange
         
-        Energy energy = new Energy(10);
+        int energy = 10;
         SemiSenior semiSenior = new SemiSenior();
         //Act
         semiSenior.ascent();
@@ -19,24 +18,22 @@ public class semiSeniorTest {
         semiSenior.ascent();
 
         var newRank = semiSenior.ascent(); //for the four ascent the Semi Senior class must return
-        var newEnergy = newRank.energyFromExperience(energy); //If you are Senior you should increase the given energy by 10
-        int points = newEnergy.getPoints();
+        int newEnergy = newRank.energyFromExperience(energy); //If you are Senior you should increase the given energy by 10
 
         //Assert
-        assertEquals(20, points);
+        assertEquals(20, newEnergy);
     }
 
      @Test void IncreasesEnergyByFive() {
         //Arrange
         
-        Energy energy = new Energy(10);
+        int energy = 10;
         SemiSenior semiSenior = new SemiSenior();
         //Act
 
-        var newEnergy = semiSenior.energyFromExperience(energy);
-        int points = newEnergy.getPoints();
+        int newEnergy = semiSenior.energyFromExperience(energy);
 
         //Assert
-        assertEquals(15, points);
+        assertEquals(15, newEnergy);
     }
 }

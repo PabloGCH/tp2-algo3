@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.gladiator;
 import edu.fiuba.algo3.modelo.equipment.Equipment;
-import edu.fiuba.algo3.modelo.energy.Energy;
 import edu.fiuba.algo3.modelo.equipment.Key;
 import edu.fiuba.algo3.modelo.rank.Rank;
 import edu.fiuba.algo3.modelo.rank.Rookie;
@@ -14,7 +13,7 @@ import edu.fiuba.algo3.modelo.squares.*;
 public class Gladiator {
     private String name;
     private State state;
-    private Energy energy;
+    private int energy;
     private Equipment equipment;
     private Rank rank;
     private Position position;
@@ -24,7 +23,7 @@ public class Gladiator {
         var diceFactory = new DiceFactory();
         RandomResult dice = diceFactory.createRandomGenerator();
         this.name = "Jose Luis";
-        this.energy = new Energy(0);
+        this.energy = 0;
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
         this.state = new Active(dice);
@@ -40,7 +39,7 @@ public class Gladiator {
     
     public void drinkWine(int cupsOfWineAmount) {
         int energyLostForEachCup = Config.ENERGY_LOST_FOR_EACH_CUP_OF_WINE.getValue();
-        this.energy = this.energy.substract(new Energy(energyLostForEachCup * cupsOfWineAmount));
+        this.energy = (this.energy - (energyLostForEachCup * cupsOfWineAmount));
     }
 
     private void update(){
@@ -49,7 +48,7 @@ public class Gladiator {
     }
 
     public void eat() {
-        this.energy = this.energy.add(new Energy(15));
+        this.energy = (this.energy + 15);
     }
 
     public void fightWithBeast() {
@@ -57,13 +56,13 @@ public class Gladiator {
     }
 
     public int getEnergy() {
-        return this.energy.getPoints();
+        return this.energy;
     }
     public boolean completeArmament() {
         return this.equipment.complete();
     }
-    public void setInitialEnergy(Energy energy) {
-        this.energy = this.energy.add(energy);
+    public void setInitialEnergy(int energy) {
+        this.energy = (this.energy + 20);
     }
 
     public void upgrade(){
@@ -71,7 +70,7 @@ public class Gladiator {
     }
 
     public void injured(){
-        this.state = new Injured();
+        this.state = this.state.fracture();
     }
 
     public void result(){//Only used by "FinishLineEffect", if a player reach the finish line without the key --> worthy == false.

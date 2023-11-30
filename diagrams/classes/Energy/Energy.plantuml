@@ -1,9 +1,0 @@
-@startuml
-class Energy {
-    -points : int
-    +Energy(pointsAmount : int)
-    +add(energy : Energy) : Energy
-    +substract(energy : Energy) : Energy
-    +getPoints(): int
-}
-@enduml

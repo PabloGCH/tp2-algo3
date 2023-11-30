@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.rank;
 
-import edu.fiuba.algo3.modelo.energy.Energy;
-
 public class SemiSenior implements Rank {
     //attributes
     private int shift;
@@ -11,9 +9,8 @@ public class SemiSenior implements Rank {
     }
 
     @Override
-    public Energy energyFromExperience(Energy amount){
-        Energy extraEnergy = new Energy(5);
-        return (amount.add(extraEnergy));
+    public int energyFromExperience(int amount){
+        return (amount + 5);
     }
     
     @Override
