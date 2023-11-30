@@ -22,7 +22,11 @@ public class UseCase19 {
         // Arrange
         boolean finish = false;
         Gladiator gladiator1 = new Gladiator();
-        gladiator1.gameOver();
+        gladiator1.upgrade();
+        gladiator1.upgrade();
+        gladiator1.upgrade();
+        gladiator1.upgrade();
+        gladiator1.result();
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         gladiators.add(gladiator1);
         //Map map = new Map();

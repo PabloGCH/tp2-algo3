@@ -19,7 +19,6 @@ public class Gladiator {
     private Rank rank;
     private Position position;
     private int worthy = Config.UNABLE_TO_WIN.getValue();//Worthy enough to reach Pompeya and win the game
-    private boolean win;
 
     public Gladiator() {
         var diceFactory = new DiceFactory();
@@ -30,15 +29,13 @@ public class Gladiator {
         this.rank = new Rookie();
         this.state = new Active(dice);
         this.position = new NullPosition();
-        this.win = false;
     }
     
-    public boolean turn() {;
+    public void turn() {;
         update();
         this.state = this.state.update(this.energy);
         int distanceToMove = this.state.move();
         this.move(distanceToMove);
-        return this.win;
     }
     
     public void drinkWine(int cupsOfWineAmount) {
@@ -77,11 +74,10 @@ public class Gladiator {
         this.state = new Injured();
     }
 
-    public void worthy(){//Only used by "FinishLineEffect", if a player reach the finish line without the key --> worthy == false.
+    public void result(){//Only used by "FinishLineEffect", if a player reach the finish line without the key --> worthy == false.
         if(equipment.complete()){
             worthy = Config.ABLE_TO_WIN.getValue();
-        }
-        else{
+        }else{
             worthy = Config.UNABLE_TO_WIN_ON_FINISH_LINE.getValue();
         }
     }
@@ -99,10 +95,6 @@ public class Gladiator {
     }
     public void notWorthy(){
         worthy = Config.UNABLE_TO_WIN.getValue();
-    }
-
-    public void gameOver(){
-        this.win = true;
     }
 
     public String getName(){

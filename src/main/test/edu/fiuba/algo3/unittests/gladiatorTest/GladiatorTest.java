@@ -164,15 +164,19 @@ public class GladiatorTest {
 
     @Test void GladiatorWonTheGame() {
         // Arrange
-        boolean winner = false;
+        int winner;
         Gladiator gladiator = new Gladiator();
         
         //Act
-        gladiator.gameOver();
-        winner = gladiator.turn();
+        gladiator.upgrade();
+        gladiator.upgrade();
+        gladiator.upgrade();
+        gladiator.upgrade();
+        gladiator.result();
+        winner = gladiator.candidateToWin();
        
         // Assert
-        assertTrue(winner);
+        assertTrue(winner == 2);
 
     }
     

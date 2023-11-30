@@ -90,7 +90,11 @@ public class gameTests {
        // Arrange
        boolean winner = false;
        Gladiator gladiator1 = new Gladiator();
-       gladiator1.gameOver();
+       gladiator1.upgrade();
+       gladiator1.upgrade();
+       gladiator1.upgrade();
+       gladiator1.upgrade();
+       gladiator1.result();
        ArrayList<Gladiator> gladiators = new ArrayList<>();
        gladiators.add(gladiator1);
 
