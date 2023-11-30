@@ -24,10 +24,11 @@ public class Injured implements State{
             RandomResult dice = diceFactory.createRandomGenerator();
             return new Active(dice);
         }
+        shift++;
         return this;
     }
 
     public void runEffect(Effect effect, Gladiator gladiator){
-        shift++;
+        
     }
 }
