@@ -10,7 +10,6 @@ import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 
 public class UseCase09 {
@@ -45,10 +44,9 @@ public class UseCase09 {
 
         gladiators.add(aGladiator);
         Game aGame = new Game(gladiators, map);
-        lastSquare.receivePiece(aGladiator);// Player reach the finish line: if they have a key, gladiator´s worthy value equals ABLE_TO_WIN (2)
+        lastSquare.receivePiece(aGladiator);
         aGame.startGame();
-        /*As the player reached the finishline without a key, they are sent to the middle and gladiator´s worthy is UNABLE_TO_WIN (0),
-         only when is standing on the finish line without the key worthy equals UNABLE_TO_WIN_ON_FINISH_LINE*/
+
         Assertions.assertEquals(Config.UNABLE_TO_WIN.getValue(), aGladiator.candidateToWin());
         Assertions.assertEquals(35, aGladiator.getEnergy());//
     }
