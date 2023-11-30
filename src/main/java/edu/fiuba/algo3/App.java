@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import edu.fiuba.algo3.controller.MapController;
+import edu.fiuba.algo3.controller.StartButtonController;
 import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.squares.Position;
@@ -29,7 +30,7 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-
+    ArrayList<TextField> nameFields = new ArrayList<TextField>();
     @Override
     public void start(Stage stage) {
 
@@ -60,6 +61,10 @@ public class App extends Application {
 
     public Scene initialScene(Stage stage) {
         VBox mainContainer = new VBox();
+        Label invalidNamesText = new Label("Los nombres deben ser únicos y de al menos 4 caracteres");
+        invalidNamesText.setVisible(false);
+        invalidNamesText.setStyle("-fx-text-fill: red;");
+        mainContainer.getChildren().add(invalidNamesText);
         GridPane grid = new GridPane();
 
         grid.add(createDefaultGladiator(), 0, 0);
@@ -75,7 +80,12 @@ public class App extends Application {
         Button startButton = new Button("StartGame");
         startButton.getStyleClass().add("start-game-btn");
         startButton.setOnAction(event -> {
-          stage.setScene(mapScene());
+            invalidNamesText.setVisible(false);
+            StartButtonController controller = new StartButtonController();
+            if (controller.validateNames(this.nameFields)) {
+                stage.setScene(mapScene());
+            }
+            invalidNamesText.setVisible(true);
         });
         startButton.getStyleClass().add("btn");
         mainContainer.getChildren().add(startButton);
@@ -110,6 +120,7 @@ public class App extends Application {
         newGladiatorInfo.setAlignment(Pos.CENTER);
         newGladiatorInfo.setPadding(new Insets(5));
         TextField gladiatorNameField = new TextField();
+        this.nameFields.add(gladiatorNameField);
         gladiatorNameField.getStyleClass().add("name-field");
         Label nameLabel = new Label("Nombre");
         nameLabel.getStyleClass().add("name-label");
@@ -125,18 +136,20 @@ public class App extends Application {
         TextField gladiatorNameField = new TextField();
         nameLabel.getStyleClass().add("name-label");
         gladiatorNameField.getStyleClass().add("name-field");
+        this.nameFields.add(gladiatorNameField);
         nameLabel.setLabelFor(gladiatorNameField);
         Button deleteGladiator = new Button("-");
         deleteGladiator.getStyleClass().add("btn");
         container.getChildren().add(nameLabel);
         container.getChildren().add(gladiatorNameField);
         container.getChildren().add(deleteGladiator);
-        deleteGladiator.setOnAction(e -> removeGladiator(container));
+        deleteGladiator.setOnAction(e -> removeGladiator(container, gladiatorNameField));
     }
 
-    public void removeGladiator(VBox gladiatorField) {
+    public void removeGladiator(VBox gladiatorField, TextField nameField) {
         gladiatorField.getChildren().clear();
         gladiatorField.getChildren().add(setAddButton(gladiatorField));
+        this.nameFields.remove(nameField);
     }
 
     public static void main(String[] args) {
