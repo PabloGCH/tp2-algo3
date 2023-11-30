@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.*;
 import edu.fiuba.algo3.modelo.squares.Effect;
@@ -8,11 +7,7 @@ import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import static org.mockito.Mockito.mock;
-
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,61 +29,59 @@ public class UseCase16 {
     }
     @Test
     void firstEffectIsFood(){
-        Gladiator gladiator = new Gladiator();//Should start with 0 energy points
-        //Act
+        Gladiator gladiator = new Gladiator();
+
         effects.get(0).affect(gladiator);
         int energyPoints = gladiator.getEnergy();;
-        //Assert
+
         assertEquals(15, energyPoints);
     }
     @Test
     void secondEffectIsUpgrade(){
-        Gladiator gladiator = new Gladiator();//Should start with 0 energy points
+        Gladiator gladiator = new Gladiator();
         Square initialSquare = new Initial();
         initialSquare.receivePiece(gladiator);
-        //Act
+
         effects.get(1).affect(gladiator);
         gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();
-        //Assert
-                assertEquals(5, energyPoints);
+
+        assertEquals(5, energyPoints);
     }
     @Test
     void thirdEffectIsWine(){
-        Gladiator gladiator = new Gladiator();//Should start with 20 energy points
+        Gladiator gladiator = new Gladiator();
         Square initialSquare = new Initial();
         initialSquare.receivePiece(gladiator);
         var initialEnergy = gladiator.getEnergy();
-        //Act
+
         effects.get(2).affect(gladiator);
         int energyPoints = gladiator.getEnergy();
-        //Assert
+
         assertTrue(initialEnergy > energyPoints);
     }
     @Test
     public void fourthEffectIsBeast(){
-        //Arrange
-        Gladiator gladiator = new Gladiator(); //Should start with 20 energy
+
+        Gladiator gladiator = new Gladiator();
         Square initialSquare = new Initial();
         initialSquare.receivePiece(gladiator);
 
-        //Act
         effects.get(3).affect(gladiator);
         int energyPoints = gladiator.getEnergy();;
-        //Assert
+
         assertEquals(0, energyPoints);
     }
     @Test
     public void fifthEffectIsInjury(){
-        //Arrange
-        Gladiator gladiator = new Gladiator(); //Should start with 20 energy
+
+        Gladiator gladiator = new Gladiator();
         Square initialSquare = new Initial();
         initialSquare.receivePiece(gladiator);
 
-        //Act
         effects.get(3).affect(gladiator);
         int energyPoints = gladiator.getEnergy();
-        //Assert
+
         assertEquals(0, energyPoints);
     }
 }
