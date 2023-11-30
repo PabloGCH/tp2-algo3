@@ -2,11 +2,18 @@ package edu.fiuba.algo3.modelo.mensajero;
 import org.apache.logging.log4j.Logger;
 
 public class Messenger {
+    private static Messenger instance;
     private Logger logger;
 
-    public Messenger(Logger newLogger)
+    private Messenger(Logger newLogger)
     {
         this.logger = newLogger;
+    }
+    public static Messenger getInstance(Logger newLogger) {
+        if (instance == null) {
+            instance = new Messenger(newLogger);
+        }
+        return instance;
     }
     public void info(String message) throws Exception {
         unassignedLogger();
