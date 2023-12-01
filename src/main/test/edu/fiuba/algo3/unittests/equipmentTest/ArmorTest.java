@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.equipmentTest;
+package edu.fiuba.algo3.unittests.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.equipment.Armor;
