@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.squares;
-
+import edu.fiuba.algo3.modelo.squares.PositionCollection;
+import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 public class Position {
 
