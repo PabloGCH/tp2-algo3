@@ -114,7 +114,6 @@ public class squareTest {
         SquareFactory squareFactory = new InitialFactory();
         EffectFactory nullEffectFactory = new NullEffectFactory();
         EffectFactory effectFactory = new InitialEffectFactory();
-
         Square initialSquare = squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect());
         map.add(initialSquare);
 

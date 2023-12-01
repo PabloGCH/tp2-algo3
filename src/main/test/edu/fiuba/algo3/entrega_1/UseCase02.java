@@ -6,9 +6,12 @@ import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.*;
+import javafx.geometry.Pos;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UseCase02 {
     @Test

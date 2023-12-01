@@ -18,4 +18,7 @@ public class Injured extends State{
         shift++;
         return this;
     }
-}
+
+    public void runEffect(Effect effect, Gladiator gladiator){
+        
+    }
