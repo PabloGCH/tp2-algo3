@@ -18,7 +18,6 @@ public class Gladiator {
     private int energy;
     private Equipment equipment;
     private Rank rank;
-
     public Position position;
 
     public Gladiator(String name) {
@@ -27,7 +26,7 @@ public class Gladiator {
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
         this.state = new Active();
-        this.position =new Position(0,0,0);//TODO change this
+        this.position = new Position(0,0,0);//TODO change this
     }
     
     public void turn() {;
@@ -69,7 +68,7 @@ public class Gladiator {
     }
 
     public void injured(){
-        this.state = new Injured();
+        this.state = this.state.fracture();
     }
 
     public int move(int sizePath, int diceResult) {
@@ -87,4 +86,3 @@ public class Gladiator {
         this.position = position;
     }
 }
-
