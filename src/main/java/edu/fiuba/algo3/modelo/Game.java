@@ -16,43 +16,30 @@ import java.util.ArrayList;
 public class Game {
     private int turns = 0;
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
-    private ArrayList<Position> path;
-    private Map map;
-    private Dice dice = new Dice();
+    private ArrayList<Square> path;
+    private Dice dice;
     private boolean winner;
 
     static final int unableNoKey = Config.UNABLE_TO_WIN_ON_FINISH_LINE.getValue();
     static final int able = Config.ABLE_TO_WIN.getValue();
 
 
-    public Game(ArrayList<Gladiator> gladiators, ArrayList<Position> path) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         this.winner = false;
         this.path = path;
-        this.map = new Map(1,path.size(),path);
-        for (Gladiator aGladiator : gladiators) {
-            this.addGladiator(aGladiator);
-        }
+        this.gladiators = gladiators;
+        this.dice = dice;
     }
+
     public boolean startGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        int lastPlayerToPlay = 0;
-        while(turns < Config.MAX_TURNS_IN_A_GAME.getValue() && !this.winner) {
+        while (turns < Config.MAX_TURNS_IN_A_GAME.getValue() && !this.winner) {
             int player = 0;
-            while (player < gladiators.size() && !this.winner) {
-                gladiators.get(player).turn();
-                canGladiatorWin(gladiators.get(player));
-                lastPlayerToPlay = player;
-                player++;
+            while (player < gladiators.size() && !winner) {
+                this.winner = gladiatorTurn(player);
             }
-            turns ++;
+            turns++;
         }
-        return result(lastPlayerToPlay);
-    }
-
-
-
-    public void addGladiator(Gladiator aGladiator) {
-        this.gladiators.add(aGladiator);
-        this.path.get(0).receivePiece(aGladiator);
+        return result(player);
     }
 
     public boolean result(int player) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
@@ -76,12 +63,21 @@ public class Game {
         }*/
 
     private void canGladiatorWin(Gladiator aGladiator) {
-        switch (aGladiator.candidateToWin()){
-                case 1:
-                    map.sendGladiatorToMiddle(aGladiator);
-                    aGladiator.notWorthy();
-                case 2:
-                    this.winner = true;
-            }
+        switch (aGladiator.candidateToWin()) {
+            case 1:
+                map.sendGladiatorToMiddle(aGladiator);
+                aGladiator.notWorthy();
+            case 2:
+                this.winner = true;
         }
+    }
+
+    private boolean gladiatorTurn(int player) {
+        int diceResult = this.dice.throwDice();
+        Gladiator currentGladiator = this.gladiators.get(player);
+        int gladiatorPosition = currentGladiator.move(path.size(), diceResult);
+        Square currentSquare = this.path.get(gladiatorPosition);
+        currentSquare.affect(currentGladiator);
+        return false;
+    }
 }

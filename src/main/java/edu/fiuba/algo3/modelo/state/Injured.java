@@ -14,15 +14,13 @@ public class Injured implements State{
         this.shift = 0;
     }
 
-    public int move(){
+    public int move(int diceResult){
         return 0;
     }
 
     public State update(Energy energy){
         if (shift == TURNS_TO_BE_INJURED) {
-            var diceFactory = new DiceFactory();
-            RandomResult dice = diceFactory.createRandomGenerator();
-            return new Active(dice);
+            return new Active();
         }
         shift++;
         return this;
