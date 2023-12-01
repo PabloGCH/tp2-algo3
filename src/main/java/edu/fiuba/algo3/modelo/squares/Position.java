@@ -12,7 +12,6 @@ public class Position {
         this.y = y;
     }
 
-
     public boolean comparePosition(Position aPosition){
         return (this.pathLocation == aPosition.pathLocation);
     }

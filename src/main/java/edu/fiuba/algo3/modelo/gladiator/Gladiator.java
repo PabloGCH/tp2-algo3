@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.gladiator.rank.Rank;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
 import edu.fiuba.algo3.modelo.gladiator.equipment.NullEquipment;
 import edu.fiuba.algo3.modelo.squares.*;
+import javafx.geometry.Pos;
 
 public class Gladiator {
     private static final int ENERGY_FROM_FOOD = 15, ENERGY_LOST_FOR_EACH_CUP = 4, INITIAL_ENERGY = 20;
