@@ -76,6 +76,7 @@ public class App extends Application {
         startButton.getStyleClass().add("start-game-btn");
         startButton.setOnAction(event -> {
           stage.setScene(mapScene());
+          
         });
         startButton.getStyleClass().add("btn");
         mainContainer.getChildren().add(startButton);
