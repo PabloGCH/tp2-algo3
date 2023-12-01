@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.rank;
+package edu.fiuba.algo3.modelo.gladiator.rank;
 
 public class Rookie implements Rank {
     //attributes
@@ -9,7 +9,7 @@ public class Rookie implements Rank {
     }
 
     @Override
-    public int energyFromExperience(int amount){  
+    public int energyFromExperience(int amount){
         return amount ;
     }
     

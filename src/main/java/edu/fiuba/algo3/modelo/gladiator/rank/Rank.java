@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.rank;
+package edu.fiuba.algo3.modelo.gladiator.rank;
 
 public interface Rank {
     //attributes

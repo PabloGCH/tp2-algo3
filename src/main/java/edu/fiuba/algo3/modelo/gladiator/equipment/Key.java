@@ -1,4 +1,5 @@
-package edu.fiuba.algo3.modelo.equipment;
+package edu.fiuba.algo3.modelo.gladiator.equipment;
+
 
 public class Key implements Equipment{
     public Equipment upgrade() {

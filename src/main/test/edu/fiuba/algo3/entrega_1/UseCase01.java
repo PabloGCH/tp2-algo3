@@ -6,7 +6,6 @@ import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
 
-import edu.fiuba.algo3.modelo.equipment.NullEquipment;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 public class UseCase01 {

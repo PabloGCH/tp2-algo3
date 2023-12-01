@@ -5,8 +5,7 @@ import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.equipment.Armor;
-import edu.fiuba.algo3.modelo.equipment.NullEquipment;
+import edu.fiuba.algo3.modelo.gladiator.equipment.NullEquipment;
 
 public class NullEquipmentTest {
     @Test void upgradeReturnsHelmet(){

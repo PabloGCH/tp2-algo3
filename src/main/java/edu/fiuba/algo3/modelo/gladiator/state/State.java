@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.state;
+package edu.fiuba.algo3.modelo.gladiator.state;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 

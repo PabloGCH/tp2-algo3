@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.rank;
+package edu.fiuba.algo3.modelo.gladiator.rank;
 
 public class SemiSenior implements Rank {
     //attributes

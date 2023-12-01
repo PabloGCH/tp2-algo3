@@ -4,8 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.state.Active;
-import edu.fiuba.algo3.modelo.state.Injured;
+import edu.fiuba.algo3.modelo.gladiator.state.Injured;
 
 public class injuredTest {
      @Test void MoveReturns0() {

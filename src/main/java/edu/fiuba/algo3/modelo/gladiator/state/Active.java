@@ -1,25 +1,28 @@
-package edu.fiuba.algo3.modelo.state;
+package edu.fiuba.algo3.modelo.gladiator.state;
 
-import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
 import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.squares.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
-public class Tired implements State{
+
+public class Active implements State{
+    private RandomResult randomResult;
+
+    public Active(){}
+
     public int move(int diceResult){
-        return 0;
+        return diceResult;
     }
+    
     public State update(int energy){
-        if (energy > 0) {
-            var diceFactory = new DiceFactory();
-            RandomResult dice = diceFactory.createRandomGenerator();
-            return new Active(dice);
+        if (energy <= 0) {
+            return new Tired();
         }
         return this;
     }
 
     public void runEffect(Effect effect, Gladiator gladiator){
-
+        effect.affect(gladiator);
     }
 
     public State fracture(){
