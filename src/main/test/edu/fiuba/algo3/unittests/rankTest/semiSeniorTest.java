@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
-import edu.fiuba.algo3.modelo.rank.SemiSenior;
+import edu.fiuba.algo3.modelo.gladiator.rank.SemiSenior;
 
 public class semiSeniorTest {
     @Test void GoFromSemiSeniorToSenior() {

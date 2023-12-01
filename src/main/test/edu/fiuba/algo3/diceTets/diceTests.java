@@ -6,10 +6,6 @@ import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
 import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.Dice;
-import edu.fiuba.algo3.modelo.energy.Energy;
-import edu.fiuba.algo3.modelo.rank.Rookie;
-
 public class diceTests {
     @Test void ReturnNumberBetween1And6() {
         //Arrange

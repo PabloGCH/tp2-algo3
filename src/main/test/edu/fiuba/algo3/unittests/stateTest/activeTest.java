@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
-import edu.fiuba.algo3.modelo.state.Active;
+import edu.fiuba.algo3.modelo.gladiator.state.Active;
 
 public class activeTest {
     @Test void MoveShouldReturnANumberBetween1And6() {

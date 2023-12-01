@@ -2,7 +2,7 @@ package edu.fiuba.algo3.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.energy.Energy;
-import edu.fiuba.algo3.modelo.equipment.Armor;
+import edu.fiuba.algo3.modelo.gladiator.equipment.Armor;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
