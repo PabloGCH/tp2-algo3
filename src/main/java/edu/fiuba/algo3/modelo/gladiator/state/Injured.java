@@ -22,3 +22,4 @@ public class Injured extends State{
     public void runEffect(Effect effect, Gladiator gladiator){
         
     }
+}
