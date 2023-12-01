@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import edu.fiuba.algo3.modelo.Config;
 import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
 import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
@@ -22,14 +20,10 @@ import java.util.ArrayList;
 public class UseCase12 {
     @Test
     public void tetsGameEnds() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        // Arrange
-        var diceFactory = new DiceFactory();
-        RandomResult dice = diceFactory.createRandomGenerator();
         boolean finish = false;
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         gladiators.add(new Gladiator());
 
-        // As this map does not have an equipment upgrade square, it is imposible to win
         ArrayList<Position> map = new ArrayList<>();
         SquareFactory squareFactory = new InitialFactory();
         EffectFactory nullEffectFactory = new NullEffectFactory();
@@ -49,14 +43,8 @@ public class UseCase12 {
         effectFactory = new FinishLineEffectFactory();
         map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
 
-
         Game game = new Game(gladiators, map);
-
-        // Act
-
         finish = game.startGame();
-
-        // Assert
 
         assertFalse(finish);
     }
