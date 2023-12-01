@@ -8,12 +8,10 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 public class Active implements State{
     private RandomResult randomResult;
 
-    public Active(RandomResult newRandomResult){
-        this.randomResult = newRandomResult;
-    }
+    public Active(){}
 
-    public int move(){
-        return this.randomResult.throwNumber();
+    public int move(int diceResult){
+        return diceResult;
     }
     
     public State update(int energy){

@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.Config;
 import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
 import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.squares.*;
+import javafx.geometry.Pos;
 
 public class Gladiator {
     private String name;
@@ -16,18 +17,17 @@ public class Gladiator {
     private int energy;
     private Equipment equipment;
     private Rank rank;
-    private Position position;
+
+    public Position position;
     private int worthy = Config.UNABLE_TO_WIN.getValue();//Worthy enough to reach Pompeya and win the game
 
     public Gladiator() {
-        var diceFactory = new DiceFactory();
-        RandomResult dice = diceFactory.createRandomGenerator();
         this.name = "Jose Luis";
         this.energy = 0;
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
-        this.state = new Active(dice);
-        this.position = new NullPosition();
+        this.state = new Active();
+        this.position =new Position(0,0,0);//TODO change this
     }
     
     public void turn() {;
@@ -84,13 +84,10 @@ public class Gladiator {
     public int candidateToWin(){
         return worthy;
     }
-    public void move(int distance) {
-        Position newPosition = this.position;
-        for(int i = 0; i < distance; i++) {
-            newPosition = newPosition.next();
-        }
-        this.position = newPosition;
-        this.position.receivePiece(this);
+
+    public int move(int sizePath, int diceResult) {
+        int steps = this.state.move(diceResult);
+        return this.position.moveFoward(steps, sizePath);
     }
     public void notWorthy(){
         worthy = Config.UNABLE_TO_WIN.getValue();
@@ -103,4 +100,8 @@ public class Gladiator {
     public void runEffect(Effect effect){
         this.state.runEffect(effect, this);
     }
+    public void positionate(Position position){
+        this.position = position;
+    }
 }
+

@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.*;
 
 public interface State {
-    public int move();
+    public int move(int diceResult);
 
     public State update(int energy);
 

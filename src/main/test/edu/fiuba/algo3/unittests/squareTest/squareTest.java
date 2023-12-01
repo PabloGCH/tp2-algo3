@@ -80,7 +80,7 @@ public class squareTest {
     @Test
     public void test04AGladiatorLoosesExpectedEnergyAfterDrinkingWine() {
         Gladiator aGladiator = new Gladiator();
-        Effect aBacchanalia = new Bacchanalia();
+        Effect aBacchanalia = new Bacchanalia();;
         int initialEnergy;
         int initialExpectedEnergy = 0;
         int finalEnergy;

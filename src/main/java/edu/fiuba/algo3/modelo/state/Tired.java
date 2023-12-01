@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.squares.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 public class Tired implements State{
-    public int move(){
+    public int move(int diceResult){
         return 0;
     }
     public State update(int energy){
