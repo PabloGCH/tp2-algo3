@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 

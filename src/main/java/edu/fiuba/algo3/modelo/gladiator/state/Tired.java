@@ -11,9 +11,7 @@ public class Tired implements State{
     }
     public State update(int energy){
         if (energy > 0) {
-            var diceFactory = new DiceFactory();
-            RandomResult dice = diceFactory.createRandomGenerator();
-            return new Active(dice);
+            return new Active();
         }
         return this;
     }

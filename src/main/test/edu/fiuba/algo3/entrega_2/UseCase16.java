@@ -1,14 +1,12 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.*;
 import edu.fiuba.algo3.modelo.squares.Effect;
-import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+
 import static org.mockito.Mockito.mock;
 
 import java.util.ArrayList;

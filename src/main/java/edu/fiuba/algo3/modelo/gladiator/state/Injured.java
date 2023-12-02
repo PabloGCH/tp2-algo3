@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.gladiator.state;
 
-import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
-import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.squares.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 

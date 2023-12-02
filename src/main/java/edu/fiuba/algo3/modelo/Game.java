@@ -56,16 +56,6 @@ public class Game {
         return false;
     }
 
-    private void canGladiatorWin(Gladiator aGladiator) {
-        switch (aGladiator.candidateToWin()) {
-            case 1:
-                map.sendGladiatorToMiddle(aGladiator);
-                aGladiator.notWorthy();
-            case 2:
-                this.winner = true;
-        }
-    }
-
     private boolean gladiatorTurn(int diceResult) {
         Gladiator currentGladiator = this.gladiators.get(NEXT_GLADIATOR_TO_PLAY);
         int gladiatorPosition = currentGladiator.move(path.size(), diceResult);

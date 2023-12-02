@@ -1,12 +1,10 @@
 package edu.fiuba.algo3.modelo.gladiator.state;
 
-import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.squares.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 
 public class Active implements State{
-    private RandomResult randomResult;
 
     public Active(){}
 

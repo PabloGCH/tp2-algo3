@@ -4,10 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
-import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.factories.*;
-import edu.fiuba.algo3.modelo.map.Map;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,81 +13,56 @@ import org.json.simple.parser.ParseException;
 
 
 public class MapJsonParser implements Parser {
-    public Map loadMap(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public ArrayList<Square> loadMap(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         int height;
         int width;
-        Map map;
+        ArrayList<Square> path = new ArrayList<>();
         try {
-            SquareFactory squareFactory = new MiddleFactory();
-            EffectFactory prizeFactory = new InitialEffectFactory();
-            EffectFactory obstacleFactory = new NullEffectFactory();
-            ArrayList<Position> path = new ArrayList<>();
-            Square previousSquare;
+            int xPosition, yPosition;
             JSONObject measures = this.getMapObject(filePath);
             width = Math.toIntExact((long)measures.get("ancho"));
             height = Math.toIntExact((long)measures.get("largo"));
             JSONArray pathJsonArray = this.getPathObject(filePath);
-            int middleSquareIndex = (int) pathJsonArray.size() / 2;
-            Square middleSquare = squareFactory.createSquare(obstacleFactory.createEffect(),prizeFactory.createEffect());
-            //Square middleSquare = new Middle(new NullEffect());
 
 
-            JSONObject element = (JSONObject) pathJsonArray.get(0);
-            //Obtaining square type
-            String value = (String) element.get("tipo");
-            squareFactory = obtainSquare(value);
-            //Obtaining obstacle
-            value = (String) element.get("obstaculo");
-            obstacleFactory = obtainObstacle(value);
-            //Obtaining prize
-            value = (String) element.get("premio");
-            prizeFactory = obtainPrize(value);
-            Square newSquare = constructor(squareFactory, obstacleFactory, prizeFactory);
-            //Square newSquare = this.createSquare(value, middleSquare);
-            middleSquare = middleSquareIndex == 0 ? newSquare : middleSquare;
-            previousSquare = newSquare;
-            path.add(newSquare);
+            JSONObject element;
+            String value;
+            Square newSquare;
+            EffectFactory prizeFactory, obstacleFactory;
 
-            for (int i = 1; i < pathJsonArray.size(); i++) {
+            final int LAST_ARRAY_INDEX = pathJsonArray.size() - 1;
+            for (int i = 0; i < LAST_ARRAY_INDEX; i++) {
                 element = (JSONObject) pathJsonArray.get(i);
-                //Obtaining square type
-                value = (String) element.get("tipo");
-                squareFactory = obtainSquare(value);
-                //Obtaining obstacle
+
                 value = (String) element.get("obstaculo");
                 obstacleFactory = obtainObstacle(value);
-                //Obtaining prize
+
                 value = (String) element.get("premio");
                 prizeFactory = obtainPrize(value);
-                newSquare = constructor(squareFactory, obstacleFactory, prizeFactory);
-                //newSquare = this.createSquare(value, middleSquare);
-                middleSquare = middleSquareIndex == i ? newSquare : middleSquare;
-                previousSquare.setNextPosition(newSquare);
+
+                xPosition = (int) element.get("x");
+                yPosition = (int) element.get("y");
+                Position squarePosition = new Position(xPosition, yPosition, i);
+                newSquare = new Square(obstacleFactory.createEffect(),prizeFactory.createEffect(), squarePosition);
                 path.add(newSquare);
-                previousSquare = newSquare;
             }
-            map = new Map(width, height, path);
+            Position middlePosition = path.get((path.size() + 1) / 2).getPosition();
+            var finishLineEffect = new FinishLineEffect();
+            finishLineEffect.setMiddlePosition(middlePosition);
+            element = (JSONObject) pathJsonArray.get(LAST_ARRAY_INDEX);
+
+            xPosition = (int) element.get("x");
+            yPosition = (int) element.get("y");
+            Position squarePosition = new Position(xPosition, yPosition, LAST_ARRAY_INDEX);
+
+            value = (String) element.get("obstaculo");
+            obstacleFactory = obtainObstacle(value);
+
+            path.add(new Square(obstacleFactory.createEffect(), finishLineEffect, squarePosition));
         } catch (ClassCastException e) {
-            //IT CAN BE ASSUMED THAT IF IT FAILS TO CAST AN OBJECT IS BECAUSE THE JSON IS INVALID
-            //SINCE IS ONLY CASTING AFTER GETTING VALUES FROM THE FILE
             throw new InvalidMapFile();
         }
-        return map;
-    }
-
-    private Square constructor(SquareFactory squareFactory,EffectFactory obtacleFactory, EffectFactory prizeFactory){
-        return squareFactory.createSquare(obtacleFactory.createEffect(),prizeFactory.createEffect());
-    }
-
-    private SquareFactory obtainSquare(String type){
-        switch (type) {
-            case "Salida":
-                return new InitialFactory();
-            case "Llegada":
-                return new FinishLineFactory();
-            default:
-                return new MiddleFactory();
-        }
+        return path;
     }
     private EffectFactory obtainObstacle(String type){
         switch (type) {
