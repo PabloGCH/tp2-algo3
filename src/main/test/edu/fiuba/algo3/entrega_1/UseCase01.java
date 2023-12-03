@@ -11,25 +11,19 @@ public class UseCase01 {
 
     @Test
     public void testGladiatorStartsWithCorrectEnergy() {
-        //Arrange
         Gladiator gladiator = new Gladiator(); 
-        Square initialSquare = new Initial(); 
-        //Act
-        initialSquare.receivePiece(gladiator); //Should start with 20 energy
+        Square initialSquare = new Initial();
+        initialSquare.receivePiece(gladiator);
         int energyPoints = gladiator.getEnergy();;
-        //Assert
         assertEquals(20, energyPoints);
     }
     @Test
     public void testGladiatorStartsWithNullEquipment() {
-        //Arrange
-        Gladiator gladiator = new Gladiator(); //Should start with NullEquipment
+        Gladiator gladiator = new Gladiator();
         Square initialSquare = new Initial();
-        initialSquare.receivePiece(gladiator); //Should start with 20 energy
-        //Act
-        gladiator.fightWithBeast(); //With null equipment looses 20 energy
+        initialSquare.receivePiece(gladiator);
+        gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();
-        //Assert
         assertEquals(0, energyPoints);
     }
 }
