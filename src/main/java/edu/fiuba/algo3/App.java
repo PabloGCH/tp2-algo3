@@ -1,13 +1,9 @@
 package edu.fiuba.algo3;
 
 import java.util.ArrayList;
-
 import edu.fiuba.algo3.controller.MapController;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.squares.Position;
-import edu.fiuba.algo3.modelo.squares.PositionCollection;
-
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

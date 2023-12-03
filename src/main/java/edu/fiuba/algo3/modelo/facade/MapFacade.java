@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.facade;
 
-import edu.fiuba.algo3.modelo.map.Map;
 import edu.fiuba.algo3.modelo.mapJsonParser.*;
 import edu.fiuba.algo3.modelo.squares.Square;
 
@@ -15,7 +14,7 @@ public class MapFacade implements TerrainFacade{
         this.fileName = "map.json";
     }
 
-    public Map loadMap() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public ArrayList<Square> loadMap() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         MapJsonParser mapParser = new MapJsonParser();
         return mapParser.loadMap(fileSource, fileName);
     }
