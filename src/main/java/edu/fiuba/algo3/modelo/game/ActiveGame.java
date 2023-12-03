@@ -15,4 +15,14 @@ public class ActiveGame implements GameState {
         currentGladiator.decideIfPlaysAgain(new TurnDecider(gladiators));
         return currentGladiator.won();
     };
+
+    public boolean Finalized(){
+        return false;
+    }
+
+    public boolean result(ArrayList<Gladiator> gladiators){
+        System.out.println("Todos Perdieron");
+        System.out.println("Mejor suerte la proxima");
+        return false;
+    }
 }
