@@ -1,11 +1,9 @@
 package edu.fiuba.algo3.unittests.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.fiuba.algo3.modelo.equipment.Armor;
-import edu.fiuba.algo3.modelo.equipment.Helmet;
+import edu.fiuba.algo3.modelo.gladiator.equipment.Helmet;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.squares.Initial;
 import edu.fiuba.algo3.modelo.squares.Square;
 
 public class HelmetTest {

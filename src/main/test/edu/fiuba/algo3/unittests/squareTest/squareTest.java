@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.unittests.squareTest;
 
-import edu.fiuba.algo3.modelo.Config;
-import edu.fiuba.algo3.modelo.Game;
+import edu.fiuba.algo3.modelo.game.Game;
+import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
+import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
+import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
@@ -73,7 +75,7 @@ public class squareTest {
     @Test
     public void test04AGladiatorLoosesExpectedEnergyAfterDrinkingWine() {
         Gladiator aGladiator = new Gladiator();
-        Effect aBacchanalia = new Bacchanalia();
+        Effect aBacchanalia = new Bacchanalia();;
         int initialEnergy;
         int initialExpectedEnergy = 0;
         int finalEnergy;

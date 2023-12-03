@@ -1,13 +1,17 @@
 package edu.fiuba.algo3.unittests.gameTests;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.modelo.Game;
+
+import edu.fiuba.algo3.modelo.game.Game;
+
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import java.util.ArrayList;
 

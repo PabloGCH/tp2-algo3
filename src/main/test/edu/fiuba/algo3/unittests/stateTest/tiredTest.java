@@ -2,7 +2,8 @@ package edu.fiuba.algo3.unittests.stateTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.modelo.state.Tired;
+
+import edu.fiuba.algo3.modelo.gladiator.state.Tired;
 
 public class tiredTest {
      @Test void MoveReturns0() {
