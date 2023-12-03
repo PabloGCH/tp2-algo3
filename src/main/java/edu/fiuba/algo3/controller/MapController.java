@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.controller;
 import edu.fiuba.algo3.modelo.Resources;
-import edu.fiuba.algo3.modelo.map.Map;
 import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.controller.SquareController;
 import javafx.scene.layout.*;

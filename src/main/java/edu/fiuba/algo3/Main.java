@@ -8,6 +8,6 @@ public class Main {
         game.createMap();
         game.startGame();
         game.displayMap(); */
-        App.main(args);
+        //App.main(args);
     }
 }
