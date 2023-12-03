@@ -6,7 +6,7 @@ public class FinishLineEffect implements Effect{
     private Position middlePosition = new Position(0, 0, 0);
     @Override
     public void affect(Gladiator aGladiator) {
-        aGladiator.positionate(middlePosition);
+        aGladiator.tryToWin(middlePosition);
     }
 
     public void setMiddlePosition(Position aPosition) {

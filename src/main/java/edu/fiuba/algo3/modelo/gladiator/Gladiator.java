@@ -1,14 +1,12 @@
 package edu.fiuba.algo3.modelo.gladiator;
+import edu.fiuba.algo3.modelo.game.GameState;
+import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Equipment;
 import edu.fiuba.algo3.modelo.gladiator.state.Active;
-import edu.fiuba.algo3.modelo.gladiator.state.Injured;
 import edu.fiuba.algo3.modelo.gladiator.state.State;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rank;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
 import edu.fiuba.algo3.modelo.gladiator.equipment.NullEquipment;
-import edu.fiuba.algo3.modelo.state.*;
-import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
-import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.squares.*;
 
 public class Gladiator {
@@ -28,14 +26,6 @@ public class Gladiator {
         this.state = new Active();
         this.position = new Position(0,0,0);//TODO change this
     }
-    
-    public void turn() {;
-        update();
-        this.state = this.state.update(this.energy);
-        int distanceToMove = this.state.move();
-        this.move(distanceToMove);
-    }
-    
     public void drinkWine(int cupsOfWineAmount) {
         this.energy = this.energy - ENERGY_LOST_FOR_EACH_CUP * cupsOfWineAmount;
     }
@@ -84,5 +74,23 @@ public class Gladiator {
     }
     public void positionate(Position position){
         this.position = position;
+    }
+
+    public void getIntoBacchanalia() {
+        this.state = this.state.getIntoBacchanalia(this);
+    }
+    public void refreshState() {
+        this.state = this.state.update(this.energy);
+    }
+    public void tryToWin(Position middlePosition) {
+        this.state = this.equipment.win(this.state);
+        this.state.tryToWin(this, middlePosition);
+    }
+    public GameState won() {
+        return this.state.isWinner();
+    }
+
+    public void decideIfPlaysAgain(TurnDecider turnDecider) {
+        this.state.decideIfPlaysAgain(turnDecider);
     }
 }

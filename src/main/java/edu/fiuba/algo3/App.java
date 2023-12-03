@@ -1,14 +1,11 @@
 package edu.fiuba.algo3;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import edu.fiuba.algo3.controller.MapController;
-import edu.fiuba.algo3.modelo.Game;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.PositionCollection;
-import edu.fiuba.algo3.modelo.squares.Square;
 
 
 import javafx.application.Application;
@@ -16,10 +13,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;

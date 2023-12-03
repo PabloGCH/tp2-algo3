@@ -1,5 +1,5 @@
 package edu.fiuba.algo3.entrega_1;
-import edu.fiuba.algo3.modelo.Game;
+import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
 import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.factories.*;

@@ -12,7 +12,7 @@ import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.Game;
+import edu.fiuba.algo3.modelo.game.Game;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
