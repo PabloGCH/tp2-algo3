@@ -2,21 +2,16 @@ package edu.fiuba.algo3.unittests.diceTets;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
-import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
-import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.Dice;
-import edu.fiuba.algo3.modelo.rank.Rookie;
+import org.junit.jupiter.api.Test;
 
 public class diceTests {
     @Test void ReturnNumberBetween1And6() {
         //Arrange
-        var diceFactory = new DiceFactory();
-        RandomResult dice = diceFactory.createRandomGenerator();
+        Dice dice = new Dice();
 
         //Act
-        int number = dice.throwNumber();
+        int number = dice.throwDice();
 
         //Assert
         assertTrue(number >= 1);

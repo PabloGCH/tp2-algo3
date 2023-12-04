@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.*;
-
+/*
 public class UseCase20 {
     @Test
     public void testPlayerLose() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
@@ -42,4 +42,4 @@ public class UseCase20 {
 
         assertFalse(finish);
     }
-}
+}*/

@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.modelo.factories.EffectFactory;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.*;
 import edu.fiuba.algo3.modelo.squares.Effect;
+import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +32,7 @@ public class UseCase16 {
     }
     @Test
     void firstEffectIsFood(){
-        Gladiator gladiator = new Gladiator();
+        Gladiator gladiator = new Gladiator("Example");
 
         effects.get(0).affect(gladiator);
         int energyPoints = gladiator.getEnergy();;
@@ -39,9 +41,14 @@ public class UseCase16 {
     }
     @Test
     void secondEffectIsUpgrade(){
-        Gladiator gladiator = new Gladiator();
-        Square initialSquare = new Initial();
-        initialSquare.receivePiece(gladiator);
+        Gladiator gladiator = new Gladiator("Example");
+
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        Square initialSquare = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position);
+        initialSquare.affect(gladiator);
+        /*Square initialSquare = new Initial();
+        initialSquare.receivePiece(gladiator);*/
 
         effects.get(1).affect(gladiator);
         gladiator.fightWithBeast();
@@ -51,10 +58,14 @@ public class UseCase16 {
     }
     @Test
     void thirdEffectIsWine(){
-        Gladiator gladiator = new Gladiator();
-        Square initialSquare = new Initial();
-        initialSquare.receivePiece(gladiator);
-        var initialEnergy = gladiator.getEnergy();
+        Gladiator gladiator = new Gladiator("Example");
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        Square initialSquare = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position);
+        initialSquare.affect(gladiator);
+        /*Square initialSquare = new Initial();
+        initialSquare.receivePiece(gladiator);*/
+        int initialEnergy = gladiator.getEnergy();
 
         effects.get(2).affect(gladiator);
         int energyPoints = gladiator.getEnergy();
@@ -64,9 +75,13 @@ public class UseCase16 {
     @Test
     public void fourthEffectIsBeast(){
 
-        Gladiator gladiator = new Gladiator();
-        Square initialSquare = new Initial();
-        initialSquare.receivePiece(gladiator);
+        Gladiator gladiator = new Gladiator("Example");
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        Square initialSquare = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position);
+        initialSquare.affect(gladiator);
+        /*Square initialSquare = new Initial();
+        initialSquare.receivePiece(gladiator);*/
 
         effects.get(3).affect(gladiator);
         int energyPoints = gladiator.getEnergy();;
@@ -76,13 +91,19 @@ public class UseCase16 {
     @Test
     public void fifthEffectIsInjury(){
 
-        Gladiator gladiator = new Gladiator();
-        Square initialSquare = new Initial();
-        initialSquare.receivePiece(gladiator);
+        Gladiator gladiator = new Gladiator("Example");
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        Square initialSquare = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position);
+        initialSquare.affect(gladiator);
+        /*Square initialSquare = new Initial();
+        initialSquare.receivePiece(gladiator);*/
 
-        effects.get(3).affect(gladiator);
+        effects.get(4).affect(gladiator);
         int energyPoints = gladiator.getEnergy();
+        int initialPosition = 0;
+        int newPosition = gladiator.move(5, 1);
 
-        assertEquals(0, energyPoints);
+        assertEquals(initialPosition, newPosition);
     }
 }
