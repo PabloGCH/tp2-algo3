@@ -81,7 +81,7 @@ public class gameTests {
        assertTrue(energyPoints == 20);
     }
 
-    /*
+    /*TODO bucle
     @Test void AGladiatorWonTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
        boolean winner = false;
        Gladiator gladiator1 = new Gladiator("Example");
