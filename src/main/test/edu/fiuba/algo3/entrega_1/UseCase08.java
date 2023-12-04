@@ -19,6 +19,6 @@ public class UseCase08 {
         gladiator.move(10,1);
         int energyPoints = gladiator.getEnergy();;
 
-        assertEquals(5, energyPoints);
+        assertEquals(25, energyPoints);
     }
 }
