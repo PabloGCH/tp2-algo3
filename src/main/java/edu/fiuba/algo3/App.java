@@ -1,7 +1,7 @@
 package edu.fiuba.algo3;
 
 import java.util.ArrayList;
-import edu.fiuba.algo3.controller.MapController;
+//import edu.fiuba.algo3.controller.MapController;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.squares.Position;
 import javafx.application.Application;
@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 /**
  * JavaFX App
- */
+ *//*
 public class App extends Application {
 
     @Override
@@ -134,4 +134,4 @@ public class App extends Application {
         launch();
     }
 
-}
+}*/

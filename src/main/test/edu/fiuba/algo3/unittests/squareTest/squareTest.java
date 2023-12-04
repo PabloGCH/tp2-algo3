@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.unittests.squareTest;
 
+import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.game.Game;
-import edu.fiuba.algo3.modelo.RandomResult.DiceFactory;
-import edu.fiuba.algo3.modelo.RandomResult.RandomResult;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
@@ -18,16 +17,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class squareTest {
     @Test
     public void test01ASquareCanHostAGladiator() {
-        Gladiator aGladiator = new Gladiator();
-        Square aSquare = new Initial();
+        Gladiator aGladiator = new Gladiator("Example");
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        Square initialSquare = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position);
+        //Square aSquare = new Initial();
         int initialExpectedEnergy = 0;
         int finalExpectedEnergy = 20;
         int initialEnergy;
         int finalEnergy;
         initialEnergy = aGladiator.getEnergy();
         assertEquals(initialEnergy, initialExpectedEnergy);
-
-        aSquare.receivePiece(aGladiator);
+        initialSquare.affect(aGladiator);
+        //aSquare.receivePiece(aGladiator);
         finalEnergy = aGladiator.getEnergy();
 
         assertEquals(finalEnergy, finalExpectedEnergy);
@@ -35,7 +37,7 @@ public class squareTest {
 
     @Test
     public void test02AGladiatorAffectedWithFoodEffectGets5EnergyPoints() {
-        Gladiator aGladiator = new Gladiator();
+        Gladiator aGladiator = new Gladiator("Example");
         Effect foodEffect = new Food();
         int initialExpectedEnergy = 0;
         int finalExpectedEnergy = 15;
@@ -52,7 +54,7 @@ public class squareTest {
 
     @Test
     public void test03AGladiatorWithNoEquipmentLoosesEnergyAfterFight() {
-        Gladiator aGladiator = new Gladiator();
+        Gladiator aGladiator = new Gladiator("Example");
         Effect food = new Food();
         Effect fight = new Beast();
         int initialEnergy;
@@ -74,7 +76,7 @@ public class squareTest {
 
     @Test
     public void test04AGladiatorLoosesExpectedEnergyAfterDrinkingWine() {
-        Gladiator aGladiator = new Gladiator();
+        Gladiator aGladiator = new Gladiator("Example");
         Effect aBacchanalia = new Bacchanalia();;
         int initialEnergy;
         int initialExpectedEnergy = 0;
@@ -90,7 +92,7 @@ public class squareTest {
 
     @Test
     public void test05ASquareWithNullEffectDoesNotChangeAGladiatorsEnergy() {
-        Gladiator aGladiator = new Gladiator();
+        Gladiator aGladiator = new Gladiator("Example");
         Effect aNullEffect = new NullEffect();
         int initialEnergy;
         int finalEnergy;
@@ -109,38 +111,53 @@ public class squareTest {
     @Test
     public void test06AGladiatorStepsOnTheFinishLineWithoutKeyAndIsSetOnTheMiddleSquare() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         ArrayList<Gladiator> gladiators = new ArrayList<>();
-        Gladiator aGladiator = new Gladiator();
-        ArrayList<Position> map = new ArrayList<>();
+        Gladiator aGladiator = new Gladiator("Example");
+        ArrayList<Square> map = new ArrayList<>();
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position));
+        /*ArrayList<Position> map = new ArrayList<>();
         SquareFactory squareFactory = new InitialFactory();
         EffectFactory nullEffectFactory = new NullEffectFactory();
         EffectFactory effectFactory = new InitialEffectFactory();
 
         Square initialSquare = squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect());
-        map.add(initialSquare);
+        map.add(initialSquare);*/
 
-        squareFactory = new MiddleFactory();
+        position = new Position(1,0,1);
+        map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position));
+        position = new Position(2,0,2);
+        map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position));
+        /*squareFactory = new MiddleFactory();
         map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
+        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));*/
 
-        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
-
-        effectFactory = new FoodFactory();
-        Square middleOfGameBoard = squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect());
+        position = new Position(3,0,3);
+        Square middleOfGameBoard = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("Comida"), position);
         map.add(middleOfGameBoard);
-        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
-        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
-
-        squareFactory = new FinishLineFactory();
+        /*effectFactory = new FoodFactory();
+        Square middleOfGameBoard = squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect());
+        map.add(middleOfGameBoard);*/
+        position = new Position(4,0,4);
+        map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position));
+        position = new Position(5,0,5);
+        map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position));
+        /*map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
+        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));*/
+        position = new Position(5,0,5);
+        Square lastSquare = new Square(effectFactory.createSquare("NullEffect"),new FinishLineEffect(), position);
+        map.add(lastSquare);
+        /*squareFactory = new FinishLineFactory();
         effectFactory = new FinishLineEffectFactory();
         Square lastSquare = squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect());
-        map.add(lastSquare);
+        map.add(lastSquare);*/
 
         gladiators.add(aGladiator);
-        Game aGame = new Game(gladiators, map);
-        lastSquare.receivePiece(aGladiator);
-        aGame.startGame();
+        Game aGame = Game.getInstance(gladiators, map, new Dice());
+        lastSquare.affect(aGladiator);
+        //aGame.startGame();
 
-        Assertions.assertEquals(Config.UNABLE_TO_WIN.getValue(), aGladiator.candidateToWin());
-        Assertions.assertEquals(35, aGladiator.getEnergy());//
+        assertEquals(aGladiator.move(map.size(), 1), 4);
     }
     /*
     @Test

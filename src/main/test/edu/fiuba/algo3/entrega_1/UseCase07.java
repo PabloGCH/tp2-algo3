@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 public class UseCase07 {
     @Test
     public void testLoseEnergyWhithHelmet(){
-        Gladiator gladiator = new Gladiator();
+        Gladiator gladiator = new Gladiator("Example");
 
         gladiator.upgrade();
         gladiator.fightWithBeast();

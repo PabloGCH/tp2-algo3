@@ -17,7 +17,7 @@ public class Position {
         return (this.pathLocation == aPosition.pathLocation);
     }
     public int moveFoward(int stepsForward, int pathSize){
-        if (pathSize >= stepsForward + this.pathLocation){
+        if (pathSize <= stepsForward + this.pathLocation){
             return (pathSize - 1);
         }
         else {
