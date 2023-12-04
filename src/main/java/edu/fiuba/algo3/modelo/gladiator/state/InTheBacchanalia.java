@@ -14,7 +14,6 @@ public class InTheBacchanalia extends State {
     @Override
     public int move(int diceResult) {
         this.affectedGladiator.drinkWine(diceResult);
-
         return 0;
     }
 

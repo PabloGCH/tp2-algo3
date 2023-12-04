@@ -34,8 +34,10 @@ public class MapJsonParser implements Parser {
                 value = (String) element.get("premio");
                 prize = effectFactory.createSquare(value);
 
-                xPosition = (int) element.get("x");
-                yPosition = (int) element.get("y");
+                xPosition = Math.toIntExact((long)element.get("x"));
+                yPosition = Math.toIntExact((long)element.get("y"));
+                //xPosition = (int) element.get("x");
+                //yPosition = (int) element.get("y");
                 Position squarePosition = new Position(xPosition, yPosition, i);
                 newSquare = new Square(obstacle,prize, squarePosition);
                 path.add(newSquare);
@@ -45,8 +47,10 @@ public class MapJsonParser implements Parser {
             finishLineEffect.setMiddlePosition(middlePosition);
             element = (JSONObject) pathJsonArray.get(LAST_ARRAY_INDEX);
 
-            xPosition = (int) element.get("x");
-            yPosition = (int) element.get("y");
+            xPosition = Math.toIntExact((long)element.get("x"));
+            yPosition = Math.toIntExact((long)element.get("y"));
+            //xPosition = (int) element.get("x");
+            //yPosition = (int) element.get("y");
             Position squarePosition = new Position(xPosition, yPosition, LAST_ARRAY_INDEX);
 
             value = (String) element.get("obstaculo");

@@ -38,7 +38,7 @@ public class UseCase16 {
         effects.get(0).affect(gladiator);
         int energyPoints = gladiator.getEnergy();;
 
-        assertEquals(15, energyPoints);
+        assertEquals(35, energyPoints);
     }
     @Test
     void secondEffectIsUpgrade(){
@@ -69,6 +69,7 @@ public class UseCase16 {
         int initialEnergy = gladiator.getEnergy();
 
         effects.get(2).affect(gladiator);
+        gladiator.move(1,1);
         int energyPoints = gladiator.getEnergy();
 
         assertTrue(initialEnergy > energyPoints);

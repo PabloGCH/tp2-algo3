@@ -15,7 +15,7 @@ public class GladiatorTest {
         gladiator.eat();
         int energyPoints = gladiator.getEnergy();
 
-        assertTrue(energyPoints == 15);
+        assertEquals(35, energyPoints);
     }
     @Test void energyUpdatedCorrectlyAfterEatingTwice() {
         Gladiator gladiator = new Gladiator("Example");
@@ -24,49 +24,41 @@ public class GladiatorTest {
         gladiator.eat();
         int energyPoints = gladiator.getEnergy();
 
-        assertTrue(energyPoints == 30);
+        assertEquals(50, energyPoints);
     }
 
     @Test void energyReducedAfterFightWithBeastWithNoEquipment() {
         Gladiator gladiator = new Gladiator("Example");
-        gladiator.eat();
-        gladiator.eat();
 
         gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();
 
-        assertTrue(energyPoints == 10);
+        assertEquals(0, energyPoints);
     }
 
     @Test void upgradeEquipmentOneTime() {
         Gladiator gladiator = new Gladiator("Example");
-        gladiator.eat();
-        gladiator.eat();
 
         gladiator.upgrade();
         gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();
 
-        assertTrue(energyPoints == 15);
+        assertEquals(5, energyPoints);
     }
 
     @Test void upgradeEquipmentTwoTimes() {
         Gladiator gladiator = new Gladiator("Example");
-        gladiator.eat();
-        gladiator.eat();
 
         gladiator.upgrade();
         gladiator.upgrade();
         gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();
 
-        assertTrue(energyPoints == 20);
+        assertEquals(10, energyPoints);
     }
 
     @Test void upgradeEquipmentThreeTimes() {
         Gladiator gladiator = new Gladiator("Example");
-        gladiator.eat();
-        gladiator.eat();
 
         gladiator.upgrade();
         gladiator.upgrade();
@@ -74,13 +66,11 @@ public class GladiatorTest {
         gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();
 
-        assertTrue(energyPoints == 28);
+        assertEquals(18, energyPoints);
     }
 
     @Test void upgradeEquipmentFourTimes() {
         Gladiator gladiator = new Gladiator("Example");
-        gladiator.eat();
-        gladiator.eat();
 
         gladiator.upgrade();
         gladiator.upgrade();
@@ -89,13 +79,11 @@ public class GladiatorTest {
         gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();
 
-        assertTrue(energyPoints == 30);
+        assertEquals(20, energyPoints);
     }
 
     @Test void upgradeEquipmentMoreThanFourTimes() {
         Gladiator gladiator = new Gladiator("Example");
-        gladiator.eat();
-        gladiator.eat();
 
         gladiator.upgrade();
         gladiator.upgrade();
@@ -107,7 +95,7 @@ public class GladiatorTest {
         gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();
 
-        assertTrue(energyPoints == 30);
+        assertEquals(20, energyPoints);
     }
 
     @Test void ascendToSemiSeniorAfterEightTurns() {
@@ -117,11 +105,11 @@ public class GladiatorTest {
             gladiator.move(10,1);
         }
         int energyPoints = gladiator.getEnergy();
-        assertEquals(0, energyPoints);
+        assertEquals(20, energyPoints);
         gladiator.move(10,1);
         energyPoints = gladiator.getEnergy();
 
-        assertEquals(5, energyPoints);
+        assertEquals(25, energyPoints);
     }
 
     @Test void ascendToSeniorAfterEightTurns() {
@@ -131,11 +119,11 @@ public class GladiatorTest {
             gladiator.move(20,1);
         }
         int energyPoints = gladiator.getEnergy();
-        assertEquals(20, energyPoints);
+        assertEquals(40, energyPoints);
         gladiator.move(20,1);
         energyPoints = gladiator.getEnergy();;
 
-        assertEquals(30, energyPoints);
+        assertEquals(50, energyPoints);
     }
 
     @Test void SeeTheNewPositionTheGladiatorIsIn() {
@@ -148,7 +136,6 @@ public class GladiatorTest {
         initialSquare.affect(gladiator);
         int newPosition = gladiator.move(10,1);
         assertEquals(1, newPosition);
-        // TODO fix test;
         // int position = gladiator.turn();
         // Assert
 
@@ -167,6 +154,6 @@ public class GladiatorTest {
         gladiator.result();
         winner = gladiator.candidateToWin();
 
-        assertTrue(winner == 2);
+        assertTrue(winner == 2);//TODO bucle
     }*/
 }

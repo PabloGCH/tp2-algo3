@@ -24,6 +24,6 @@ public class injuredTest {
         var state = injured.update(energy);
         int number = state.move(1);
 
-        assertEquals(0,number);
+        assertEquals(1,number);
     }
 }
