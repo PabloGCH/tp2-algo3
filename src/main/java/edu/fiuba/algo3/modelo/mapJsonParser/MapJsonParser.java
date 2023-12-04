@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.squares.*;
+import javafx.geometry.Dimension2D;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -34,8 +35,8 @@ public class MapJsonParser implements Parser {
                 value = (String) element.get("premio");
                 prize = effectFactory.createSquare(value);
 
-                xPosition = (int) element.get("x");
-                yPosition = (int) element.get("y");
+                xPosition = Math.toIntExact((long)element.get("x"));
+                yPosition = Math.toIntExact((long)element.get("y"));
                 Position squarePosition = new Position(xPosition, yPosition, i);
                 newSquare = new Square(obstacle,prize, squarePosition);
                 path.add(newSquare);
@@ -45,8 +46,8 @@ public class MapJsonParser implements Parser {
             finishLineEffect.setMiddlePosition(middlePosition);
             element = (JSONObject) pathJsonArray.get(LAST_ARRAY_INDEX);
 
-            xPosition = (int) element.get("x");
-            yPosition = (int) element.get("y");
+            xPosition = Math.toIntExact((long)element.get("x"));
+            yPosition = Math.toIntExact((long)element.get("y"));
             Position squarePosition = new Position(xPosition, yPosition, LAST_ARRAY_INDEX);
 
             value = (String) element.get("obstaculo");
@@ -58,6 +59,13 @@ public class MapJsonParser implements Parser {
         }
         return path;
     }
+    public Dimension2D obtainDimension(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        JSONObject measures = this.getMapObject(filePath);
+        int width = Math.toIntExact((long)measures.get("ancho"));
+        int height = Math.toIntExact((long)measures.get("largo"));
+        return new Dimension2D(width, height);
+    }
+
     private JSONArray getPathObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
         //TRIES TO READ MAP FILE
