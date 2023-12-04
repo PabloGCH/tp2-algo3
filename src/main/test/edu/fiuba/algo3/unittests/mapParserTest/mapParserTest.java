@@ -113,18 +113,19 @@ public class mapParserTest {
         );
         //ArrayList<Position> path = map.getPath();
         Gladiator gladiator = new Gladiator("Example");
+        int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
 
         Square square = path.get(0);
         square.affect(gladiator);
-        int energyPoints = gladiator.getEnergy();
-        assertEquals(20, energyPoints);
+        int initialEnergy = gladiator.getEnergy();
+        assertEquals(20, initialEnergy);
 
         square = path.get(5);
         square.affect(gladiator);
         gladiator.move(path.size(),1);
 
-        energyPoints = gladiator.getEnergy();
-        assertTrue(energyPoints < 20);
+        int finalEnergy = gladiator.getEnergy();
+        assertEquals(initialEnergy - energyLostInBacchanaliaWithDiceResultOne, finalEnergy);
     }
 
     @Test

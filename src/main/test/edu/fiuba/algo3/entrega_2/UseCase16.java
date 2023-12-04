@@ -67,12 +67,13 @@ public class UseCase16 {
         /*Square initialSquare = new Initial();
         initialSquare.receivePiece(gladiator);*/
         int initialEnergy = gladiator.getEnergy();
+        int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
 
         effects.get(2).affect(gladiator);
         gladiator.move(1,1);
-        int energyPoints = gladiator.getEnergy();
+        int finalEnergy = gladiator.getEnergy();
 
-        assertTrue(initialEnergy > energyPoints);
+        assertEquals(initialEnergy - energyLostInBacchanaliaWithDiceResultOne, finalEnergy);
     }
     @Test
     public void fourthEffectIsBeast(){

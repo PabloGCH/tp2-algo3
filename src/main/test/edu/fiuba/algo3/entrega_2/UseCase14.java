@@ -79,6 +79,8 @@ public class UseCase14 {
             );
             //ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator("Example");
+            int initialEnergy = 20;
+            int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
 
             //Square square = path.get(0);
             //square.affect(gladiator);
@@ -90,7 +92,7 @@ public class UseCase14 {
             gladiator.move(path.size(),1);
 
             energyPoints = gladiator.getEnergy();
-            assertTrue(energyPoints < 20);
+            assertEquals(initialEnergy - energyLostInBacchanaliaWithDiceResultOne, energyPoints);
     }
 
     @Test

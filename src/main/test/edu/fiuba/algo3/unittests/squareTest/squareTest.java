@@ -82,6 +82,7 @@ public class squareTest {
         int initialEnergy;
         int initialExpectedEnergy = 20;
         int finalEnergy;
+        int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
 
         initialEnergy = aGladiator.getEnergy();
         assertEquals(initialEnergy, initialExpectedEnergy);
@@ -89,7 +90,7 @@ public class squareTest {
         aGladiator.move(5,1);
         finalEnergy = aGladiator.getEnergy();
 
-        assertTrue(finalEnergy < initialEnergy);
+        assertEquals(initialEnergy - energyLostInBacchanaliaWithDiceResultOne, finalEnergy);
     }
 
     @Test
