@@ -21,6 +21,12 @@ public class Game {
         this.dice = dice;
         this.turn = 0;
     }
+    public static Game getInstance() {
+        return instance;
+    }
+    public ArrayList<Square> getPath() {
+        return this.path;
+    }
     public static Game getInstance(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice) {
         if (instance == null) {
             instance = new Game(gladiators, path, dice);

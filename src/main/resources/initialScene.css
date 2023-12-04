@@ -9,7 +9,11 @@
 }
 
 .main-container {
-    -fx-background-color: #171616;
+    -fx-background-color: #413d3d;
+}
+
+.invalid-name {
+    -fx-text-fill: red;
 }
 
 .plus-sign {
