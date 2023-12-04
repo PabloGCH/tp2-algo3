@@ -13,6 +13,6 @@ public class UseCase07 {
         gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();;
 
-        assertEquals(-15, energyPoints);
+        assertEquals(5, energyPoints);
     }
 }

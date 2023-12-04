@@ -28,6 +28,7 @@ public class UseCase03 {
         */
         //Square lastSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
         map.get(0).affect(aGladiator);
+        aGladiator.fightWithBeast();
         int initialPositionInPath = 0;
         int newPositionInPath = aGladiator.move(map.size(), 1);
 
