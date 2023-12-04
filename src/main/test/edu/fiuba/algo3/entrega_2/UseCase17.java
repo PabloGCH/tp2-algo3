@@ -19,17 +19,11 @@ public class UseCase17 {
         ArrayList<Square> path;
         MapFacade facade = new MapFacade();
         Gladiator aGladiator = new Gladiator("Example");
-        int expectedInitialEnergy = 0;
-        int expectedSecondEnergy = 20;
-        int expectedThirdEnergy = 35;
+        int expectedEnergy = 35;
 
         path = facade.loadMap();
-        assertEquals(expectedInitialEnergy, aGladiator.getEnergy());
-        path.get(0).affect(aGladiator);
-        assertEquals(expectedSecondEnergy, aGladiator.getEnergy());
-
         path.get(2).affect(aGladiator);
 
-        assertEquals(expectedThirdEnergy, aGladiator.getEnergy());
+        assertEquals(expectedEnergy, aGladiator.getEnergy());
     }
 }

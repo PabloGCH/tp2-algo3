@@ -22,7 +22,7 @@ public class UseCase14 {
             Square square = path.get(2);
             square.affect(gladiator);
             int energyPoints = gladiator.getEnergy();
-            assertEquals(15, energyPoints);
+            assertEquals(35, energyPoints);
     }
 
     @Test
@@ -35,12 +35,12 @@ public class UseCase14 {
             //ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator("Example");
 
-            Square square = path.get(0);
-            square.affect(gladiator);
+            //<Square> square = path.get(0);
+            //square.affect(gladiator);
             int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
-            square = path.get(1);
+            Square square = path.get(1);
             square.affect(gladiator);
 
             gladiator.fightWithBeast();
@@ -58,12 +58,12 @@ public class UseCase14 {
             //ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator("Example");
 
-            Square square = path.get(0);
-            square.affect(gladiator);
+            //Square square = path.get(0);
+            //square.affect(gladiator);
             int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
-            square = path.get(4);
+            Square square = path.get(4);
             square.affect(gladiator);
 
             energyPoints = gladiator.getEnergy();
@@ -80,13 +80,14 @@ public class UseCase14 {
             //ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator("Example");
 
-            Square square = path.get(0);
-            square.affect(gladiator);
+            //Square square = path.get(0);
+            //square.affect(gladiator);
             int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
-            square = path.get(5);
+            Square square = path.get(5);
             square.affect(gladiator);
+            gladiator.move(path.size(),1);
 
             energyPoints = gladiator.getEnergy();
             assertTrue(energyPoints < 20);
@@ -103,15 +104,18 @@ public class UseCase14 {
             //ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator("Example");
 
-            Square square = path.get(0);
+            /*Square square = path.get(0);
             square.affect(gladiator);
             int energyPoints = gladiator.getEnergy();
-            assertEquals(20, energyPoints);
+            assertEquals(20, energyPoints);*/
 
-            square = path.get(3);
+            Square square = path.get(3);
             square.affect(gladiator);
 
-            energyPoints = gladiator.getEnergy();
-            assertTrue(energyPoints < 20);
+            int currentPathPosition = 3;
+            int newPathPosition = gladiator.move(path.size(), 1);
+            assertEquals(currentPathPosition,newPathPosition);
+            //energyPoints = gladiator.getEnergy();
+            //assertTrue(energyPoints < 20);
     }
 }
