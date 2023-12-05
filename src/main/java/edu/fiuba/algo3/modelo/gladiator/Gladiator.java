@@ -63,7 +63,6 @@ public class Gladiator {
     }
 
     public int move(int sizePath, int diceResult) {
-        //refreshState();
         update();
         int steps = this.state.move(diceResult);
         return this.position.moveFoward(steps, sizePath);
