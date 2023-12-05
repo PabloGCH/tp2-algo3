@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.facade;
 
-import edu.fiuba.algo3.modelo.map.Map;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
@@ -10,6 +9,6 @@ import edu.fiuba.algo3.modelo.squares.Square;
 import java.util.ArrayList;
 
 public interface TerrainFacade {
-    public Map loadMap() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile;
+    public ArrayList loadMap() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile;
 
 }
