@@ -16,17 +16,10 @@ public class UseCase03 {
         ArrayList<Square> map = new ArrayList<>();
         EffectFactory effectFactory = new EffectFactory();
         Position position = new Position(0,0,0);
-        map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position));
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
         position = new Position(1,0,1);
-        map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("Comida"), position));
-        /*
-        Gladiator aGladiator = new Gladiator();
-        SquareFactory squareFactory = new MiddleFactory();
-        EffectFactory nullEffectFactory = new NullEffectFactory();
-        EffectFactory effectFactory = new FoodFactory();
-        Square firstSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),nullEffectFactory.createEffect());
-        */
-        //Square lastSquare = squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect());
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), position));
+
         map.get(0).affect(aGladiator);
         aGladiator.fightWithBeast();
         int initialPositionInPath = 0;

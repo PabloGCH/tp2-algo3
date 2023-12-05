@@ -15,7 +15,7 @@ public class UseCase01 {
         EffectFactory effectFactory = new EffectFactory();
         Gladiator gladiator = new Gladiator("Example");
         Position initialPosition = new Position(0,0,0);
-        Square initialSquare = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), initialPosition);
+        Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), initialPosition);
         initialSquare.affect(gladiator);
         int energyPoints = gladiator.getEnergy();;
         assertEquals(20, energyPoints);
@@ -25,7 +25,7 @@ public class UseCase01 {
         EffectFactory effectFactory = new EffectFactory();
         Gladiator gladiator = new Gladiator("Example");
         Position initialPosition = new Position(0,0,0);
-        Square initialSquare = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), initialPosition);
+        Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), initialPosition);
         initialSquare.affect(gladiator);
         gladiator.fightWithBeast();
         int energyPoints = gladiator.getEnergy();

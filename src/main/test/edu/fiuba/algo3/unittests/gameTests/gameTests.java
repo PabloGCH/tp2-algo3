@@ -24,22 +24,13 @@ public class gameTests {
          ArrayList<Square> map = new ArrayList<>();
          EffectFactory effectFactory = new EffectFactory();
          Position position = new Position(0,0,0);
-         map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position));
-       /*
-       ArrayList<Position> map = new ArrayList<>();
-       SquareFactory squareFactory = new InitialFactory();
-       EffectFactory nullEffectFactory = new NullEffectFactory();
-       EffectFactory effectFactory = new InitialEffectFactory();
-       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
-*/
+         map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
+
          position = new Position(1,0,1);
-         map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("Comida"), position));
-       /*squareFactory = new MiddleFactory();
-       effectFactory = new FoodFactory();
-       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));*/
+         map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), position));
 
          position = new Position(2,0,2);
-         map.add(new Square(effectFactory.createSquare("NullEffect"),new FinishLineEffect(), position));
+         map.add(new Square(effectFactory.createEffect("NullEffect"),new FinishLineEffect(), position));
        /*effectFactory = new FinishLineEffectFactory();
        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect()));*/
 
@@ -57,23 +48,13 @@ public class gameTests {
           ArrayList<Square> map = new ArrayList<>();
           EffectFactory effectFactory = new EffectFactory();
           Position position = new Position(0,0,0);
-          map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position));
-       /*ArrayList<Position> map = new ArrayList<>();
-       SquareFactory squareFactory = new InitialFactory();
-       EffectFactory nullEffectFactory = new NullEffectFactory();
-       EffectFactory effectFactory = new InitialEffectFactory();
-       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));*/
+          map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
 
           position = new Position(0,0,0);
-          map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("Comida"), position));
-       /*squareFactory = new MiddleFactory();
-       effectFactory = new FoodFactory();
-       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));*/
+          map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), position));
 
           position = new Position(2,0,2);
-          map.add(new Square(effectFactory.createSquare("NullEffect"),new FinishLineEffect(), position));
-       /*effectFactory = new FinishLineEffectFactory();
-       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect()));*/
+          map.add(new Square(effectFactory.createEffect("NullEffect"),new FinishLineEffect(), position));
 
        Game game = Game.getInstance(gladiators, map, new Dice());
        int energyPoints = gladiator1.getEnergy();
@@ -123,21 +104,13 @@ public class gameTests {
         ArrayList<Square> map = new ArrayList<>();
         EffectFactory effectFactory = new EffectFactory();
         Position position = new Position(0,0,0);
-        map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position));
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
 
-      /*ArrayList<Position> map = new ArrayList<>();
-       SquareFactory squareFactory = new InitialFactory();
-       EffectFactory nullEffectFactory = new NullEffectFactory();
-       EffectFactory effectFactory = new InitialEffectFactory();
-       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));*/
 
         position = new Position(0,0,0);
-        map.add(new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("Comida"), position));
-       /*squareFactory = new MiddleFactory();
-       effectFactory = new FoodFactory();
-       map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect()));*/
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), position));
         position = new Position(2,0,2);
-        map.add(new Square(effectFactory.createSquare("NullEffect"),new FinishLineEffect(), position));
+        map.add(new Square(effectFactory.createEffect("NullEffect"),new FinishLineEffect(), position));
        /*squareFactory = new FinishLineFactory();
        effectFactory = new FinishLineEffectFactory();
        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));*/

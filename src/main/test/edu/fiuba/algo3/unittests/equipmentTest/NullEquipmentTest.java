@@ -15,10 +15,8 @@ public class NullEquipmentTest {
         Gladiator gladiator = new Gladiator("Example");
         EffectFactory effectFactory = new EffectFactory();
         Position initialPosition = new Position(0,0,0);
-        Square initialSquare = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), initialPosition);
+        Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), initialPosition);
         initialSquare.affect(gladiator);
-        /*Square initialSquare = new Initial();
-        initialSquare.receivePiece(gladiator);*/
 
         gladiator.upgrade();
         gladiator.fightWithBeast();

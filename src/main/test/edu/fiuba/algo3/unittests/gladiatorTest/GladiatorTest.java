@@ -130,7 +130,7 @@ public class GladiatorTest {
         Gladiator gladiator = new Gladiator("Example");
         EffectFactory effectFactory = new EffectFactory();
         Position position = new Position(0,0,0);
-        Square initialSquare = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position);
+        Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position);
         //Square initialSquare = new Initial();
         
         initialSquare.affect(gladiator);
