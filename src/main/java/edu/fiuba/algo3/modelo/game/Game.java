@@ -32,16 +32,23 @@ public class Game {
         boolean gameOver = false;
         this.state = new ActiveGame();
         while (!gameOver && this.turn < MAX_TURNS_IN_A_GAME) {
-            int diceResult = dice.throwDice();
-            gameOver = gladiatorTurn(diceResult);
+            int gladiatorTurn = 0;
+            while (!gameOver && gladiatorTurn < this.gladiators.size()) {
+                int diceResult = dice.throwDice();
+                this.state = this.state.nextTurn(this.gladiators, this.path, diceResult);
+                gameOver = this.state.Finalized();
+                gladiatorTurn++;
+            } 
             this.turn++;
         }
         return this.state.result(this.gladiators);
 
     }
 
+    /* 
     private boolean gladiatorTurn(int diceResult) {
         this.state = this.state.nextTurn(this.gladiators, this.path, diceResult);
         return this.state.Finalized();
     }
+    */
 }
