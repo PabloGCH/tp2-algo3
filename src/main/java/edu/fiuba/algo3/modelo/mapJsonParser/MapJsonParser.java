@@ -4,70 +4,68 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import edu.fiuba.algo3.modelo.factories.*;
+import edu.fiuba.algo3.modelo.squares.*;
+import javafx.geometry.Dimension2D;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import edu.fiuba.algo3.modelo.squares.Bacchanalia;
-import edu.fiuba.algo3.modelo.squares.Beast;
-import edu.fiuba.algo3.modelo.squares.FinishLine;
-import edu.fiuba.algo3.modelo.squares.Food;
-import edu.fiuba.algo3.modelo.squares.Initial;
-import edu.fiuba.algo3.modelo.squares.Injury;
-import edu.fiuba.algo3.modelo.squares.Middle;
-import edu.fiuba.algo3.modelo.squares.NullEffect;
-import edu.fiuba.algo3.modelo.squares.Square;
-import edu.fiuba.algo3.modelo.squares.Upgrade;
 
-
-public class MapJsonParser {
-    public ArrayList<Square> loadMap(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile{
-        ArrayList<Square> map = new ArrayList<>();
+public class MapJsonParser implements Parser {
+    public ArrayList<Square> loadMap(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        ArrayList<Square> path = new ArrayList<>();
         try {
-            JSONArray mapJsonArray = this.getMapObject(filePath);
-            int middleSquareIndex = (int) mapJsonArray.size() / 2;
-            Square middleSquare = new Middle(new NullEffect());
+            int xPosition, yPosition;
+            JSONArray pathJsonArray = this.getPathObject(filePath);
+            JSONObject element;
+            String value;
+            Square newSquare;
+            EffectFactory effectFactory = new EffectFactory();
+            Effect prize, obstacle;
 
-            for(int i = 0; i < mapJsonArray.size(); i++) {
-                JSONObject element = (JSONObject) mapJsonArray.get(i);
-                String value = (String) element.get("square");
-                Square newSquare = this.createSquare(value, middleSquare);
-                middleSquare = middleSquareIndex == i ? newSquare : middleSquare;
-                map.add(newSquare);
+            final int LAST_ARRAY_INDEX = pathJsonArray.size() - 1;
+            for (int i = 0; i < LAST_ARRAY_INDEX; i++) {
+                element = (JSONObject) pathJsonArray.get(i);
+
+                value = (String) element.get("obstaculo");
+                obstacle = effectFactory.createEffect(value);
+
+                value = (String) element.get("premio");
+                prize = effectFactory.createEffect(value);
+
+                xPosition = Math.toIntExact((long)element.get("x"));
+                yPosition = Math.toIntExact((long)element.get("y"));
+                Position squarePosition = new Position(xPosition, yPosition, i);
+                newSquare = new Square(obstacle,prize, squarePosition);
+                path.add(newSquare);
             }
-        } catch(ClassCastException e) {
-            //IT CAN BE ASSUMED THAT IF IT FAILS TO CAST AN OBJECT IS BECAUSE THE JSON IS INVALID
-            //SINCE IS ONLY CASTING AFTER GETTING VALUES FROM THE FILE
+            Position middlePosition = path.get((path.size() + 1) / 2).getPosition();
+            var finishLineEffect = new FinishLineEffect();
+            finishLineEffect.setMiddlePosition(middlePosition);
+            element = (JSONObject) pathJsonArray.get(LAST_ARRAY_INDEX);
+
+            xPosition = Math.toIntExact((long)element.get("x"));
+            yPosition = Math.toIntExact((long)element.get("y"));
+            Position squarePosition = new Position(xPosition, yPosition, LAST_ARRAY_INDEX);
+
+            value = (String) element.get("obstaculo");
+            obstacle = effectFactory.createEffect(value);
+
+            path.add(new Square(obstacle, finishLineEffect, squarePosition));
+        } catch (ClassCastException e) {
             throw new InvalidMapFile();
         }
-        return map;
+        return path;
     }
-
-    private Square createSquare(String type, Square middleSquare) {
-        switch (type) {
-            case "INITIAL":
-                return new Initial();
-            case "BEAST":
-                return new Middle(new Beast());
-            case "WINE":
-                return new Middle(new Bacchanalia());
-            case "EQUIPMENT_UPGRADE":
-                //NEEDS EQUIPMENT EFFECT
-                return new Middle(new Upgrade());
-            case "FOOD":
-                return new Middle(new Food());
-            case "INJURY":
-                return new Middle(new Injury());
-            case "FINAL":
-                return new FinishLine(middleSquare);
-            default:
-                return new Middle(new NullEffect());
-        }
+    public Dimension2D obtainDimension(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        ArrayList<Integer> measures = new MapDataJsonParser().loadData(filePath, fileName);
+        int width = measures.get(0);
+        int height = measures.get(1);
+        return new Dimension2D(width, height);
     }
-
-
-    private JSONArray getMapObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    private JSONArray getPathObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
         //TRIES TO READ MAP FILE
         try {
@@ -75,21 +73,24 @@ public class MapJsonParser {
             JSONParser parser = new JSONParser();
             Object mapObject = parser.parse(reader);
             reader.close();
-            if(mapObject instanceof JSONArray){
+            if (mapObject instanceof JSONArray) {
                 throw new InvalidMapFile();
             }
             JSONObject mapjsonObject = (JSONObject) mapObject;
-            if(!mapjsonObject.containsKey("map")){
+            if(!mapjsonObject.containsKey("camino")){
                 throw new InvalidMapFile();
             }
-            return (JSONArray) mapjsonObject.get("map");
-        } catch(FileNotFoundException e) {
+            JSONObject pathjsonObject = (JSONObject)mapjsonObject.get("camino");
+            if(!pathjsonObject.containsKey("celdas")){
+                throw new InvalidMapFile();
+            }
+            return (JSONArray) pathjsonObject.get("celdas");
+        } catch (FileNotFoundException e) {
             throw new MapFileNotFound();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new MapFileFailedToOpenOrClose();
-        } catch(ParseException e) {
+        } catch (ParseException e) {
             throw new MapFileCouldNotBeParsed();
         }
     }
-
 }

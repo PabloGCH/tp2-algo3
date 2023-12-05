@@ -1,25 +1,29 @@
 package edu.fiuba.algo3.entrega_1;
+
 import static org.junit.jupiter.api.Assertions.*;
-import edu.fiuba.algo3.modelo.squares.Initial;
+
+import edu.fiuba.algo3.modelo.factories.EffectFactory;
+import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+
+import java.util.ArrayList;
 
 public class UseCase05 {
     @Test
     public void testGladiatorGetsHelmet(){
-        //Arrange
-        Gladiator gladiator = new Gladiator(); //Should start with 20 energy
-        Square initialSquare = new Initial();
-        initialSquare.receiveGladiator(gladiator);
+        Gladiator gladiator = new Gladiator("Example");
+        ArrayList<Square> map = new ArrayList<>();
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
+        map.get(0).affect(gladiator);
 
-        //Act
         gladiator.upgrade();
         gladiator.fightWithBeast();
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
-        //Assert
+        int energyPoints = gladiator.getEnergy();;
+
         assertEquals(5, energyPoints);
     }
 }

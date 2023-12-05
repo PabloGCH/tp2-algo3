@@ -1,0 +1,7 @@
+@startuml
+!include ../Map/Map.plantuml
+!include Game.plantuml
+
+Game --> map
+
+@enduml

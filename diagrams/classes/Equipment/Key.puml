@@ -2,5 +2,6 @@
 class Key {
     +upgrade(): Key
     +receiveAttack(Energy: energyPoints): Energy
+    +complete(): boolean
 }
 @enduml

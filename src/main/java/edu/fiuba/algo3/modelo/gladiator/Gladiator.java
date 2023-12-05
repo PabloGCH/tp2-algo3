@@ -1,39 +1,33 @@
 package edu.fiuba.algo3.modelo.gladiator;
-import edu.fiuba.algo3.modelo.equipment.Equipment;
-import edu.fiuba.algo3.modelo.energy.Energy;
-import edu.fiuba.algo3.modelo.rank.Rank;
-import edu.fiuba.algo3.modelo.rank.Rookie;
-import edu.fiuba.algo3.modelo.equipment.NullEquipment;
-import edu.fiuba.algo3.modelo.state.Injured;
-import edu.fiuba.algo3.modelo.state.State;
-import edu.fiuba.algo3.modelo.state.Tired;
-import edu.fiuba.algo3.modelo.Config;
+import edu.fiuba.algo3.modelo.game.GameState;
+import edu.fiuba.algo3.modelo.game.TurnDecider;
+import edu.fiuba.algo3.modelo.gladiator.equipment.Equipment;
+import edu.fiuba.algo3.modelo.gladiator.state.Active;
+import edu.fiuba.algo3.modelo.gladiator.state.*;
+import edu.fiuba.algo3.modelo.gladiator.rank.Rank;
+import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
+import edu.fiuba.algo3.modelo.gladiator.equipment.NullEquipment;
+import edu.fiuba.algo3.modelo.squares.*;
 
 public class Gladiator {
+    private static final int ENERGY_FROM_FOOD = 15, ENERGY_LOST_FOR_EACH_CUP = 4, INITIAL_ENERGY = 20;
     private String name;
     private State state;
-    private Energy energy;
+    private int energy;
     private Equipment equipment;
     private Rank rank;
-    private int position;
+    public Position position;
 
-    public Gladiator() {
-
-        this.energy = new Energy(0);
+    public Gladiator(String name) {
+        this.name = name;
+        this.energy = INITIAL_ENERGY;
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
-        this.state = new Tired();
-        this.position = 0;
+        this.state = new Active();
+        this.position = new Position(0,0,0);
     }
-    
-    public int turn() {;
-        update();
-        return choice();
-    }
-    
     public void drinkWine(int cupsOfWineAmount) {
-        int energyLostForEachCup = Config.ENERGY_LOST_FOR_EACH_CUP_OF_WINE.getValue();
-        this.energy = this.energy.substract(new Energy(energyLostForEachCup * cupsOfWineAmount));
+        this.energy = this.energy - ENERGY_LOST_FOR_EACH_CUP * cupsOfWineAmount;
     }
 
     private void update(){
@@ -42,21 +36,22 @@ public class Gladiator {
     }
 
     public void eat() {
-        this.energy = this.energy.add(new Energy(15));
+        this.energy += ENERGY_FROM_FOOD;
     }
 
     public void fightWithBeast() {
         this.energy = this.equipment.receiveAttack(this.energy);
+        refreshState();
     }
 
-    public Energy getEnergy() {
+    public int getEnergy() {
         return this.energy;
     }
-    public Equipment getEquipment() {
-        return this.equipment;
+    public boolean completeArmament() {
+        return this.equipment.complete();
     }
-    public void setInitialEnergy(Energy energy) {
-        this.energy = this.energy.add(energy);
+    public void setInitialEnergy(int energy) {
+        this.energy = (this.energy + 20);
     }
 
     public void upgrade(){
@@ -64,17 +59,44 @@ public class Gladiator {
     }
 
     public void injured(){
-        this.state = new Injured();
+        this.state = this.state.fracture();
     }
 
-    public void backToTheMiddle(){
-        this.position = position / 2;
+    public int move(int sizePath, int diceResult) {
+        update();
+        int steps = this.state.move(diceResult);
+        return this.position.moveFoward(steps, sizePath);
+    }
+    public String getName(){
+        return this.name;
     }
 
-    public int choice(){
+    public void runEffect(Effect effect){
+        this.state.runEffect(effect, this);
+    }
+    public void positionate(Position position){
+        this.position = position;
+    }
+
+    public void getIntoBacchanalia() {
+        this.state = this.state.getIntoBacchanalia(this);
+    }
+    public void refreshState() {
         this.state = this.state.update(this.energy);
-        this.position += this.state.move();
-        return this.position;
+    }
+    public void tryToWin(Position middlePosition) {
+        this.state = this.equipment.win(this.state);
+        this.state.tryToWin(this, middlePosition);
+    }
+    public GameState won() {
+        return this.state.isWinner();
     }
 
+    public void decideIfPlaysAgain(TurnDecider turnDecider, int gladiatorTurn) {
+        this.state.decideIfPlaysAgain(turnDecider);
+    }
+
+    public int turnEnded(int gladiatorTurn){
+        return this.state.updateTurn(gladiatorTurn);
+    }
 }

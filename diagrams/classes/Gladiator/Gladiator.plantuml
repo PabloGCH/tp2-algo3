@@ -1,11 +1,21 @@
 @startuml
 class Gladiator {
+    -win: boolean 
     -name : String
     +Gladiator(): Gladiator
-    +move() /'Change to "turn" (changes in branch "use-case-3-9-10")'/
+    +move()
     +drinkWine()
     +eat()
     +fightWithBeast()
     +upgrade()
+    +gameOver()
+    +getName(): String
+    +turn(): boolean
+    +injured()
+    +setInitialEnergy(Energy energy)
+    +completeArmament(): boolean
+    +getEnergy(): Energy
+    +update()
+
 }
 @enduml

@@ -78,5 +78,4 @@ public class ObstaclesRewardsParser {
             throw new MapFileCouldNotBeParsed();
         }
     }
-
 }

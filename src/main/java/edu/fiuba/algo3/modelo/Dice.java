@@ -2,14 +2,13 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.Random;
 
-public class Dice {
+public class Dice{
     Random throwResult = new Random();
     int diceFaces;
     public Dice() {
         this.diceFaces = 6;
     }
     public int throwDice() {
-        int result = throwResult.nextInt(diceFaces) + 1;
-        return result;
-    };
+        return (throwResult.nextInt(diceFaces) + 1);
+    }
 }

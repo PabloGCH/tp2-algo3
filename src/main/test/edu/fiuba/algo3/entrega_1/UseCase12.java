@@ -1,41 +1,46 @@
 package edu.fiuba.algo3.entrega_1;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import edu.fiuba.algo3.modelo.Dice;
+import edu.fiuba.algo3.modelo.factories.*;
+import edu.fiuba.algo3.modelo.game.Game;
+import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
-
-import edu.fiuba.algo3.modelo.Game;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class UseCase12 {
     @Test
-    public void tetsGameEnds(){
-        // Arrange
+    public void tetsGameEnds() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         boolean finish = false;
         ArrayList<Gladiator> gladiators = new ArrayList<>();
-        gladiators.add(new Gladiator());
-
-        // As this map does not have an equipment upgrade square, it is imposible to win
+        gladiators.add(new Gladiator("Example"));
         ArrayList<Square> map = new ArrayList<>();
-        map.add(new Initial());
-        map.add(new Middle(new Food()));
-        map.add(new Middle(new NullEffect()));
-        map.add(new Middle(new Bacchanalia()));
-        int middleIndex = (int) (map.stream().count() + 1) / 2;
-        map.add(new FinishLine(map.get(middleIndex)));
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
 
-        Game game = new Game(gladiators, map);
+        position = new Position(1,0,1);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), position));
 
-        // Act
+        position = new Position(2,0,2);
 
+        position = new Position(0,0,0);
+        map.add(new Square(effectFactory.createEffect("Comida"),effectFactory.createEffect("NullEffect"), position));
+
+        position = new Position(0,0,0);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),new FinishLineEffect(), position));
+
+        Game game = Game.getInstance(gladiators, map, new Dice());
         finish = game.startGame();
-
-        // Assert
 
         assertTrue(finish);
     }

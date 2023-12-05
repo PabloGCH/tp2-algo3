@@ -4,16 +4,24 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 import java.util.ArrayList;
 
-public abstract class Square {
-    private ArrayList<Gladiator> gladiators = new ArrayList();
-    protected Effect effect;
-    public Square(Effect anEffect) {
-        this.effect = anEffect;
+public class Square{
+    private Position position;
+    protected Effect prize;
+    protected Effect obstacle;
+
+    public Square(Effect obstacle, Effect prize, Position aPosition) {
+        this.prize = prize;
+        this.obstacle = obstacle;
+        this.position = aPosition;
     }
-    public void receiveGladiator(Gladiator aGladiator){
-        this.effect.affect(aGladiator);
+
+    public void affect(Gladiator gladiator){
+        gladiator.positionate(position);
+        gladiator.runEffect(obstacle);
+        gladiator.runEffect(prize);
     }
-    public int display() {
-        return (int) gladiators.stream().count();
+
+    public Position getPosition() {
+        return this.position;
     }
 }

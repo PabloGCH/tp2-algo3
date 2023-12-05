@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.factories.EffectFactory;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.squares.Initial;
+import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
@@ -10,20 +11,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UseCase10 {
     @Test
     public void test10GladiatorWithKeyReceiveNoDamage(){
-        //Arrange
-        Gladiator gladiator = new Gladiator(); //Should start with 20 energy
-        Square initialSquare = new Initial();
-        initialSquare.receiveGladiator(gladiator);
+        Gladiator gladiator = new Gladiator("Example");
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position);
+        initialSquare.affect(gladiator);
 
-        //Act
         gladiator.upgrade();
         gladiator.upgrade();
         gladiator.upgrade();
         gladiator.upgrade();
         gladiator.fightWithBeast();
-        var energy = gladiator.getEnergy();
-        int energyPoints = energy.getPoints();
-        //Assert
+        int energyPoints = gladiator.getEnergy();
+
         assertEquals(20, energyPoints);
     }
 }

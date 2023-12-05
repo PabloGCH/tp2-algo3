@@ -1,127 +1,104 @@
 package edu.fiuba.algo3.entrega_2;
+
+import edu.fiuba.algo3.modelo.mapJsonParser.*;
+import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
-
-import org.json.JSONArray;
-
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapJsonParser;
-import edu.fiuba.algo3.modelo.squares.Square;
-
 
 public class UseCase14 {
     @Test
-    public void validateFoodSquareCreationFromMapJson() {
-        try {
+    public void validateFoodSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
             var mapParser = new MapJsonParser();
-            ArrayList<Square> map = mapParser.loadMap(
-                "src/main/resources/files/mapTest.json",
+            ArrayList<Square> path = mapParser.loadMap(
+                "src/main/resources/files/map.json",
                 "mapTest.json"
             );
-            Gladiator gladiator = new Gladiator();
-            Square square = map.get(8); // FOOD SQUARE
-            square.receiveGladiator(gladiator);
-            int energyPoints = gladiator.getEnergy().getPoints();
-            assertEquals(15, energyPoints);
-        } catch(Exception e) {
-            
-        }
-    }
-    @Test
-    public void validateEquipmentUpgradeSquareCreationFromMapJson() {
-        try {
-            var mapParser = new MapJsonParser();
-            ArrayList<Square> map = mapParser.loadMap(
-                "src/main/resources/files/mapTest.json",
-                "mapTest.json"
-            );
-            Gladiator gladiator = new Gladiator();
+            Gladiator gladiator = new Gladiator("Example");
 
-            Square square = map.get(0); // INITIAL SQUARE
-            square.receiveGladiator(gladiator); //GETS 20 ENERGY
-            int energyPoints = gladiator.getEnergy().getPoints();
+            Square square = path.get(2);
+            square.affect(gladiator);
+            int energyPoints = gladiator.getEnergy();
+            assertEquals(35, energyPoints);
+    }
+
+    @Test
+    public void validateEquipmentUpgradeSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+            var mapParser = new MapJsonParser();
+            ArrayList<Square> path = mapParser.loadMap(
+                "src/main/resources/files/map.json",
+                "mapTest.json"
+            );
+            Gladiator gladiator = new Gladiator("Example");
+
+            int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
+            Square square = path.get(1);
+            square.affect(gladiator);
 
-            square = map.get(4); // EQUIPMENT SQUARE
-            square.receiveGladiator(gladiator); 
-
-
-            gladiator.fightWithBeast(); //LOSES 15 ENERGY
-            energyPoints = gladiator.getEnergy().getPoints();
+            gladiator.fightWithBeast();
+            energyPoints = gladiator.getEnergy();
             assertEquals(5, energyPoints);
-
-        } catch(Exception e) {
-
-        }
     }
 
-
     @Test
-    public void validateBeastSquareCreationFromMapJson() {
-        try {
+    public void validateBeastSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
             var mapParser = new MapJsonParser();
-            ArrayList<Square> map = mapParser.loadMap(
-                "src/main/resources/files/mapTest.json",
+            ArrayList<Square> path = mapParser.loadMap(
+                "src/main/resources/files/map.json",
                 "mapTest.json"
             );
-            Gladiator gladiator = new Gladiator();
+            Gladiator gladiator = new Gladiator("Example");
 
-            Square square = map.get(0); // INITIAL SQUARE
-            square.receiveGladiator(gladiator); //GETS 20 ENERGY
-            int energyPoints = gladiator.getEnergy().getPoints();
+            int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
+            Square square = path.get(4);
+            square.affect(gladiator);
 
-            square = map.get(1); // EQUIPMENT SQUARE
-            square.receiveGladiator(gladiator); //LOSES 20 ENERGY
-
-
-            energyPoints = gladiator.getEnergy().getPoints();
+            energyPoints = gladiator.getEnergy();
             assertEquals(0, energyPoints);
-
-        } catch(Exception e) {}
     }
 
     @Test
-    public void validateWineSquareCreationFromMapJson() {
-       try {
+    public void validateWineSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
             var mapParser = new MapJsonParser();
-            ArrayList<Square> map = mapParser.loadMap(
-                "src/main/resources/files/mapTest.json",
+            ArrayList<Square> path = mapParser.loadMap(
+                "src/main/resources/files/map.json",
                 "mapTest.json"
             );
-            Gladiator gladiator = new Gladiator();
+            Gladiator gladiator = new Gladiator("Example");
+            int initialEnergy = 20;
+            int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
 
-            Square square = map.get(0); // INITIAL SQUARE
-            square.receiveGladiator(gladiator); //GETS 20 ENERGY
-            int energyPoints = gladiator.getEnergy().getPoints();
+            int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
+            Square square = path.get(5);
+            square.affect(gladiator);
+            gladiator.move(path.size(),1);
 
-            square = map.get(3); // WINE SQUARE
-            square.receiveGladiator(gladiator); //LOSES x ENERGY (ALWAYS MORE THAN 0)
-
-
-            energyPoints = gladiator.getEnergy().getPoints();
-            assertTrue(energyPoints < 20);
-
-        } catch(Exception e) {}
+            energyPoints = gladiator.getEnergy();
+            assertEquals(initialEnergy - energyLostInBacchanaliaWithDiceResultOne, energyPoints);
     }
-
 
     @Test
-    public void validateInjurySquareCreationFromMapJson() {
-        try {
+    public void validateInjurySquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+
             var mapParser = new MapJsonParser();
-            var map = mapParser.loadMap(
-                "src/main/resources/files/mapTest.json",
+            ArrayList<Square> path = mapParser.loadMap(
+                "src/main/resources/files/map.json",
                 "mapTest.json"
             );
-        } catch(Exception e) {
+            Gladiator gladiator = new Gladiator("Example");
 
-        }
+            Square square = path.get(3);
+            square.affect(gladiator);
+
+            int currentPathPosition = 3;
+            int newPathPosition = gladiator.move(path.size(), 1);
+            assertEquals(currentPathPosition,newPathPosition);
     }
-
 }

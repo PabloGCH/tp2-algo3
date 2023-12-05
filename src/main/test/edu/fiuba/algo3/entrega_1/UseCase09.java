@@ -1,32 +1,50 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Game;
+import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
+import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 
 public class UseCase09 {
     @Test
-    public void test09AGladiatorReturnsToMiddleSquare() {
+    public void test09AGladiatorReturnsToMiddleSquare() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         ArrayList<Gladiator> gladiators = new ArrayList<>();
-        Gladiator aGladiator = new Gladiator();
+        Gladiator aGladiator = new Gladiator("Example");
+
         ArrayList<Square> map = new ArrayList<>();
-        map.add(new Initial());
-        map.add(new Middle(new NullEffect()));
-        map.add(new Middle(new NullEffect()));
-        var middleOfGameBoard = new Middle(new Food());
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
+
+        position = new Position(1,0,1);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
+        position = new Position(2,0,2);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
+
+        Position middleposition = new Position(3,0,3);
+        Square middleOfGameBoard = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), position);
         map.add(middleOfGameBoard);
-        map.add(new Middle(new NullEffect()));
-        map.add(new Middle(new NullEffect()));
-        int middleIndex = (int) (map.stream().count() + 1) / 2;
-        var lastSquare = new FinishLine(map.get(middleIndex));
+
+        position = new Position(4,0,4);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
+        position = new Position(5,0,5);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
+
+        position = new Position(6,0,6);
+        FinishLineEffect finishLineEffect = new FinishLineEffect();
+        finishLineEffect.setMiddlePosition(middleposition);
+        Square lastSquare = new Square(effectFactory.createEffect("NullEffect"), finishLineEffect, position);
         map.add(lastSquare);
+
         gladiators.add(aGladiator);
-        Game aGame = new Game(gladiators, map);
-        lastSquare.receiveGladiator(aGladiator);
-        Assertions.assertTrue(aGladiator.getEnergy().getPoints() == 35);
+        lastSquare.affect(aGladiator);
+
+        Assertions.assertEquals(4, aGladiator.move(map.size(), 1));
     }
 }

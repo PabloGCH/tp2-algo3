@@ -1,39 +1,29 @@
 package edu.fiuba.algo3.unittests.stateTest;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import edu.fiuba.algo3.modelo.energy.Energy;
-import edu.fiuba.algo3.modelo.state.Active;
-import edu.fiuba.algo3.modelo.state.Injured;
+import edu.fiuba.algo3.modelo.gladiator.state.Injured;
 
 public class injuredTest {
-     @Test void MoveReturns0() {
-        //Arrange
-        
+     @Test
+     void MoveReturns0() {
         Injured injured = new Injured();
-        //Act
 
-        int number = injured.move();
+        int number = injured.move(1);
 
-        //Assert
-        assertTrue(number == 0);
+        assertEquals(0,number);
     }
 
-@Test void ChangeToActiveShouldReturnMoveBetween1And6() {
-        //Arrange
-        Energy energy = new Energy(0);
+    @Test
+    void ChangeToActiveShouldReturnMoveDiceResult() {
+        int energy = 0;
         Injured injured = new Injured();
 
-        //Act
         injured.update(energy);
         var state = injured.update(energy);
-        int number = state.move();
+        int number = state.move(1);
 
-        //Assert
-        assertTrue(number >= 1);
-        assertTrue(number <= 6);
-
+        assertEquals(1,number);
     }
 }

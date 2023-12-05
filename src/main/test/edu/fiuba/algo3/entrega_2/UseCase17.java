@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
+import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,21 +16,14 @@ import java.util.ArrayList;
 public class UseCase17 {
     @Test
     public void test17AMapIsBuiltCorrectlyBasedOnJSONFile() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        ArrayList<Square> map;
+        ArrayList<Square> path;
         MapFacade facade = new MapFacade();
-        Gladiator aGladiator = new Gladiator();
-        int expectedInitialEnergy = 0;
-        int expectedSecondEnergy = 20;
-        int expectedThirdEnergy = 0;
+        Gladiator aGladiator = new Gladiator("Example");
+        int expectedEnergy = 35;
 
-        map = facade.loadMap();
-        assertEquals(expectedInitialEnergy, aGladiator.getEnergy().getPoints());
-        map.get(0).receiveGladiator(aGladiator);
-        assertEquals(expectedSecondEnergy, aGladiator.getEnergy().getPoints());
+        path = facade.loadMap();
+        path.get(2).affect(aGladiator);
 
-        //map.get(0).unsetGladiator(aGladiator);
-        map.get(1).receiveGladiator(aGladiator);
-
-        assertEquals(expectedThirdEnergy, aGladiator.getEnergy().getPoints());
+        assertEquals(expectedEnergy, aGladiator.getEnergy());
     }
 }

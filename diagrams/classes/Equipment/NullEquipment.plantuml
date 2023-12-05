@@ -2,5 +2,6 @@
 class NullEquipment {
     +upgrade(): Helmet
     +receiveAttack(Energy: energyPoints): Energy
+    +complete(): boolean
 }
 @enduml

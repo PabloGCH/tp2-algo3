@@ -2,21 +2,14 @@ package edu.fiuba.algo3.modelo.squares;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
-import java.io.IOError;
-import java.io.IOException;
-
 public class FinishLineEffect implements Effect{
-
+    private Position middlePosition = new Position(0, 0, 0);
     @Override
     public void affect(Gladiator aGladiator) {
-        try {
-            testException();
-        } catch (IOException e) {
-            aGladiator.backToTheMiddle();
-        }
+        aGladiator.tryToWin(middlePosition);
     }
 
-    private void testException() throws IOException {
-        throw new IOException();
+    public void setMiddlePosition(Position aPosition) {
+        this.middlePosition = aPosition;
     }
 }
