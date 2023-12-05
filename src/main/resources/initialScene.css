@@ -8,6 +8,14 @@
     -fx-text-fill: white;
 }
 
+.main-container {
+    -fx-background-color: #413d3d;
+}
+
+.invalid-name {
+    -fx-text-fill: red;
+}
+
 .plus-sign {
     -fx-font-weight: bold;
     -fx-background-color: rgba(1, 1, 1, 0);

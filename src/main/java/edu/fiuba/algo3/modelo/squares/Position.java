@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.squares;
 
 
+import javafx.geometry.Dimension2D;
+
 public class Position {
 
     int x,y;
@@ -23,5 +25,8 @@ public class Position {
         else {
             return (this.pathLocation + stepsForward);
         }
+    }
+    public Dimension2D coordinates() {
+        return new Dimension2D(this.x, this.y);
     }
 }

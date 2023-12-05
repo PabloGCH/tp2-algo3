@@ -7,12 +7,27 @@ import java.util.ArrayList;
 
 public class ActiveGame implements GameState {
     private final int NEXT_GLADIATOR_TO_PLAY = 0;
-    public GameState nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult) {
+    public GameState nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult, int gladiatorTurn) {
         Gladiator currentGladiator = gladiators.get(NEXT_GLADIATOR_TO_PLAY);
         int gladiatorPosition = currentGladiator.move(path.size(), diceResult);
         Square currentSquare = path.get(gladiatorPosition);
         currentSquare.affect(currentGladiator);
-        currentGladiator.decideIfPlaysAgain(new TurnDecider(gladiators));
+        currentGladiator.decideIfPlaysAgain(new TurnDecider(gladiators), gladiatorTurn);
         return currentGladiator.won();
     };
+
+    public boolean Finalized(){
+        return false;
+    }
+
+    public boolean result(ArrayList<Gladiator> gladiators){
+        System.out.println("Todos Perdieron");
+        System.out.println("Mejor suerte la proxima");
+        return false;
+    }
+
+    public int turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators){
+        Gladiator currentGladiator = gladiators.get(NEXT_GLADIATOR_TO_PLAY);
+        return currentGladiator.turnEnded(gladiatorTurn);
+    }
 }

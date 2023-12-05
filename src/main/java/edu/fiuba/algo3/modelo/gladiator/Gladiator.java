@@ -3,11 +3,12 @@ import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Equipment;
 import edu.fiuba.algo3.modelo.gladiator.state.Active;
-import edu.fiuba.algo3.modelo.gladiator.state.State;
+import edu.fiuba.algo3.modelo.gladiator.state.*;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rank;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
 import edu.fiuba.algo3.modelo.gladiator.equipment.NullEquipment;
 import edu.fiuba.algo3.modelo.squares.*;
+import javafx.geometry.Pos;
 
 public class Gladiator {
     private static final int ENERGY_FROM_FOOD = 15, ENERGY_LOST_FOR_EACH_CUP = 4, INITIAL_ENERGY = 20;
@@ -90,7 +91,11 @@ public class Gladiator {
         return this.state.isWinner();
     }
 
-    public void decideIfPlaysAgain(TurnDecider turnDecider) {
+    public void decideIfPlaysAgain(TurnDecider turnDecider, int gladiatorTurn) {
         this.state.decideIfPlaysAgain(turnDecider);
+    }
+
+    public int turnEnded(int gladiatorTurn){
+        return this.state.updateTurn(gladiatorTurn);
     }
 }

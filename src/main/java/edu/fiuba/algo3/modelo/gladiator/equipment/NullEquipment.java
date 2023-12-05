@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.gladiator.equipment;
 
 
-import edu.fiuba.algo3.modelo.gladiator.state.State;
+import edu.fiuba.algo3.modelo.gladiator.state.*;
 
 public class NullEquipment implements Equipment {
     private static final int DAMAGE_NULL_EQUIPMENT = 20;

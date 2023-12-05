@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.factories;
 import edu.fiuba.algo3.modelo.squares.*;
 
 public class EffectFactory {
-    public Effect createSquare(String type){
+    public Effect createEffect(String type){
         switch (type) {
             case "Fiera":
                 return new Beast();

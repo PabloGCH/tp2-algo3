@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.squares.*;
+import javafx.geometry.Dimension2D;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -29,13 +30,13 @@ public class MapJsonParser implements Parser {
                 element = (JSONObject) pathJsonArray.get(i);
 
                 value = (String) element.get("obstaculo");
-                obstacle = effectFactory.createSquare(value);
+                obstacle = effectFactory.createEffect(value);
 
                 value = (String) element.get("premio");
-                prize = effectFactory.createSquare(value);
+                prize = effectFactory.createEffect(value);
 
-                xPosition = (int) element.get("x");
-                yPosition = (int) element.get("y");
+                xPosition = Math.toIntExact((long)element.get("x"));
+                yPosition = Math.toIntExact((long)element.get("y"));
                 Position squarePosition = new Position(xPosition, yPosition, i);
                 newSquare = new Square(obstacle,prize, squarePosition);
                 path.add(newSquare);
@@ -45,18 +46,24 @@ public class MapJsonParser implements Parser {
             finishLineEffect.setMiddlePosition(middlePosition);
             element = (JSONObject) pathJsonArray.get(LAST_ARRAY_INDEX);
 
-            xPosition = (int) element.get("x");
-            yPosition = (int) element.get("y");
+            xPosition = Math.toIntExact((long)element.get("x"));
+            yPosition = Math.toIntExact((long)element.get("y"));
             Position squarePosition = new Position(xPosition, yPosition, LAST_ARRAY_INDEX);
 
             value = (String) element.get("obstaculo");
-            obstacle = effectFactory.createSquare(value);
+            obstacle = effectFactory.createEffect(value);
 
             path.add(new Square(obstacle, finishLineEffect, squarePosition));
         } catch (ClassCastException e) {
             throw new InvalidMapFile();
         }
         return path;
+    }
+    public Dimension2D obtainDimension(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        ArrayList<Integer> measures = new MapDataJsonParser().loadData(filePath, fileName);
+        int width = measures.get(0);
+        int height = measures.get(1);
+        return new Dimension2D(width, height);
     }
     private JSONArray getPathObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;

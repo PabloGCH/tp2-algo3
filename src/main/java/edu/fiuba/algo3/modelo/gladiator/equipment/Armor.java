@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.gladiator.equipment;
 
 
-import edu.fiuba.algo3.modelo.gladiator.state.State;
+import edu.fiuba.algo3.modelo.gladiator.state.*;
 
 public class Armor implements Equipment{
     private static final int DAMAGE_ARMOR = 10;
