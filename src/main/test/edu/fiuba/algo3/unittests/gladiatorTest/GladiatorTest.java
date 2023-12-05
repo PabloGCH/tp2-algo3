@@ -121,7 +121,7 @@ public class GladiatorTest {
         int energyPoints = gladiator.getEnergy();
         assertEquals(40, energyPoints);
         gladiator.move(20,1);
-        energyPoints = gladiator.getEnergy();;
+        energyPoints = gladiator.getEnergy();
 
         assertEquals(50, energyPoints);
     }
@@ -131,29 +131,9 @@ public class GladiatorTest {
         EffectFactory effectFactory = new EffectFactory();
         Position position = new Position(0,0,0);
         Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position);
-        //Square initialSquare = new Initial();
         
         initialSquare.affect(gladiator);
         int newPosition = gladiator.move(10,1);
         assertEquals(1, newPosition);
-        // int position = gladiator.turn();
-        // Assert
-
-//        assertTrue(position >= 1);
-//        assertTrue(position <=6);
     }
-/*
-    @Test void GladiatorWonTheGame() {
-        int winner;
-        Gladiator gladiator = new Gladiator();
-
-        gladiator.upgrade();
-        gladiator.upgrade();
-        gladiator.upgrade();
-        gladiator.upgrade();
-        gladiator.result();
-        winner = gladiator.candidateToWin();
-
-        assertTrue(winner == 2);//TODO bucle
-    }*/
 }

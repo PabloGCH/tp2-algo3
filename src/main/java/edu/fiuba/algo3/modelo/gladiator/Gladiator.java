@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.gladiator.rank.Rank;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
 import edu.fiuba.algo3.modelo.gladiator.equipment.NullEquipment;
 import edu.fiuba.algo3.modelo.squares.*;
-import javafx.geometry.Pos;
 
 public class Gladiator {
     private static final int ENERGY_FROM_FOOD = 15, ENERGY_LOST_FOR_EACH_CUP = 4, INITIAL_ENERGY = 20;
@@ -25,7 +24,7 @@ public class Gladiator {
         this.equipment = new NullEquipment();
         this.rank = new Rookie();
         this.state = new Active();
-        this.position = new Position(0,0,0);//TODO change this
+        this.position = new Position(0,0,0);
     }
     public void drinkWine(int cupsOfWineAmount) {
         this.energy = this.energy - ENERGY_LOST_FOR_EACH_CUP * cupsOfWineAmount;

@@ -15,7 +15,7 @@ public class FinishedByWinning implements GameState {
     }
 
     public boolean result(ArrayList<Gladiator> gladiators){
-        System.out.println("Felicidades" + gladiators.get(0) + "ganaste");
+        System.out.println("Felicidades" + gladiators.get(0).getName() + "ganaste");
         return true;
     }
 
