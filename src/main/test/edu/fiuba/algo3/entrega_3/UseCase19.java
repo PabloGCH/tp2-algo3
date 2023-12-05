@@ -25,18 +25,12 @@ public class UseCase19 {
         gladiator1.upgrade();
         gladiator1.upgrade();
         gladiator1.upgrade();
-        //gladiator1.result();
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         gladiators.add(gladiator1);
         ArrayList<Square> map = new ArrayList<>();
         EffectFactory effectFactory = new EffectFactory();
         Position position = new Position(0,0,0);
         map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
-        //ArrayList<Position> path = new ArrayList<>();
-        //SquareFactory squareFactory = new InitialFactory();
-        //EffectFactory nullEffectFactory = new NullEffectFactory();
-        //EffectFactory effectFactory = new InitialEffectFactory();
-        //path.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
 
         position = new Position(1,0,1);
         map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Equipamiento"), position));
@@ -44,16 +38,10 @@ public class UseCase19 {
         map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Equipamiento"), position));
         position = new Position(3,0,3);
         map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Equipamiento"), position));
-        //squareFactory = new MiddleFactory();
-        //effectFactory = new UpgradeFactory();
-        //path.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
-        //path.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
-        //path.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
+
         position = new Position(1,0,1);
         map.add(new Square(effectFactory.createEffect("NullEquipment"),new FinishLineEffect(), position));
-        //squareFactory = new FinishLineFactory();
-        //effectFactory = new FinishLineEffectFactory();
-        //path.add(squareFactory.createSquare(nullEffectFactory.createEffect(),effectFactory.createEffect()));
+
         Game game = Game.getInstance(gladiators, map, new Dice());
 
         finish = game.startGame();
