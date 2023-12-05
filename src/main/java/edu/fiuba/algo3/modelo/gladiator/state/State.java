@@ -29,9 +29,14 @@ public abstract class State {
     }
 
     public void decideIfPlaysAgain(TurnDecider turnDecider) {
+        turnDecider.finishTurn();
     }
 
     public void tryToWin(Gladiator aGladiator, Position middlePosition) {
         aGladiator.positionate(middlePosition);
+    }
+
+    public int updateTurn(int turn){
+        return turn++;
     }
 }
