@@ -29,15 +29,13 @@ public class MapJsonParser implements Parser {
                 element = (JSONObject) pathJsonArray.get(i);
 
                 value = (String) element.get("obstaculo");
-                obstacle = effectFactory.createSquare(value);
+                obstacle = effectFactory.createEffect(value);
 
                 value = (String) element.get("premio");
-                prize = effectFactory.createSquare(value);
+                prize = effectFactory.createEffect(value);
 
                 xPosition = Math.toIntExact((long)element.get("x"));
                 yPosition = Math.toIntExact((long)element.get("y"));
-                //xPosition = (int) element.get("x");
-                //yPosition = (int) element.get("y");
                 Position squarePosition = new Position(xPosition, yPosition, i);
                 newSquare = new Square(obstacle,prize, squarePosition);
                 path.add(newSquare);
@@ -49,12 +47,10 @@ public class MapJsonParser implements Parser {
 
             xPosition = Math.toIntExact((long)element.get("x"));
             yPosition = Math.toIntExact((long)element.get("y"));
-            //xPosition = (int) element.get("x");
-            //yPosition = (int) element.get("y");
             Position squarePosition = new Position(xPosition, yPosition, LAST_ARRAY_INDEX);
 
             value = (String) element.get("obstaculo");
-            obstacle = effectFactory.createSquare(value);
+            obstacle = effectFactory.createEffect(value);
 
             path.add(new Square(obstacle, finishLineEffect, squarePosition));
         } catch (ClassCastException e) {

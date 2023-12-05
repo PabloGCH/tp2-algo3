@@ -13,10 +13,8 @@ public class ArmorTest {
         Gladiator gladiator = new Gladiator("Example");
         EffectFactory effectFactory = new EffectFactory();
         Position position = new Position(0,0,0);
-        Square initialSquare = new Square(effectFactory.createSquare("NullEffect"),effectFactory.createSquare("NullEffect"), position);
+        Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position);
         initialSquare.affect(gladiator);
-        /*Square initialSquare = new Initial();
-        initialSquare.receivePiece(gladiator);*/
 
         gladiator.upgrade();
         gladiator.upgrade();

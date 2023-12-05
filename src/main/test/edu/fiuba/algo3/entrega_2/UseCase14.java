@@ -16,7 +16,6 @@ public class UseCase14 {
                 "mapTest.json"
             );
             Gladiator gladiator = new Gladiator("Example");
-            //ArrayList<Position> path = map.getPath();
 
             Square square = path.get(2);
             square.affect(gladiator);
@@ -31,11 +30,8 @@ public class UseCase14 {
                 "src/main/resources/files/map.json",
                 "mapTest.json"
             );
-            //ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator("Example");
 
-            //<Square> square = path.get(0);
-            //square.affect(gladiator);
             int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
@@ -54,11 +50,8 @@ public class UseCase14 {
                 "src/main/resources/files/map.json",
                 "mapTest.json"
             );
-            //ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator("Example");
 
-            //Square square = path.get(0);
-            //square.affect(gladiator);
             int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
@@ -76,13 +69,10 @@ public class UseCase14 {
                 "src/main/resources/files/map.json",
                 "mapTest.json"
             );
-            //ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator("Example");
             int initialEnergy = 20;
             int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
 
-            //Square square = path.get(0);
-            //square.affect(gladiator);
             int energyPoints = gladiator.getEnergy();
             assertEquals(20, energyPoints);
 
@@ -102,13 +92,7 @@ public class UseCase14 {
                 "src/main/resources/files/map.json",
                 "mapTest.json"
             );
-            //ArrayList<Position> path = map.getPath();
             Gladiator gladiator = new Gladiator("Example");
-
-            /*Square square = path.get(0);
-            square.affect(gladiator);
-            int energyPoints = gladiator.getEnergy();
-            assertEquals(20, energyPoints);*/
 
             Square square = path.get(3);
             square.affect(gladiator);
@@ -116,7 +100,5 @@ public class UseCase14 {
             int currentPathPosition = 3;
             int newPathPosition = gladiator.move(path.size(), 1);
             assertEquals(currentPathPosition,newPathPosition);
-            //energyPoints = gladiator.getEnergy();
-            //assertTrue(energyPoints < 20);
     }
 }

@@ -51,7 +51,6 @@ public class mapParserTest {
                 "mapTest.json"
         );
         Gladiator gladiator = new Gladiator("Example");
-        //ArrayList<Position> path = map.getPath();
 
         Square square = path.get(2);
         square.affect(gladiator);
@@ -66,7 +65,6 @@ public class mapParserTest {
                 "src/main/resources/files/map.json",
                 "mapTest.json"
         );
-       // ArrayList<Position> path = map.getPath();
         Gladiator gladiator = new Gladiator("Example");
 
         Square square = path.get(0);
@@ -89,7 +87,6 @@ public class mapParserTest {
                 "src/main/resources/files/map.json",
                 "mapTest.json"
         );
-        //ArrayList<Position> path = map.getPath();
         Gladiator gladiator = new Gladiator("Example");
 
         Square square = path.get(0);
@@ -111,7 +108,6 @@ public class mapParserTest {
                 "src/main/resources/files/map.json",
                 "mapTest.json"
         );
-        //ArrayList<Position> path = map.getPath();
         Gladiator gladiator = new Gladiator("Example");
         int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
 
@@ -136,13 +132,7 @@ public class mapParserTest {
                 "src/main/resources/files/map.json",
                 "mapTest.json"
         );
-        //ArrayList<Position> path = map.getPath();
         Gladiator gladiator = new Gladiator("Example");
-
-        /*Square square = path.get(0);
-        square.affect(gladiator);
-        int energyPoints = gladiator.getEnergy();
-        assertEquals(20, energyPoints);*/
 
         Square square = path.get(3);
         square.affect(gladiator);
@@ -150,9 +140,6 @@ public class mapParserTest {
         int currentPathPosition = 3;
         int newPathPosition = gladiator.move(path.size(), 1);
         assertEquals(currentPathPosition,newPathPosition);
-
-        //energyPoints = gladiator.getEnergy();
-        //assertTrue(energyPoints < 20);
     }
 
 }
