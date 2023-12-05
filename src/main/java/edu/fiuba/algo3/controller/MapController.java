@@ -1,10 +1,7 @@
-/*package edu.fiuba.algo3.controller;
-import edu.fiuba.algo3.modelo.Resources;
+package edu.fiuba.algo3.controller;
 import edu.fiuba.algo3.modelo.squares.Position;
-import edu.fiuba.algo3.controller.SquareController;
 import edu.fiuba.algo3.modelo.squares.Square;
 import javafx.scene.layout.*;
-import javafx.scene.Scene;
 
 import java.util.ArrayList;
 
@@ -36,7 +33,7 @@ public class MapController {
     }
 
     private void setUpStyles(Pane pane) {
-        pane.getStylesheets().add(getClass().getResource(Resources.MAP_STYLE_PATH.getValue()).toExternalForm());
+        pane.getStylesheets().add(getClass().getResource("/styles/map.css").toExternalForm());
         pane.setPrefSize(600, 600);
         pane.getStyleClass().add("map-grid");
     }
@@ -57,4 +54,4 @@ public class MapController {
             mapGridPane.getColumnConstraints().add(columnConstraints);
         }
     }
-}*/
+}
