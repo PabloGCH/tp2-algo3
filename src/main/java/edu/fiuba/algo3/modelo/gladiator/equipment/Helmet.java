@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.gladiator.equipment;
 
-import edu.fiuba.algo3.modelo.gladiator.state.State;
+import edu.fiuba.algo3.modelo.gladiator.state.*;
 
 public class Helmet implements Equipment{
     private static final int DAMAGE_HELMET = 15;

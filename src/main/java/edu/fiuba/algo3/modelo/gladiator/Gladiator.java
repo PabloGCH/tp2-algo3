@@ -3,7 +3,7 @@ import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Equipment;
 import edu.fiuba.algo3.modelo.gladiator.state.Active;
-import edu.fiuba.algo3.modelo.gladiator.state.State;
+import edu.fiuba.algo3.modelo.gladiator.state.*;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rank;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
 import edu.fiuba.algo3.modelo.gladiator.equipment.NullEquipment;

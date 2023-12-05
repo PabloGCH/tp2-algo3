@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.gladiator.equipment;
 
 
-import edu.fiuba.algo3.modelo.gladiator.state.State;
+import edu.fiuba.algo3.modelo.gladiator.state.*;
 import edu.fiuba.algo3.modelo.gladiator.state.Winner;
 
 public class Key implements Equipment{

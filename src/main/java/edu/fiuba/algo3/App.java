@@ -6,7 +6,6 @@ import edu.fiuba.algo3.controller.MapController;
 import edu.fiuba.algo3.controller.StartButtonController;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
-import edu.fiuba.algo3.modelo.squares.Position;
 
 
 import edu.fiuba.algo3.modelo.squares.Square;

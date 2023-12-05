@@ -21,6 +21,6 @@ public class MapFacade implements TerrainFacade{
     }
     public Dimension2D mapDimensions() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         MapJsonParser mapParser = new MapJsonParser();
-        return mapParser.obtainDimension(fileSource);
+        return mapParser.obtainDimension(fileSource, fileName);
     }
 }

@@ -59,10 +59,10 @@ public class MapJsonParser implements Parser {
         }
         return path;
     }
-    public Dimension2D obtainDimension(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        JSONObject measures = this.getMapObject(filePath);
-        int width = Math.toIntExact((long)measures.get("ancho"));
-        int height = Math.toIntExact((long)measures.get("largo"));
+    public Dimension2D obtainDimension(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        ArrayList<Integer> measures = new MapDataJsonParser().loadData(filePath, fileName);
+        int width = measures.get(0);
+        int height = measures.get(1);
         return new Dimension2D(width, height);
     }
     private JSONArray getPathObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
