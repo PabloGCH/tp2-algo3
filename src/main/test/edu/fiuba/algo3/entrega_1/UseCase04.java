@@ -7,11 +7,11 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 public class UseCase04 {
     @Test
     public void testIncreasedEnergyPerMeal(){
-        Gladiator gladiator = new Gladiator();
+        Gladiator gladiator = new Gladiator("Example");
         gladiator.eat();
 
         int energyPoints = gladiator.getEnergy();
 
-        assertTrue(energyPoints == 15);
+        assertEquals(35, energyPoints);
     }
 }

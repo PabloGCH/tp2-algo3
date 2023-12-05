@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
@@ -16,38 +15,36 @@ public class UseCase09 {
     @Test
     public void test09AGladiatorReturnsToMiddleSquare() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         ArrayList<Gladiator> gladiators = new ArrayList<>();
-        Gladiator aGladiator = new Gladiator();
-        ArrayList<Position> map = new ArrayList<>();
-        SquareFactory squareFactory = new InitialFactory();
-        EffectFactory nullEffectFactory = new NullEffectFactory();
-        EffectFactory effectFactory = new InitialEffectFactory();
+        Gladiator aGladiator = new Gladiator("Example");
 
-        Square initialSquare = squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect());
-        map.add(initialSquare);
+        ArrayList<Square> map = new ArrayList<>();
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
 
-        squareFactory = new MiddleFactory();
-        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
-        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
+        position = new Position(1,0,1);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
+        position = new Position(2,0,2);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
 
-        effectFactory = new FoodFactory();
-        var middleOfGameBoard = squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect());
+        Position middleposition = new Position(3,0,3);
+        Square middleOfGameBoard = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), position);
         map.add(middleOfGameBoard);
 
-        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
+        position = new Position(4,0,4);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
+        position = new Position(5,0,5);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
 
-        map.add(squareFactory.createSquare(nullEffectFactory.createEffect(), nullEffectFactory.createEffect()));
-
-        squareFactory = new FinishLineFactory();
-        effectFactory = new FinishLineEffectFactory();
-        var lastSquare = squareFactory.createSquare(nullEffectFactory.createEffect(), effectFactory.createEffect());
+        position = new Position(6,0,6);
+        FinishLineEffect finishLineEffect = new FinishLineEffect();
+        finishLineEffect.setMiddlePosition(middleposition);
+        Square lastSquare = new Square(effectFactory.createEffect("NullEffect"), finishLineEffect, position);
         map.add(lastSquare);
 
         gladiators.add(aGladiator);
-        Game aGame = new Game(gladiators, map);
-        lastSquare.receivePiece(aGladiator);
-        aGame.startGame();
+        lastSquare.affect(aGladiator);
 
-        Assertions.assertEquals(Config.UNABLE_TO_WIN.getValue(), aGladiator.candidateToWin());
-        Assertions.assertEquals(35, aGladiator.getEnergy());//
+        Assertions.assertEquals(4, aGladiator.move(map.size(), 1));
     }
 }

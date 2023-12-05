@@ -7,18 +7,18 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 public class UseCase08 {
     @Test
     public void tetsNewRange(){
-        Gladiator gladiator = new Gladiator();;
+        Gladiator gladiator = new Gladiator("Example");;
 
-        gladiator.turn();
-        gladiator.turn();
-        gladiator.turn();
-        gladiator.turn();
-        gladiator.turn();
-        gladiator.turn();
-        gladiator.turn();
-        gladiator.turn();
+        gladiator.move(10,1);
+        gladiator.move(10,1);
+        gladiator.move(10,1);
+        gladiator.move(10,1);
+        gladiator.move(10,1);
+        gladiator.move(10,1);
+        gladiator.move(10,1);
+        gladiator.move(10,1);
         int energyPoints = gladiator.getEnergy();;
 
-        assertEquals(5, energyPoints);
+        assertEquals(25, energyPoints);
     }
 }

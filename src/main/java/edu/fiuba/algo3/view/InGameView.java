@@ -1,18 +1,13 @@
 package edu.fiuba.algo3.view;
 
-import edu.fiuba.algo3.controller.SquareController;
-import edu.fiuba.algo3.modelo.Resources;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
-import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import javafx.geometry.Dimension2D;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -66,6 +61,6 @@ public class InGameView {
             }
         }*/
         stage.getScene().setRoot(mapGridPane);
-        stage.getScene().getStylesheets().add(getClass().getResource(Resources.MAP_STYLE_PATH.getValue()).toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource("/styles/map.css").toExternalForm());
     }
 }

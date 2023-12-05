@@ -42,6 +42,7 @@ public class Gladiator {
 
     public void fightWithBeast() {
         this.energy = this.equipment.receiveAttack(this.energy);
+        refreshState();
     }
 
     public int getEnergy() {
@@ -63,6 +64,7 @@ public class Gladiator {
     }
 
     public int move(int sizePath, int diceResult) {
+        update();
         int steps = this.state.move(diceResult);
         return this.position.moveFoward(steps, sizePath);
     }
