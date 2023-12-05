@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.gladiator.equipment.NullEquipment;
 
+
 public class NullEquipmentTest {
     @Test void upgradeReturnsHelmet(){
         Gladiator gladiator = new Gladiator();

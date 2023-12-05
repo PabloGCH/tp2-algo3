@@ -1,6 +1,7 @@
 package edu.fiuba.algo3;
 
 import java.util.ArrayList;
+
 import edu.fiuba.algo3.controller.MapController;
 import edu.fiuba.algo3.controller.StartButtonController;
 import edu.fiuba.algo3.modelo.game.Game;

@@ -30,10 +30,10 @@ public class MapJsonParser implements Parser {
                 element = (JSONObject) pathJsonArray.get(i);
 
                 value = (String) element.get("obstaculo");
-                obstacle = effectFactory.createSquare(value);
+                obstacle = effectFactory.createEffect(value);
 
                 value = (String) element.get("premio");
-                prize = effectFactory.createSquare(value);
+                prize = effectFactory.createEffect(value);
 
                 xPosition = Math.toIntExact((long)element.get("x"));
                 yPosition = Math.toIntExact((long)element.get("y"));
@@ -51,7 +51,7 @@ public class MapJsonParser implements Parser {
             Position squarePosition = new Position(xPosition, yPosition, LAST_ARRAY_INDEX);
 
             value = (String) element.get("obstaculo");
-            obstacle = effectFactory.createSquare(value);
+            obstacle = effectFactory.createEffect(value);
 
             path.add(new Square(obstacle, finishLineEffect, squarePosition));
         } catch (ClassCastException e) {
@@ -65,7 +65,6 @@ public class MapJsonParser implements Parser {
         int height = Math.toIntExact((long)measures.get("largo"));
         return new Dimension2D(width, height);
     }
-
     private JSONArray getPathObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
         //TRIES TO READ MAP FILE
