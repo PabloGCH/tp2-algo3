@@ -31,6 +31,10 @@ public class InTheBacchanalia extends State {
     }
     @Override
     public void decideIfPlaysAgain(TurnDecider turnDecider) {
-        turnDecider.finishTurn();
+    }
+
+    @Override
+    public int updateTurn(int turn){
+        return turn;
     }
 }

@@ -91,7 +91,11 @@ public class Gladiator {
         return this.state.isWinner();
     }
 
-    public void decideIfPlaysAgain(TurnDecider turnDecider) {
+    public void decideIfPlaysAgain(TurnDecider turnDecider, int gladiatorTurn) {
         this.state.decideIfPlaysAgain(turnDecider);
+    }
+
+    public int turnEnded(int gladiatorTurn){
+        return this.state.updateTurn(gladiatorTurn);
     }
 }
