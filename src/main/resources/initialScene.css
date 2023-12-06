@@ -6,6 +6,17 @@
 * {
     -fx-font-family: 'Press Start 2P';
     -fx-text-fill: white;
+    -fx-background-color: #413d3d;
+}
+
+.menu-bar, .menu, .menu-item {
+    -fx-background-color: #413d3d;
+    -fx-text-fill: white;
+}
+
+.menu-bar {
+    -fx-border-color: #1f1e1e;
+    -fx-border-width: 1px;
 }
 
 .main-container {

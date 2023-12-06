@@ -7,9 +7,16 @@ import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.Square;
+import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
+import javafx.geometry.Insets;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -21,6 +28,8 @@ public class InGameView {
     public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         stage.setResizable(true);
         stage.setMaximized(true);
+        MenuBar menuBar = createMenuBar(stage);
+
         double gridSize = Math.min(stage.getHeight(), stage.getWidth());
         Game aGame = Game.getInstance();
         Dimension2D dimensions = new MapFacade().mapDimensions();
@@ -49,18 +58,67 @@ public class InGameView {
             mapGridPane.getChildren().remove(stackPane);
             mapGridPane.add(newPane, xPosition, yPosition);
         }
-        /*for(int c = 0; c < width; c ++) {
-            for(int r = 0; r < height; r ++) {
-                Position square = new Position(r, c, r*c); //this.map.getPosition(r, c);
-                SquareController squareController = new SquareController(square);
-                mapGridPane.add(
-                        squareController.draw(),
-                        c,
-                        r
-                );
-            }
-        }*/
-        stage.getScene().setRoot(mapGridPane);
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(menuBar);
+        borderPane.setCenter(mapGridPane);
+        stage.getScene().setRoot(borderPane);
+        stage.setTitle("Algo Roma");
         stage.getScene().getStylesheets().add(getClass().getResource("/styles/map.css").toExternalForm());
+    }
+    private MenuBar createMenuBar(Stage stage) {
+        MenuItem exitItem = new MenuItem("Exit");
+        exitItem.setOnAction(e -> Platform.exit());
+        exitItem.getStyleClass().add("menu-item");
+
+        MenuItem fullScreenItem = new MenuItem("Full screen");
+        fullScreenItem.setOnAction(e -> toggleFullScreen(stage));
+        fullScreenItem.getStyleClass().add("menu-item");
+
+
+        Menu fileMenu = new Menu("File");
+        fileMenu.getItems().add(exitItem);
+        fileMenu.getItems().add(fullScreenItem);
+        fileMenu.getStyleClass().add("menu");
+
+
+        CheckMenuItem toggleMusic = new CheckMenuItem("Music on");
+        toggleMusic.getStyleClass().add("menu-item");
+        Menu musicList = new Menu("Select track");
+        musicList.getStyleClass().add("menu-item");
+        MenuItem firstTrack = new MenuItem("track 1");
+        firstTrack.getStyleClass().add("menu-item");
+        MenuItem secondTrack = new MenuItem("track 2");
+        secondTrack.getStyleClass().add("menu-item");
+        musicList.getItems().add(firstTrack);
+        musicList.getItems().add(secondTrack);
+
+
+        Menu musicMenu = new Menu("Music");
+        musicMenu.getItems().add(toggleMusic);
+        musicMenu.getItems().addAll(musicList);
+
+
+        MenuItem howToPlay = new MenuItem("How to play");
+        howToPlay.getStyleClass().add("menu-item");
+        MenuItem about = new MenuItem("About");
+        about.getStyleClass().add("menu-item");
+
+
+        Menu help = new Menu("Help");
+        help.getStyleClass().add("menu");
+        help.getItems().add(howToPlay);
+        help.getItems().add(about);
+
+
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(fileMenu);
+        menuBar.getMenus().addAll(musicMenu);
+        menuBar.getMenus().addAll(help);
+        menuBar.getStyleClass().add("menu-bar");
+
+        return menuBar;
+    }
+    private void toggleFullScreen(Stage stage) {
+        stage.setFullScreen(!stage.isFullScreen());
     }
 }
