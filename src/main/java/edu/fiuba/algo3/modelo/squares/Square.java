@@ -1,8 +1,7 @@
 package edu.fiuba.algo3.modelo.squares;
 
+import edu.fiuba.algo3.modelo.Position;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-
-import java.util.ArrayList;
 
 public class Square{
     private Position position;
