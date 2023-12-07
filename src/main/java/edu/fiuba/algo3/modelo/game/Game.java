@@ -39,7 +39,7 @@ public class Game {
         this.state = new ActiveGame();
         while (!gameOver && this.turn < MAX_TURNS_IN_A_GAME) {
             int gladiatorTurn = 0;
-            while (!gameOver && gladiatorTurn <= this.gladiators.size()) {
+            while (!gameOver && gladiatorTurn < this.gladiators.size()) {
                 int diceResult = dice.throwDice();
                 this.state = this.state.nextTurn(this.gladiators, this.path, diceResult, gladiatorTurn);
                 gameOver = this.state.Finalized();

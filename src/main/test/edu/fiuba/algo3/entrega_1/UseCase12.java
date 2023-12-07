@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.Dice;
+import edu.fiuba.algo3.modelo.Position;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
@@ -14,6 +15,7 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -42,6 +44,6 @@ public class UseCase12 {
         Game game = Game.getInstance(gladiators, map, new Dice());
         finish = game.startGame();
 
-        assertTrue(finish);
+        assertFalse(finish);
     }
 }

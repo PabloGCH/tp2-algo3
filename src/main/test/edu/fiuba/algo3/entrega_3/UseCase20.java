@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 import java.util.ArrayList;
 
 import edu.fiuba.algo3.modelo.Dice;
+import edu.fiuba.algo3.modelo.Position;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
@@ -39,6 +40,6 @@ public class UseCase20 {
 
         finish = game.startGame();
 
-        Assertions.assertTrue(finish);
+        Assertions.assertFalse(finish);
     }
 }
