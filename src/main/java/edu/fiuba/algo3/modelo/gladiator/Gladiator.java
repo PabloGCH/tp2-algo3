@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo.gladiator;
+import edu.fiuba.algo3.modelo.Position;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Equipment;
