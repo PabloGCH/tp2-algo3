@@ -33,4 +33,12 @@ public class NullEquipmentTest {
         assertEquals(0, energy);
     }
 
+    @Test void armorIsNotComplete(){
+        boolean fullArmor = true;
+        NullEquipment newEquipment = new NullEquipment();
+
+        fullArmor = newEquipment.complete();
+
+        assertFalse(fullArmor);
+    }
 }

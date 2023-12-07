@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Armor;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.position.Position;
+import edu.fiuba.algo3.modelo.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
@@ -31,4 +31,13 @@ public class ArmorTest {
         assertEquals(10, energy);
     }
 
+    @Test void armorIsNotComplete(){
+        boolean fullArmor = true;
+
+        Armor newEquipment = new Armor();
+
+        fullArmor = newEquipment.complete();
+
+        assertFalse(fullArmor);
+    }
 }

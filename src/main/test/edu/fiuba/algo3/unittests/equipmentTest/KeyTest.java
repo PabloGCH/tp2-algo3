@@ -33,4 +33,12 @@ public class KeyTest {
         assertEquals(20, energy);
     }
 
+    @Test void armorIsComplete(){
+        boolean fullArmor = false;
+        Key newEquipment = new Key();
+
+        fullArmor = newEquipment.complete();
+
+        assertTrue(fullArmor);
+    }
 }

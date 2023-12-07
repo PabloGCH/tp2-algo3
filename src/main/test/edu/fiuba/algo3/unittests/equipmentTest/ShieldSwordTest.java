@@ -34,4 +34,12 @@ public class ShieldSwordTest {
         assertEquals(18, energy);
     }
 
+    @Test void armorIsNotComplete(){
+        boolean fullArmor = true;
+        ShieldSword newEquipment = new ShieldSword();
+
+        fullArmor = newEquipment.complete();
+
+        assertFalse(fullArmor);
+    }
 }
