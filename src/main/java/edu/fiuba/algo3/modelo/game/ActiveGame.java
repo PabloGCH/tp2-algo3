@@ -14,7 +14,7 @@ public class ActiveGame implements GameState {
         currentSquare.affect(currentGladiator);
         currentGladiator.decideIfPlaysAgain(new TurnDecider(gladiators), gladiatorTurn);
         return currentGladiator.won();
-    };
+    }
 
     public boolean Finalized(){
         return false;
