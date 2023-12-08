@@ -1,12 +1,4 @@
-<<<<<<<< HEAD:src/main/java/edu/fiuba/algo3/modelo/position/Position.java
-<<<<<<<< HEAD:src/main/java/edu/fiuba/algo3/modelo/position/Position.java
 package edu.fiuba.algo3.modelo.position;
-========
-package edu.fiuba.algo3.modelo;
->>>>>>>> 74291eb ("position" package change):src/main/java/edu/fiuba/algo3/modelo/Position.java
-========
-package edu.fiuba.algo3.modelo.squares;
->>>>>>>> 7246f34 (merge):src/main/java/edu/fiuba/algo3/modelo/squares/Position.java
 
 import javafx.geometry.Dimension2D;
 
