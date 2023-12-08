@@ -90,8 +90,9 @@ public class ActiveGameTests {
         gladiators.add(gladiatorTwo);
         gladiators.add(gladiatorThree);
         ArrayList<Square> path = new ArrayList<>();
-        path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("Comida"), new Position(0,0,0)));
-        path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("NullEffect"), new Position(1,0,1)));
+        Position initialPosition = new Position(0,0,0);
+        path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("Comida"), initialPosition));
+        path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("NullEffect"), initialPosition));
         activeGame.entryOfTheGladiatorToTheFirstSquare(gladiators, path);
         assertEquals(35,gladiatorOne.getEnergy());
         assertEquals(35,gladiatorTwo.getEnergy());

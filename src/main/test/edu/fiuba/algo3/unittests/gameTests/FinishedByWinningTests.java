@@ -1,11 +1,11 @@
 package edu.fiuba.algo3.unittests.gameTests;
 
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
-import edu.fiuba.algo3.modelo.game.ActiveGame;
 import edu.fiuba.algo3.modelo.game.FinishedByWinning;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.position.Position;
+import edu.fiuba.algo3.modelo.squares.Bacchanalia;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 

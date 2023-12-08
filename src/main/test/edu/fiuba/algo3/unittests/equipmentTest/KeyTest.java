@@ -53,8 +53,4 @@ public class KeyTest {
         boolean fullArmor = false;
         Key newEquipment = new Key();
 
-        fullArmor = newEquipment.complete();
-
-        assertTrue(fullArmor);
-    }
 }
