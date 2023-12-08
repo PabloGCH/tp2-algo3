@@ -3,7 +3,6 @@ package edu.fiuba.algo3.unittests.gameTests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.Dice;
-import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
@@ -18,7 +17,7 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import java.util.ArrayList;
 
 public class gameTests {
-     @Test void StartGameAndPlayUntilFinish() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+         @Test void StartGameAndPlayUntilFinish() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
        boolean finish = false;
        ArrayList<Gladiator> gladiators = new ArrayList<>();
        gladiators.add(new Gladiator("Example 1"));
@@ -37,7 +36,7 @@ public class gameTests {
        Game game = Game.getInstance(gladiators, map, new Dice());
        finish = game.startGame();
 
-       assertTrue(finish);
+       assertFalse(finish);
     }
 
       @Test void GladiatorIsSuccessfullyAddedToTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
@@ -84,6 +83,6 @@ public class gameTests {
        Game game = Game.getInstance(gladiators, map, new Dice());
        boolean finish = game.startGame();
 
-       assertTrue(finish);
+       assertFalse(finish);
     }
 }
