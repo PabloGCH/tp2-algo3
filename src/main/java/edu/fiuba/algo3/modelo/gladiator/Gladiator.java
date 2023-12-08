@@ -17,7 +17,7 @@ public class Gladiator {
     private int energy;
     private Equipment equipment;
     private Rank rank;
-    public Position position;
+    private Position position;
 
     public Gladiator(String name) {
         this.name = name;
