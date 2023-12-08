@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.gladiator.state.Injured;
 
 public class injuredTest {
      @Test
-     void MoveReturns0() {
+     void test01MoveReturns0() {
         Injured injured = new Injured();
 
         int number = injured.move(1);
@@ -16,7 +16,7 @@ public class injuredTest {
     }
 
     @Test
-    void ChangeToActiveShouldReturnMoveDiceResult() {
+    void test02ChangeToActiveShouldReturnMoveDiceResult() {
         int energy = 0;
         Injured injured = new Injured();
 
