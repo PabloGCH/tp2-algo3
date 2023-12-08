@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.gladiator.state.Tired;
 
 public class tiredTest {
-     @Test void MoveReturns0() {
+     @Test void test01MoveReturns0() {
         Tired tired = new Tired();
 
         int number = tired.move(1);
@@ -14,7 +14,7 @@ public class tiredTest {
         assertEquals(0, number);
     }
 
-    @Test void ChangeToActiveShouldReturnMoveDiceResult() {
+    @Test void test02ChangeToActiveShouldReturnMoveDiceResult() {
         int energy = 5;
         Tired tired = new Tired();
 
