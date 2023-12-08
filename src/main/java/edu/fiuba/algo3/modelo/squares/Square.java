@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.squares;
 
-import edu.fiuba.algo3.modelo.Position;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 public class Square{
