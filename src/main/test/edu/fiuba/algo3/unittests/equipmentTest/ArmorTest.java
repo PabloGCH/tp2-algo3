@@ -37,17 +37,26 @@ public class ArmorTest {
         assertEquals(10, energy);
     }
     @Test
-    public void Test03WinReturnsSameState(){
+    public void Test03WinReturnsSameState() {
         Armor armor = new Armor();
         Active active = new Active();
         Gladiator gladiator = new Gladiator("Example");
         EffectFactory effectFactory = new EffectFactory();
-        Position initialPosition = new Position(0,0,0);
-        Position middlePosition = new Position(1,0,1);
+        Position initialPosition = new Position(0, 0, 0);
+        Position middlePosition = new Position(1, 0, 1);
         gladiator.positionate(initialPosition);
 
         State newState = armor.win(active);
         newState.tryToWin(gladiator, middlePosition);
-        assertEquals(2,gladiator.move(5,1));
+        assertEquals(2, gladiator.move(5, 1));
+    }
+    @Test void armorIsNotComplete(){
+        boolean fullArmor = true;
+
+        Armor newEquipment = new Armor();
+
+        fullArmor = newEquipment.complete();
+
+        assertFalse(fullArmor);
     }
 }
