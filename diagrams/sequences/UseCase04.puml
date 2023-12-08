@@ -1,14 +1,16 @@
 @startuml
 autonumber
 actor Actor
-Actor -->> Gladiator: <<create>> Gladiator()
+activate Actor
+
+create Gladiator
+Actor -->> Gladiator: <<create>> Gladiator("Example")
 Actor -> Gladiator: eat()
+
+Actor -> Gladiator: getEnergy()
 activate Gladiator
-Actor -> Gladiator: getEnergy(): Energy
-Gladiator -->> Actor: energy
+    Gladiator --> Actor: 35
 deactivate Gladiator
-Actor -> Energy: getPoints():int
-activate Energy
-Energy -->> Actor: energyPoints
-deactivate Energy
+
+deactivate Actor
 @enduml

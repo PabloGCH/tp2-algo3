@@ -6,41 +6,34 @@ autonumber
 actor Actor
 
 activate Actor
-Actor -> Gladiator: <<create>> Gladiator()
+
+create Gladiator
+Actor -->> Gladiator: <<create>> Gladiator("Example")
+activate Gladiator
+    create Equipment
+    Gladiator -> Equipment: <<create>>
+deactivate Gladiator
+
 Actor -> Gladiator: upgrade()
-
 activate Gladiator
-    Gladiator -> Equipment: upgrade()   
+    Gladiator -> Equipment: upgrade()
     activate Equipment
-        Equipment -> Equipment: upgrade()
-        activate Equipment
-        deactivate Equipment
-        Equipment --> Gladiator: Equipment
+        Equipment -> Gladiator: new Helmet()
     deactivate Equipment
 deactivate Gladiator
 
-Actor-> Gladiator: fightWithBeast()
+Actor -> Gladiator: fightWithBeast()
 activate Gladiator
-    Gladiator -> Equipment: receiveAttack(this.Energy)
+    Gladiator -> Equipment: receiveAttack(this.energy)
     activate Equipment
-        Equipment->Energy: substract()
-        activate Energy
-            Energy --> Equipment: Energy
-        deactivate Energy
-        Equipment --> Gladiator: Energy
+        Equipment --> Gladiator: 5
     deactivate Equipment
 deactivate Gladiator
 
-Actor -> Gladiator : getEnergy
+Actor -> Gladiator: getEnergy()
 activate Gladiator
-    Gladiator --> Actor : Energy()
+    Gladiator --> Actor: 5
 deactivate Gladiator
-
-
-Actor -> Energy : getPoints
-activate Energy
-    Energy --> Actor : (Points:-15)
-deactivate Energy
 
 deactivate Actor
 @enduml

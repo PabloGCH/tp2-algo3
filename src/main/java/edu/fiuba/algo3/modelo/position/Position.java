@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.squares;
+package edu.fiuba.algo3.modelo.position;
 
 
 import javafx.geometry.Dimension2D;

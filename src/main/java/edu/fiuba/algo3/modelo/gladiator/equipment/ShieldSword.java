@@ -13,9 +13,6 @@ public class ShieldSword implements Equipment{
         return (energy - DAMAGE_SWORD);
     }
 
-    public boolean complete(){
-        return false;
-    }
     public State win(State state) {
         return state;
     }

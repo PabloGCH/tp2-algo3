@@ -9,6 +9,8 @@ import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
+import edu.fiuba.algo3.modelo.position.Position;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -39,6 +41,6 @@ public class UseCase20 {
 
         finish = game.startGame();
 
-        Assertions.assertTrue(finish);
+        Assertions.assertFalse(finish);
     }
 }

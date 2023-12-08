@@ -13,9 +13,6 @@ public class NullEquipment implements Equipment {
         return (energy - DAMAGE_NULL_EQUIPMENT);
     }
 
-    public boolean complete(){
-        return false;
-    }
     public State win(State state) {
         return state;
     }

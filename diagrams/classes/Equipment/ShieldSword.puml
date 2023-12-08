@@ -1,7 +1,7 @@
 @startuml
 class ShieldSword {
     +upgrade(): Key
-    +receiveAttack(Energy: energyPoints): Energy
-    +complete(): boolean
+    +receiveAttack(int energy): int
+    +win(State state) State
 }
 @enduml

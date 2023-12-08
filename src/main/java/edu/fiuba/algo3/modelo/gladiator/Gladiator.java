@@ -3,6 +3,7 @@ import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Equipment;
 import edu.fiuba.algo3.modelo.gladiator.state.Active;
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.gladiator.state.*;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rank;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
@@ -46,12 +47,6 @@ public class Gladiator {
 
     public int getEnergy() {
         return this.energy;
-    }
-    public boolean completeArmament() {
-        return this.equipment.complete();
-    }
-    public void setInitialEnergy(int energy) {
-        this.energy = (this.energy + 20);
     }
 
     public void upgrade(){

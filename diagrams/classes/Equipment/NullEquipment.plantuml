@@ -1,7 +1,7 @@
 @startuml
 class NullEquipment {
     +upgrade(): Helmet
-    +receiveAttack(Energy: energyPoints): Energy
-    +complete(): boolean
+    +receiveAttack(int energy): int
+    +win(State state) State
 }
 @enduml

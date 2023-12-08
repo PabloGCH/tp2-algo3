@@ -22,4 +22,7 @@ public class FinishedByWinning implements GameState {
     public int turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators){
         return gladiatorTurn;
     }
+
+    public void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path){
+    }
 }

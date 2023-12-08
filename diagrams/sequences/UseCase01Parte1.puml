@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor Actor
+activate Actor
+create Gladiator
+Actor -> Gladiator: <<create>> Gladiator("Example")
+
+Actor -> Gladiator: getEnergy()
+activate Gladiator
+    Gladiator --> Actor: 20
+deactivate Gladiator
+
+deactivate Actor
+@enduml

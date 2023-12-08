@@ -1,6 +1,13 @@
 @startuml
-interface State {
+abstract State {
     +move(): Int
-    +update(Energy energy):State
-}
+    +update(int energy):State
+    +runEffect(Effect effect, Gladiator gladiator)
+    +fracture(): State
+    +getIntoBacchanalia(Gladiator aGladiator): State
+    +isWinner(): GameState
+    +decideIfPlaysAgain(TurnDecider turnDecider)
+    +tryToWin(Gladiator aGladiator, Position middlePosition)
+    +updateTurn(int turn): int
+}   
 @enduml

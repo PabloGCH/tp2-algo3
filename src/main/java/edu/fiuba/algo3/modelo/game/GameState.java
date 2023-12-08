@@ -13,4 +13,6 @@ public interface GameState {
     public boolean result(ArrayList<Gladiator> gladiators);
 
     public int turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators);
+
+    public void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path);
 }

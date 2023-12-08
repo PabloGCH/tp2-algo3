@@ -1,0 +1,39 @@
+@startuml
+autonumber
+actor Actor
+activate Actor
+create collections Square
+Actor -> Square: <<create>>
+
+create  Gladiator
+Actor -> Gladiator: <<create>>
+activate Gladiator
+    create State
+    Gladiator -> State : <<Create>> 
+deactivate Gladiator
+
+create EffectFactory
+Actor -> EffectFactory: <<create>>
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(0,0,0))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(1,0,1))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(2,0,2))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), new Position(3,0,3))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(4,0,4))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(5,0,5))
+
+create FinishLineEffect
+Actor -> FinishLineEffect: <<create>>
+Actor -> FinishLineEffect: setMiddlePosition(middleposition)
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),FinishLineEffect, new Position(6,0,6))
+
+Actor -> FinishLineEffect: affect(Gladiator)
+activate FinishLineEffect
+    FinishLineEffect -> Gladiator: tryToWin(middlePosition)
+deactivate FinishLineEffect
+
+Actor -> Gladiator: move(map.size(), 0)
+activate Gladiator
+    Gladiator --> Actor: 3
+deactivate Gladiator
+deactivate Actor
+@enduml
