@@ -37,7 +37,7 @@ public class GladiatorView implements GladiatorObserver {
     private Pane newGladiatorView() {
         Pane gladiatorView = new Pane();
         Pane piece = new Pane();
-        piece.setMinSize(20, 20);;
+        piece.setMinSize(10, 10);;
         piece.setStyle("-fx-background-color: gray;");
         gladiatorView.getChildren().add(piece);
         return gladiatorView;

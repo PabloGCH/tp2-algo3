@@ -87,6 +87,9 @@ public class InGameView {
 
 
             FlowPane squareGladiatorGrid = new FlowPane();
+            squareGladiatorGrid.setStyle("-fx-padding: 5px;");
+            squareGladiatorGrid.setHgap(5);
+            squareGladiatorGrid.setVgap(5);
             
 
             squareGladiatorGrid.setPrefWrapLength(squareWidth);
