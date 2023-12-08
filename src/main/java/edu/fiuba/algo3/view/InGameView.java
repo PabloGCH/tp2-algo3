@@ -2,6 +2,7 @@ package edu.fiuba.algo3.view;
 
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.game.Game;
+import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
@@ -14,18 +15,32 @@ import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Box;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.Flow;
 
 public class InGameView {
-    public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+
+
+    public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        int squareWidth = 50;
+        int squareHeight = 50;
+        
         stage.setResizable(true);
         stage.setMaximized(true);
         MenuBar menuBar = createMenuBar(stage);
@@ -37,27 +52,66 @@ public class InGameView {
         int height = (int) dimensions.getHeight();
         GridPane mapGridPane = new GridPane();
         ArrayList<Square> path = aGame.getPath();
-        for (int column = 0; column < width; column++) {
-            for (int row = 0; row < height; row++) {
-                StackPane square = new StackPane();
-                square.setPrefSize(gridSize / width, gridSize / height);
+
+
+
+
+
+        for (int row = 0; row < height; row++) {
+            for (int column = 0; column < width; column++) {
+                Pane square = new Pane();
+                square.setPrefSize(squareWidth, squareHeight);
                 mapGridPane.add(square, row, column);
+
             }
         }
+        
+
         Image pathImage = new Image(getClass().getResource("/img/path.png").toExternalForm());
+
+
+        HashMap<String, Pane> mapGladiatorGrids = new HashMap<>();
+
         for (Square square : path) {
             Dimension2D coordinates = square.getPosition().coordinates();
             int xPosition = (int) coordinates.getWidth() - 1, yPosition = (int) coordinates.getHeight() - 1;
             Pane stackPane = (Pane) mapGridPane.getChildren().get(yPosition * mapGridPane.getRowCount() + xPosition);
             ImageView pathImageView = new ImageView(pathImage);
-            pathImageView.setFitHeight(gridSize / height);
-            pathImageView.setFitWidth(gridSize / width);
+            pathImageView.setFitHeight(squareHeight);
+            pathImageView.setFitWidth(squareWidth);
             StackPane newPane = new StackPane(pathImageView);
-            newPane.setPrefSize(gridSize / width, gridSize / height);
+            newPane.setId("square" + xPosition + "-" + yPosition);
+            newPane.setPrefSize(squareWidth, squareHeight);
             newPane.setStyle("-fx-border-color: black; -fx-border-width: 1px");
             mapGridPane.getChildren().remove(stackPane);
+
+
+            FlowPane squareGladiatorGrid = new FlowPane();
+            squareGladiatorGrid.setStyle("-fx-padding: 5px;");
+            squareGladiatorGrid.setHgap(5);
+            squareGladiatorGrid.setVgap(5);
+            
+
+            squareGladiatorGrid.setPrefWrapLength(squareWidth);
+
+            mapGladiatorGrids.put(xPosition + "-" + yPosition, squareGladiatorGrid);
+
+            newPane.getChildren().add(squareGladiatorGrid);
             mapGridPane.add(newPane, xPosition, yPosition);
+
         }
+ 
+
+        //GLADIATORS ARE POSITIONATED IN INITIAL SQUARE
+        for (Gladiator gladiator : gladiators) {
+            System.err.println("gladiatorview");
+            GladiatorView view = new GladiatorView(mapGladiatorGrids);
+            gladiator.addObserver(view);
+            var square = path.get(0);
+            square.affect(gladiator);
+        }
+
+
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menuBar);
         borderPane.setCenter(mapGridPane);
@@ -121,4 +175,7 @@ public class InGameView {
     private void toggleFullScreen(Stage stage) {
         stage.setFullScreen(!stage.isFullScreen());
     }
+
+
+
 }

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.view;
 
 import edu.fiuba.algo3.controller.StartButtonController;
+import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
@@ -26,6 +27,7 @@ public class InitialView {
     private final int MIN_PLAYERS_AMOUNT = 2;
     private final int PLAYERS_PER_ROW = 3;
     private final int PLAYERS_PER_COLUMN = 2;
+
     ArrayList<TextField> nameFields;
     public Scene initialScene(Stage stage, ArrayList nameFields) {
         this.nameFields = nameFields;
@@ -61,7 +63,11 @@ public class InitialView {
             StartButtonController controller = new StartButtonController();
             try {
                 if (controller.validateNames(this.nameFields)) {
-                    new InGameView().displayInGameScene(stage);
+                    var gladiators = new ArrayList<Gladiator>();
+                    for (TextField nameField : this.nameFields) {
+                        gladiators.add(new Gladiator(nameField.getText()));
+                    }
+                    new InGameView().displayInGameScene(stage, gladiators);
                 }
             } catch (MapFileNotFound e) {
                 throw new RuntimeException(e);
