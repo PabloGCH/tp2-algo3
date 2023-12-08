@@ -33,7 +33,7 @@ public class Game {
         }
         return instance;
     }
-    
+
     public boolean startGame() {
         boolean gameOver = false;
         this.state = new ActiveGame();
@@ -45,7 +45,7 @@ public class Game {
                 this.state = this.state.nextTurn(this.gladiators, this.path, diceResult, gladiatorTurn);
                 gameOver = this.state.Finalized();
                 gladiatorTurn = this.state.turnEnded(gladiatorTurn, this.gladiators);
-            } 
+            }
             this.turn++;
         }
         return this.state.result(this.gladiators);
