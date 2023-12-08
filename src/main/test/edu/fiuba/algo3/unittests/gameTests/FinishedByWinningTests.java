@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.game.FinishedByWinning;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.position.Position;
-import edu.fiuba.algo3.modelo.squares.Bacchanalia;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
