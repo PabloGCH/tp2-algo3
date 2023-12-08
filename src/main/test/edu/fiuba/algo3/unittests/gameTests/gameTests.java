@@ -17,7 +17,7 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import java.util.ArrayList;
 
 public class gameTests {
-         @Test void StartGameAndPlayUntilFinish() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+         @Test void test01StartGameAndPlayUntilFinish() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
        boolean finish = false;
        ArrayList<Gladiator> gladiators = new ArrayList<>();
        gladiators.add(new Gladiator("Example 1"));
@@ -39,7 +39,7 @@ public class gameTests {
        assertFalse(finish);
     }
 
-      @Test void GladiatorIsSuccessfullyAddedToTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+      @Test void test02GladiatorIsSuccessfullyAddedToTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
        Gladiator gladiator1 = new Gladiator("Example");
        ArrayList<Gladiator> gladiators = new ArrayList<>();
        gladiators.add(gladiator1);
@@ -61,7 +61,7 @@ public class gameTests {
        assertTrue(energyPoints == 20);
     }
 
-    @Test void AllTheGladiatorsLostTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    @Test void test03AllTheGladiatorsLostTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
        boolean winner = false;
        Gladiator gladiator1 = new Gladiator("Example");
        ArrayList<Gladiator> gladiators = new ArrayList<>();
@@ -84,5 +84,17 @@ public class gameTests {
        boolean finish = game.startGame();
 
        assertFalse(finish);
+    }
+    @Test
+    public void test04GetPathReturnsTheRightPath(){
+        ArrayList<Square> map = new ArrayList<>();
+        ArrayList<Gladiator> gladiators = new ArrayList<>();
+        EffectFactory effectFactory = new EffectFactory();
+        Position positionOne = new Position(0,0,0);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), positionOne));
+        Position positionTwo = new Position(1,1,0);
+        Game game = Game.getInstance(gladiators, map, new Dice());
+        ArrayList<Square> mapReceived = game.getPath();
+        assertTrue(positionOne.comparePosition(mapReceived.get(0).getPosition()));
     }
 }
