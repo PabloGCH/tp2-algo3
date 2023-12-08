@@ -1,9 +1,12 @@
 @startuml
 class Game {
     -turns: int
-    +Game(ArrayList<Gladiator> gladiators, Map map)
+    -MAX_TURNS_IN_A_GAME: int
+    -NEXT_GLADIATOR_TO_PLAY: int
+    -Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice)
+    +getInstance(): Game
+    +getPath(): ArrayList<Square>
+    +getInstance(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice): Game
     +startGame(): boolean
-    +addGladiator()
-    +result(): boolean
 }
 @enduml

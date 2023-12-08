@@ -1,0 +1,7 @@
+@startuml
+
+class Bacchanalia {
+    +affect(Gladiator gladiator)
+}
+
+@enduml

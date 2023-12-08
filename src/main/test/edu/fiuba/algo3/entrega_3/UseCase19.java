@@ -9,6 +9,8 @@ import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
+import edu.fiuba.algo3.modelo.position.Position;
+
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.game.Game;
@@ -21,10 +23,6 @@ public class UseCase19 {
     public void testPlayerWin() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         boolean finish = false;
         Gladiator gladiator1 = new Gladiator("Example");
-        gladiator1.upgrade();
-        gladiator1.upgrade();
-        gladiator1.upgrade();
-        gladiator1.upgrade();
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         gladiators.add(gladiator1);
         ArrayList<Square> map = new ArrayList<>();

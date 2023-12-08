@@ -6,49 +6,43 @@ actor Actor
 
 activate Actor
 
-Actor -> Gladiador : <<Create>> Gladiador()
-activate Gladiador
-    Gladiador -> Rank :  <<Create>> Rank() 
-    Gladiador -> Energy : <<Create>> Energy(0)
-    Gladiador -> Equipment : <<Create>> Equipment()
-    Gladiador -> State : <<Create>> State()
-deactivate Gladiador
+Actor -> Gladiator : <<Create>> Gladiador()
+activate Gladiator
+    Gladiator -> Rank :  <<Create>> 
+    Gladiator -> State : <<Create>> 
+deactivate Gladiator
 
-Actor -> Gladiador : turn()
-loop I represent its use 8 times in the use case
-activate Gladiador
-    Gladiador -> Gladiador : update()
-    activate Gladiador
-
-        Gladiador -> Rank : ascent()
-        activate Rank
-            Rank --> Gladiador : Rank
-        deactivate Rank
-
-        Gladiador -> Rank : energyFromExperience(this.energy)
-        activate Rank
-            Rank --> Gladiador : Energy()
-        deactivate Rank
-    
-    deactivate Gladiador
-    Gladiador -> State : move()
-    activate State
-    State --> Gladiador: int between 0 and 6
-    deactivate State
-    Gladiador --> Actor : int between 0 and 6
-deactivate Gladiador
+loop I represent its use 7 times in the use case
+Actor -> Gladiator : move(10,1)
 end loop
 
-Actor -> Gladiador : getEnergy
-activate Gladiador
-Gladiador --> Actor : Energy()
-deactivate Gladiador
+Actor -> Gladiator : move(10,1)
+activate Gladiator
+    Gladiator -> Rank: ascent()
+    activate Rank
+        Rank --> Gladiator: SemiSenior
+    deactivate Rank
 
-Actor -> Energy : getPoints
-activate Energy
-Energy --> Actor : 5
-deactivate Energy
+    Gladiator -> Rank: energyFromExperience(20)
+    activate Rank
+        Rank --> Gladiator: 25
+    deactivate Rank
 
+    Gladiator -> State: move(1)
+    activate State
+        State --> Gladiator: 8
+    deactivate State
+    Gladiator -> Position: moveFoward(0, Square.size())
+    activate Position
+        Position --> Gladiator: 8
+    deactivate Position
+    Gladiator --> Actor: 8
+deactivate Gladiator
+
+Actor -> Gladiator: getEnergy()
+activate Gladiator
+    Gladiator --> Actor: 25
+deactivate Gladiator
 deactivate Actor
 
 @enduml

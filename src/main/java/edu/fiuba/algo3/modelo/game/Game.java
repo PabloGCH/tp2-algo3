@@ -37,6 +37,7 @@ public class Game {
     public boolean startGame() {
         boolean gameOver = false;
         this.state = new ActiveGame();
+        this.state.entryOfTheGladiatorToTheFirstSquare(gladiators, path);
         while (!gameOver && this.turn < MAX_TURNS_IN_A_GAME) {
             int gladiatorTurn = 0;
             while (!gameOver && gladiatorTurn <= this.gladiators.size()) {
@@ -51,10 +52,4 @@ public class Game {
 
     }
 
-    /* 
-    private boolean gladiatorTurn(int diceResult) {
-        this.state = this.state.nextTurn(this.gladiators, this.path, diceResult);
-        return this.state.Finalized();
-    }
-    */
 }

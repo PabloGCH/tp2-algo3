@@ -11,9 +11,7 @@ public class Armor implements Equipment{
     public int receiveAttack(int energy){
         return (energy - DAMAGE_ARMOR);
     }
-    public boolean complete(){
-        return false;
-    }
+
     public State win(State state) {
         return state;
     }

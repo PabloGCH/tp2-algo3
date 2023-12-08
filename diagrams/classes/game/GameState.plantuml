@@ -1,0 +1,9 @@
+@startuml
+interface GameState {
+    +nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult, int gladiatorTurn): GameState
+    +Finalized(): boolean
+    +result(ArrayList<Gladiator> gladiators): boolean
+    +turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators): int
+    +entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path)
+}
+@enduml

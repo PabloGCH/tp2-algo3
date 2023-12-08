@@ -1,6 +1,5 @@
 @startuml
 class Tired{
-    +move(): Int
     +update(Energy energy): State
 }
 @enduml

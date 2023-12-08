@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,8 +11,7 @@ import java.util.ArrayList;
 
 public class UseCase03 {
     @Test
-    public void test03APlayerCantMoveWithoutEnergy() {
-        ArrayList<Gladiator> gladiators = new ArrayList<>();
+    public void test03APlayerCantMoveWithoutEnergy() {;
         Gladiator aGladiator = new Gladiator("Example");
         ArrayList<Square> map = new ArrayList<>();
         EffectFactory effectFactory = new EffectFactory();

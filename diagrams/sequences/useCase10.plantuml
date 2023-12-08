@@ -1,0 +1,37 @@
+@startuml
+autonumber
+actor Actor
+activate Actor
+
+create Gladiator
+Actor -->> Gladiator: <<create>> Gladiator("Example")
+activate Gladiator
+    create Equipment
+    Gladiator -> Equipment: <<create>>
+deactivate Gladiator
+
+Actor -> Gladiator: upgrade()
+loop until you have done the method 4 times
+activate Gladiator
+    Gladiator -> Equipment: upgrade()
+    activate Equipment
+        Equipment -> Gladiator: new Equipment()
+    deactivate Equipment
+end loop
+deactivate Gladiator
+
+Actor -> Gladiator: fightWithBeast()
+activate Gladiator
+    Gladiator -> Equipment: receiveAttack(20)
+    activate Equipment
+        Equipment --> Gladiator: 20
+    deactivate Equipment
+deactivate Gladiator
+
+Actor -> Gladiator: getEnergy()
+activate Gladiator
+    Gladiator --> Actor: 20
+deactivate Gladiator
+
+deactivate Actor
+@enduml

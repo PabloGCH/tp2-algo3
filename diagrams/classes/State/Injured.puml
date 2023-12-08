@@ -3,7 +3,6 @@
 class Injured{
     -int shift
     +Injured()
-    +move():Int
     +update(Energy energy): State
 }
 @enduml

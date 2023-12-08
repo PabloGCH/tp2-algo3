@@ -13,9 +13,6 @@ public class Key implements Equipment{
         return energy;
     }
 
-    public boolean complete(){
-        return true;
-    }
     public State win(State state) {
         return new Winner();
     }

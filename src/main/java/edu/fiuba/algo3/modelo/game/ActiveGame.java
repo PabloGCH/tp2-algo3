@@ -30,4 +30,12 @@ public class ActiveGame implements GameState {
         Gladiator currentGladiator = gladiators.get(NEXT_GLADIATOR_TO_PLAY);
         return currentGladiator.turnEnded(gladiatorTurn);
     }
+
+    public void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path){
+        for (int i = 0; i < gladiators.size(); i++) {
+            Gladiator currentGladiator = gladiators.get(i);
+            Square currentSquare = path.get(0);
+            currentSquare.affect(currentGladiator);
+        }
+    }
 }

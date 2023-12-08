@@ -1,21 +1,37 @@
 @startuml
 autonumber
 actor Actor
-Actor -->> Gladiator: <<create>> Gladiator()
-Actor -->> initialSquare: <<create>> Initial()
-Actor -> initialSquare: receiveGladiator(gladiator: Gladiator)
-activate initialSquare
-deactivate initialSquare
-Actor -> Gladiator: upgrade()
+activate Actor
+
+create Gladiator
+Actor -->> Gladiator: <<create>> Gladiator("Example")
 activate Gladiator
-Actor -> Gladiator: upgrade()
-Actor -> Gladiator: upgrade()
-Actor -> Gladiator: fightWithBeast()
-Actor -> Gladiator: getEnergy(): Energy
-Gladiator -->> Actor: energy
+    create Equipment
+    Gladiator -> Equipment: <<create>>
 deactivate Gladiator
-Actor -> Energy: getPoints():int
-activate Energy
-Energy -->> Actor: energyPoints
-deactivate Energy
+
+Actor -> Gladiator: upgrade()
+loop until you have done the method 3 times
+activate Gladiator
+    Gladiator -> Equipment: upgrade()
+    activate Equipment
+        Equipment -> Gladiator: new Equipment()
+    deactivate Equipment
+end loop
+deactivate Gladiator
+
+Actor -> Gladiator: fightWithBeast()
+activate Gladiator
+    Gladiator -> Equipment: receiveAttack(20)
+    activate Equipment
+        Equipment --> Gladiator: 18
+    deactivate Equipment
+deactivate Gladiator
+
+Actor -> Gladiator: getEnergy()
+activate Gladiator
+    Gladiator --> Actor: 18
+deactivate Gladiator
+
+deactivate Actor
 @enduml

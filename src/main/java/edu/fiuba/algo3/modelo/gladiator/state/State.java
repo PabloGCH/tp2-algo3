@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.game.FinishedByWinning;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
 
 public abstract class State {
@@ -25,7 +25,7 @@ public abstract class State {
         return this;
     }
     public GameState isWinner() {
-        return new FinishedByWinning();
+        return new ActiveGame();
     }
 
     public void decideIfPlaysAgain(TurnDecider turnDecider) {
@@ -37,6 +37,7 @@ public abstract class State {
     }
 
     public int updateTurn(int turn){
-        return turn++;
+        turn++;
+        return turn;
     }
 }

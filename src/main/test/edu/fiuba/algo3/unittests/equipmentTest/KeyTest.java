@@ -3,8 +3,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Key;
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
@@ -33,12 +33,4 @@ public class KeyTest {
         assertEquals(20, energy);
     }
 
-    @Test void armorIsComplete(){
-        boolean fullArmor = false;
-        Key newEquipment = new Key();
-
-        fullArmor = newEquipment.complete();
-
-        assertTrue(fullArmor);
-    }
 }

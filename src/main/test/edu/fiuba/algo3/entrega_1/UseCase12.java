@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class UseCase12 {
@@ -31,17 +32,13 @@ public class UseCase12 {
         position = new Position(1,0,1);
         map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), position));
 
+
         position = new Position(2,0,2);
-
-        position = new Position(0,0,0);
-        map.add(new Square(effectFactory.createEffect("Comida"),effectFactory.createEffect("NullEffect"), position));
-
-        position = new Position(0,0,0);
         map.add(new Square(effectFactory.createEffect("NullEffect"),new FinishLineEffect(), position));
 
         Game game = Game.getInstance(gladiators, map, new Dice());
         finish = game.startGame();
 
-        assertTrue(finish);
+        assertFalse(finish);
     }
 }

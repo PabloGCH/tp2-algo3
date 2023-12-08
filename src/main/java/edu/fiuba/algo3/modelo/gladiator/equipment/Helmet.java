@@ -12,9 +12,6 @@ public class Helmet implements Equipment{
         return (energy - DAMAGE_HELMET);
     }
 
-    public boolean complete(){
-        return false;
-    }
     public State win(State state) {
         return state;
     }
