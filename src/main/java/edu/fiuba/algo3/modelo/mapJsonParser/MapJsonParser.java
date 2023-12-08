@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
