@@ -3,7 +3,6 @@ package edu.fiuba.algo3.unittests.gameTests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.Dice;
-import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
