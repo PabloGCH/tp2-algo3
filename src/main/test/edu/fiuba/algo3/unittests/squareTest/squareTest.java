@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.unittests.squareTest;
 
-import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
