@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class ActiveGame implements GameState {
     private final int NEXT_GLADIATOR_TO_PLAY = 0;
-    public GameState nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult, int gladiatorTurn) {
+    public GameState nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult) {
         Gladiator currentGladiator = gladiators.get(NEXT_GLADIATOR_TO_PLAY);
         int gladiatorPosition = currentGladiator.move(path.size(), diceResult);
         Square currentSquare = path.get(gladiatorPosition);
         currentSquare.affect(currentGladiator);
-        currentGladiator.decideIfPlaysAgain(new TurnDecider(gladiators), gladiatorTurn);
+        currentGladiator.decideIfPlaysAgain(new TurnDecider(gladiators));
         return currentGladiator.won();
     };
 
@@ -37,5 +37,9 @@ public class ActiveGame implements GameState {
             Square currentSquare = path.get(0);
             currentSquare.affect(currentGladiator);
         }
+    }
+    public GameState update( int turn){
+        if (turn == 30){ return new FinishedByWinning(); }
+        return this;
     }
 }
