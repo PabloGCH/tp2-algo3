@@ -17,3 +17,4 @@ public class DiceButtonController {
         game.playTurn(diceResult);
     }
 }
+

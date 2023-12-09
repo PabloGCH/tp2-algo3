@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.squares.Square;
 import java.util.ArrayList;
 
 public interface GameState {
-    public GameState nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult, int gladiatorTurn);
+    public GameState nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult);
 
     public boolean Finalized();
 

@@ -93,7 +93,7 @@ public class Gladiator implements GladiatorObservable {
         return this.state.isWinner();
     }
 
-    public void decideIfPlaysAgain(TurnDecider turnDecider, int gladiatorTurn) {
+    public void decideIfPlaysAgain(TurnDecider turnDecider) {
         this.state.decideIfPlaysAgain(turnDecider);
     }
 
