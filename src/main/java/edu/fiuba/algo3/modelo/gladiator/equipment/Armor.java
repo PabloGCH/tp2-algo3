@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.gladiator.equipment;
 
 
 import edu.fiuba.algo3.modelo.gladiator.state.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Armor implements Equipment{
     private static final int DAMAGE_ARMOR = 10;
@@ -14,5 +16,10 @@ public class Armor implements Equipment{
 
     public State win(State state) {
         return state;
+    }
+
+    public String showImage(){
+        String equipment = ("/img/pixel-helmet.jpg");
+        return equipment;
     }
 }

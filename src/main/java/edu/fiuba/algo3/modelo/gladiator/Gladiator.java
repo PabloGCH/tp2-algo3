@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Equipment;
-import edu.fiuba.algo3.modelo.gladiator.state.Active;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.gladiator.state.*;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rank;
@@ -12,6 +11,7 @@ import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
 import edu.fiuba.algo3.modelo.gladiator.equipment.NullEquipment;
 import edu.fiuba.algo3.modelo.squares.*;
 import javafx.geometry.Dimension2D;
+import javafx.scene.image.ImageView;
 
 public class Gladiator implements GladiatorObservable {
     private static final int ENERGY_FROM_FOOD = 15, ENERGY_LOST_FOR_EACH_CUP = 4, INITIAL_ENERGY = 20;
@@ -114,5 +114,9 @@ public class Gladiator implements GladiatorObservable {
             int energy = this.energy;
             observer.update(row, column, energy);
         }
+    }
+
+    public String showEquipment(){
+        return this.equipment.showImage();
     }
 }

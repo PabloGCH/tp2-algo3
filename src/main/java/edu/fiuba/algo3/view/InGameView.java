@@ -11,7 +11,9 @@ import edu.fiuba.algo3.modelo.squares.Square;
 import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -36,7 +38,7 @@ import java.util.concurrent.Flow;
 
 public class InGameView {
 
-
+    
     public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         int squareWidth = 50;
         int squareHeight = 50;
@@ -52,9 +54,6 @@ public class InGameView {
         int height = (int) dimensions.getHeight();
         GridPane mapGridPane = new GridPane();
         ArrayList<Square> path = aGame.getPath();
-
-
-
 
 
         for (int row = 0; row < height; row++) {
@@ -118,6 +117,8 @@ public class InGameView {
         stage.getScene().setRoot(borderPane);
         stage.setTitle("Algo Roma");
         stage.getScene().getStylesheets().add(getClass().getResource("/styles/map.css").toExternalForm());
+
+        locationOfPlayerStates(mapGridPane, gladiators);
     }
     private MenuBar createMenuBar(Stage stage) {
         MenuItem exitItem = new MenuItem("Exit");
@@ -172,6 +173,36 @@ public class InGameView {
 
         return menuBar;
     }
+
+    private void locationOfPlayerStates(GridPane mapGridPane, ArrayList<Gladiator> gladiators){
+        
+        String link = "hoa";
+    
+        HBox hBox = new HBox(10);
+        hBox.setAlignment(Pos.BOTTOM_LEFT);
+
+        for (Gladiator nameField : gladiators) {
+            String name = nameField.getName();
+            String energy = " energia: "+ nameField.getEnergy() + "";
+           // link = nameField.showEquipment();
+            Label labelname = new Label(name);
+            Label labelenergy = new Label(energy);
+            labelname.setStyle("-fx-text-fill: blue;");
+            labelenergy.setStyle("-fx-text-fill: black;");
+            hBox.getChildren().addAll(labelname, labelenergy);
+        }
+
+        Image pathImage = new Image(getClass().getResource("/img/pixelHelmet.jpg").toExternalForm());
+        ImageView image = new ImageView(pathImage);
+        image.setFitHeight(30);
+        image.setFitWidth(20);
+
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(hBox, image);
+
+        mapGridPane.add(stackPane, 2000, 4000);
+    }
+
     private void toggleFullScreen(Stage stage) {
         stage.setFullScreen(!stage.isFullScreen());
     }
