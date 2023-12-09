@@ -20,7 +20,7 @@ public class ShieldSword implements Equipment{
     }
 
     public String showImage(){
-        String equipment = ("/img/pixel-helmet.jpg");
+        String equipment = ("Espada y Escudo");
         return equipment;
     }
 }

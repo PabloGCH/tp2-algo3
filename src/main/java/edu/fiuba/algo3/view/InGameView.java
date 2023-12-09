@@ -28,6 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -53,6 +54,7 @@ public class InGameView {
         int width = (int) dimensions.getWidth();
         int height = (int) dimensions.getHeight();
         GridPane mapGridPane = new GridPane();
+        GridPane stateGladiator = locationOfPlayerStates(gladiators);
         ArrayList<Square> path = aGame.getPath();
 
 
@@ -114,11 +116,11 @@ public class InGameView {
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menuBar);
         borderPane.setCenter(mapGridPane);
+        borderPane.setRight(stateGladiator);
         stage.getScene().setRoot(borderPane);
         stage.setTitle("Algo Roma");
         stage.getScene().getStylesheets().add(getClass().getResource("/styles/map.css").toExternalForm());
 
-        locationOfPlayerStates(mapGridPane, gladiators);
     }
     private MenuBar createMenuBar(Stage stage) {
         MenuItem exitItem = new MenuItem("Exit");
@@ -174,33 +176,39 @@ public class InGameView {
         return menuBar;
     }
 
-    private void locationOfPlayerStates(GridPane mapGridPane, ArrayList<Gladiator> gladiators){
+    private GridPane locationOfPlayerStates(ArrayList<Gladiator> gladiators){
         
-        String link = "hoa";
-    
-        HBox hBox = new HBox(10);
-        hBox.setAlignment(Pos.BOTTOM_LEFT);
+        GridPane mapGridPane = new GridPane();
+        VBox vBoxgeneral = new VBox(10);
+        //hBox.setAlignment(Pos.TOP_RIGHT);
 
         for (Gladiator nameField : gladiators) {
+            VBox vBox = new VBox(5);
+
             String name = nameField.getName();
             String energy = " energia: "+ nameField.getEnergy() + "";
-           // link = nameField.showEquipment();
+            String equipment = " equipamiento: " + nameField.showEquipment();
+
             Label labelname = new Label(name);
             Label labelenergy = new Label(energy);
+            Label labelequipment = new Label(equipment);
+
             labelname.setStyle("-fx-text-fill: blue;");
             labelenergy.setStyle("-fx-text-fill: black;");
-            hBox.getChildren().addAll(labelname, labelenergy);
+            labelequipment.setStyle("-fx-text-fill: black;");
+
+            vBox.getChildren().addAll(labelname, labelenergy, labelequipment);
+            vBox.setPadding(new Insets(10,10,10,0));
+            vBoxgeneral.getChildren().add(vBox);
+            //hBox.getChildren().add(vBox);
         }
-
-        Image pathImage = new Image(getClass().getResource("/img/pixelHelmet.jpg").toExternalForm());
-        ImageView image = new ImageView(pathImage);
-        image.setFitHeight(30);
-        image.setFitWidth(20);
-
+        
         StackPane stackPane = new StackPane();
-        stackPane.getChildren().addAll(hBox, image);
+        stackPane.getChildren().addAll(vBoxgeneral);
 
         mapGridPane.add(stackPane, 2000, 4000);
+
+        return mapGridPane;
     }
 
     private void toggleFullScreen(Stage stage) {

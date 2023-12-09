@@ -19,7 +19,7 @@ public class Key implements Equipment{
     }
 
     public String showImage(){
-        String equipment = ("/img/pixel-helmet.jpg");
+        String equipment = ("LLave");
         return equipment;
     }
 }

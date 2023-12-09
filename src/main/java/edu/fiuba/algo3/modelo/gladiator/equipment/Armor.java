@@ -19,7 +19,7 @@ public class Armor implements Equipment{
     }
 
     public String showImage(){
-        String equipment = ("/img/pixel-helmet.jpg");
+        String equipment = ("Armadura");
         return equipment;
     }
 }

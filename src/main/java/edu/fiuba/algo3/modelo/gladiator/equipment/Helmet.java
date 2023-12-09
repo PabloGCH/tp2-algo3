@@ -19,7 +19,7 @@ public class Helmet implements Equipment{
     }
 
     public String showImage(){
-        String equipment = ("/img/pixel-helmet.jpg");
+        String equipment = ("Casco");
         return equipment;
     }
 }

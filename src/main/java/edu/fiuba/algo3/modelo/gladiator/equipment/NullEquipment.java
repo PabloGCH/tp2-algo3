@@ -20,7 +20,7 @@ public class NullEquipment implements Equipment {
     }
 
     public String showImage(){
-        String equipment = ("/img/pixel-helmet.jpg");
+        String equipment = ("Sin Equipamiento");
         return equipment;
     }
 }
