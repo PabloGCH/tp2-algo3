@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.Square;
 import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -103,13 +104,18 @@ public class InGameView {
             square.affect(gladiator);
         }
 
+        
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menuBar);
         borderPane.setCenter(mapGridPane);
+        borderPane.setBottom(bottomMenu());
+
+        mapGridPane.getStyleClass().add("map-grid");
         stage.getScene().setRoot(borderPane);
         stage.setTitle("Algo Roma");
         stage.getScene().getStylesheets().add(getClass().getResource("/styles/map.css").toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource("/styles/bottom-menu.css").toExternalForm());
     }
     private MenuBar createMenuBar(Stage stage) {
         MenuItem exitItem = new MenuItem("Exit");
@@ -167,7 +173,15 @@ public class InGameView {
     private void toggleFullScreen(Stage stage) {
         stage.setFullScreen(!stage.isFullScreen());
     }
-
-
+    
+    private Pane bottomMenu() {
+        GridPane bottomMenu = new GridPane();
+        Button diceButton = new Button("Throw dice");
+        bottomMenu.getStyleClass().add("bottom-menu");
+        diceButton.getStyleClass().add("dice-button");
+        bottomMenu.getChildren().add(diceButton);
+        bottomMenu.setPrefHeight(80);
+        return bottomMenu;
+    }
 
 }
