@@ -11,4 +11,9 @@ public class Tired extends State{
         }
         return this;
     }
+
+    public String showState(){
+        String state = "Tired";
+        return state;
+    }
 }

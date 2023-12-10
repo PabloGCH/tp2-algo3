@@ -18,4 +18,9 @@ public class Injured extends State{
         shift++;
         return this;
     }
+
+    public String showState(){
+        String state = "Injured";
+        return state;
+    }
 }

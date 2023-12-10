@@ -64,6 +64,7 @@ public class Gladiator implements GladiatorObservable {
 
     public void injured(){
         this.state = this.state.fracture();
+        this.updateObservers();
     }
 
     public int move(int sizePath, int diceResult) {
@@ -78,9 +79,7 @@ public class Gladiator implements GladiatorObservable {
     public void runEffect(Effect effect){
         this.state.runEffect(effect, this);
     }
-    public void runEffect(Bacchanalia effect){
-        this.state.runEffect(effect, this);
-    }
+   
     public void positionate(Position position){
         this.position = position;
         this.updateObservers();
@@ -118,7 +117,7 @@ public class Gladiator implements GladiatorObservable {
             int row = (int) gladiatorPosition.getWidth() - 1;
             int column = (int) gladiatorPosition.getHeight() - 1;
             int energy = this.energy;
-            observer.update(row, column, energy, equipment.showName(), name);
+            observer.update(row, column, energy, equipment.showName(), name, this.rank.showRank(), this.state.showState());
         }
     }
 

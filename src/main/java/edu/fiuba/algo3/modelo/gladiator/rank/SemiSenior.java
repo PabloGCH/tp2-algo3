@@ -24,5 +24,8 @@ public class SemiSenior implements Rank {
         
     }
 
-   
+    public String showRank(){
+        String rank = "Semi Senior";
+        return rank;
+    }
 }

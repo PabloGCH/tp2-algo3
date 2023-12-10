@@ -14,4 +14,9 @@ public class Winner extends State{
     public void tryToWin(Gladiator aGladiator, Position middlePosition) {
 
     }
+
+    public String showState(){
+        String state = "Winner";
+        return state;
+    }
 }
