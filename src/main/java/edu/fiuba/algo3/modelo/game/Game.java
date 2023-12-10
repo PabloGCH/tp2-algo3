@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Game {
     private final int MAX_TURNS_IN_A_GAME = 30, NEXT_GLADIATOR_TO_PLAY = 0;
     private int turn = 0;
+    private int gladiatorTurn = 0;
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
     private ArrayList<Square> path;
     private Dice dice;
@@ -20,6 +21,7 @@ public class Game {
         this.gladiators = gladiators;
         this.dice = dice;
         this.turn = 0;
+        this.state = new ActiveGame();
     }
     public static Game getInstance() {
         return instance;
@@ -33,23 +35,41 @@ public class Game {
         }
         return instance;
     }
-
+    // start game deberia dejar el juego listo para jugarse solamente.
     public boolean startGame() {
-        boolean gameOver = false;
         this.state = new ActiveGame();
         this.state.entryOfTheGladiatorToTheFirstSquare(gladiators, path);
-        while (!gameOver && this.turn < MAX_TURNS_IN_A_GAME) {
+        while (!this.state.Finalized() && this.turn < MAX_TURNS_IN_A_GAME) {
             int gladiatorTurn = 0;
-            while (!gameOver && gladiatorTurn <= this.gladiators.size()) {
+            while (!this.state.Finalized() && gladiatorTurn < this.gladiators.size()) {
                 int diceResult = dice.throwDice();
-                this.state = this.state.nextTurn(this.gladiators, this.path, diceResult, gladiatorTurn);
-                gameOver = this.state.Finalized();
+                this.state = this.state.nextTurn(this.gladiators, this.path, diceResult);
                 gladiatorTurn = this.state.turnEnded(gladiatorTurn, this.gladiators);
             }
             this.turn++;
         }
         return this.state.result(this.gladiators);
-
     }
 
+    //TODO hay que elegir una de las dos opciones.
+    // play turn que debería realizarse un turno de un gladiador
+    private void updateTurn(){
+        gladiatorTurn = this.state.turnEnded(gladiatorTurn, this.gladiators);
+        if (gladiatorTurn == this.gladiators.size()){
+            turn++;
+            gladiatorTurn = 0;
+        }
+        if (turn == MAX_TURNS_IN_A_GAME){ this.state = new FinishedByTurns(); }
+    }
+
+    public GameState playTurn(int diceResult){
+        this.state = this.state.nextTurn(this.gladiators, this.path, diceResult);
+        updateTurn();
+        return this.state;
+    }
+
+    public ArrayList<Gladiator> getGladiators() {
+        return gladiators;
+    }
 }
+
