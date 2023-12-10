@@ -15,6 +15,6 @@ public class FinishLineEffect implements Effect{
     }
 
     public String getName() {
-        return "finish-line";
+        return "finishline";
     }
 }

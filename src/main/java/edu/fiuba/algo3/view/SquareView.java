@@ -36,6 +36,7 @@ public class SquareView {
         }
     }
 
+
     public Pane addPathToMapGrid(
         int row,
         int col,

@@ -31,7 +31,7 @@ public class Square{
         String obstacleName = this.obstacle.getName();
         if(obstacleName != "") names.add(obstacleName);
         String prizeName = this.prize.getName();
-        if(obstacleName != "") names.add(prizeName);
+        if(prizeName != "") names.add(prizeName);
         return names;
     }
 }
