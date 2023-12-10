@@ -10,10 +10,6 @@ public class Game {
     private final int MAX_TURNS_IN_A_GAME = 30, NEXT_GLADIATOR_TO_PLAY = 0;
     private int turn = 0;
     private int gladiatorTurn = 0;
-<<<<<<< HEAD
-
-=======
->>>>>>> 64ed891a0c0cc8c29b26fcad8ce28f6779d6c6e3
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
     private ArrayList<Square> path;
     private Dice dice;
@@ -63,25 +59,17 @@ public class Game {
             turn++;
             gladiatorTurn = 0;
         }
-<<<<<<< HEAD
         if (turn == MAX_TURNS_IN_A_GAME){ this.state = new FinishedByTurns(); }
     }
 
-=======
-        if (turn == MAX_TURNS_IN_A_GAME){ this.state = new FinishedByWinning(); }
-    }
->>>>>>> 64ed891a0c0cc8c29b26fcad8ce28f6779d6c6e3
     public GameState playTurn(int diceResult){
         this.state = this.state.nextTurn(this.gladiators, this.path, diceResult);
         updateTurn();
         return this.state;
     }
-<<<<<<< HEAD
 
     public ArrayList<Gladiator> getGladiators() {
         return gladiators;
     }
-=======
->>>>>>> 64ed891a0c0cc8c29b26fcad8ce28f6779d6c6e3
 }
 

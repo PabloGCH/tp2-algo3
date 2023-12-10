@@ -18,6 +18,7 @@ public class InTheBacchanalia extends State {
     }
 
     public void runEffect(Bacchanalia effect, Gladiator gladiator) {
+        System.out.println("entro en bacchanalia");
         affectedGladiator.refreshState();
     }
 

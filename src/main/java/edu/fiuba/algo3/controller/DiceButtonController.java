@@ -14,7 +14,7 @@ public class DiceButtonController {
 
     public void throwDice() {
         int diceResult = dice.throwDice();
-        game.playTurn(diceResult);
+        game.playTurn(5);
     }
 }
 

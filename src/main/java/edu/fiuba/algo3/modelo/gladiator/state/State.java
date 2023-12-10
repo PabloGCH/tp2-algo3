@@ -16,7 +16,9 @@ public abstract class State {
     public State update(int energy){
         return this;
     }
-    public void runEffect(Effect effect, Gladiator gladiator){}
+    public void runEffect(Effect effect, Gladiator gladiator){
+        System.out.println("entro en state");
+    }
 
     public State fracture(){
         return this;

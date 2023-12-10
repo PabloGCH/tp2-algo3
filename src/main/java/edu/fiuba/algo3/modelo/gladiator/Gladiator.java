@@ -64,7 +64,6 @@ public class Gladiator implements GladiatorObservable {
 
     public int move(int sizePath, int diceResult) {
         this.update();
-        this.refreshState();
         int steps = this.state.move(diceResult);
         return this.position.moveFoward(steps, sizePath);
     }
@@ -73,6 +72,9 @@ public class Gladiator implements GladiatorObservable {
     }
 
     public void runEffect(Effect effect){
+        this.state.runEffect(effect, this);
+    }
+    public void runEffect(Bacchanalia effect){
         this.state.runEffect(effect, this);
     }
     public void positionate(Position position){
