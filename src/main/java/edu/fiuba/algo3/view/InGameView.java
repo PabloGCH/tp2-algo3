@@ -40,9 +40,10 @@ public class InGameView {
     
    // public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
 
+
     public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        int squareWidth = 50;
-        int squareHeight = 50;
+        int squareWidth = 60;
+        int squareHeight = 60;
         
         stage.setResizable(true);
         stage.setMaximized(true);
@@ -63,43 +64,19 @@ public class InGameView {
                 Pane square = new Pane();
                 square.setPrefSize(squareWidth, squareHeight);
                 mapGridPane.add(square, row, column);
-
             }
         }
         
-
         Image pathImage = new Image(getClass().getResource("/img/path.png").toExternalForm());
-
-
+        
         HashMap<String, Pane> mapGladiatorGrids = new HashMap<>();
 
         for (Square square : path) {
             Dimension2D coordinates = square.getPosition().coordinates();
             int xPosition = (int) coordinates.getWidth() - 1, yPosition = (int) coordinates.getHeight() - 1;
-            Pane stackPane = (Pane) mapGridPane.getChildren().get(yPosition * mapGridPane.getRowCount() + xPosition);
-            ImageView pathImageView = new ImageView(pathImage);
-            pathImageView.setFitHeight(squareHeight);
-            pathImageView.setFitWidth(squareWidth);
-            StackPane newPane = new StackPane(pathImageView);
-            newPane.setId("square" + xPosition + "-" + yPosition);
-            newPane.setPrefSize(squareWidth, squareHeight);
-            newPane.setStyle("-fx-border-color: black; -fx-border-width: 1px");
-            mapGridPane.getChildren().remove(stackPane);
-
-
-            FlowPane squareGladiatorGrid = new FlowPane();
-            squareGladiatorGrid.setStyle("-fx-padding: 5px;");
-            squareGladiatorGrid.setHgap(5);
-            squareGladiatorGrid.setVgap(5);
-            
-
-            squareGladiatorGrid.setPrefWrapLength(squareWidth);
-
+            var effectNames = square.getEffectNames();
+            Pane squareGladiatorGrid = (new SquareView()).addPathToMapGrid(xPosition, yPosition, squareWidth, squareHeight, mapGridPane, effectNames);
             mapGladiatorGrids.put(xPosition + "-" + yPosition, squareGladiatorGrid);
-
-            newPane.getChildren().add(squareGladiatorGrid);
-            mapGridPane.add(newPane, xPosition, yPosition);
-
         }
  
 

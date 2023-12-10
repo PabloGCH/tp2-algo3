@@ -2,7 +2,6 @@ package edu.fiuba.algo3;
 
 import java.util.ArrayList;
 
-import edu.fiuba.algo3.controller.MapController;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 
 
@@ -29,19 +28,6 @@ public class App extends Application {
         stage.show();
     }
 
-    public Scene mapScene() {
-        MapFacade mapFacade = new MapFacade();
-
-        /*edu.fiuba.algo3.modelo.map.Map map =
-        new edu.fiuba.algo3.modelo.map.Map(
-            15,
-            15,
-            new ArrayList<Position>()
-        );*/ //SHOULD BE REPLACED BY "mapFacade.loadMap()"
-
-        MapController mapController = new MapController(new ArrayList<Square>());
-        return new Scene(mapController.draw());
-    }
 
     public static void main(String[] args) {
         launch();

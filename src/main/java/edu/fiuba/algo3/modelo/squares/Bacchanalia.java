@@ -7,4 +7,7 @@ public class Bacchanalia implements Effect{
     public void affect(Gladiator aGladiator) {
         aGladiator.getIntoBacchanalia();
     }
+    public String getName() {
+        return "bacchanalia";
+    }
 }

@@ -7,4 +7,7 @@ public class Food implements Effect {
     public void affect(Gladiator aGladiator) {
         aGladiator.eat();
     }
+    public String getName() {
+        return "food";
+    }
 }

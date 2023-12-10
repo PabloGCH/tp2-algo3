@@ -13,4 +13,8 @@ public class FinishLineEffect implements Effect{
     public void setMiddlePosition(Position aPosition) {
         this.middlePosition = aPosition;
     }
+
+    public String getName() {
+        return "finishline";
+    }
 }

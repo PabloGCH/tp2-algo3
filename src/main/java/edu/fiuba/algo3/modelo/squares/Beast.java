@@ -7,4 +7,7 @@ public class Beast implements Effect{
     public void affect(Gladiator aGladiator) {
         aGladiator.fightWithBeast();
     }
+    public String getName() {
+        return "beast";
+    }
 }
