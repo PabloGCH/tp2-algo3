@@ -50,7 +50,7 @@ public class Game {
         }
         return this.state.result(this.gladiators);
     }
-
+    
     //TODO hay que elegir una de las dos opciones.
     // play turn que debería realizarse un turno de un gladiador
     private void updateTurn(){

@@ -8,4 +8,7 @@ public class NullEffect implements Effect{
     {
         // Do nothing;
     };
+    public String getName() {
+        return "";
+    }
 }

@@ -9,5 +9,8 @@ public class Upgrade implements Effect{
     public void affect(Gladiator aGladiator) {
         aGladiator.upgrade();
     }
+    public String getName() {
+        return "upgrade";
+    }
 }
 

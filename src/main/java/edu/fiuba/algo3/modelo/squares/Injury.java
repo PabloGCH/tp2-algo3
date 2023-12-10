@@ -7,4 +7,7 @@ public class Injury implements Effect {
     public void affect(Gladiator aGladiator) {
         aGladiator.injured();
     }
+    public String getName() {
+        return "injury";
+    }
 }

@@ -25,4 +25,13 @@ public class Square{
     public Position getPosition() {
         return this.position;
     }
+
+    public ArrayList<String> getEffectNames() {
+        ArrayList<String> names = new ArrayList<String>();
+        String obstacleName = this.obstacle.getName();
+        if(obstacleName != "") names.add(obstacleName);
+        String prize = this.prize.getName();
+        if(obstacleName != "") names.add(obstacleName);
+        return names;
+    }
 }
