@@ -30,8 +30,8 @@ public class Square{
         ArrayList<String> names = new ArrayList<String>();
         String obstacleName = this.obstacle.getName();
         if(obstacleName != "") names.add(obstacleName);
-        String prize = this.prize.getName();
-        if(obstacleName != "") names.add(obstacleName);
+        String prizeName = this.prize.getName();
+        if(obstacleName != "") names.add(prizeName);
         return names;
     }
 }
