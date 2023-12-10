@@ -38,7 +38,6 @@ public class HelmetTest {
         Helmet helmet = new Helmet();
         Active active = new Active();
         Gladiator gladiator = new Gladiator("Example");
-        EffectFactory effectFactory = new EffectFactory();
         Position initialPosition = new Position(0,0,0);
         Position middlePosition = new Position(1,0,1);
         gladiator.positionate(initialPosition);
