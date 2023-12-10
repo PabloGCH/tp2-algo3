@@ -11,7 +11,6 @@ public class TurnDecider {
     }
     public void finishTurn() {
         Gladiator gladiator = gladiators.remove(0);
-        gladiator.refreshState();
         gladiators.add(gladiator);
     }
 }

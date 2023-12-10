@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Equipment;
-import edu.fiuba.algo3.modelo.gladiator.state.Active;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.gladiator.state.*;
 import edu.fiuba.algo3.modelo.gladiator.rank.Rank;
@@ -12,6 +11,7 @@ import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
 import edu.fiuba.algo3.modelo.gladiator.equipment.NullEquipment;
 import edu.fiuba.algo3.modelo.squares.*;
 import javafx.geometry.Dimension2D;
+import javafx.scene.image.ImageView;
 
 public class Gladiator implements GladiatorObservable {
     private static final int ENERGY_FROM_FOOD = 15, ENERGY_LOST_FOR_EACH_CUP = 4, INITIAL_ENERGY = 20;
@@ -34,20 +34,23 @@ public class Gladiator implements GladiatorObservable {
     }
     public void drinkWine(int cupsOfWineAmount) {
         this.energy = this.energy - ENERGY_LOST_FOR_EACH_CUP * cupsOfWineAmount;
+        this.updateObservers();
     }
 
     private void update(){
         this.rank = this.rank.ascent();
         this.energy = this.rank.energyFromExperience(this.energy);
+        this.updateObservers();
     }
 
     public void eat() {
         this.energy += ENERGY_FROM_FOOD;
+        this.updateObservers();
     }
 
     public void fightWithBeast() {
         this.energy = this.equipment.receiveAttack(this.energy);
-        refreshState();
+        this.updateObservers();
     }
 
     public int getEnergy() {
@@ -56,6 +59,7 @@ public class Gladiator implements GladiatorObservable {
 
     public void upgrade(){
         this.equipment = this.equipment.upgrade();
+        this.updateObservers();
     }
 
     public void injured(){
@@ -104,7 +108,6 @@ public class Gladiator implements GladiatorObservable {
         return this.state.updateTurn(gladiatorTurn);
     }
     
-
     public void addObserver(GladiatorObserver observer) {
         observers.add(observer);
     }
@@ -115,7 +118,11 @@ public class Gladiator implements GladiatorObservable {
             int row = (int) gladiatorPosition.getWidth() - 1;
             int column = (int) gladiatorPosition.getHeight() - 1;
             int energy = this.energy;
-            observer.update(row, column, energy);
+            observer.update(row, column, energy, equipment.showName(), name);
         }
+    }
+
+    public String showEquipment(){
+        return this.equipment.showName();
     }
 }

@@ -11,8 +11,11 @@ import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.Square;
 import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -23,13 +26,19 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Box;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class InGameView {
-
+    
+   // public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
 
     public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         int squareWidth = 50;
@@ -45,10 +54,8 @@ public class InGameView {
         int width = (int) dimensions.getWidth();
         int height = (int) dimensions.getHeight();
         GridPane mapGridPane = new GridPane();
+        GridPane stateGladiator = new SideBar().view(aGame);
         ArrayList<Square> path = aGame.getPath();
-
-
-
 
 
         for (int row = 0; row < height; row++) {
@@ -110,6 +117,7 @@ public class InGameView {
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menuBar);
         borderPane.setCenter(mapGridPane);
+        borderPane.setRight(stateGladiator);
         borderPane.setBottom(bottomMenu());
 
         mapGridPane.getStyleClass().add("map-grid");
@@ -171,6 +179,8 @@ public class InGameView {
 
         return menuBar;
     }
+
+
     private void toggleFullScreen(Stage stage) {
         stage.setFullScreen(!stage.isFullScreen());
     }

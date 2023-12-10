@@ -19,6 +19,7 @@ public class Active extends State{
     @Override
     public void runEffect(Effect effect, Gladiator gladiator){
         effect.affect(gladiator);
+        gladiator.refreshState();
     }
     @Override
     public State fracture(){

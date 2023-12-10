@@ -17,7 +17,7 @@ public abstract class State {
         return this;
     }
     public void runEffect(Effect effect, Gladiator gladiator){
-        System.out.println("entro en state");
+        gladiator.refreshState();
     }
 
     public State fracture(){
