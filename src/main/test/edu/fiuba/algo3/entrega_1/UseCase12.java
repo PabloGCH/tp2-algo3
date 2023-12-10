@@ -3,10 +3,6 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.game.Game;
-import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
@@ -20,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class UseCase12 {
     @Test
-    public void tetsGameEnds() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void tetsGameEnds(){
         boolean finish = false;
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         gladiators.add(new Gladiator("Example"));
