@@ -44,5 +44,6 @@ public class StartButtonController {
         MapFacade mapFacade = new MapFacade();
         ArrayList<Square> map = mapFacade.loadMap();
         Game.getInstance(gladiators, map, new Dice());
+        Game.getInstance().startGame();
     }
 }

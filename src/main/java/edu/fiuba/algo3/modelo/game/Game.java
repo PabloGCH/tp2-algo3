@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Game {
     private final int MAX_TURNS_IN_A_GAME = 30, NEXT_GLADIATOR_TO_PLAY = 0;
@@ -36,19 +37,16 @@ public class Game {
         return instance;
     }
     // start game deberia dejar el juego listo para jugarse solamente.
-    public boolean startGame() {
+    public String startGame() {
         this.state = new ActiveGame();
         this.state.entryOfTheGladiatorToTheFirstSquare(gladiators, path);
-        while (!this.state.Finalized() && this.turn < MAX_TURNS_IN_A_GAME) {
-            int gladiatorTurn = 0;
-            while (!this.state.Finalized() && gladiatorTurn < this.gladiators.size()) {
-                int diceResult = dice.throwDice();
-                this.state = this.state.nextTurn(this.gladiators, this.path, diceResult);
-                gladiatorTurn = this.state.turnEnded(gladiatorTurn, this.gladiators);
-            }
-            this.turn++;
+        Random random = new Random();
+        String randomName = gladiators.get(random.nextInt(gladiators.size()) - 1).getName();
+        while(gladiators.get(0).getName() != randomName){
+            Gladiator aGladiator = gladiators.remove(0);
+            gladiators.add(aGladiator);
         }
-        return this.state.result(this.gladiators);
+        return gladiators.get(0).getName();
     }
     
     //TODO hay que elegir una de las dos opciones.
