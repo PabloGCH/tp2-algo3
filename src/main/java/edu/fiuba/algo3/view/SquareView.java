@@ -3,6 +3,7 @@ package edu.fiuba.algo3.view;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -60,11 +61,19 @@ public class SquareView {
 
         //EFFECTS
         FlowPane effectsPane = new FlowPane();
+        effectsPane.setAlignment(Pos.CENTER);
+
+        effectNames.remove("");
         for (String name : effectNames) {
             this.loadImageByName(name);
-            var imageView = new ImageView(this.images.get(name));
-            imageView.setFitWidth(width / effectNames.size());
-            imageView.setFitHeight(height);
+            ImageView imageView = new ImageView(this.images.get(name));
+            imageView.setPreserveRatio(true);
+            if(effectNames.size() > 1) {
+                imageView.setFitWidth(width / 2);
+            } 
+            else {
+                imageView.setFitWidth(width * 0.75);
+            }
             effectsPane.getChildren().add(imageView);
         }
         pathSquare.getChildren().add(effectsPane);

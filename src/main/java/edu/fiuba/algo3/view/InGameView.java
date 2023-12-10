@@ -40,9 +40,10 @@ public class InGameView {
     
    // public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
 
-    public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        int squareWidth = 50;
-        int squareHeight = 50;
+
+    public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        int squareWidth = 60;
+        int squareHeight = 60;
         
         stage.setResizable(true);
         stage.setMaximized(true);
