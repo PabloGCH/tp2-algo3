@@ -54,7 +54,7 @@ public class InGameView {
         int width = (int) dimensions.getWidth();
         int height = (int) dimensions.getHeight();
         GridPane mapGridPane = new GridPane();
-        GridPane stateGladiator = locationOfPlayerStates(aGame);
+        GridPane stateGladiator = new SideBar().view(aGame);
         ArrayList<Square> path = aGame.getPath();
 
 
@@ -180,41 +180,6 @@ public class InGameView {
         return menuBar;
     }
 
-    private GridPane locationOfPlayerStates(Game game){
-        
-        GridPane mapGridPane = new GridPane();
-        VBox vBoxgeneral = new VBox(10);
-        //hBox.setAlignment(Pos.TOP_RIGHT);
-
-        for (Gladiator nameField : game.getGladiators()) {
-            VBox vBox = new VBox(5);
-
-            String name = nameField.getName();
-            String energy = " energia: "+ nameField.getEnergy() + "";
-            String equipment = " equipamiento: " + nameField.showEquipment();
-
-            Label labelname = new Label(name);
-            Label labelenergy = new Label(energy);
-            Label labelequipment = new Label(equipment);
-
-            labelname.setStyle("-fx-text-fill: blue;");
-            labelenergy.setStyle("-fx-text-fill: black;");
-            labelequipment.setStyle("-fx-text-fill: black;");
-
-            vBox.getChildren().addAll(labelname, labelenergy, labelequipment);
-            vBox.setPadding(new Insets(10,10,10,10));
-            vBoxgeneral.getChildren().add(vBox);
-            //hBox.getChildren().add(vBox);
-        }
-        
-        StackPane stackPane = new StackPane();
-        stackPane.getChildren().addAll(vBoxgeneral);
-
-        mapGridPane.add(stackPane, 2000, 4000);
-        mapGridPane.setStyle("-fx-background-color: gray;");
-
-        return mapGridPane;
-    }
 
     private void toggleFullScreen(Stage stage) {
         stage.setFullScreen(!stage.isFullScreen());

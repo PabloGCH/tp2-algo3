@@ -19,8 +19,8 @@ public class ShieldSword implements Equipment{
         return state;
     }
 
-    public String showImage(){
-        String equipment = ("Espada y Escudo");
+    public String showName(){
+        String equipment = ("Shield and Sword");
         return equipment;
     }
 }

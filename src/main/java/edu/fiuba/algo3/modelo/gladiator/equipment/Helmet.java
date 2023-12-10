@@ -18,8 +18,8 @@ public class Helmet implements Equipment{
         return state;
     }
 
-    public String showImage(){
-        String equipment = ("Casco");
+    public String showName(){
+        String equipment = ("Helmet");
         return equipment;
     }
 }

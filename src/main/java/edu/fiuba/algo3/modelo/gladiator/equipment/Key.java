@@ -18,8 +18,8 @@ public class Key implements Equipment{
         return new Winner();
     }
 
-    public String showImage(){
-        String equipment = ("LLave");
+    public String showName(){
+        String equipment = ("Key");
         return equipment;
     }
 }

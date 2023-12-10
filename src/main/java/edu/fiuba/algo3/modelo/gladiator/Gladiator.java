@@ -34,20 +34,23 @@ public class Gladiator implements GladiatorObservable {
     }
     public void drinkWine(int cupsOfWineAmount) {
         this.energy = this.energy - ENERGY_LOST_FOR_EACH_CUP * cupsOfWineAmount;
+        this.updateObservers();
     }
 
     private void update(){
         this.rank = this.rank.ascent();
         this.energy = this.rank.energyFromExperience(this.energy);
+        this.updateObservers();
     }
 
     public void eat() {
         this.energy += ENERGY_FROM_FOOD;
+        this.updateObservers();
     }
 
     public void fightWithBeast() {
         this.energy = this.equipment.receiveAttack(this.energy);
-        refreshState();
+        this.updateObservers();
     }
 
     public int getEnergy() {
@@ -56,6 +59,7 @@ public class Gladiator implements GladiatorObservable {
 
     public void upgrade(){
         this.equipment = this.equipment.upgrade();
+        this.updateObservers();
     }
 
     public void injured(){
@@ -114,11 +118,11 @@ public class Gladiator implements GladiatorObservable {
             int row = (int) gladiatorPosition.getWidth() - 1;
             int column = (int) gladiatorPosition.getHeight() - 1;
             int energy = this.energy;
-            observer.update(row, column, energy);
+            observer.update(row, column, energy, equipment.showName(), name);
         }
     }
 
     public String showEquipment(){
-        return this.equipment.showImage();
+        return this.equipment.showName();
     }
 }

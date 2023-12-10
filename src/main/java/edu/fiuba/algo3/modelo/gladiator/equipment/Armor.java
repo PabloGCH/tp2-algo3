@@ -18,8 +18,8 @@ public class Armor implements Equipment{
         return state;
     }
 
-    public String showImage(){
-        String equipment = ("Armadura");
+    public String showName(){
+        String equipment = ("Armor");
         return equipment;
     }
 }
