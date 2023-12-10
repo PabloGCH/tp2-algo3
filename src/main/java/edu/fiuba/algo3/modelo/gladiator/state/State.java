@@ -47,4 +47,7 @@ public abstract class State {
         String state = "Active";
         return state;
     }
+    public int energyFromState(int energy){
+        return energy;
+    }
 }
