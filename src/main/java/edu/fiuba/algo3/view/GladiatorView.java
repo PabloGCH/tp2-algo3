@@ -8,6 +8,8 @@ import edu.fiuba.algo3.modelo.gladiator.GladiatorObserver;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -36,9 +38,14 @@ public class GladiatorView implements GladiatorObserver {
 
     private Pane newGladiatorView() {
         Pane gladiatorView = new Pane();
-        Pane piece = new Pane();
-        piece.setMinSize(10, 10);;
-        piece.setStyle("-fx-background-color: gray;");
+        //Pane piece = new Pane();
+        //piece.setMinSize(10, 10);;
+        //piece.setStyle("-fx-background-color: gray;");
+        Image gladiator = new Image(getClass().getResource("/img/gladiator.png").toExternalForm());
+        ImageView piece = new ImageView();
+        piece.setFitHeight(18);
+        piece.setFitWidth(18);
+        piece.setImage(gladiator);
         gladiatorView.getChildren().add(piece);
         return gladiatorView;
     }
