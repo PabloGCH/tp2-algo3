@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class InitialView {
-    private final int MAX_PLAYERS_AMOUNT = 5;
+    private final int MAX_PLAYERS_AMOUNT = 6;
     private final int MIN_PLAYERS_AMOUNT = 2;
     private final int PLAYERS_PER_ROW = 3;
     private final int PLAYERS_PER_COLUMN = 2;
@@ -63,11 +63,7 @@ public class InitialView {
             StartButtonController controller = new StartButtonController();
             try {
                 if (controller.validateNames(this.nameFields)) {
-                    var gladiators = new ArrayList<Gladiator>();
-                    for (TextField nameField : this.nameFields) {
-                        gladiators.add(new Gladiator(nameField.getText()));
-                    }
-                    new InGameView().displayInGameScene(stage, gladiators);
+                    new InGameView().displayInGameScene(stage);
                 }
             } catch (MapFileNotFound e) {
                 throw new RuntimeException(e);

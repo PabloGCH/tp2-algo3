@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.view;
 
+import edu.fiuba.algo3.controller.DiceButtonController;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
@@ -12,21 +13,18 @@ import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Box;
@@ -35,12 +33,12 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.Flow;
 
 public class InGameView {
-
     
     public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+
+  //  public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         int squareWidth = 50;
         int squareHeight = 50;
         
@@ -104,7 +102,7 @@ public class InGameView {
  
 
         //GLADIATORS ARE POSITIONATED IN INITIAL SQUARE
-        for (Gladiator gladiator : gladiators) {
+        for (Gladiator gladiator : aGame.getGladiators()) {
             System.err.println("gladiatorview");
             GladiatorView view = new GladiatorView(mapGladiatorGrids);
             gladiator.addObserver(view);
@@ -112,15 +110,18 @@ public class InGameView {
             square.affect(gladiator);
         }
 
+        
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menuBar);
         borderPane.setCenter(mapGridPane);
-        borderPane.setRight(stateGladiator);
+        borderPane.setBottom(bottomMenu());
+
+        mapGridPane.getStyleClass().add("map-grid");
         stage.getScene().setRoot(borderPane);
         stage.setTitle("Algo Roma");
         stage.getScene().getStylesheets().add(getClass().getResource("/styles/map.css").toExternalForm());
-
+        stage.getScene().getStylesheets().add(getClass().getResource("/styles/bottom-menu.css").toExternalForm());
     }
     private MenuBar createMenuBar(Stage stage) {
         MenuItem exitItem = new MenuItem("Exit");
@@ -214,7 +215,17 @@ public class InGameView {
     private void toggleFullScreen(Stage stage) {
         stage.setFullScreen(!stage.isFullScreen());
     }
-
-
+    
+    private Pane bottomMenu() {
+        DiceButtonController diceButtonController = new DiceButtonController();
+        GridPane bottomMenu = new GridPane();
+        Button diceButton = new Button("Throw dice");
+        diceButton.setOnAction(e ->{diceButtonController.throwDice();});
+        bottomMenu.getStyleClass().add("bottom-menu");
+        diceButton.getStyleClass().add("dice-button");
+        bottomMenu.getChildren().add(diceButton);
+        bottomMenu.setPrefHeight(80);
+        return bottomMenu;
+    }
 
 }

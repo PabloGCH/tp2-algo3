@@ -1,7 +1,4 @@
 .map-grid {
-    -fx-background-color: black;
-    -fx-hgap: 2px;
-    -fx-vgap: 2px;
-    -fx-grid-lines-visible: false;
+    -fx-background-color: #413d3d;
     -fx-padding: 20px;
 }
