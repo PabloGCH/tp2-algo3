@@ -38,9 +38,6 @@ public class GladiatorView implements GladiatorObserver {
 
     private Pane newGladiatorView() {
         Pane gladiatorView = new Pane();
-        //Pane piece = new Pane();
-        //piece.setMinSize(10, 10);;
-        //piece.setStyle("-fx-background-color: gray;");
         Image gladiator = new Image(getClass().getResource("/img/gladiator.png").toExternalForm());
         ImageView piece = new ImageView();
         piece.setFitHeight(18);

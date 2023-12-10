@@ -81,8 +81,8 @@ public class SquareView {
         //GLADIATORS GRID
         FlowPane squareGladiatorGrid = new FlowPane();
         squareGladiatorGrid.setStyle("-fx-padding: 5px;");
-        squareGladiatorGrid.setHgap(5);
-        squareGladiatorGrid.setVgap(5);
+        squareGladiatorGrid.setHgap(1);
+        squareGladiatorGrid.setVgap(1);
         squareGladiatorGrid.setPrefWrapLength(width);
         pathSquare.getChildren().add(squareGladiatorGrid);
         mapGridPane.add(pathSquare, row, col);
