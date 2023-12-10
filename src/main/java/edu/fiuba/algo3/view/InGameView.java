@@ -42,8 +42,8 @@ public class InGameView {
 
 
     public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        int squareWidth = 60;
-        int squareHeight = 60;
+        int squareWidth = 65;
+        int squareHeight = 65;
         
         stage.setResizable(true);
         stage.setMaximized(true);
