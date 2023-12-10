@@ -41,7 +41,36 @@ public class mapParserTest {
             );
         });
     }
-
+    @Test
+    public void validateJSONMapWithoutCaminoThrowsError() {
+        assertThrows(InvalidMapFile.class, () -> {
+            var mapParser = new MapJsonParser();
+            mapParser.loadMap(
+                    "src/main/resources/files/mapWithoutCamino.json",
+                    "mapWithoutCamino.json"
+            );
+        });
+    }
+    @Test
+    public void validateJSONMapWithoutCeldasThrowsError() {
+        assertThrows(InvalidMapFile.class, () -> {
+            var mapParser = new MapJsonParser();
+            mapParser.loadMap(
+                    "src/main/resources/files/mapWithoutCeldas.json",
+                    "mapWithoutCeldas.json"
+            );
+        });
+    }
+    @Test
+    public void validateJSONNotJSONArrayThrowsError() {
+        assertThrows(InvalidMapFile.class, () -> {
+            var mapParser = new MapJsonParser();
+            mapParser.loadMap(
+                    "src/main/resources/files/NotJSONArray.json",
+                    "NotJSONArray.json"
+            );
+        });
+    }
     @Test
     public void validateFoodSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         var mapParser = new MapJsonParser();
