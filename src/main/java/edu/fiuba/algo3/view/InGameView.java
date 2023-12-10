@@ -27,7 +27,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -36,9 +38,9 @@ import java.util.HashMap;
 
 public class InGameView {
     
-    public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+   // public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
 
-  //  public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         int squareWidth = 50;
         int squareHeight = 50;
         
@@ -52,7 +54,7 @@ public class InGameView {
         int width = (int) dimensions.getWidth();
         int height = (int) dimensions.getHeight();
         GridPane mapGridPane = new GridPane();
-        GridPane stateGladiator = locationOfPlayerStates(gladiators);
+        GridPane stateGladiator = locationOfPlayerStates(aGame);
         ArrayList<Square> path = aGame.getPath();
 
 
@@ -115,6 +117,7 @@ public class InGameView {
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menuBar);
         borderPane.setCenter(mapGridPane);
+        borderPane.setRight(stateGladiator);
         borderPane.setBottom(bottomMenu());
 
         mapGridPane.getStyleClass().add("map-grid");
@@ -177,13 +180,13 @@ public class InGameView {
         return menuBar;
     }
 
-    private GridPane locationOfPlayerStates(ArrayList<Gladiator> gladiators){
+    private GridPane locationOfPlayerStates(Game game){
         
         GridPane mapGridPane = new GridPane();
         VBox vBoxgeneral = new VBox(10);
         //hBox.setAlignment(Pos.TOP_RIGHT);
 
-        for (Gladiator nameField : gladiators) {
+        for (Gladiator nameField : game.getGladiators()) {
             VBox vBox = new VBox(5);
 
             String name = nameField.getName();
@@ -199,7 +202,7 @@ public class InGameView {
             labelequipment.setStyle("-fx-text-fill: black;");
 
             vBox.getChildren().addAll(labelname, labelenergy, labelequipment);
-            vBox.setPadding(new Insets(10,10,10,0));
+            vBox.setPadding(new Insets(10,10,10,10));
             vBoxgeneral.getChildren().add(vBox);
             //hBox.getChildren().add(vBox);
         }
@@ -208,6 +211,7 @@ public class InGameView {
         stackPane.getChildren().addAll(vBoxgeneral);
 
         mapGridPane.add(stackPane, 2000, 4000);
+        mapGridPane.setStyle("-fx-background-color: gray;");
 
         return mapGridPane;
     }

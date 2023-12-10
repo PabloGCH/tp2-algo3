@@ -18,8 +18,8 @@ public class Square{
 
     public void affect(Gladiator gladiator){
         gladiator.positionate(position);
-        gladiator.runEffect(obstacle);
         gladiator.runEffect(prize);
+        gladiator.runEffect(obstacle);
     }
 
     public Position getPosition() {

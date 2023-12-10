@@ -104,7 +104,6 @@ public class Gladiator implements GladiatorObservable {
         return this.state.updateTurn(gladiatorTurn);
     }
     
-
     public void addObserver(GladiatorObserver observer) {
         observers.add(observer);
     }
