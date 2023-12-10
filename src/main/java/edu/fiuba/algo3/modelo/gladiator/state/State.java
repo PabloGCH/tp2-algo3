@@ -42,4 +42,9 @@ public abstract class State {
         turn++;
         return turn;
     }
+
+    public String showState(){
+        String state = "Active";
+        return state;
+    }
 }

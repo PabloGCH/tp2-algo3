@@ -9,4 +9,6 @@ public interface Rank {
 
     public Rank ascent();
 
+    public String showRank();
+
 }

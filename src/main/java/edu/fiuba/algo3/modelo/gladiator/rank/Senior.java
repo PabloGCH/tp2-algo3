@@ -15,4 +15,8 @@ public class Senior implements Rank{
         return this;
     }
 
+    public String showRank(){
+        String rank = "Senior";
+        return rank;
+    }
 }

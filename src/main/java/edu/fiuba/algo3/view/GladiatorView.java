@@ -17,7 +17,7 @@ public class GladiatorView implements GladiatorObserver {
     private Pane viewRef;
     private HashMap<String, Pane> gladiatorGrids;
 
-    public void update(int row, int column, int energy, String equipment, String name) {
+    public void update(int row, int column, int energy, String equipment, String name, String rank, String state) {
         Pane squareView = gladiatorGrids.get(row + "-" + column);
         if(parentView != null) parentView.getChildren().remove(viewRef);
         squareView.getChildren().add(viewRef);

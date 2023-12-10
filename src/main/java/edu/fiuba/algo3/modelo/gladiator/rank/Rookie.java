@@ -23,4 +23,9 @@ public class Rookie implements Rank {
         return this;
     }
 
+    public String showRank(){
+        String rank = "Rookie";
+        return rank;
+    }
+
 }
