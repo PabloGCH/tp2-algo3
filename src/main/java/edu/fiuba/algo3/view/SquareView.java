@@ -31,7 +31,6 @@ public class SquareView {
         var image = SquareView.images.get(name);
         if(image == null && name != "") {
             String path = "/img/" + name + ".png";
-            System.out.println(path);
             var newImage = new Image(getClass().getResource(path).toExternalForm());
             SquareView.images.put(name, newImage);
         }
@@ -66,7 +65,7 @@ public class SquareView {
         effectNames.remove("");
         for (String name : effectNames) {
             this.loadImageByName(name);
-            ImageView imageView = new ImageView(this.images.get(name));
+            ImageView imageView = new ImageView(SquareView.images.get(name));
             imageView.setPreserveRatio(true);
             if(effectNames.size() > 1) {
                 imageView.setFitWidth(width / 2);
