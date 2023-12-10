@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.view;
 
+import edu.fiuba.algo3.controller.DiceButtonController;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
@@ -30,7 +31,7 @@ import java.util.HashMap;
 public class InGameView {
 
 
-    public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         int squareWidth = 50;
         int squareHeight = 50;
         
@@ -96,7 +97,7 @@ public class InGameView {
  
 
         //GLADIATORS ARE POSITIONATED IN INITIAL SQUARE
-        for (Gladiator gladiator : gladiators) {
+        for (Gladiator gladiator : aGame.getGladiators()) {
             System.err.println("gladiatorview");
             GladiatorView view = new GladiatorView(mapGladiatorGrids);
             gladiator.addObserver(view);
@@ -175,8 +176,10 @@ public class InGameView {
     }
     
     private Pane bottomMenu() {
+        DiceButtonController diceButtonController = new DiceButtonController();
         GridPane bottomMenu = new GridPane();
         Button diceButton = new Button("Throw dice");
+        diceButton.setOnAction(e ->{diceButtonController.throwDice();});
         bottomMenu.getStyleClass().add("bottom-menu");
         diceButton.getStyleClass().add("dice-button");
         bottomMenu.getChildren().add(diceButton);

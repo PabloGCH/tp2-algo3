@@ -7,7 +7,7 @@ public class DiceButtonController {
     private Game game;
     private Dice dice;
 
-    DiceButtonController() {
+    public DiceButtonController() {
         game = Game.getInstance();
         dice = new Dice();
     }
