@@ -8,7 +8,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Game {
+public class Game implements GameObservable {
     private final int MAX_TURNS_IN_A_GAME = 30, NEXT_GLADIATOR_TO_PLAY = 0;
     private int turn = 0;
     private int gladiatorTurn = 0;
@@ -17,6 +17,7 @@ public class Game {
     private Dice dice;
     private static Game instance;
     private GameState state;
+    private ArrayList<GameObserver> observers;
 
     private Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice) {
         this.path = path;
@@ -24,6 +25,7 @@ public class Game {
         this.dice = dice;
         this.turn = 0;
         this.state = new ActiveGame();
+        this.observers = new ArrayList<GameObserver>();
     }
     public static Game getInstance() {
         return instance;
@@ -68,11 +70,28 @@ public class Game {
     public GameState playTurn(int diceResult){
         this.state = this.state.nextTurn(this.gladiators, this.path, diceResult);
         updateTurn();
+        this.updateObservers();
         return this.state;
     }
 
     public ArrayList<Gladiator> getGladiators() {
         return gladiators;
+    }
+
+    public void addObserver(GameObserver observer) {
+        this.observers.add(observer);
+        this.updateObserver(observer);
+    }
+
+    public void updateObservers() {
+        for (GameObserver observer : observers) {
+            this.updateObserver(observer);
+        }
+    }
+
+    private void updateObserver(GameObserver observer) {
+        String currentGladiator = this.gladiators.get(0).getName();
+        observer.updateGladiatorName(currentGladiator);
     }
 }
 
