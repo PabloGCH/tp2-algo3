@@ -15,4 +15,6 @@ public interface GameState {
     public int turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators);
 
     public void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path);
+
+    public void updateScreen();
 }

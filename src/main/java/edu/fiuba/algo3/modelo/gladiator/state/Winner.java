@@ -7,8 +7,8 @@ import edu.fiuba.algo3.modelo.position.Position;
 
 public class Winner extends State{
     @Override
-    public GameState isWinner() {
-        return new FinishedByWinning();
+    public GameState isWinner(String name) {
+        return new FinishedByWinning(name);
     }
     @Override
     public void tryToWin(Gladiator aGladiator, Position middlePosition) {
