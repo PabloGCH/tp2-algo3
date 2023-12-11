@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.game.GameState;
@@ -19,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class UseCase12 {
     @Test
     public void testGameEnds(){
-        Dice dice = new Dice();
         GameState gameState;
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         gladiators.add(new Gladiator("Example"));
@@ -38,12 +36,11 @@ public class UseCase12 {
         ArrayList<String> gladiatorsNames = new ArrayList<>();
         gladiatorsNames.add(gladiators.get(0).getName());
 
-        Game game = Game.getInstance();
-        game = Game.getInstance(gladiatorsNames, map, dice);
+        Game game = Game.getInstance(gladiatorsNames, map);
         game.startGame();
-        gameState = game.playTurn(dice.throwDice());
+        gameState = game.playTurn(1);
         while (!gameState.Finalized()){
-            gameState = game.playTurn(dice.throwDice());
+            gameState = game.playTurn(1);
         }
 
         Assertions.assertFalse(gameState.result(gladiators));

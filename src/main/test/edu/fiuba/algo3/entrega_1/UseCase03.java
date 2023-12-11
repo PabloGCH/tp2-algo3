@@ -1,14 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.game.Game;
-import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.ArrayList;
 
@@ -31,11 +27,7 @@ public class UseCase03 {
         ArrayList<String> gladiatorsNames = new ArrayList<>();
         gladiatorsNames.add("Example");
 
-        Game game = Game.getInstance();
-        if(game != null){
-            game.restartGame();
-        }
-        game = Game.getInstance(gladiatorsNames, map, new Dice());
+        Game game = Game.getInstance(gladiatorsNames, map);
         game.startGame();
         game.playTurn(1);
         game.playTurn(1);

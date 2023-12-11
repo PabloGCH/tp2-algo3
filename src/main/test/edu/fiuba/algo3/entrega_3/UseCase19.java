@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.entrega_3;
 
-import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
-import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
@@ -23,7 +21,6 @@ import edu.fiuba.algo3.modelo.squares.*;
 public class UseCase19 {
     @Test
     public void testPlayerWin() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        Dice dice = new Dice();
         GameState gameState;
         Gladiator gladiator1 = new Gladiator("Example");
         ArrayList<Gladiator> gladiators = new ArrayList<>();
@@ -46,12 +43,11 @@ public class UseCase19 {
         ArrayList<String> gladiatorsNames = new ArrayList<>();
         gladiatorsNames.add(gladiators.get(0).getName());
 
-        Game game = Game.getInstance();
-        game = Game.getInstance(gladiatorsNames, map, dice);
+        Game game = Game.getInstance(gladiatorsNames, map);
         game.startGame();
-        gameState = game.playTurn(dice.throwDice());
+        gameState = game.playTurn(1);
         while (!gameState.Finalized()){
-            gameState = game.playTurn(dice.throwDice());
+            gameState = game.playTurn(1);
         }
 
         Assertions.assertTrue(gameState.result(gladiators));

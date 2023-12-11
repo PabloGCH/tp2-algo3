@@ -2,7 +2,6 @@ package edu.fiuba.algo3.unittests.gameTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
@@ -21,7 +20,6 @@ public class gameTests {
     @Test
     void test01StartGameAndPlayUntilFinish() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         GameState gameState;
-        Dice dice = new Dice();
        ArrayList<Gladiator> gladiators = new ArrayList<>();
        gladiators.add(new Gladiator("Example 1"));
        gladiators.add(new Gladiator("Example 2"));
@@ -40,16 +38,11 @@ public class gameTests {
        gladiatorsNames.add(gladiators.get(0).getName());
        gladiatorsNames.add(gladiators.get(1).getName());
 
-        Game game = Game.getInstance();
-        if(game != null){
-            game.restartGame();
-        }
-
-        game = Game.getInstance(gladiatorsNames, map, dice);
+       Game game = Game.getInstance(gladiatorsNames, map);
        game.startGame();
-       gameState = game.playTurn(dice.throwDice());
+       gameState = game.playTurn(1);
        while (!gameState.Finalized()){
-           gameState = game.playTurn(dice.throwDice());
+           gameState = game.playTurn(1);
        }
 
        assertFalse(gameState.result(gladiators));
@@ -58,7 +51,6 @@ public class gameTests {
 
     @Test
     void test02GladiatorIsSuccessfullyAddedToTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        Dice dice = new Dice();
         GameState gameState;
         Gladiator gladiator1 = new Gladiator("Example");
        ArrayList<Gladiator> gladiators = new ArrayList<>();
@@ -78,7 +70,7 @@ public class gameTests {
        ArrayList<String> gladiatorsNames = new ArrayList<>();
        gladiatorsNames.add(gladiators.get(0).getName());
 
-       Game game = Game.getInstance(gladiatorsNames, map, dice);
+       Game game = Game.getInstance(gladiatorsNames, map);
         game.startGame();
 
         assertEquals(20, gladiator1.getEnergy());
@@ -87,7 +79,6 @@ public class gameTests {
 
     @Test
     void test03AllTheGladiatorsLostTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        Dice dice = new Dice();
         GameState gameState;
        Gladiator gladiator1 = new Gladiator("Example");
        ArrayList<Gladiator> gladiators = new ArrayList<>();
@@ -110,11 +101,11 @@ public class gameTests {
         ArrayList<String> gladiatorsNames = new ArrayList<>();
         gladiatorsNames.add(gladiators.get(0).getName());
 
-        Game game = Game.getInstance(gladiatorsNames, map, dice);
+        Game game = Game.getInstance(gladiatorsNames, map);
         game.startGame();
-        gameState = game.playTurn(dice.throwDice());
+        gameState = game.playTurn(1);
         while (!gameState.Finalized()){
-            gameState = game.playTurn(dice.throwDice());
+            gameState = game.playTurn(1);
         }
 
         assertFalse(gameState.result(gladiators));
@@ -122,7 +113,6 @@ public class gameTests {
     }
     @Test
     public void test04GetPathReturnsTheRightPath(){
-        Dice dice = new Dice();
         GameState gameState;
         ArrayList<Square> map = new ArrayList<>();
         ArrayList<Gladiator> gladiators = new ArrayList<>();
@@ -133,7 +123,7 @@ public class gameTests {
 
         ArrayList<String> gladiatorsNames = new ArrayList<>();
 
-        Game game = Game.getInstance(gladiatorsNames, map, dice);
+        Game game = Game.getInstance(gladiatorsNames, map);
         ArrayList<Square> mapReceived = game.getPath();
         assertTrue(positionOne.comparePosition(mapReceived.get(0).getPosition()));
         game.restartGame();
