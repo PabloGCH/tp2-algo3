@@ -1,0 +1,13 @@
+@startuml
+
+[*] --> Active: start game
+
+state result_of_energy <<fork>>
+Active --> result_of_energy: result of energy
+
+result_of_energy --> Active: its energy is greater than 0
+result_of_energy --> Tired: its energy is less than 0
+
+Active --> [*] : The next turn you can play again
+Tired --> [*] : does not move next turn
+@enduml

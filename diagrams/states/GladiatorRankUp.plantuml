@@ -1,0 +1,10 @@
+@startuml
+
+[*] --> Rookie: start game
+
+Rookie --> SemeSenior : 8 turns pass
+
+SemeSenior --> Senior: 4 turns pass
+
+Senior --> [*]
+@enduml

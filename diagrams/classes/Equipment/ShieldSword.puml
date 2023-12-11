@@ -3,5 +3,6 @@ class ShieldSword {
     +upgrade(): Key
     +receiveAttack(int energy): int
     +win(State state) State
+    +showName(): String
 }
 @enduml

@@ -3,5 +3,6 @@ Interface Equipment {
     +upgrade(): Equipment
     +receiveAttack(int energy): int
     +win(State state) State
+    +showName(): String
 }
 @enduml

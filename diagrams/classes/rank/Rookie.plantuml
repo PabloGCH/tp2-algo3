@@ -1,5 +1,4 @@
 @startuml
-!include ../Energy/Energy.plantuml
 
 class Rookie {
     -shift: int
@@ -8,5 +7,4 @@ class Rookie {
     +ascent(): Rank
 }
 
-Rookie ..> Energy
 @enduml

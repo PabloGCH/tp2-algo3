@@ -1,0 +1,14 @@
+@startuml
+
+[*] --> withoutEquipment: start game
+
+withoutEquipment --> Helmet : The gladiator falls into a locker with improved equipment
+
+Helmet --> Armor: The gladiator falls into a locker with improved equipment
+
+Armor --> swordAndShield: The gladiator falls into a locker with improved equipment
+
+swordAndShield --> Key: The gladiator falls into a locker with improved equipment
+
+Key --> [*]
+@enduml
