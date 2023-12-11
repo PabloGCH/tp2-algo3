@@ -19,8 +19,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -42,6 +45,7 @@ public class InGameView {
 
 
     public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+
         int squareWidth = 65;
         int squareHeight = 65;
         
@@ -58,6 +62,7 @@ public class InGameView {
         GridPane stateGladiator = new SideBar().view(aGame);
         ArrayList<Square> path = aGame.getPath();
 
+        stateGladiator.setPrefWidth(390);
 
         for (int row = 0; row < height; row++) {
             for (int column = 0; column < width; column++) {
@@ -87,18 +92,25 @@ public class InGameView {
 
         
 
-        BorderPane borderPane = new BorderPane();
+        BorderPane mainLayout = new BorderPane();
         BorderPane gamePane = new BorderPane();
-        gamePane.setCenter(mapGridPane);
+
+        ScrollPane mapScrollPane = new ScrollPane(mapGridPane);
+        mapScrollPane.setPannable(true);
+        mapScrollPane.setBackground(
+            new Background(new BackgroundFill(Color.TRANSPARENT, null, null))
+        );
+
+        gamePane.setCenter(mapScrollPane);
         gamePane.setBottom(this.bottomMenu());
 
-        borderPane.setTop(menuBar);
-        borderPane.setCenter(gamePane);
-        borderPane.setBottom(bottomMenu());
-        borderPane.setRight(stateGladiator);
+        
+        mainLayout.setTop(menuBar);
+        mainLayout.setCenter(gamePane);
+        mainLayout.setRight(stateGladiator);
 
         mapGridPane.getStyleClass().add("map-grid");
-        stage.getScene().setRoot(borderPane);
+        stage.getScene().setRoot(mainLayout);
         stage.setTitle("Algo Roma");
         stage.getScene().getStylesheets().add(getClass().getResource("/styles/map.css").toExternalForm());
         stage.getScene().getStylesheets().add(getClass().getResource("/styles/bottom-menu.css").toExternalForm());
