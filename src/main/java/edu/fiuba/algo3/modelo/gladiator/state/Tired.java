@@ -16,4 +16,9 @@ public class Tired extends State{
         String state = "Tired";
         return state;
     }
+
+    @Override
+    public int energyFromState(int energy) {
+        return (energy + 5);
+    }
 }

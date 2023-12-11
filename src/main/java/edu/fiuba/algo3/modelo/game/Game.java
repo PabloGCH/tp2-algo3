@@ -36,12 +36,13 @@ public class Game {
         }
         return instance;
     }
-    // start game deberia dejar el juego listo para jugarse solamente.
+
     public String startGame() {
         this.state = new ActiveGame();
         this.state.entryOfTheGladiatorToTheFirstSquare(gladiators, path);
         Random random = new Random();
-        String randomName = gladiators.get(random.nextInt(gladiators.size()) - 1).getName();
+        int randomResult = random.nextInt(gladiators.size());
+        String randomName = gladiators.get(randomResult).getName();
         while(gladiators.get(0).getName() != randomName){
             Gladiator aGladiator = gladiators.remove(0);
             gladiators.add(aGladiator);
@@ -49,8 +50,7 @@ public class Game {
         return gladiators.get(0).getName();
     }
     
-    //TODO hay que elegir una de las dos opciones.
-    // play turn que debería realizarse un turno de un gladiador
+
     private void updateTurn(){
         gladiatorTurn = this.state.turnEnded(gladiatorTurn, this.gladiators);
         if (gladiatorTurn == this.gladiators.size()){

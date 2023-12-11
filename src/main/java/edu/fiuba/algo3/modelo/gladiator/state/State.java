@@ -17,7 +17,6 @@ public abstract class State {
         return this;
     }
     public void runEffect(Effect effect, Gladiator gladiator){
-        gladiator.refreshState();
     }
 
     public State fracture(){
@@ -46,5 +45,8 @@ public abstract class State {
     public String showState(){
         String state = "Active";
         return state;
+    }
+    public int energyFromState(int energy){
+        return energy;
     }
 }
