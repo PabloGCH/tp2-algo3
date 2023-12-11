@@ -23,12 +23,12 @@ public class GameStateController {
         return instance;
     }
     public static void showLossScreen() {
-        VBox vBox = new LossScene().createContent();
+        VBox vBox = new LossScene().createContent(stage);
         stage.getScene().setRoot(vBox);
         stage.getScene().getStylesheets().add(getInstance().styles);
     }
     public static void showVictoryScreen(String winner) {
-        VBox vBox = new VictoryScene().createContent(winner);
+        VBox vBox = new VictoryScene().createContent(stage, winner);
         stage.getScene().setRoot(vBox);
         stage.getScene().getStylesheets().add(getInstance().styles);
     }

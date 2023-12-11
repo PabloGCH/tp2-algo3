@@ -56,8 +56,18 @@ public class Game implements GameObservable {
         }
         return gladiators.get(0).getName();
     }
-    
-
+    public void restartGame() {
+        this.instance = null;
+    }
+    public void restartGameWithSamePlayers() {
+        ArrayList newGladiators = new ArrayList<Gladiator>();
+        for (Gladiator gladiator : this.gladiators) {
+            Gladiator aGladiator = new Gladiator(gladiator.getName());
+            newGladiators.add(aGladiator);
+        }
+        this.gladiators = newGladiators;
+        String s = this.startGame();
+    }
     private void updateTurn(){
         gladiatorTurn = this.state.turnEnded(gladiatorTurn, this.gladiators);
         if (gladiatorTurn == this.gladiators.size()){

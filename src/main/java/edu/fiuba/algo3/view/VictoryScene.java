@@ -8,9 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class VictoryScene extends VBox {
-    public static VBox createContent(String winnerPlayer) {
+    public static VBox createContent(Stage stage, String winnerPlayer) {
         VBox mainContainer = new VBox();
         mainContainer.setAlignment(Pos.CENTER);
         mainContainer.getStyleClass().add("main-container");

@@ -29,8 +29,8 @@ public class InitialView {
     private final int PLAYERS_PER_ROW = 3;
     private final int PLAYERS_PER_COLUMN = 2;
 
-    ArrayList<TextField> nameFields;
-    public Scene initialScene(Stage stage, ArrayList nameFields) {
+    ArrayList<TextField> nameFields = new ArrayList<TextField>();
+    public VBox initialScene(Stage stage) {
         GameStateController.getInstance(stage);
         this.nameFields = nameFields;
         VBox mainContainer = new VBox();
@@ -83,11 +83,7 @@ public class InitialView {
         mainContainer.getChildren().add(invalidNamesText);
         mainContainer.setPrefWidth(150*PLAYERS_PER_ROW + 20);
         mainContainer.setPadding(new Insets(0, 0, 10, 0));
-        Scene scene = new Scene(mainContainer);
-
-        scene.getStylesheets().add(getClass().getResource("/initialScene.css").toExternalForm());
-
-        return scene;
+        return mainContainer;
     }
 
     private VBox newAddCard() {
