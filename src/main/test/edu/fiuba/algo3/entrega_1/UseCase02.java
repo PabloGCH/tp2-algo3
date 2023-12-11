@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
