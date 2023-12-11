@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -30,8 +31,12 @@ public class Game {
     public ArrayList<Square> getPath() {
         return this.path;
     }
-    public static Game getInstance(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice) {
+    public static Game getInstance(ArrayList<String> gladiatorsNames, ArrayList<Square> path, Dice dice) {
         if (instance == null) {
+            ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
+            for (String name : gladiatorsNames) {
+                gladiators.add(new Gladiator(name));
+            }
             instance = new Game(gladiators, path, dice);
         }
         return instance;

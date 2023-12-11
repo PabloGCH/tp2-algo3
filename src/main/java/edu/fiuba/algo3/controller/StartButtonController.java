@@ -36,14 +36,14 @@ public class StartButtonController {
     }
 
     public void newGame(ArrayList<TextField> nameFields) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
+        ArrayList<String> gladiatorsNames = new ArrayList<String>();
         for (TextField name : nameFields) {
             String gladiatorName = name.getText();
-            gladiators.add(new Gladiator(gladiatorName));
+            gladiatorsNames.add(gladiatorName);
         }
         MapFacade mapFacade = new MapFacade();
         ArrayList<Square> map = mapFacade.loadMap();
-        Game.getInstance(gladiators, map, new Dice());
+        Game.getInstance(gladiatorsNames, map, new Dice());
         Game.getInstance().startGame();
     }
 }
