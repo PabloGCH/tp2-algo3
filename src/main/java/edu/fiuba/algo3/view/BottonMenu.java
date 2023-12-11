@@ -59,11 +59,15 @@ public class BottonMenu implements GameObserver {
         
         Button diceButton = new Button("Throw the dice");
         diceButton.setOnAction(e ->{
+            diceButton.setDisable(true);
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), event ->{
                 dice.setImage(dicesImages.get(String.valueOf(new Random().nextInt(5) + 1)));
             }));
             timeline.setCycleCount(15);
-            timeline.setOnFinished(event -> diceButtonController.throwDice(this.dice, this.dicesImages));
+            timeline.setOnFinished(event -> {
+                diceButtonController.throwDice(this.dice, this.dicesImages);
+                diceButton.setDisable(false);
+            });
             timeline.play();
         });
 
@@ -74,9 +78,11 @@ public class BottonMenu implements GameObserver {
         bottomMenu.getChildren().add(diceButton);
         bottomMenu.getChildren().add(this.dice);
 
-        bottomMenu.setPrefHeight(90);
         bottomMenu.setAlignment(Pos.CENTER);
         bottomMenu.setSpacing(8);
+
+        bottomMenu.setMinHeight(130);
+
         return bottomMenu;
     }
 }

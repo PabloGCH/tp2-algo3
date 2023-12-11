@@ -21,6 +21,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -107,6 +108,9 @@ public class InGameView {
 
         ScrollPane mapScrollPane = new ScrollPane(mapGridPane);
         mapScrollPane.setPannable(true);
+        mapScrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+        mapScrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
+
         mapScrollPane.setBackground(
             new Background(new BackgroundFill(Color.TRANSPARENT, null, null))
         );
