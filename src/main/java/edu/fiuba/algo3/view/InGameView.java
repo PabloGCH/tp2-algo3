@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.view;
 
 import edu.fiuba.algo3.controller.DiceButtonController;
+import edu.fiuba.algo3.controller.Sound;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
@@ -30,22 +31,31 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class InGameView {
     
    // public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
 
+    private ArrayList<String> songsList = new ArrayList<>();
 
     public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-
+        this.loadSoundsAndMusic();
+        if (!songsList.isEmpty()) {
+            Sound.getInstance().playMusic(songsList.get(0));
+        }
         int squareWidth = 65;
         int squareHeight = 65;
         
@@ -137,13 +147,14 @@ public class InGameView {
         toggleMusic.getStyleClass().add("menu-item");
         Menu musicList = new Menu("Select track");
         musicList.getStyleClass().add("menu-item");
-        MenuItem firstTrack = new MenuItem("track 1");
-        firstTrack.getStyleClass().add("menu-item");
-        MenuItem secondTrack = new MenuItem("track 2");
-        secondTrack.getStyleClass().add("menu-item");
-        musicList.getItems().add(firstTrack);
-        musicList.getItems().add(secondTrack);
+        toggleMusic.setOnAction(e -> Sound.getInstance().toggleMuteMusic());
 
+        for (String song : songsList) {
+            MenuItem track = new MenuItem(song);
+            track.getStyleClass().add("menu-item");
+            musicList.getItems().add(track);
+            track.setOnAction(e -> Sound.getInstance().playMusic(song));
+        }
 
         Menu musicMenu = new Menu("Music");
         musicMenu.getItems().add(toggleMusic);
@@ -169,6 +180,40 @@ public class InGameView {
         menuBar.getStyleClass().add("menu-bar");
 
         return menuBar;
+    }
+
+    private void loadSoundsAndMusic() {
+        Sound sounds = Sound.getInstance();
+        String songsDirectory = "/sounds/music";
+        try {
+            URL resource = getClass().getResource(songsDirectory);
+
+            File[] files = new File(resource.toURI()).listFiles();
+
+            if (files != null) {
+
+                String[] mp3Files = Arrays.stream(files)
+                        .filter(file -> file.isFile() && file.getName().toLowerCase().endsWith(".mp3"))
+                        .map(File::getName)
+                        .toArray(String[]::new);
+
+                for (String song : mp3Files) {
+                    URL fileURL = getClass().getResource(songsDirectory + "/" + song);
+
+                    Media media = new Media(fileURL.toString());
+
+                    sounds.loadMusic(song, song);
+                    songsList.add(song);
+                }
+            } else {
+                System.out.println("No se encontraron archivos MP3");
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        sounds.modifyEffectVolume(50);
+        sounds.modifyMusicVolume(25);
     }
 
 

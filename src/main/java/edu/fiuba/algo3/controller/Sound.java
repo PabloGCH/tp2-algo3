@@ -32,7 +32,7 @@ public class Sound {
         loadFile(fileName, identifier, soundsFX, volumeFx, SOUNDS_FX_DIRECTORY);
     }
     private void loadFile(String fileName, String identifier, HashMap<String, MediaPlayer> container, SimpleDoubleProperty volume, String directory){
-        Media media = new Media(Objects.requireNonNull(getClass().getResource("/sounds/music/" + fileName).toExternalForm()));
+        Media media = new Media(Objects.requireNonNull(getClass().getResource(directory + fileName).toExternalForm()));
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.volumeProperty().bindBidirectional(volume);
         container.put(identifier, mediaPlayer);
@@ -60,9 +60,7 @@ public class Sound {
     }
     public void playMusic(String identifier) {
         if (!songs.containsKey(identifier))
-            System.out.println("Error music");
-        //throw new ErrorIdentifierDoesNotMatchAnyLoadedSong();
-
+            System.err.println("Error music");
         if (currentSong != null) {
             currentSong.stop();
         }
@@ -77,7 +75,6 @@ public class Sound {
         });
 
         currentSong.play();
-        System.out.println("Playing " + currentSong.getMedia().getSource());
     }
 
     public void stopMusic() {
