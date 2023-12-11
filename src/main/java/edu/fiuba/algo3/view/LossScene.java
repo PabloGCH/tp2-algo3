@@ -9,13 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class LossScene extends Scene {
-
-    public LossScene() {
-        super(createContent(), 800, 600);
-        getStylesheets().add(getClass().getResource("/finalScene.css").toExternalForm());
-    }
-
+public class LossScene extends VBox {
     public static VBox createContent() {
         VBox mainContainer = new VBox();
         mainContainer.setAlignment(Pos.CENTER);

@@ -38,8 +38,14 @@ public class ActiveGame implements GameState {
             currentSquare.affect(currentGladiator);
         }
     }
+
+    @Override
+    public void updateScreen() {
+
+    }
+
     public GameState update( int turn){
-        if (turn == 30){ return new FinishedByWinning(); }
+        if (turn == 30){ return new FinishedByWinning("Qué es esto?"); }
         return this;
     }
 }

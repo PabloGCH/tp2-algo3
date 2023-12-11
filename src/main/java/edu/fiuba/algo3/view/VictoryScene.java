@@ -9,14 +9,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class VictoryScene extends Scene {
-
-    public VictoryScene(String winnerPlayer) {
-        super(createContent(winnerPlayer), 800, 600);
-        getStylesheets().add(getClass().getResource("/finalScene.css").toExternalForm());
-    }
-
-    private static VBox createContent(String winnerPlayer) {
+public class VictoryScene extends VBox {
+    public static VBox createContent(String winnerPlayer) {
         VBox mainContainer = new VBox();
         mainContainer.setAlignment(Pos.CENTER);
         mainContainer.getStyleClass().add("main-container");

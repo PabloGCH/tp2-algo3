@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.view;
 
+import edu.fiuba.algo3.controller.GameStateController;
 import edu.fiuba.algo3.controller.StartButtonController;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
@@ -30,6 +31,7 @@ public class InitialView {
 
     ArrayList<TextField> nameFields;
     public Scene initialScene(Stage stage, ArrayList nameFields) {
+        GameStateController.getInstance(stage);
         this.nameFields = nameFields;
         VBox mainContainer = new VBox();
         mainContainer.getStyleClass().add("main-container");

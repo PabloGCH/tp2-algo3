@@ -99,7 +99,7 @@ public class Gladiator implements GladiatorObservable {
         this.state.tryToWin(this, middlePosition);
     }
     public GameState won() {
-        return this.state.isWinner();
+        return this.state.isWinner(this.name);
     }
 
     public void decideIfPlaysAgain(TurnDecider turnDecider) {

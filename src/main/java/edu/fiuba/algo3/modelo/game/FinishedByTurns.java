@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.game;
 
+import edu.fiuba.algo3.controller.GameStateController;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Square;
 
@@ -25,5 +26,10 @@ public class FinishedByTurns implements GameState {
     }
 
     public void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path){
+    }
+
+    @Override
+    public void updateScreen() {
+        GameStateController.getInstance().showLossScreen();
     }
 }

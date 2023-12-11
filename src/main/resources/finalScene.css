@@ -14,8 +14,14 @@
     -fx-background-color: #413d3d;
 }
 
+label {
+    -fx-spacing: 4px 0px 4px 0px;
+}
+
 .btn {
     -fx-background-color: rgb(66, 39, 18);
+    -fx-padding: 5px;
+    -fx-spacing: 4px 0px 4px 0px;
 }
 
 .btn:hover {

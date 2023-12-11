@@ -25,7 +25,7 @@ public abstract class State {
     public State getIntoBacchanalia(Gladiator aGladiator){
         return this;
     }
-    public GameState isWinner() {
+    public GameState isWinner(String name) {
         return new ActiveGame();
     }
 
