@@ -26,7 +26,7 @@ public class DiceButtonController {
         int diceResult = dice.throwDice();
         diceImageView.setImage((Image) diceImages.get(String.valueOf(diceResult)));
         GameState gameState = game.playTurn(diceResult);
-        gameState.updateScreen();
+        gameState.updateScreen(GameStateController.getInstance());
     }
 }
 

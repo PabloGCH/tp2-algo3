@@ -29,7 +29,7 @@ public class FinishedByTurns implements GameState {
     }
 
     @Override
-    public void updateScreen() {
-        GameStateController.getInstance().showLossScreen();
+    public void updateScreen(GameEndController controller) {
+        controller.showLossScreen();
     }
 }

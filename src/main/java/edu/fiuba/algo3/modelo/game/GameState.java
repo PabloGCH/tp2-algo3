@@ -16,5 +16,5 @@ public interface GameState {
 
     public void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path);
 
-    public void updateScreen();
+    public void updateScreen(GameEndController controller);
 }

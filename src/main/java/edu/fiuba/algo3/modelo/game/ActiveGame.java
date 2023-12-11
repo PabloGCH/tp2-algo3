@@ -40,12 +40,12 @@ public class ActiveGame implements GameState {
     }
 
     @Override
-    public void updateScreen() {
+    public void updateScreen(GameEndController controller) {
 
     }
 
-    public GameState update( int turn){
+    /*public GameState update( int turn){
         if (turn == 30){ return new FinishedByWinning("Qué es esto?"); }
         return this;
-    }
+    }*/
 }

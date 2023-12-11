@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.game;
 
-import edu.fiuba.algo3.controller.GameStateController;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Square;
 
@@ -33,7 +32,7 @@ public class FinishedByWinning implements GameState {
     }
 
     @Override
-    public void updateScreen() {
-        GameStateController.getInstance().showVictoryScreen(winner);
+    public void updateScreen(GameEndController controller) {
+        controller.showVictoryScreen(winner);
     }
 }
