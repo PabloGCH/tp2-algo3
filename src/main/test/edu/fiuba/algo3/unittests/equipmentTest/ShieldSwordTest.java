@@ -2,7 +2,6 @@ package edu.fiuba.algo3.unittests.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
-import edu.fiuba.algo3.modelo.gladiator.equipment.Helmet;
 import edu.fiuba.algo3.modelo.gladiator.equipment.ShieldSword;
 import edu.fiuba.algo3.modelo.gladiator.state.Active;
 import edu.fiuba.algo3.modelo.gladiator.state.State;

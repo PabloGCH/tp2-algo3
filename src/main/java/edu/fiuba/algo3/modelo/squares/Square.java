@@ -3,8 +3,6 @@ package edu.fiuba.algo3.modelo.squares;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.position.Position;
 
-import java.util.ArrayList;
-
 public class Square{
     private Position position;
     protected Effect prize;
