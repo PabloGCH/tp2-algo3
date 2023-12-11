@@ -39,10 +39,6 @@ public class UseCase12 {
         gladiatorsNames.add(gladiators.get(0).getName());
 
         Game game = Game.getInstance();
-        if(game != null){
-            game.restartGame();
-        }
-
         game = Game.getInstance(gladiatorsNames, map, dice);
         game.startGame();
         gameState = game.playTurn(dice.throwDice());
@@ -51,5 +47,6 @@ public class UseCase12 {
         }
 
         Assertions.assertFalse(gameState.result(gladiators));
+        game.restartGame();
     }
 }

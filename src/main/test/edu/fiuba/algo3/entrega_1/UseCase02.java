@@ -39,5 +39,6 @@ public class UseCase02 {
         Game game = Game.getInstance(gladiatorsNames, map, dice);
         game.startGame();
         Assertions.assertEquals(aGladiator.getEnergy(), 20);
+        game.restartGame();
     }
 }

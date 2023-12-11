@@ -53,6 +53,7 @@ public class gameTests {
        }
 
        assertFalse(gameState.result(gladiators));
+        game.restartGame();
     }
 
     @Test
@@ -81,6 +82,7 @@ public class gameTests {
         game.startGame();
 
         assertEquals(20, gladiator1.getEnergy());
+        game.restartGame();
     }
 
     @Test
@@ -116,6 +118,7 @@ public class gameTests {
         }
 
         assertFalse(gameState.result(gladiators));
+        game.restartGame();
     }
     @Test
     public void test04GetPathReturnsTheRightPath(){
@@ -133,5 +136,6 @@ public class gameTests {
         Game game = Game.getInstance(gladiatorsNames, map, dice);
         ArrayList<Square> mapReceived = game.getPath();
         assertTrue(positionOne.comparePosition(mapReceived.get(0).getPosition()));
+        game.restartGame();
     }
 }
