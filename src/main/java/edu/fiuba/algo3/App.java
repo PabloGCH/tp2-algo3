@@ -21,7 +21,7 @@ public class App extends Application {
     public void start(Stage stage) {
 
         stage.setScene(new Scene(new InitialView().initialScene(stage)));
-        stage.getScene().getStylesheets().add(getClass().getResource("/initialScene.css").toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource("/styles/initialScene.css").toExternalForm());
         stage.setResizable(false);
         stage.show();
     }

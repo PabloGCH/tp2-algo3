@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class GameStateController {
     private static Stage stage;
     private static GameStateController instance;
-    private String styles = getClass().getResource("/finalScene.css").toExternalForm();
+    private String styles = getClass().getResource("/styles/finalScene.css").toExternalForm();
     private GameStateController(Stage stage) {
         this.stage = stage;
     }

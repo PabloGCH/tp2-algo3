@@ -125,7 +125,7 @@ public class InGameView {
         stage.getScene().setRoot(mainLayout);
         stage.setTitle("Algo Roma");
         stage.getScene().getStylesheets().clear();
-        stage.getScene().getStylesheets().add(getClass().getResource("/initialScene.css").toExternalForm());
+        stage.getScene().getStylesheets().add(getClass().getResource("/styles/initialScene.css").toExternalForm());
         stage.getScene().getStylesheets().add(getClass().getResource("/styles/map.css").toExternalForm());
         stage.getScene().getStylesheets().add(getClass().getResource("/styles/bottom-menu.css").toExternalForm());
     }

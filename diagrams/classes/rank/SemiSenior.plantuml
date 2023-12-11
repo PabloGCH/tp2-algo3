@@ -1,5 +1,4 @@
 @startuml
-!include ../Energy/Energy.plantuml
 
 class SemiSenior {
     -shift: int
@@ -7,5 +6,5 @@ class SemiSenior {
     +energyFromExperience(amount: Energy): Energy
     +ascent(): Rank
 }
-SemiSenior ..> Energy
+
 @enduml
