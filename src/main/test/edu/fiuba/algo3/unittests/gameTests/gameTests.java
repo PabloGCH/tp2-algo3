@@ -40,7 +40,12 @@ public class gameTests {
        gladiatorsNames.add(gladiators.get(0).getName());
        gladiatorsNames.add(gladiators.get(1).getName());
 
-       Game game = Game.getInstance(gladiatorsNames, map, dice);
+        Game game = Game.getInstance();
+        if(game != null){
+            game.restartGame();
+        }
+
+        game = Game.getInstance(gladiatorsNames, map, dice);
        game.startGame();
        gameState = game.playTurn(dice.throwDice());
        while (!gameState.Finalized()){
