@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.controller;
 
-import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.game.Game;
-import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
@@ -43,7 +41,7 @@ public class StartButtonController {
         }
         MapFacade mapFacade = new MapFacade();
         ArrayList<Square> map = mapFacade.loadMap();
-        Game.getInstance(gladiatorsNames, map, new Dice());
+        Game.getInstance(gladiatorsNames, map);
         Game.getInstance().startGame();
     }
 }

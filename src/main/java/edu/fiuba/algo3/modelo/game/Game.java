@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.modelo.game;
 
-import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,15 +12,13 @@ public class Game implements GameObservable {
     private int gladiatorTurn = 0;
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
     private ArrayList<Square> path;
-    private Dice dice;
     private static Game instance;
     private GameState state;
     private ArrayList<GameObserver> observers;
 
-    private Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice) {
+    private Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path) {
         this.path = path;
         this.gladiators = gladiators;
-        this.dice = dice;
         this.turn = 0;
         this.state = new ActiveGame();
         this.observers = new ArrayList<GameObserver>();
@@ -33,13 +29,13 @@ public class Game implements GameObservable {
     public ArrayList<Square> getPath() {
         return this.path;
     }
-    public static Game getInstance(ArrayList<String> gladiatorsNames, ArrayList<Square> path, Dice dice) {
+    public static Game getInstance(ArrayList<String> gladiatorsNames, ArrayList<Square> path) {
         if (instance == null) {
             ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
             for (String name : gladiatorsNames) {
                 gladiators.add(new Gladiator(name));
             }
-            instance = new Game(gladiators, path, dice);
+            instance = new Game(gladiators, path);
         }
         return instance;
     }

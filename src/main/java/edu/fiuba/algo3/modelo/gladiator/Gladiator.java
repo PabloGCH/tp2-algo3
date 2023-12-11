@@ -80,7 +80,7 @@ public class Gladiator implements GladiatorObservable {
     public void runEffect(Effect effect){
         this.state.runEffect(effect, this);
     }
-   
+
     public void positionate(Position position){
         this.position = position;
         this.updateObservers();
@@ -109,7 +109,7 @@ public class Gladiator implements GladiatorObservable {
     public int turnEnded(int gladiatorTurn){
         return this.state.updateTurn(gladiatorTurn);
     }
-    
+
     public void addObserver(GladiatorObserver observer) {
         observers.add(observer);
         this.updateObserver(observer);
