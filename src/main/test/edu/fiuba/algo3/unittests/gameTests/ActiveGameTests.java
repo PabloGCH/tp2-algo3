@@ -30,7 +30,7 @@ public class ActiveGameTests {
         path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("Comida"), newPosition));
         initialSquare.affect(gladiator);
         assertEquals(gladiator.getEnergy(), 20);
-        activeGame.nextTurn(gladiators, path, 1, 0);
+        activeGame.nextTurn(gladiators, path, 1);
         assertEquals(gladiator.getEnergy(), 35);
     }
     @Test//Preguntar si usar otro metodo para comprobar es correcto
@@ -45,7 +45,7 @@ public class ActiveGameTests {
         path.add(initialSquare);
         Position newPosition = new Position(1,0,1);
         path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("NullEffect"), newPosition));
-        GameState currentGameState = activeGame.nextTurn(gladiators, path, 1, 0);
+        GameState currentGameState = activeGame.nextTurn(gladiators, path, 1);
         assertFalse(currentGameState.Finalized());
     }
     @Test

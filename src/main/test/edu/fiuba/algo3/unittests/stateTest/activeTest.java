@@ -72,7 +72,7 @@ public class activeTest {
     @Test
     public void test06IsWinnerReturnsActiveGameState(){
         Active active = new Active();
-        GameState gameState = active.isWinner();
+        GameState gameState = active.isWinner("Example");
         assertFalse(gameState.Finalized());
     }
     @Test

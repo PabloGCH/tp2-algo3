@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.gladiator.state.*;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.Bacchanalia;
 import edu.fiuba.algo3.modelo.squares.Food;
+import edu.fiuba.algo3.modelo.squares.NullEffect;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class inTheBacchanaliaTests {
         Gladiator gladiator = new Gladiator("Example");
         InTheBacchanalia inTheBacchanalia = new InTheBacchanalia(gladiator);
 
+        inTheBacchanalia.runEffect(new NullEffect(), gladiator);
         var state = inTheBacchanalia.update(0);
         int number = state.move(1);
 
@@ -77,7 +79,7 @@ public class inTheBacchanaliaTests {
     public void test06IsWinnerReturnsActiveGameState(){
         Gladiator gladiator = new Gladiator("Example");
         InTheBacchanalia inTheBacchanalia = new InTheBacchanalia(gladiator);
-        GameState gameState = inTheBacchanalia.isWinner();
+        GameState gameState = inTheBacchanalia.isWinner("Example");
         assertFalse(gameState.Finalized());
     }
     @Test
@@ -105,6 +107,7 @@ public class inTheBacchanaliaTests {
         Gladiator gladiator = new Gladiator("Example");
         InTheBacchanalia inTheBacchanalia = new InTheBacchanalia(gladiator);
 
+        inTheBacchanalia.runEffect(new NullEffect(), gladiator);
         var state = inTheBacchanalia.update(10);
         int number = state.move(1);
 

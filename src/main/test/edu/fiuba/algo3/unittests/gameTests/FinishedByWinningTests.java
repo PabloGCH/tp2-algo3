@@ -17,7 +17,7 @@ public class FinishedByWinningTests {
     @Test
     public void test01NextTurnDoesNotChangeGladiatorsPositions(){
         EffectFactory effectFactory = new EffectFactory();
-        FinishedByWinning finishedGame = new FinishedByWinning();
+        FinishedByWinning finishedGame = new FinishedByWinning("Example");
         ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
         gladiators.add(new Gladiator("Example"));
         Gladiator gladiator = gladiators.get(0);
@@ -29,36 +29,36 @@ public class FinishedByWinningTests {
         path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("Comida"), newPosition));
         initialSquare.affect(gladiator);
         assertEquals(gladiator.getEnergy(), 20);
-        finishedGame.nextTurn(gladiators, path, 1, 0);
+        finishedGame.nextTurn(gladiators, path, 1);
         assertEquals(gladiator.getEnergy(), 20);
     }
     @Test
     public void test02NextTurnReturnsFinishedByWinning(){
         EffectFactory effectFactory = new EffectFactory();
-        FinishedByWinning finishedGame = new FinishedByWinning();
+        FinishedByWinning finishedGame = new FinishedByWinning("Example");
         ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
         gladiators.add(new Gladiator("Example"));
         ArrayList<Square> path = new ArrayList<>();
         Position initialPosition = new Position(0,0,0);
         path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("NullEffect"), initialPosition));
-        GameState currentGameState = finishedGame.nextTurn(gladiators, path, 1, 0);
+        GameState currentGameState = finishedGame.nextTurn(gladiators, path, 1);
         assertTrue(currentGameState.Finalized());
     }
     @Test
     public void test03FinalizedReturnsTrue(){
-        FinishedByWinning finishedGame = new FinishedByWinning();
+        FinishedByWinning finishedGame = new FinishedByWinning("Example");
         assertTrue(finishedGame.Finalized());
     }
     @Test//Comentar mariano gladiadores
     public void test04ResultReturnsTrue(){
-        FinishedByWinning finishedGame = new FinishedByWinning();
+        FinishedByWinning finishedGame = new FinishedByWinning("Example");
         ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
         gladiators.add(new Gladiator("Example"));
         assertTrue(finishedGame.result(gladiators));
     }
     @Test
     public void test05TurnEndedReturnsGladiatorTurnWithoutChange(){
-        FinishedByWinning finishedGame = new FinishedByWinning();
+        FinishedByWinning finishedGame = new FinishedByWinning("Example");
         ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
         int newGladiatorTurn = finishedGame.turnEnded(0, gladiators);
         assertEquals(0, newGladiatorTurn);
@@ -66,7 +66,7 @@ public class FinishedByWinningTests {
     @Test
     public void test06EntryOfTheGladiatorToTheFirstSquareDoesNotAffectPositions(){
         EffectFactory effectFactory = new EffectFactory();
-        FinishedByWinning finishedByWinning = new FinishedByWinning();
+        FinishedByWinning finishedByWinning = new FinishedByWinning("Example");
         ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
         Gladiator gladiatorOne = new Gladiator("ExampleOne");
         gladiatorOne.positionate(new Position(10,10,10));

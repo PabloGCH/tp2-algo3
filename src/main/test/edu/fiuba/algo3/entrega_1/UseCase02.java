@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class UseCase02 {
     @Test
     public void test02ANewPlayersGladiatorStartsAtTheInitialSquare(){
+        Dice dice = new Dice();
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         Gladiator aGladiator = new Gladiator("Example");
         ArrayList<Square> map = new ArrayList<>();
@@ -32,8 +33,11 @@ public class UseCase02 {
         map.add(new Square(effectFactory.createEffect("NullEffect"), new FinishLineEffect(), position));
 
         gladiators.add(aGladiator);
-        Dice dice = new Dice();
-        Game aGame = Game.getInstance(gladiators, map, dice);
+        ArrayList<String> gladiatorsNames = new ArrayList<>();
+        gladiatorsNames.add(gladiators.get(0).getName());
+
+        Game game = Game.getInstance(gladiatorsNames, map, dice);
+        game.startGame();
         Assertions.assertEquals(aGladiator.getEnergy(), 20);
     }
 }

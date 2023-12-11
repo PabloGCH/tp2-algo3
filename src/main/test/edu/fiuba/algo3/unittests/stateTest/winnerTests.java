@@ -20,7 +20,7 @@ public class winnerTests {
     @Test
     public void test01IsWinnerReturnsFinishedByWinningState(){
         Winner winner = new Winner();
-        GameState gameState = winner.isWinner();
+        GameState gameState = winner.isWinner("Example");
         assertTrue(gameState.Finalized());
     }
     @Test
@@ -60,7 +60,7 @@ public class winnerTests {
     public void test05UpdateReturnsWinnerState(){
         Winner winner = new Winner();
         State state = winner.update(10);
-        GameState gameState = state.isWinner();
+        GameState gameState = state.isWinner("Example");
         assertTrue(gameState.Finalized());
     }
     @Test

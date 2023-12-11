@@ -61,7 +61,7 @@ public class tiredTest {
     @Test
     public void test04IsWinnerReturnsActiveGameState(){
         Tired tired = new Tired();
-        GameState gameState = tired.isWinner();
+        GameState gameState = tired.isWinner("Example");
         assertFalse(gameState.Finalized());
     }
     @Test

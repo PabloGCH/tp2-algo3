@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.factories.*;
+import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
@@ -21,7 +22,8 @@ import edu.fiuba.algo3.modelo.squares.*;
 public class UseCase20 {
     @Test
     public void testPlayerLose() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        boolean finish = false;
+        Dice dice = new Dice();
+        GameState gameState;
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         gladiators.add(new Gladiator("Example"));
 
@@ -37,10 +39,21 @@ public class UseCase20 {
         map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), position));
         position = new Position(4,0,4);
         map.add(new Square(effectFactory.createEffect("NullEffect"),new FinishLineEffect(), position));
-        Game game = Game.getInstance(gladiators, map, new Dice());
 
-        finish = game.startGame();
+        ArrayList<String> gladiatorsNames = new ArrayList<>();
+        gladiatorsNames.add(gladiators.get(0).getName());
 
-        Assertions.assertFalse(finish);
+        Game game = Game.getInstance();
+        if(game != null){
+            game.restartGame();
+        }
+        game = Game.getInstance(gladiatorsNames, map, dice);
+        game.startGame();
+        gameState = game.playTurn(dice.throwDice());
+        while (!gameState.Finalized()){
+            gameState = game.playTurn(dice.throwDice());
+        }
+
+        Assertions.assertFalse(gameState.result(gladiators));
     }
 }

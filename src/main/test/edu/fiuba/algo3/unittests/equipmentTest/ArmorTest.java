@@ -2,8 +2,11 @@ package edu.fiuba.algo3.unittests.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
+import edu.fiuba.algo3.modelo.game.ActiveGame;
+import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Armor;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import edu.fiuba.algo3.modelo.gladiator.equipment.Helmet;
 import edu.fiuba.algo3.modelo.gladiator.state.Active;
 import edu.fiuba.algo3.modelo.gladiator.state.State;
 import edu.fiuba.algo3.modelo.position.Position;
@@ -51,12 +54,14 @@ public class ArmorTest {
         assertEquals(2, gladiator.move(5, 1));
     }
     @Test void armorIsNotComplete(){
-        boolean fullArmor = true;
-
+        ArrayList<Gladiator> gladiators = new ArrayList<>();
+        gladiators.add(new Gladiator("Example"));
+        State fullArmor = new Active();
+        GameState gameState = new ActiveGame();
         Armor newEquipment = new Armor();
 
-        fullArmor = newEquipment.complete();
+        fullArmor = newEquipment.win(fullArmor);
 
-        assertFalse(fullArmor);
+        assertFalse(fullArmor.isWinner(gladiators.get(0).getName()).result(gladiators));
     }
 }

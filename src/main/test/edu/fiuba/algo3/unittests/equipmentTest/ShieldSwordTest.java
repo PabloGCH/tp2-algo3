@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.unittests.equipmentTest;
 import static org.junit.jupiter.api.Assertions.*;
 
+import edu.fiuba.algo3.modelo.game.ActiveGame;
+import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
-import edu.fiuba.algo3.modelo.gladiator.equipment.Helmet;
 import edu.fiuba.algo3.modelo.gladiator.equipment.ShieldSword;
 import edu.fiuba.algo3.modelo.gladiator.state.Active;
 import edu.fiuba.algo3.modelo.gladiator.state.State;
@@ -10,6 +11,8 @@ import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 public class ShieldSwordTest {
     @Test void test01UpgradeReturnsHelmet(){
@@ -51,11 +54,14 @@ public class ShieldSwordTest {
         assertEquals(2,gladiator.move(5,1));
     }
     @Test void armorIsNotComplete(){
-        boolean fullArmor = true;
+        ArrayList <Gladiator> gladiators = new ArrayList<>();
+        gladiators.add(new Gladiator("Example"));
+        State fullArmor = new Active();
+        GameState gameState = new ActiveGame();
         ShieldSword newEquipment = new ShieldSword();
 
-        fullArmor = newEquipment.complete();
+        fullArmor = newEquipment.win(fullArmor);
 
-        assertFalse(fullArmor);
+        assertFalse(fullArmor.isWinner(gladiators.get(0).getName()).result(gladiators));
     }
 }

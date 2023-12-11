@@ -56,7 +56,7 @@ public class injuredTest {
     @Test
     public void test04IsWinnerReturnsActiveGameState(){
         Injured injured = new Injured();
-        GameState gameState = injured.isWinner();
+        GameState gameState = injured.isWinner("Example");
         assertFalse(gameState.Finalized());
     }
     @Test
