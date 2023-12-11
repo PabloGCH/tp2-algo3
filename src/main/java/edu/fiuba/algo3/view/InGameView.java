@@ -102,7 +102,9 @@ public class InGameView {
         );
 
         gamePane.setCenter(mapScrollPane);
-        gamePane.setBottom(this.bottomMenu());
+        var bottomMenu = new BottonMenu();
+        aGame.addObserver(bottomMenu);
+        gamePane.setBottom(bottomMenu.view());
 
         
         mainLayout.setTop(menuBar);
@@ -172,19 +174,6 @@ public class InGameView {
 
     private void toggleFullScreen(Stage stage) {
         stage.setFullScreen(!stage.isFullScreen());
-    }
-    
-    private Pane bottomMenu() {
-        DiceButtonController diceButtonController = new DiceButtonController();
-        GridPane bottomMenu = new GridPane();
-        Button diceButton = new Button("Throw dice");
-        diceButton.setOnAction(e ->{diceButtonController.throwDice();});
-        bottomMenu.getStyleClass().add("bottom-menu");
-        diceButton.getStyleClass().add("dice-button");
-        bottomMenu.getChildren().add(diceButton);
-        bottomMenu.setPrefHeight(80);
-        bottomMenu.setAlignment(Pos.CENTER);
-        return bottomMenu;
     }
 
 }
