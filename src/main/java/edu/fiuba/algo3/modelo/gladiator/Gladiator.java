@@ -40,6 +40,7 @@ public class Gladiator implements GladiatorObservable {
     public void update(){
         this.rank = this.rank.ascent();
         this.energy = this.rank.energyFromExperience(this.energy);
+        this.rest();
         this.updateObservers();
     }
 
@@ -87,9 +88,11 @@ public class Gladiator implements GladiatorObservable {
 
     public void getIntoBacchanalia() {
         this.state = this.state.getIntoBacchanalia(this);
+        this.updateObservers();
     }
     public void refreshState() {
         this.state = this.state.update(this.energy);
+        this.updateObservers();
     }
     public void tryToWin(Position middlePosition) {
         this.state = this.equipment.win(this.state);
@@ -109,15 +112,12 @@ public class Gladiator implements GladiatorObservable {
     
     public void addObserver(GladiatorObserver observer) {
         observers.add(observer);
+        this.updateObserver(observer);
     }
 
     private void updateObservers() {
         for (GladiatorObserver observer : observers) {
-            Dimension2D gladiatorPosition = this.position.coordinates();
-            int row = (int) gladiatorPosition.getWidth() - 1;
-            int column = (int) gladiatorPosition.getHeight() - 1;
-            int energy = this.energy;
-            observer.update(row, column, energy, equipment.showName(), name, this.rank.showRank(), this.state.showState());
+            this.updateObserver(observer);
         }
     }
 
@@ -128,4 +128,11 @@ public class Gladiator implements GladiatorObservable {
         this.energy = this.state.energyFromState(this.energy);
     }
 
+    private void updateObserver(GladiatorObserver observer){
+        Dimension2D gladiatorPosition = this.position.coordinates();
+        int row = (int) gladiatorPosition.getWidth() - 1;
+        int column = (int) gladiatorPosition.getHeight() - 1;
+        int energy = this.energy;
+        observer.update(row, column, energy, equipment.showName(), name, this.rank.showRank(), this.state.showState());
+    }
 }

@@ -80,13 +80,9 @@ public class InGameView {
         }
  
 
-        //GLADIATORS ARE POSITIONATED IN INITIAL SQUARE
         for (Gladiator gladiator : aGame.getGladiators()) {
-            System.err.println("gladiatorview");
             GladiatorView view = new GladiatorView(mapGladiatorGrids);
             gladiator.addObserver(view);
-            var square = path.get(0);
-            square.affect(gladiator);
         }
 
         
