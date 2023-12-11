@@ -88,10 +88,14 @@ public class InGameView {
         
 
         BorderPane borderPane = new BorderPane();
+        BorderPane gamePane = new BorderPane();
+        gamePane.setCenter(mapGridPane);
+        gamePane.setBottom(this.bottomMenu());
+
         borderPane.setTop(menuBar);
-        borderPane.setCenter(mapGridPane);
-        borderPane.setRight(stateGladiator);
+        borderPane.setCenter(gamePane);
         borderPane.setBottom(bottomMenu());
+        borderPane.setRight(stateGladiator);
 
         mapGridPane.getStyleClass().add("map-grid");
         stage.getScene().setRoot(borderPane);
@@ -167,6 +171,7 @@ public class InGameView {
         diceButton.getStyleClass().add("dice-button");
         bottomMenu.getChildren().add(diceButton);
         bottomMenu.setPrefHeight(80);
+        bottomMenu.setAlignment(Pos.CENTER);
         return bottomMenu;
     }
 
