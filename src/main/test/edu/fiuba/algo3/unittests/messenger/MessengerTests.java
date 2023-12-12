@@ -33,10 +33,9 @@ public class MessengerTests {
     }
 
     @Test
-    public void test04NullLoggerThrowsExceptions() throws Exception {
+    public void test04NullLoggerThrowsExceptions(){
         Messenger newMessenger = Messenger.getInstance(null);
-        assertThrows(Exception.class, () -> {
-            newMessenger.error("test");
-        });
+        assertThrows(Exception.class, () -> newMessenger.error("test"));
+        newMessenger.restartMessenger();
     }
 }
