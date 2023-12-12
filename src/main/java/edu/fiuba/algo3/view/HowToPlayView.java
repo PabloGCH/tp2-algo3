@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.view;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -11,12 +10,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.HashMap;
-import java.util.Properties;
 
 public class HowToPlayView implements EventHandler<ActionEvent> {
     private int currentPage;
@@ -31,8 +30,12 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
     private Button backButton = new Button("Back");
     private Label pageNumberLabel = new Label();
     public HowToPlayView() {
+        this.dialogStage.setWidth(550);
+        this.dialogStage.setHeight(350);
+        this.dialogStage.setResizable(false);
         this.mainContainer.getChildren().addAll(this.pageImageView, this.pageLabel);
         this.buttonsContainer.getChildren().addAll(backButton, pageNumberLabel, nextButton);
+        this.pageLabel.setLineSpacing(1.5);
 
         this.backButton.getStyleClass().add("btn");
         this.nextButton.getStyleClass().add("btn");
@@ -54,7 +57,7 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
     }
 
     private void setUpPages() {
-        this.texts.put("1", "First page text");
+        this.texts.put("1", "There's a beast in this square, so be careful! You will have to kill the beast, but it will cost energy. The amount depends on your equipment.\n\nUnequipped: 20 points\nHelmet: 15 points\nArmor:10 points\nShield and sword: 5 points\nKey: 0 points");
         this.images.put("1", new Image(getClass().getResource("/img/beast.png").toExternalForm()));
 
         this.texts.put("2", "Second page text");
@@ -67,6 +70,7 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         root.setStyle("-fx-background-color: rgb(91, 53, 24)");
 
         this.pageLabel.setText(this.texts.get(String.valueOf(currentPage)));
+        this.pageLabel.setMinHeight(Region.USE_PREF_SIZE);
         this.pageLabel.setAlignment(Pos.CENTER);
         this.pageLabel.setPadding(new Insets(10));
         this.pageImageView.setImage(this.images.get(String.valueOf(currentPage)));
@@ -90,6 +94,7 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         this.buttonsContainer.setAlignment(Pos.CENTER);
 
         root.getChildren().addAll(mainContainer, buttonsContainer);
+        root.setPadding(new Insets(10));
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/styles/initialScene.css").toExternalForm());
@@ -103,6 +108,6 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         this.nextButton.setDisable(this.currentPage == this.texts.size());
         this.backButton.setDisable(currentPage == 1);
 
-        Label pageNumberLabel = new Label(this.currentPage + "/" + this.texts.size());
+        this.pageNumberLabel.setText(this.currentPage + "/" + this.texts.size());
     }
 }
