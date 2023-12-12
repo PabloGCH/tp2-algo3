@@ -108,6 +108,7 @@ public class InGameView {
 
         ScrollPane mapScrollPane = new ScrollPane(mapGridPane);
         mapScrollPane.setPannable(true);
+        mapScrollPane.setStyle("-fx-background-color: #413d3d;");
         mapScrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
         mapScrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
 

@@ -84,6 +84,7 @@ public class Game implements GameObservable {
         return gladiators;
     }
 
+
     public void addObserver(GameObserver observer) {
         this.observers.add(observer);
         this.updateObserver(observer);
@@ -96,8 +97,9 @@ public class Game implements GameObservable {
     }
 
     private void updateObserver(GameObserver observer) {
-        String currentGladiator = this.gladiators.get(0).getName();
-        observer.updateGladiatorName(currentGladiator);
+        String currentGladiator = this.gladiators.get(NEXT_GLADIATOR_TO_PLAY).getName();
+        boolean canPlay = this.gladiators.get(NEXT_GLADIATOR_TO_PLAY).canPlay();
+        observer.updateGladiator(currentGladiator, canPlay);
     }
 }
 

@@ -128,6 +128,10 @@ public class Gladiator implements GladiatorObservable {
         this.energy = this.state.energyFromState(this.energy);
     }
 
+    public boolean canPlay() {
+        return this.state.canPlay();
+    }
+
     private void updateObserver(GladiatorObserver observer){
         Dimension2D gladiatorPosition = this.position.coordinates();
         int row = (int) gladiatorPosition.getWidth() - 1;

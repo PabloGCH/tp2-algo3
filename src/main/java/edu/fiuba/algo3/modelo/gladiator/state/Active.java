@@ -28,4 +28,8 @@ public class Active extends State{
     public State getIntoBacchanalia(Gladiator aGladiator) {
         return new InTheBacchanalia(aGladiator);
     };
+    @Override
+    public boolean canPlay() {
+        return true;
+    }
 }

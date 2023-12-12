@@ -23,12 +23,15 @@ import java.util.concurrent.CountDownLatch;
 public class BottonMenu implements GameObserver {
     private Text name;
     private Text lastDiceValue;
+    private Button diceButton;
     private ImageView dice = new ImageView();
     private HashMap<String, Image> dicesImages = new HashMap<>();
     CountDownLatch latch = new CountDownLatch(1);
 
-    public void updateGladiatorName(String currentPlayerName) {
+    public void updateGladiator(String currentPlayerName, boolean canPlay) {
         this.name.setText(currentPlayerName);
+        if(canPlay) this.diceButton.setText("Throw the dice");
+        else this.diceButton.setText("Skip turn");
     }
 
     public void updateDiceResult(int lastDiceValue) {
@@ -42,6 +45,7 @@ public class BottonMenu implements GameObserver {
         this.lastDiceValue.setFill(Color.WHITE);
         this.dice.setFitWidth(50);
         this.dice.setFitHeight(50);
+        this.diceButton = new Button("Throw the dice");
 
         this.dicesImages.put("1", new Image(getClass().getResource("/img/dice/dice1.png").toExternalForm()));
         this.dicesImages.put("2", new Image(getClass().getResource("/img/dice/dice2.png").toExternalForm()));
@@ -57,7 +61,6 @@ public class BottonMenu implements GameObserver {
         DiceButtonController diceButtonController = new DiceButtonController();
         VBox bottomMenu = new VBox();
         
-        Button diceButton = new Button("Throw the dice");
         diceButton.setOnAction(e ->{
             diceButton.setDisable(true);
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), event ->{
