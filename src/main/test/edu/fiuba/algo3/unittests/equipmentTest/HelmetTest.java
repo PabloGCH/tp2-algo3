@@ -1,28 +1,17 @@
 package edu.fiuba.algo3.unittests.equipmentTest;
-import static org.junit.jupiter.api.Assertions.*;
 
-import edu.fiuba.algo3.modelo.factories.EffectFactory;
-import edu.fiuba.algo3.modelo.game.ActiveGame;
-import edu.fiuba.algo3.modelo.game.GameState;
+import static org.junit.jupiter.api.Assertions.*;
 import edu.fiuba.algo3.modelo.gladiator.equipment.Helmet;
-import edu.fiuba.algo3.modelo.gladiator.equipment.ShieldSword;
 import edu.fiuba.algo3.modelo.gladiator.state.Active;
 import edu.fiuba.algo3.modelo.gladiator.state.State;
 import edu.fiuba.algo3.modelo.position.Position;
-
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.squares.Square;
-
 import java.util.ArrayList;
 
 public class HelmetTest {
     @Test void test01UpgradeReturnsHelmet(){
         Gladiator gladiator = new Gladiator("Example");
-        EffectFactory effectFactory = new EffectFactory();
-        Position initialPosition = new Position(0,0,0);
-        Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), initialPosition);
-        initialSquare.affect(gladiator);
 
         gladiator.upgrade();
         gladiator.upgrade();
@@ -51,7 +40,7 @@ public class HelmetTest {
         newState.tryToWin(gladiator, middlePosition);
         assertEquals(2,gladiator.move(5,1));
     }
-      @Test void armorIsNotComplete(){
+      @Test void test04ArmorIsNotComplete(){
         ArrayList<String> gladiators = new ArrayList<>();
         gladiators.add("Example");
         State fullArmor = new Active();
@@ -60,5 +49,10 @@ public class HelmetTest {
         fullArmor = newEquipment.win(fullArmor);
 
         assertFalse(fullArmor.isWinner(gladiators.get(0)).result(gladiators));
+    }
+    @Test
+    public void test05ShowNameReturnsCorrectName(){
+        Helmet helmet = new Helmet();
+        assertEquals("Helmet", helmet.showName());
     }
 }

@@ -136,4 +136,32 @@ public class GladiatorTest {
         int newPosition = gladiator.move(10,1);
         assertEquals(1, newPosition);
     }
+    @Test
+    public void canPlayReturnsDependingTheState(){
+        Gladiator gladiator = new Gladiator("Example");
+        assertTrue(gladiator.canPlay());
+
+        gladiator.fightWithBeast();
+        gladiator.refreshState();
+        assertFalse(gladiator.canPlay());
+
+        gladiator.eat();
+        gladiator.refreshState();
+        gladiator.injured();
+        assertFalse(gladiator.canPlay());
+
+        gladiator.refreshState();
+        gladiator.refreshState();
+        gladiator.getIntoBacchanalia();
+        assertTrue(gladiator.canPlay());
+
+        gladiator.refreshState();
+        gladiator.refreshState();
+        gladiator.upgrade();
+        gladiator.upgrade();
+        gladiator.upgrade();
+        gladiator.upgrade();
+        gladiator.tryToWin(new Position(0,0,0));
+        assertFalse(gladiator.canPlay());
+    }
 }

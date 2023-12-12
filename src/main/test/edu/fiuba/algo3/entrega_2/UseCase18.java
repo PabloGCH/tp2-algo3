@@ -8,20 +8,25 @@ import static org.mockito.Mockito.mock;
 
 public class UseCase18 {
     private static Logger logger = mock(Logger.class);
-    private Messenger newMessenger = Messenger.getInstance(logger);
     @Test
     public void loggerCallsInfo() throws Exception {
+        Messenger newMessenger = Messenger.getInstance(logger);
         newMessenger.info("test");
         Mockito.verify(logger).info("test");
+        newMessenger.restartMessenger();
     }
     @Test
     public void loggerCallsWarn() throws Exception {
+        Messenger newMessenger = Messenger.getInstance(logger);
         newMessenger.warn("test");
         Mockito.verify(logger).warn("test");
+        newMessenger.restartMessenger();
     }
     @Test
     public void loggerCallsError() throws Exception {
+        Messenger newMessenger = Messenger.getInstance(logger);
         newMessenger.error("test");
         Mockito.verify(logger).error("test");
+        newMessenger.restartMessenger();
     }
 }

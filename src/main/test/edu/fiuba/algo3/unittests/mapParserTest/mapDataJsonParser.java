@@ -50,6 +50,16 @@ public class mapDataJsonParser {
         });
     }
     @Test
+    public void validateJSONFileJSONArrayThrowsError() {
+        assertThrows(InvalidMapFile.class, () -> {
+            var mapDataParser = new MapDataJsonParser();
+            mapDataParser.loadData(
+                    "src/main/resources/files/JSONArray.json",
+                    "NotJSONArray.json"
+            );
+        });
+    }
+    @Test
     public void validateCorrectDataIsExtracted() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         MapDataJsonParser mapDataParser = new MapDataJsonParser();
         ArrayList<Integer> data = mapDataParser.loadData(

@@ -21,10 +21,6 @@ import java.util.ArrayList;
 public class NullEquipmentTest {
     @Test void test01UpgradeReturnsHelmet(){
         Gladiator gladiator = new Gladiator("Example");
-        EffectFactory effectFactory = new EffectFactory();
-        Position initialPosition = new Position(0,0,0);
-        Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), initialPosition);
-        initialSquare.affect(gladiator);
 
         gladiator.upgrade();
         gladiator.fightWithBeast();
@@ -54,7 +50,7 @@ public class NullEquipmentTest {
         newState.tryToWin(gladiator, middlePosition);
         assertEquals(2,gladiator.move(5,1));
     }
-    @Test void armorIsNotComplete(){
+    @Test void test04ArmorIsNotComplete(){
         ArrayList<String> gladiators = new ArrayList<>();
         gladiators.add("Example");
         State fullArmor = new Active();
@@ -63,5 +59,10 @@ public class NullEquipmentTest {
         fullArmor = newEquipment.win(fullArmor);
 
         assertFalse(fullArmor.isWinner(gladiators.get(0)).result(gladiators));
+    }
+    @Test
+    public void test05ShowNameReturnsCorrectName(){
+        NullEquipment nullEquipment = new NullEquipment();
+        assertEquals("Without equipment", nullEquipment.showName());
     }
 }

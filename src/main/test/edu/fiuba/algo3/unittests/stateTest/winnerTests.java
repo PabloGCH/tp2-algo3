@@ -71,4 +71,9 @@ public class winnerTests {
         winner.runEffect(new Food(), gladiator);
         assertEquals(20, gladiator.getEnergy());
     }
+    @Test
+    public void test07ShowStateReturnsCorrectName(){
+        Winner winner = new Winner();
+        assertEquals("Winner", winner.showState());
+    }
 }

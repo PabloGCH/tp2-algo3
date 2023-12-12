@@ -128,4 +128,23 @@ public class gameTests {
         assertTrue(positionOne.comparePosition(mapReceived.get(0).getPosition()));
         game.restartGame();
     }
+    @Test
+    public void test05RestartWithSamePlayersKeepsSameGladiatorsNames(){
+        ArrayList<Square> map = new ArrayList<>();
+        EffectFactory effectFactory = new EffectFactory();
+        Position positionOne = new Position(0,0,0);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), positionOne));
+
+        ArrayList<String> gladiatorsNames = new ArrayList<>();
+        gladiatorsNames.add("ExampleOne");
+        gladiatorsNames.add("ExampleTwo");
+        gladiatorsNames.add("ExampleThree");
+        Game game = Game.getInstance(gladiatorsNames, map);
+
+        game.restartGameWithSamePlayers();
+
+        assertEquals(gladiatorsNames.get(0), game.getGladiators().get(0).getName());
+        assertEquals(gladiatorsNames.get(1), game.getGladiators().get(1).getName());
+        assertEquals(gladiatorsNames.get(2), game.getGladiators().get(2).getName());
+    }
 }

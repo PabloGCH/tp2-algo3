@@ -160,4 +160,48 @@ public class squareTest {
         assertEquals(initialPosition, newPosition);
         assertEquals(expectedInitialEnergy, aGladiator.getEnergy());
     }
+    @Test
+    public void test08FoodGetNameReturnsCorrectName(){
+        Food food = new Food();
+        assertEquals("food", food.getName());
+    }
+    @Test
+    public void test09NullEffectGetNameReturnsCorrectName(){
+        NullEffect nullEffect = new NullEffect();
+        assertEquals("", nullEffect.getName());
+    }
+    @Test
+    public void test10UpgradeGetNameReturnsCorrectName(){
+        Upgrade upgrade = new Upgrade();
+        assertEquals("upgrade", upgrade.getName());
+    }
+    @Test
+    public void test11InjuryGetNameReturnsCorrectName(){
+        Injury injury = new Injury();
+        assertEquals("injury", injury.getName());
+    }
+    @Test
+    public void test12FinishLineEffectGetNameReturnsCorrectName(){
+        FinishLineEffect finishLineEffect = new FinishLineEffect();
+        assertEquals("finishline", finishLineEffect.getName());
+    }
+    @Test
+    public void test13BeastGetNameReturnsCorrectName(){
+        Beast beast = new Beast();
+        assertEquals("beast", beast.getName());
+    }
+    @Test
+    public void test14BacchanaliaGetNameReturnsCorrectName(){
+        Bacchanalia bacchanalia = new Bacchanalia();
+        assertEquals("bacchanalia", bacchanalia.getName());
+    }
+    @Test
+    public void test15getEffectNamesReturnCorrectsNames(){
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        Square square = new Square(effectFactory.createEffect("Fiera"), effectFactory.createEffect("Comida"),position);
+        ArrayList<String> effectsNames = square.getEffectNames();
+        assertEquals("beast", effectsNames.get(0));
+        assertEquals("food", effectsNames.get(1));
+    }
 }

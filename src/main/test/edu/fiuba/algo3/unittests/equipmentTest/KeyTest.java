@@ -19,10 +19,6 @@ import java.util.ArrayList;
 public class KeyTest {
     @Test void Test01UpgradeReturnsHelmet(){
         Gladiator gladiator = new Gladiator("Example");
-        EffectFactory effectFactory = new EffectFactory();
-        Position initialPosition = new Position(0,0,0);
-        Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), initialPosition);
-        initialSquare.affect(gladiator);
 
         gladiator.upgrade();
         gladiator.upgrade();
@@ -54,7 +50,7 @@ public class KeyTest {
         newState.tryToWin(gladiator, middlePosition);
         assertEquals(1,gladiator.move(5,1));
     }
-    @Test void armorIsComplete(){
+    @Test void test04ArmorIsComplete(){
         ArrayList<String> gladiators = new ArrayList<>();
         gladiators.add("Example");
         State fullArmor = new Active();
@@ -63,5 +59,10 @@ public class KeyTest {
         fullArmor = newEquipment.win(fullArmor);
 
         assertTrue(fullArmor.isWinner(gladiators.get(0)).result(gladiators));
+    }
+    @Test
+    public void test05ShowNameReturnsCorrectName(){
+        Key key = new Key();
+        assertEquals("Key", key.showName());
     }
 }

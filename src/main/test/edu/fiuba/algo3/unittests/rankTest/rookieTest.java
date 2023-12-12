@@ -33,4 +33,9 @@ public class rookieTest {
 
         assertEquals(10, newEnergy);
     }
+    @Test
+    public void showRankReturnsCorrectName(){
+        Rookie rookie = new Rookie();
+        assertEquals("Rookie", rookie.showRank());
+    }
 }

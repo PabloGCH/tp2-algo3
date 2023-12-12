@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.gladiator.state.Injured;
 import edu.fiuba.algo3.modelo.gladiator.state.State;
+import edu.fiuba.algo3.modelo.gladiator.state.Tired;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.Food;
 import org.junit.jupiter.api.Test;
@@ -87,6 +88,11 @@ public class activeTest {
         Active active = new Active();
         State state = active.fracture();
         assertEquals(0, state.move(1));
+    }
+    @Test
+    public void test09ShowStateReturnsCorrectName(){
+        Active active = new Active();
+        assertEquals("Active", active.showState());
     }
 }
 

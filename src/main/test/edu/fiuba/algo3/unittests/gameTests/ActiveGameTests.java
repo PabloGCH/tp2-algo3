@@ -4,7 +4,6 @@ import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
 import edu.fiuba.algo3.modelo.game.ActiveGame;
-import edu.fiuba.algo3.modelo.game.FinishedByTurns;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Bacchanalia;
 import edu.fiuba.algo3.modelo.squares.Square;
@@ -21,7 +20,7 @@ public class ActiveGameTests {
     public void test01NextTurnChangesGladiatorsPositions(){
         EffectFactory effectFactory = new EffectFactory();
         ActiveGame activeGame = new ActiveGame();
-        ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
+        ArrayList<Gladiator> gladiators = new ArrayList<>();
         gladiators.add(new Gladiator("Example"));
         Gladiator gladiator = gladiators.get(0);
         ArrayList<Square> path = new ArrayList<>();
@@ -39,7 +38,7 @@ public class ActiveGameTests {
     public void test02NextTurnReturnsActiveGameIfGladiatorIsNotWinner(){
         EffectFactory effectFactory = new EffectFactory();
         ActiveGame activeGame = new ActiveGame();
-        ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
+        ArrayList<Gladiator> gladiators = new ArrayList<>();
         gladiators.add(new Gladiator("Example"));
         ArrayList<Square> path = new ArrayList<>();
         Position initialPosition = new Position(0,0,0);
@@ -58,13 +57,13 @@ public class ActiveGameTests {
     @Test//Comentar mariano gladiadores
     public void test04ResultReturnsFalse(){
         ActiveGame activeGame = new ActiveGame();
-        ArrayList<String> gladiatorsNames = new ArrayList<String>();
+        ArrayList<String> gladiatorsNames = new ArrayList<>();
         assertFalse(activeGame.result(gladiatorsNames));
     }
     @Test
     public void test05TurnEndedReturnsGladiatorTurnPlusOneIfNotInBacchanalia(){
         ActiveGame activeGame = new ActiveGame();
-        ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
+        ArrayList<Gladiator> gladiators = new ArrayList<>();
         gladiators.add(new Gladiator("Example"));
         int newGladiatorTurn = activeGame.turnEnded(0, gladiators);
         assertEquals(1, newGladiatorTurn);
@@ -72,7 +71,7 @@ public class ActiveGameTests {
     @Test
     public void test05TurnEndedReturnsGladiatorTurnWithoutChangeIfInBacchanalia(){
         ActiveGame activeGame = new ActiveGame();
-        ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
+        ArrayList<Gladiator> gladiators = new ArrayList<>();
         Gladiator gladiator = new Gladiator("Example");
         Bacchanalia bacchanalia = new Bacchanalia();
         bacchanalia.affect(gladiator);
@@ -84,7 +83,7 @@ public class ActiveGameTests {
     public void test06GladiatorsAreSetIntoFirstPathSquare(){
         EffectFactory effectFactory = new EffectFactory();
         ActiveGame activeGame = new ActiveGame();
-        ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
+        ArrayList<Gladiator> gladiators = new ArrayList<>();
         Gladiator gladiatorOne = new Gladiator("ExampleOne");
         Gladiator gladiatorTwo = new Gladiator("ExampleTwo");
         Gladiator gladiatorThree = new Gladiator("ExampleThree");
@@ -107,5 +106,15 @@ public class ActiveGameTests {
         var finishedByTurns = activeGame.defeat();
 
         assertTrue(finishedByTurns.Finalized());
+    }
+    @Test
+    public void test08DefeatReturnsSameState(){
+        ActiveGame activeGame = new ActiveGame();
+        ArrayList<String> gladiators = new ArrayList<>();
+        gladiators.add("Example");
+
+        GameState gameState = activeGame.defeat();
+
+        assertFalse(gameState.result(gladiators));
     }
 }
