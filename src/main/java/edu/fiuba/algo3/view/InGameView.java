@@ -87,7 +87,17 @@ public class InGameView {
         BorderPane mainLayout = new BorderPane();
         BorderPane gamePane = new BorderPane();
 
+        StackPane mapStackPane = new StackPane();
+        
+        TurnCounterView turnCounter = new TurnCounterView();
+        Pane turnCounterView = turnCounter.view();
         ScrollPane mapScrollPane = new ScrollPane(mapGridPane);
+
+        aGame.addObserver(turnCounter);
+
+        mapStackPane.getChildren().add(mapScrollPane);
+        mapStackPane.getChildren().add(turnCounterView);
+
         mapScrollPane.setPannable(true);
         mapScrollPane.setStyle("-fx-background-color: #413d3d;");
         mapScrollPane.setBorder(new Border(new BorderStroke(new Color(65/255, 61/255, 61/255, 1/255), null, null, null)));
@@ -112,7 +122,7 @@ public class InGameView {
 
         stage.setMaximized(true);
 
-        gamePane.setCenter(mapScrollPane);
+        gamePane.setCenter(mapStackPane);
         var bottomMenu = new BottonMenu();
         aGame.addObserver(bottomMenu);
         gamePane.setBottom(bottomMenu.view());

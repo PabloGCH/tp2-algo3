@@ -29,7 +29,7 @@ public class BottonMenu implements GameObserver {
     private ImageView dice = new ImageView();
     private HashMap<String, Image> dicesImages = new HashMap<>();
 
-    public void updateGladiator(String currentPlayerName, boolean canPlay) {
+    public void update(String currentPlayerName, boolean canPlay, int gameTurn) {
         this.name.setText(currentPlayerName);
         this.canPlay = canPlay;
         if(canPlay) this.diceButton.setText("Throw the dice");
