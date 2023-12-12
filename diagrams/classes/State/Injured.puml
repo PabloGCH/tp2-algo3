@@ -1,8 +1,10 @@
 
 @startuml
 class Injured{
-    -int shift
+    -shift: int
+    -TURNS_TO_BE_INJURED: int
     +Injured()
-    +update(Energy energy): State
+    +update(energy: Energy): State
+    +showState(): string
 }
 @enduml

@@ -1,12 +1,18 @@
 @startuml
 class Game {
     -turns: int
+    -gladiatorTurn: int
     -MAX_TURNS_IN_A_GAME: int
     -NEXT_GLADIATOR_TO_PLAY: int
     -Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice)
     +getInstance(): Game
     +getPath(): ArrayList<Square>
-    +getInstance(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice): Game
+    +getInstance(ArrayList<String> gladiatorsNames, ArrayList<Square> path, Dice dice): Game
     +startGame(): boolean
+    +restartGameWithSamePlayers()
+    +updateTurn()
+    +playTurn(int diceResult): GameState
+    +getGladiators(): ArrayList<Gladiator> 
+    +restartGame()
 }
 @enduml

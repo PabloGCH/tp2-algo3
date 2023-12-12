@@ -70,7 +70,7 @@ public class Game implements GameObservable {
             turn++;
             gladiatorTurn = 0;
         }
-        if (turn == MAX_TURNS_IN_A_GAME){ this.state = new FinishedByTurns(); }
+        if (turn == MAX_TURNS_IN_A_GAME){ this.state = this.state.defeat(); }
     }
 
     public GameState playTurn(int diceResult){

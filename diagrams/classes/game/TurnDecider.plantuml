@@ -1,6 +1,6 @@
 @startuml
 class ActiveGame {
-    -TurnDecider(ArrayList gladiators)
+    -TurnDecider(gladiators: ArrayList )
     +finishTurn()
 }
 @enduml

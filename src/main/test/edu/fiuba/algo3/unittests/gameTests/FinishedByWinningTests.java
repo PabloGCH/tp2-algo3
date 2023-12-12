@@ -9,6 +9,8 @@ import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
+import com.tngtech.archunit.thirdparty.com.google.common.base.Strings;
+
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -52,8 +54,8 @@ public class FinishedByWinningTests {
     @Test//Comentar mariano gladiadores
     public void test04ResultReturnsTrue(){
         FinishedByWinning finishedGame = new FinishedByWinning("Example");
-        ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
-        gladiators.add(new Gladiator("Example"));
+        ArrayList<String> gladiators = new ArrayList<String>();
+        gladiators.add("Example");
         assertTrue(finishedGame.result(gladiators));
     }
     @Test

@@ -5,17 +5,6 @@ autonumber
 actor Actor
 activate Actor
 
-create Gladiator
-Actor -> Gladiator: <<create>> Gladiator("Example")
-activate Gladiator
-    create Equipment
-    Gladiator -> Equipment: <<create>>
-    create State
-    Gladiator -> State: <<create>>
-    create Position
-    Gladiator -> Position: <<create>> Position(0,0,0)
-deactivate Gladiator
-
 create collections Square
 Actor -> Square: <<create>>
 create EffectFactory
@@ -24,30 +13,43 @@ Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.crea
 Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), new Position(1,0,1))
 Actor -> Square: affect(Gladiator)
 
-Actor -> Gladiator: fightWithBeast()
+create collections Gladiator
+Actor -> Gladiator: <<create>> Gladiator("Example")
 activate Gladiator
-    Gladiator -> Equipment: receiveAttack(this.energy)
-    activate Equipment
-        Equipment --> Gladiator: 0
-    deactivate Equipment
+    create State
+    Gladiator -> State: <<create>>
 deactivate Gladiator
 
-Actor -> Gladiator: move(Square.size(), 1)
-activate Gladiator
-    Gladiator -> State: move(1)
-    activate State
-        State --> Gladiator: 0
-    deactivate State
-    Gladiator -> Position: moveFoward(0, Square.size())
-    activate Position
-        Position --> Gladiator: 0
-    deactivate Position
-    Gladiator --> Actor: 0
-deactivate Gladiator
+create Game
+Actor -> Game: getInstance(Gladiator, Square)
+
+Actor -> Game: startGame()
+activate Game
+    create StateGame
+    Game -> StateGame: <<Create>>
+deactivate Game
+
+Actor -> Game: playTurn(1)
+
+Actor -> Game: playTurn(1)
+activate Game
+    Game -> StateGame: nextTurn(gladiators, Square, 1)
+    activate StateGame
+        StateGame -> Gladiator: move(path.size(), 1)
+        activate Gladiator
+            Gladiator -> Gladiator: update()
+            Gladiator -> Gladiator: rest()
+            Gladiator -> State: energyFromState(0)
+            activate State
+                State -> Gladiator: 5
+            deactivate State
+        deactivate Gladiator
+    deactivate StateGame
+deactivate Game
 
 Actor -> Gladiator: getEnergy()
 activate Gladiator
-        Gladiator --> Actor: 0
+        Gladiator --> Actor: 5
 deactivate Gladiator
 
 deactivate Actor

@@ -63,6 +63,6 @@ public class KeyTest {
 
         fullArmor = newEquipment.win(fullArmor);
 
-        assertTrue(fullArmor.isWinner(gladiators.get(0).getName()).result(gladiators));
+        assertTrue(fullArmor.isWinner(gladiators.get(0).getName()).Finalized());
     }
 }

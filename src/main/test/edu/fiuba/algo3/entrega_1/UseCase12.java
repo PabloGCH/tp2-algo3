@@ -19,8 +19,6 @@ public class UseCase12 {
     @Test
     public void testGameEnds(){
         GameState gameState;
-        ArrayList<Gladiator> gladiators = new ArrayList<>();
-        gladiators.add(new Gladiator("Example"));
         ArrayList<Square> map = new ArrayList<>();
         EffectFactory effectFactory = new EffectFactory();
         Position position = new Position(0,0,0);
@@ -34,7 +32,7 @@ public class UseCase12 {
         map.add(new Square(effectFactory.createEffect("NullEffect"),new FinishLineEffect(), position));
 
         ArrayList<String> gladiatorsNames = new ArrayList<>();
-        gladiatorsNames.add(gladiators.get(0).getName());
+        gladiatorsNames.add("Example");
 
         Game game = Game.getInstance(gladiatorsNames, map);
         game.startGame();
@@ -43,7 +41,7 @@ public class UseCase12 {
             gameState = game.playTurn(1);
         }
 
-        Assertions.assertFalse(gameState.result(gladiators));
+        Assertions.assertFalse(gameState.result(gladiatorsNames));
         game.restartGame();
     }
 }

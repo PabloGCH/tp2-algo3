@@ -19,8 +19,8 @@ public class FinishedByWinning implements GameState {
         return true;
     }
 
-    public boolean result(ArrayList<Gladiator> gladiators){
-        this.winner = gladiators.get(0).getName();
+    public boolean result(ArrayList<String> gladiators){
+        this.winner = gladiators.get(0);
         return true;
     }
 
@@ -34,5 +34,9 @@ public class FinishedByWinning implements GameState {
     @Override
     public void updateScreen(GameEndController controller) {
         controller.showVictoryScreen(winner);
+    }
+
+    public GameState defeat(){
+        return this;
     }
 }

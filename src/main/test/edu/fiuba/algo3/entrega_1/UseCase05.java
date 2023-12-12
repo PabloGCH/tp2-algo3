@@ -14,11 +14,6 @@ public class UseCase05 {
     @Test
     public void testGladiatorGetsHelmet(){
         Gladiator gladiator = new Gladiator("Example");
-        ArrayList<Square> map = new ArrayList<>();
-        EffectFactory effectFactory = new EffectFactory();
-        Position position = new Position(0,0,0);
-        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position));
-        map.get(0).affect(gladiator);
 
         gladiator.upgrade();
         gladiator.fightWithBeast();

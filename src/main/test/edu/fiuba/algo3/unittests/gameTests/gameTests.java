@@ -45,7 +45,7 @@ public class gameTests {
            gameState = game.playTurn(1);
        }
 
-       assertFalse(gameState.result(gladiators));
+       assertFalse(gameState.result(gladiatorsNames));
         game.restartGame();
     }
 
@@ -108,7 +108,7 @@ public class gameTests {
             gameState = game.playTurn(1);
         }
 
-        assertFalse(gameState.result(gladiators));
+        assertFalse(gameState.result(gladiatorsNames));
         game.restartGame();
     }
     @Test
