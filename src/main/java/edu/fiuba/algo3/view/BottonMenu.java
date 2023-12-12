@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.view;
 
 import edu.fiuba.algo3.controller.DiceButtonController;
+import edu.fiuba.algo3.controller.Sound;
 import edu.fiuba.algo3.modelo.game.GameObserver;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -28,7 +29,7 @@ public class BottonMenu implements GameObserver {
     private ImageView dice = new ImageView();
     private HashMap<String, Image> dicesImages = new HashMap<>();
 
-    public void updateGladiator(String currentPlayerName, boolean canPlay) {
+    public void update(String currentPlayerName, boolean canPlay, int gameTurn) {
         this.name.setText(currentPlayerName);
         this.canPlay = canPlay;
         if(canPlay) this.diceButton.setText("Throw the dice");
@@ -65,6 +66,7 @@ public class BottonMenu implements GameObserver {
         
         diceButton.setOnAction(e ->{
             diceButton.setDisable(true);
+            Sound.getInstance().playFX("rolling-dice.mp3");
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), event ->{
                 if(!canPlay) return;
                 dice.setImage(dicesImages.get(String.valueOf(new Random().nextInt(5) + 1)));
