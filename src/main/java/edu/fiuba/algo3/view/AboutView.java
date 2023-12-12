@@ -54,7 +54,7 @@ public class AboutView implements EventHandler<ActionEvent> {
         aboutPane.setPadding(new Insets(10,15,10,5));
 
         Scene aboutScene = new Scene(aboutPane);
-        aboutScene.getStylesheets().add(getClass().getResource("/initialScene.css").toExternalForm());
+        aboutScene.getStylesheets().add(getClass().getResource("/styles/initialScene.css").toExternalForm());
 
         Stage aboutStage = new Stage();
         aboutStage.setScene(aboutScene);
