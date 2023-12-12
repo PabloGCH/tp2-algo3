@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.gladiator.state;
 
 import edu.fiuba.algo3.modelo.game.ActiveGame;
-import edu.fiuba.algo3.modelo.game.FinishedByWinning;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
@@ -25,7 +24,7 @@ public abstract class State {
     public State getIntoBacchanalia(Gladiator aGladiator){
         return this;
     }
-    public GameState isWinner() {
+    public GameState isWinner(String name) {
         return new ActiveGame();
     }
 

@@ -1,12 +1,9 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.factories.EffectFactory;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.*;
 import edu.fiuba.algo3.modelo.position.Position;
-import edu.fiuba.algo3.modelo.squares.Effect;
 import edu.fiuba.algo3.modelo.squares.Square;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.mock;

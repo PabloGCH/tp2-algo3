@@ -46,6 +46,9 @@ public class GladiatorView implements GladiatorObserver {
         gladiatorView.getChildren().add(piece);
         this.tooltip = new Tooltip();
         Tooltip.install(piece, this.tooltip);
+        if (colorCounter == 6) {
+            colorCounter = 0;
+        }
         return gladiatorView;
     }
 }

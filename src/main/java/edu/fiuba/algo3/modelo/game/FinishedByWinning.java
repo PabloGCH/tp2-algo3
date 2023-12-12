@@ -6,7 +6,12 @@ import edu.fiuba.algo3.modelo.squares.Square;
 import java.util.ArrayList;
 
 public class FinishedByWinning implements GameState {
+    private String winner;
+    public FinishedByWinning(String name) {
+        this.winner = name;
+    }
     public GameState nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult) {
+        this.winner = gladiators.get(0).getName();
         return this;
     }
 
@@ -15,7 +20,7 @@ public class FinishedByWinning implements GameState {
     }
 
     public boolean result(ArrayList<Gladiator> gladiators){
-        System.out.println("Felicidades" + gladiators.get(0).getName() + "ganaste");
+        this.winner = gladiators.get(0).getName();
         return true;
     }
 
@@ -24,5 +29,10 @@ public class FinishedByWinning implements GameState {
     }
 
     public void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path){
+    }
+
+    @Override
+    public void updateScreen(GameEndController controller) {
+        controller.showVictoryScreen(winner);
     }
 }

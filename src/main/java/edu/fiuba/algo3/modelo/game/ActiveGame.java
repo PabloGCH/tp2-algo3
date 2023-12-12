@@ -14,7 +14,7 @@ public class ActiveGame implements GameState {
         currentSquare.affect(currentGladiator);
         currentGladiator.decideIfPlaysAgain(new TurnDecider(gladiators));
         return currentGladiator.won();
-    };
+    }
 
     public boolean Finalized(){
         return false;
@@ -38,8 +38,14 @@ public class ActiveGame implements GameState {
             currentSquare.affect(currentGladiator);
         }
     }
-    public GameState update( int turn){
-        if (turn == 30){ return new FinishedByWinning(); }
-        return this;
+
+    @Override
+    public void updateScreen(GameEndController controller) {
+
     }
+
+    /*public GameState update( int turn){
+        if (turn == 30){ return new FinishedByWinning("Qué es esto?"); }
+        return this;
+    }*/
 }

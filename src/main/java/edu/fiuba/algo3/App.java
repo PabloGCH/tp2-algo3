@@ -19,13 +19,11 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-    ArrayList<TextField> nameFields = new ArrayList<TextField>();
     @Override
     public void start(Stage stage) {
 
-        Scene initialScene = new InitialView().initialScene(stage, nameFields);
-        initialScene.getStylesheets().add(getClass().getResource("/initialScene.css").toExternalForm());
-        stage.setScene(initialScene);
+        stage.setScene(new Scene(new InitialView().initialScene(stage)));
+        stage.getScene().getStylesheets().add(getClass().getResource("/styles/initialScene.css").toExternalForm());
         Image icon = new Image(getClass().getResource("/img/icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setResizable(false);

@@ -3,7 +3,6 @@ package edu.fiuba.algo3.unittests.gladiatorTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
-
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.position.Position;

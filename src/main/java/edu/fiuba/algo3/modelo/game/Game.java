@@ -1,29 +1,27 @@
 package edu.fiuba.algo3.modelo.game;
 
-import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Game {
+public class Game implements GameObservable {
     private final int MAX_TURNS_IN_A_GAME = 30, NEXT_GLADIATOR_TO_PLAY = 0;
     private int turn = 0;
     private int gladiatorTurn = 0;
     private ArrayList<Gladiator> gladiators = new ArrayList<>();
     private ArrayList<Square> path;
-    private Dice dice;
     private static Game instance;
     private GameState state;
+    private ArrayList<GameObserver> observers;
 
-    private Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice) {
+    private Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path) {
         this.path = path;
         this.gladiators = gladiators;
-        this.dice = dice;
         this.turn = 0;
         this.state = new ActiveGame();
+        this.observers = new ArrayList<GameObserver>();
     }
     public static Game getInstance() {
         return instance;
@@ -31,13 +29,13 @@ public class Game {
     public ArrayList<Square> getPath() {
         return this.path;
     }
-    public static Game getInstance(ArrayList<String> gladiatorsNames, ArrayList<Square> path, Dice dice) {
+    public static Game getInstance(ArrayList<String> gladiatorsNames, ArrayList<Square> path) {
         if (instance == null) {
             ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
             for (String name : gladiatorsNames) {
                 gladiators.add(new Gladiator(name));
             }
-            instance = new Game(gladiators, path, dice);
+            instance = new Game(gladiators, path);
         }
         return instance;
     }
@@ -54,8 +52,18 @@ public class Game {
         }
         return gladiators.get(0).getName();
     }
-    
-
+    public void restartGame() {
+        this.instance = null;
+    }
+    public void restartGameWithSamePlayers() {
+        ArrayList newGladiators = new ArrayList<Gladiator>();
+        for (Gladiator gladiator : this.gladiators) {
+            Gladiator aGladiator = new Gladiator(gladiator.getName());
+            newGladiators.add(aGladiator);
+        }
+        this.gladiators = newGladiators;
+        String s = this.startGame();
+    }
     private void updateTurn(){
         gladiatorTurn = this.state.turnEnded(gladiatorTurn, this.gladiators);
         if (gladiatorTurn == this.gladiators.size()){
@@ -68,11 +76,28 @@ public class Game {
     public GameState playTurn(int diceResult){
         this.state = this.state.nextTurn(this.gladiators, this.path, diceResult);
         updateTurn();
+        this.updateObservers();
         return this.state;
     }
 
     public ArrayList<Gladiator> getGladiators() {
         return gladiators;
+    }
+
+    public void addObserver(GameObserver observer) {
+        this.observers.add(observer);
+        this.updateObserver(observer);
+    }
+
+    public void updateObservers() {
+        for (GameObserver observer : observers) {
+            this.updateObserver(observer);
+        }
+    }
+
+    private void updateObserver(GameObserver observer) {
+        String currentGladiator = this.gladiators.get(0).getName();
+        observer.updateGladiatorName(currentGladiator);
     }
 }
 

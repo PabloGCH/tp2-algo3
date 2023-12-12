@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.position.Position;
 
 import java.util.ArrayList;
 
-public class Square{
+public class Square {
     private Position position;
     protected Effect prize;
     protected Effect obstacle;
