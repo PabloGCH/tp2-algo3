@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -42,7 +43,6 @@ public class InGameView {
         int squareHeight = 65;
         
         stage.setResizable(true);
-        stage.setMaximized(true);
         MenuBar menuBar = createMenuBar(stage);
 
         double gridSize = Math.min(stage.getHeight(), stage.getWidth());
@@ -98,6 +98,19 @@ public class InGameView {
         mapScrollPane.setBackground(
             new Background(new BackgroundFill(Color.TRANSPARENT, null, null))
         );
+
+        int screenWidth = (int) Screen.getPrimary().getBounds().getWidth();
+        int screenHeight = (int) Screen.getPrimary().getBounds().getHeight();
+
+        int sceneWidth = screenWidth;
+        int sceneHeight = (int)(screenHeight * (0.9));
+
+
+        stage.setWidth(sceneWidth);
+        stage.setHeight(sceneHeight);
+        stage.centerOnScreen();
+
+        stage.setMaximized(true);
 
         gamePane.setCenter(mapScrollPane);
         var bottomMenu = new BottonMenu();
