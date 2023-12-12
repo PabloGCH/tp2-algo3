@@ -99,7 +99,7 @@ public class Game implements GameObservable {
     private void updateObserver(GameObserver observer) {
         String currentGladiator = this.gladiators.get(NEXT_GLADIATOR_TO_PLAY).getName();
         boolean canPlay = this.gladiators.get(NEXT_GLADIATOR_TO_PLAY).canPlay();
-        observer.updateGladiator(currentGladiator, canPlay);
+        observer.update(currentGladiator, canPlay, turn);
     }
 }
 
