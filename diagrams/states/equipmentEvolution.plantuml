@@ -1,8 +1,8 @@
 @startuml
 
-[*] --> withoutEquipment: start game
+[*] --> NullEquipment: start game
 
-withoutEquipment --> Helmet : The gladiator falls into a locker with improved equipment
+NullEquipment --> Helmet : The gladiator falls into a locker with improved equipment
 
 Helmet --> Armor: The gladiator falls into a locker with improved equipment
 

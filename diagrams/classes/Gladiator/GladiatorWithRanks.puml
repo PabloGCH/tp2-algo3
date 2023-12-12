@@ -1,5 +1,0 @@
-@startuml
-!include Gladiator.plantuml
-!include ../rank/Rank.plantuml
-Gladiator *-- Rank
-@enduml

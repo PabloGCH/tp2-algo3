@@ -1,6 +1,7 @@
 @startuml
 class Gladiator {
     -name : String
+    -ENERGY_FROM_FOOD: int
     +Gladiator(): Gladiator
     +move(): int
     +drinkWine()
@@ -20,6 +21,5 @@ class Gladiator {
     +decideIfPlaysAgain(turnDecider: TurnDecider, gladiatorTurn: int)
     +turnEnded(gladiatorTurn: int ): int
     +rest()
-    +showEquipment(): String
 }
 @enduml

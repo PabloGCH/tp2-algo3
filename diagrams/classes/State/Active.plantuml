@@ -1,12 +1,11 @@
 @startuml
-!include ../Dice/dice.plantuml
+
 class Active{
-    +move(): Int
-    +update(): State
+    +move(diceResult: int): Int
+    +update(energy: int): State
     +runEffect(effect: Effect, gladiator: Gladiator)
     +fracture(): State
     +getIntoBacchanalia(aGladiator: Gladiator ): State
 }
 
-Active --> Dice
 @enduml

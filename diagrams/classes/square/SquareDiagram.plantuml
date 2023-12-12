@@ -1,0 +1,9 @@
+@startuml
+!include Square.plantuml
+!include ../position/Position.plantuml
+!include Effect.plantuml
+
+Square o-- Position
+Square o- "2" Effect: contains
+
+@enduml

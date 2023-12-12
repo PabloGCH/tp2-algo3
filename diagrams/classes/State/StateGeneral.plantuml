@@ -1,0 +1,15 @@
+@startuml
+!include Active.plantuml
+!include Tired.plantuml
+!include State.plantuml
+!include Injured.plantuml
+!include Winner.plantuml
+!include InTheBacchanalia.plantuml
+
+State <|.. Active
+State <|.. Tired
+State <|.. Injured
+State <|.. InTheBacchanalia
+State <|.. Winner
+
+@enduml

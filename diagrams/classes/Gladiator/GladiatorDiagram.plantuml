@@ -1,0 +1,13 @@
+@startuml
+!include ../Equipment/Equipment.puml
+!include Gladiator.plantuml
+!include ../rank/Rank.plantuml
+!include ../position/Position.plantuml
+!include ../State/State.plantuml
+
+Gladiator *-- Rank
+Gladiator *-- Equipment
+Gladiator *-- Position
+Gladiator *-- State
+
+@enduml
