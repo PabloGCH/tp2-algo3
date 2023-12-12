@@ -19,7 +19,7 @@
 }
 
 .menu-bar, .menu, .menu-item {
-    -fx-background-color: #413d3d;
+    -fx-background-color: #1d1c1c;
     -fx-text-fill: white;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .context-menu {
-    -fx-background-color: #413d3d;
+    -fx-background-color: #1d1c1c;
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
 }
