@@ -48,4 +48,7 @@ public abstract class State {
     public int energyFromState(int energy){
         return energy;
     }
+    public boolean canPlay() {
+        return false;
+    }
 }

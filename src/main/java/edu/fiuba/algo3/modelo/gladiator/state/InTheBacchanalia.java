@@ -48,4 +48,7 @@ public class InTheBacchanalia extends State {
         String state = "In The Bacchanalia";
         return state;
     }
+    public boolean canPlay() {
+        return true;
+    }
 }
