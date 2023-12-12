@@ -1,5 +1,5 @@
 @startuml
-class ActiveGame {
+class TurnDecider {
     -TurnDecider(gladiators: ArrayList )
     +finishTurn()
 }

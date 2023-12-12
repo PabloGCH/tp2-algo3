@@ -1,0 +1,17 @@
+@startuml
+!include Beast.plantuml
+!include Bacchanalia.plantuml
+!include Effect.plantuml
+!include Injury.plantuml
+!include NullEffect.plantuml
+!include Upgrade.plantuml
+!include ../Gladiator/Gladiator.plantuml
+
+Effect <|.. Beast
+Effect <|.. Bacchanalia
+Effect <|... Injury
+Effect <|.. NullEffect
+Effect <|.. Upgrade
+Effect ..> Gladiator
+
+@enduml

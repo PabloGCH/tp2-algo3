@@ -1,5 +1,0 @@
-@startuml
-!include ../Equipment/EquipmentDiagram.puml
-!include Gladiator.plantuml
-Gladiator o-- Equipment
-@enduml

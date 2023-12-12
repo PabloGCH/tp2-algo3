@@ -1,6 +1,6 @@
 @startuml
 abstract State {
-    +move(): Int
+    +move(diceResult: int): Int
     +update(energy: int):State
     +runEffect(effect: Effect, gladiator: Gladiator)
     +fracture(): State

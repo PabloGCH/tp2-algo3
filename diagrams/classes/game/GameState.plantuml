@@ -1,6 +1,6 @@
 @startuml
 interface GameState {
-    +nextTurn(gladiators: ArrayList<Gladiator> ,path: ArrayList<Square> , diceResult: int , gladiatorTurn: int ): GameState
+    +nextTurn(gladiators: ArrayList<Gladiator> ,path: ArrayList<Square> , diceResult: int): GameState
     +Finalized(): boolean
     +result(gladiators: ArrayList<String>): boolean
     +turnEnded(gladiatorTurn: int, gladiators: ArrayList<Gladiator> ): int

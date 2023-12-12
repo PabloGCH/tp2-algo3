@@ -1,8 +1,9 @@
 @startuml
 
 class Senior {
-    +energyFromExperience(amount: Energy): Energy
+    +energyFromExperience(amount: int): int
     +ascent(): Rank
+    +showRank(): String
 }
 
 @enduml
