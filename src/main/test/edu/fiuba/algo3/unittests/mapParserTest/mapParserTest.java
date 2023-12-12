@@ -6,7 +6,6 @@ import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
 //import java.sql.SQLInput;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,6 +68,16 @@ public class mapParserTest {
             mapParser.loadMap(
                     "src/main/resources/files/JSONArray.json",
                     "NotJSONArray.json"
+            );
+        });
+    }
+    @Test
+    public void validateJSONWithWrongCoordinateThrowsError() {
+        assertThrows(InvalidMapFile.class, () -> {
+            var mapParser = new MapJsonParser();
+            mapParser.loadMap(
+                    "src/main/resources/files/mapWithWrongCoordinates.json",
+                    "mapWithWrongCoordinates.json"
             );
         });
     }

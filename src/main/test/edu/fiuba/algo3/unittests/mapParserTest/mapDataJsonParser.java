@@ -60,6 +60,16 @@ public class mapDataJsonParser {
         });
     }
     @Test
+    public void validateJSONWithWrongCoordinateThrowsError() {
+        assertThrows(InvalidMapFile.class, () -> {
+            var mapParser = new MapDataJsonParser();
+            mapParser.loadData(
+                    "src/main/resources/files/mapWithWrongCoordinates.json",
+                    "mapWithWrongCoordinates.json"
+            );
+        });
+    }
+    @Test
     public void validateCorrectDataIsExtracted() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         MapDataJsonParser mapDataParser = new MapDataJsonParser();
         ArrayList<Integer> data = mapDataParser.loadData(
