@@ -192,6 +192,8 @@ public class InGameView {
     private void loadSoundsAndMusic() {
         Sound sounds = Sound.getInstance();
         String songsDirectory = "/sounds/music";
+        String soundsFXDirectory = "/sounds/soundsFX";
+
         try {
             URL resource = getClass().getResource(songsDirectory);
 
@@ -205,10 +207,6 @@ public class InGameView {
                         .toArray(String[]::new);
 
                 for (String song : mp3Files) {
-                    URL fileURL = getClass().getResource(songsDirectory + "/" + song);
-
-                    Media media = new Media(fileURL.toString());
-
                     sounds.loadMusic(song, song);
                     songsList.add(song);
                 }
@@ -218,6 +216,29 @@ public class InGameView {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+
+        try {
+            URL resource = getClass().getResource(soundsFXDirectory);
+
+            File[] files = new File(resource.toURI()).listFiles();
+
+            if (files != null) {
+
+                String[] mp3Files = Arrays.stream(files)
+                        .filter(file -> file.isFile() && file.getName().toLowerCase().endsWith(".mp3"))
+                        .map(File::getName)
+                        .toArray(String[]::new);
+
+                for (String soundfx : mp3Files) {
+                    sounds.loadSound(soundfx, soundfx);
+                }
+            } else {
+                System.out.println("No se encontraron archivos MP3");
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
 
         sounds.modifyEffectVolume(50);
         sounds.modifyMusicVolume(25);
