@@ -1,15 +1,19 @@
 @startuml
 'https://plantuml.com/class-diagram
-!include Equipment.puml
+!include Equipment.plantuml
 !include NullEquipment.plantuml
-!include Helmet.puml
-!include Armor.puml
-!include ShieldSword.puml
-!include Key.puml
+!include Helmet.plantuml
+!include Armor.plantuml
+!include ShieldSword.plantuml
+!include Key.plantuml
+!include ../State/State.plantuml
+
 Equipment <|.. NullEquipment
 Equipment <|.. Helmet
 Equipment <|.. Armor
 Equipment <|.. ShieldSword
 Equipment <|.. Key
+
+Equipment ..> State
 
 @enduml

@@ -4,7 +4,7 @@
 !include ../Gladiator/Gladiator.plantuml
 !include ../square/Square.plantuml
 !include GameState.plantuml
-Game "2" o-- "6" Gladiator: contains
+Game o-- "2..6" Gladiator: contains
 Game *-- GameState
 Game o-- "*" Square: contains
 Game --> Game

@@ -18,8 +18,9 @@ class Gladiator {
     +getIntoBacchanalia()
     +refreshState()
     +won(): GameState
-    +decideIfPlaysAgain(turnDecider: TurnDecider, gladiatorTurn: int)
+    +decideIfPlaysAgain(turnDecider: TurnDecider)
     +turnEnded(gladiatorTurn: int ): int
+    +tryToWin(middlePosition: Position)
     +rest()
 }
 @enduml

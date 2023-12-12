@@ -4,10 +4,10 @@ class Game {
     -gladiatorTurn: int
     -MAX_TURNS_IN_A_GAME: int
     -NEXT_GLADIATOR_TO_PLAY: int
-    -Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path, Dice dice)
+    -Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path)
     +getInstance(): Game
     +getPath(): ArrayList<Square>
-    +getInstance(ArrayList<String> gladiatorsNames, ArrayList<Square> path, Dice dice): Game
+    +getInstance(ArrayList<String> gladiatorsNames, ArrayList<Square> path): Game
     +startGame(): boolean
     +restartGameWithSamePlayers()
     +updateTurn()

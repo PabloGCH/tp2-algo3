@@ -121,9 +121,6 @@ public class Gladiator implements GladiatorObservable {
         }
     }
 
-    /*public String showEquipment(){
-        return this.equipment.showName();
-    }*/
     public void rest () {
         this.energy = this.state.energyFromState(this.energy);
     }

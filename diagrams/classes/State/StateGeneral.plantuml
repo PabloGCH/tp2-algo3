@@ -5,11 +5,20 @@
 !include Injured.plantuml
 !include Winner.plantuml
 !include InTheBacchanalia.plantuml
+!include ../Gladiator/Gladiator.plantuml
+!include ../square/Effect.plantuml
+!include ../position/Position.plantuml
+!include ../game/TurnDecider.plantuml
 
-State <|.. Active
+State <|... Active
 State <|.. Tired
 State <|.. Injured
 State <|.. InTheBacchanalia
-State <|.. Winner
+State <|... Winner
+
+State .> Effect
+State .> Gladiator
+State ...> TurnDecider
+State ...> Position
 
 @enduml

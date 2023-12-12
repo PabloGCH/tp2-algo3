@@ -1,0 +1,8 @@
+@startuml
+
+!include TurnDecider.plantuml
+!include ../Gladiator/Gladiator.plantuml
+
+TurnDecider --> "2..6" Gladiator
+
+@enduml
