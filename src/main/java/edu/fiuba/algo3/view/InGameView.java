@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.view;
 
-import edu.fiuba.algo3.controller.DiceButtonController;
 import edu.fiuba.algo3.controller.Sound;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.game.Game;
@@ -12,31 +11,16 @@ import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.Square;
 import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Box;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -47,9 +31,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class InGameView {
-    
-   // public void displayInGameScene(Stage stage, ArrayList<Gladiator> gladiators) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-
     private ArrayList<String> songsList = new ArrayList<>();
 
     public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
@@ -109,6 +90,8 @@ public class InGameView {
         ScrollPane mapScrollPane = new ScrollPane(mapGridPane);
         mapScrollPane.setPannable(true);
         mapScrollPane.setStyle("-fx-background-color: #413d3d;");
+        mapScrollPane.setBorder(new Border(new BorderStroke(new Color(65/255, 61/255, 61/255, 1/255), null, null, null)));
+
         mapScrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
         mapScrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
 

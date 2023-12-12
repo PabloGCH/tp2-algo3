@@ -2,14 +2,8 @@ package edu.fiuba.algo3.view;
 
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 public class SideBar {
@@ -30,8 +24,9 @@ public class SideBar {
 
         ScrollPane scrollable = new ScrollPane(gladiatorsList);
         scrollable.setBackground(
-            new Background(new BackgroundFill(Color.TRANSPARENT, null, null))
+            new Background(new BackgroundFill(Color.GRAY, null, null))
         );
+        scrollable.setBorder(new Border(new BorderStroke(Color.GRAY, null, null, null)));
 
         sidebarPane.add(scrollable, 2000, 4000);
         sidebarPane.setStyle("-fx-background-color: gray;");
