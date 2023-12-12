@@ -38,13 +38,9 @@ public class ActiveGame implements GameState {
     }
 
     @Override
-    public void updateScreen(GameEndController controller) {
-
-    }
+    public void updateScreen(GameEndController controller) {}
 
     public GameState defeat(){
         return new FinishedByTurns();
     }
-
-
 }

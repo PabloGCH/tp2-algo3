@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.gladiator.state.Active;
 import edu.fiuba.algo3.modelo.gladiator.state.State;
+import edu.fiuba.algo3.modelo.gladiator.state.Winner;
 import edu.fiuba.algo3.modelo.squares.Food;
 import org.junit.jupiter.api.Test;
 
@@ -78,6 +79,11 @@ public class tiredTest {
         assertEquals(20, gladiator.getEnergy());
         tired.runEffect(new Food(), gladiator);
         assertEquals(20, gladiator.getEnergy());
+    }
+    @Test
+    public void test07ShowStateReturnsCorrectName(){
+        Tired tired = new Tired();
+        assertEquals("Tired", tired.showState());
     }
 }
 

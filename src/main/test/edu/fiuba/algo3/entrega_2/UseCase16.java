@@ -5,8 +5,6 @@ import edu.fiuba.algo3.modelo.mapJsonParser.*;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
-
-import static org.mockito.Mockito.mock;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

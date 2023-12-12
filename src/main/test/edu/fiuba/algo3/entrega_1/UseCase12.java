@@ -5,13 +5,8 @@ import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
@@ -41,7 +36,7 @@ public class UseCase12 {
             gameState = game.playTurn(1);
         }
 
-        Assertions.assertFalse(gameState.result(gladiatorsNames));
+        assertFalse(gameState.result(gladiatorsNames));
         game.restartGame();
     }
 }

@@ -4,10 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.game.GameState;
-import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
@@ -18,7 +14,7 @@ import java.util.ArrayList;
 
 public class gameTests {
     @Test
-    void test01StartGameAndPlayUntilFinish() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    void test01StartGameAndPlayUntilFinish(){
         GameState gameState;
        ArrayList<Gladiator> gladiators = new ArrayList<>();
        gladiators.add(new Gladiator("Example 1"));
@@ -50,8 +46,7 @@ public class gameTests {
     }
 
     @Test
-    void test02GladiatorIsSuccessfullyAddedToTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        GameState gameState;
+    void test02GladiatorIsSuccessfullyAddedToTheGame(){
         Gladiator gladiator1 = new Gladiator("Example");
        ArrayList<Gladiator> gladiators = new ArrayList<>();
        gladiators.add(gladiator1);
@@ -78,7 +73,7 @@ public class gameTests {
     }
 
     @Test
-    void test03AllTheGladiatorsLostTheGame() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    void test03AllTheGladiatorsLostTheGame(){
         GameState gameState;
        Gladiator gladiator1 = new Gladiator("Example");
        ArrayList<Gladiator> gladiators = new ArrayList<>();
@@ -113,13 +108,10 @@ public class gameTests {
     }
     @Test
     public void test04GetPathReturnsTheRightPath(){
-        GameState gameState;
         ArrayList<Square> map = new ArrayList<>();
-        ArrayList<Gladiator> gladiators = new ArrayList<>();
         EffectFactory effectFactory = new EffectFactory();
         Position positionOne = new Position(0,0,0);
         map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), positionOne));
-        Position positionTwo = new Position(1,1,0);
 
         ArrayList<String> gladiatorsNames = new ArrayList<>();
 
@@ -128,4 +120,24 @@ public class gameTests {
         assertTrue(positionOne.comparePosition(mapReceived.get(0).getPosition()));
         game.restartGame();
     }
+    /*
+    @Test
+    public void test05RestartWithSamePlayersKeepsSameGladiatorsNames(){
+        ArrayList<Square> map = new ArrayList<>();
+        EffectFactory effectFactory = new EffectFactory();
+        Position positionOne = new Position(0,0,0);
+        map.add(new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), positionOne));
+
+        ArrayList<String> gladiatorsNames = new ArrayList<>();
+        gladiatorsNames.add("ExampleOne");
+        gladiatorsNames.add("ExampleTwo");
+        gladiatorsNames.add("ExampleThree");
+        Game game = Game.getInstance(gladiatorsNames, map);
+
+        game.restartGameWithSamePlayers();
+
+        assertEquals(gladiatorsNames.get(0), game.getGladiators().get(0).getName());
+        assertEquals(gladiatorsNames.get(1), game.getGladiators().get(1).getName());
+        assertEquals(gladiatorsNames.get(2), game.getGladiators().get(2).getName());
+    }*/
 }

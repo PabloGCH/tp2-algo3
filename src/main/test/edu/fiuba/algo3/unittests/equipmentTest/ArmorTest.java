@@ -19,10 +19,6 @@ public class ArmorTest {
     @Test
     public void test01UpgradeReturnsShieldSword(){
         Gladiator gladiator = new Gladiator("Example");
-        EffectFactory effectFactory = new EffectFactory();
-        Position position = new Position(0,0,0);
-        Square initialSquare = new Square(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), position);
-        initialSquare.affect(gladiator);
 
         gladiator.upgrade();
         gladiator.upgrade();
@@ -53,7 +49,7 @@ public class ArmorTest {
         newState.tryToWin(gladiator, middlePosition);
         assertEquals(2, gladiator.move(5, 1));
     }
-    @Test void armorIsNotComplete(){
+    @Test void test04ArmorIsNotComplete(){
         ArrayList<String> gladiators = new ArrayList<>();
         gladiators.add("Example");
         State fullArmor = new Active();;
@@ -62,5 +58,10 @@ public class ArmorTest {
         fullArmor = newEquipment.win(fullArmor);
 
         assertFalse(fullArmor.isWinner(gladiators.get(0)).result(gladiators));
+    }
+    @Test
+    public void test05ShowNameReturnsCorrectName(){
+        Armor armor = new Armor();
+        assertEquals("Armor", armor.showName());
     }
 }

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.unittests.gameTests;
 
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
-import edu.fiuba.algo3.modelo.game.ActiveGame;
+import edu.fiuba.algo3.modelo.game.FinishedByTurns;
 import edu.fiuba.algo3.modelo.game.FinishedByWinning;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
@@ -9,17 +9,17 @@ import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
 
-import com.tngtech.archunit.thirdparty.com.google.common.base.Strings;
-
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FinishedByWinningTests {
+public class FinishedByTurnsTests {
     @Test
     public void test01NextTurnDoesNotChangeGladiatorsPositions(){
         EffectFactory effectFactory = new EffectFactory();
-        FinishedByWinning finishedGame = new FinishedByWinning("Example");
+        FinishedByTurns finishedByTurns = new FinishedByTurns();
         ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
         gladiators.add(new Gladiator("Example"));
         Gladiator gladiator = gladiators.get(0);
@@ -31,47 +31,33 @@ public class FinishedByWinningTests {
         path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("Comida"), newPosition));
         initialSquare.affect(gladiator);
         assertEquals(gladiator.getEnergy(), 20);
-        finishedGame.nextTurn(gladiators, path, 1);
+        finishedByTurns.nextTurn(gladiators, path, 1);
         assertEquals(gladiator.getEnergy(), 20);
     }
     @Test
     public void test02NextTurnReturnsFinishedByWinning(){
         EffectFactory effectFactory = new EffectFactory();
-        FinishedByWinning finishedGame = new FinishedByWinning("Example");
+        FinishedByTurns finishedByTurns = new FinishedByTurns();
         ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
         gladiators.add(new Gladiator("Example"));
         ArrayList<Square> path = new ArrayList<>();
         Position initialPosition = new Position(0,0,0);
         path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("NullEffect"), initialPosition));
-        GameState currentGameState = finishedGame.nextTurn(gladiators, path, 1);
+        GameState currentGameState = finishedByTurns.nextTurn(gladiators, path, 1);
         assertTrue(currentGameState.Finalized());
-        ArrayList<String> gladiatorsNames = new ArrayList<String>();
-        gladiatorsNames.add(gladiators.get(0).getName());
-        assertTrue(currentGameState.result(gladiatorsNames));
+        assertFalse(currentGameState.result(new ArrayList<String>()));
     }
     @Test
-    public void test03FinalizedReturnsTrue(){
-        FinishedByWinning finishedGame = new FinishedByWinning("Example");
-        assertTrue(finishedGame.Finalized());
-    }
-    @Test//Comentar mariano gladiadores
-    public void test04ResultReturnsTrue(){
-        FinishedByWinning finishedGame = new FinishedByWinning("Example");
-        ArrayList<String> gladiators = new ArrayList<String>();
-        gladiators.add("Example");
-        assertTrue(finishedGame.result(gladiators));
-    }
-    @Test
-    public void test05TurnEndedReturnsGladiatorTurnWithoutChange(){
-        FinishedByWinning finishedGame = new FinishedByWinning("Example");
+    public void test03TurnEndedReturnsGladiatorTurnWithoutChange(){
+        FinishedByTurns finishedByTurns = new FinishedByTurns();
         ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
-        int newGladiatorTurn = finishedGame.turnEnded(0, gladiators);
+        int newGladiatorTurn = finishedByTurns.turnEnded(0, gladiators);
         assertEquals(0, newGladiatorTurn);
     }
     @Test
-    public void test06EntryOfTheGladiatorToTheFirstSquareDoesNotAffectPositions(){
+    public void test04EntryOfTheGladiatorToTheFirstSquareDoesNotAffectPositions(){
         EffectFactory effectFactory = new EffectFactory();
-        FinishedByWinning finishedByWinning = new FinishedByWinning("Example");
+        FinishedByTurns finishedByTurns = new FinishedByTurns();
         ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
         Gladiator gladiatorOne = new Gladiator("ExampleOne");
         gladiatorOne.positionate(new Position(10,10,10));
@@ -86,20 +72,20 @@ public class FinishedByWinningTests {
         path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("NullEffect"), new Position(0,0,0)));
         path.add(new Square(effectFactory.createEffect("NullEffect"), effectFactory.createEffect("NullEffect"), new Position(1,0,1)));
 
-        finishedByWinning.entryOfTheGladiatorToTheFirstSquare(gladiators, path);
+        finishedByTurns.entryOfTheGladiatorToTheFirstSquare(gladiators, path);
 
         assertEquals(11,gladiatorOne.move(20,1));
         assertEquals(11,gladiatorTwo.move(20,1));
         assertEquals(11,gladiatorThree.move(20,1));
     }
     @Test
-    public void test07DefeatReturnsSameState(){
-        FinishedByWinning finishedGame = new FinishedByWinning("Example");
+    public void test05DefeatReturnsSameState(){
+        FinishedByTurns finishedByTurns = new FinishedByTurns();
         ArrayList<String> gladiators = new ArrayList<String>();
         gladiators.add("Example");
 
-        GameState gameState = finishedGame.defeat();
+        GameState gameState = finishedByTurns.defeat();
 
-        assertTrue(gameState.result(gladiators));
+        assertFalse(gameState.result(gladiators));
     }
 }

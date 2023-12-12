@@ -113,4 +113,17 @@ public class inTheBacchanaliaTests {
 
         assertEquals(1, number);
     }
+    @Test
+    public void test10ShowStateReturnsCorrectName(){
+        InTheBacchanalia inTheBacchanalia = new InTheBacchanalia(new Gladiator("Example"));
+        assertEquals("In The Bacchanalia", inTheBacchanalia.showState());
+    }
+    @Test
+    public void test11RunEffectTwoTimesTurnsGladiatorActiveAndRunsEffectOnlyOnce(){
+        Gladiator gladiator = new Gladiator("Example");
+        InTheBacchanalia inTheBacchanalia = new InTheBacchanalia(gladiator);
+        inTheBacchanalia.runEffect(new Food(),gladiator);
+        inTheBacchanalia.runEffect(new Food(),gladiator);
+        assertEquals(1, gladiator.move(5,1));
+    }
 }

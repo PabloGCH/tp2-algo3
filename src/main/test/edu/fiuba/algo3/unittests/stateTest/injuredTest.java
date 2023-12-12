@@ -89,4 +89,9 @@ public class injuredTest {
         number = newStateTwo.move(1);
         assertEquals(1,number);
     }
+    @Test
+    public void test07ShowStateReturnsCorrectName(){
+        Injured injured = new Injured();
+        assertEquals("Injured", injured.showState());
+    }
 }
