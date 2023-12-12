@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
 import edu.fiuba.algo3.modelo.game.ActiveGame;
+import edu.fiuba.algo3.modelo.game.FinishedByTurns;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Bacchanalia;
 import edu.fiuba.algo3.modelo.squares.Square;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ActiveGameTests {
     @Test
@@ -56,8 +58,8 @@ public class ActiveGameTests {
     @Test//Comentar mariano gladiadores
     public void test04ResultReturnsFalse(){
         ActiveGame activeGame = new ActiveGame();
-        ArrayList<Gladiator> gladiators = new ArrayList<Gladiator>();
-        assertFalse(activeGame.result(gladiators));
+        ArrayList<String> gladiatorsNames = new ArrayList<String>();
+        assertFalse(activeGame.result(gladiatorsNames));
     }
     @Test
     public void test05TurnEndedReturnsGladiatorTurnPlusOneIfNotInBacchanalia(){
@@ -96,5 +98,14 @@ public class ActiveGameTests {
         assertEquals(35,gladiatorOne.getEnergy());
         assertEquals(35,gladiatorTwo.getEnergy());
         assertEquals(35,gladiatorThree.getEnergy());
+    }
+
+    @Test
+    public void test07DefaultReturnsTheFinishedByTurnsClass(){
+        ActiveGame activeGame = new ActiveGame();
+
+        var finishedByTurns = activeGame.defeat();
+
+        assertTrue(finishedByTurns.Finalized());
     }
 }

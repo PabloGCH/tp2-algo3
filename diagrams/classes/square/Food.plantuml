@@ -1,7 +1,7 @@
 @startuml
 
 class Food {
-    +affect(Gladiator gladiator)
+    +affect(gladiator: Gladiator)
 }
 
 @enduml

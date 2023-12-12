@@ -1,8 +1,8 @@
 @startuml
 class Helmet {
-    +upgrade(): Armor
-    +receiveAttack(int energy): int
-    +win(State state) State
+    +upgrade(): Equipment
+    +receiveAttack(energy: int): int
+    +win(state: State) State
     +showName(): String
 }
 @enduml

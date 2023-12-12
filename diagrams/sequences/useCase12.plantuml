@@ -5,42 +5,36 @@ actor Actor
 
 activate Actor
 
+create StateGame
+Actor -> StateGame: <<Create>>
 create collections Square
 Actor -> Square: <<create>>
-create collections Gladiator
-Actor -> Gladiator: <<create>>
 create EffectFactory
 Actor -> EffectFactory: <<create>>
 Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), new Position(0,0,0))
 Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(1,0,1))
 Actor -> Square: add(effectFactory.createEffect("NullEffect"),new FinishLineEffect(), new Position(2,0,2))
+
+create collections Gladiator
+Actor -> Gladiator: <<create>>
 Actor -> Gladiator: add(new Gladiator("Example"))
 
-create Dice
 create Game
 Actor -> Game: getInstance(Gladiator, Square, new Dice())
-activate Game
-    Game --> Actor: new Game(gladiators, path, dice)
-deactivate Game
 
 Actor -> Game: startGame()
-activate Game
-    create GameState
-    Game -> GameState: <<create>>
-    Game -> GameState: entryOfTheGladiatorToTheFirstSquare(gladiators, Square)
-    loop until 30 turns pass or gameOver is true
-    Game -> Dice: throwDice()
-    Game -> GameState: nextTurn(Gladiator, Square, diceResult, gladiatorTurn);
-    Game -> GameState: Finalized()
-    Game -> GameState: turnEnded(gladiatorTurn, Gladiator)
-    end loop
-    Game -> GameState: result(Gladiator)
 
-    activate GameState
-        GameState --> Game: false
-    deactivate GameState
-    Game --> Actor: false
+loop Until the Finalized method returns true
+Actor -> Game: playTurn(1)
+activate Game
+    Game --> Actor: StateGame
 deactivate Game
+end loop
+
+Actor -> StateGame: result(Gladiator)
+activate StateGame
+    StateGame --> Actor: false
+deactivate StateGame
 
 deactivate Actor
 

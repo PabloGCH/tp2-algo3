@@ -1,8 +1,8 @@
 @startuml
 
 class Square {
-    -Square(Effect obstacle, Effect prize, Position aPosition)
-    +affect(Gladiator gladiator)
+    -Square(obstacle: Effect, prize: Effect, aPosition: Position)
+    +affect(gladiator: Gladiator)
     +getPosition(): Position
 }
 

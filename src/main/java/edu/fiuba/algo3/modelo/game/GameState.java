@@ -10,11 +10,13 @@ public interface GameState {
 
     public boolean Finalized();
 
-    public boolean result(ArrayList<Gladiator> gladiators);
+    public boolean result(ArrayList<String> gladiators);
 
     public int turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators);
 
     public void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path);
 
     public void updateScreen(GameEndController controller);
+
+    public GameState defeat();
 }

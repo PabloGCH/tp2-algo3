@@ -4,37 +4,44 @@ actor Actor
 activate Actor
 create collections Square
 Actor -> Square: <<create>>
-create collections Gladiator
-Actor -> Gladiator: <<create>>
 create EffectFactory
 Actor -> EffectFactory: <<create>>
 Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), new Position(0,0,0))
 Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(1,0,1))
 Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(2,0,2))
+
+create collections Gladiator
+Actor -> Gladiator: <<create>>
 Actor -> Gladiator: add(new Gladiator("Example"))
 
 create GameState
 Actor -> GameState: <<create>>
 
-Actor -> GameState: entryOfTheGladiatorToTheFirstSquare(gladiators, map)
-activate GameState
-    loop until the entire gladiators array is recoorated
-        GameState -> Gladiator: get(i)
-        activate Gladiator
-           Gladiator --> GameState: gladiator
-        deactivate Gladiator
-        GameState -> Square: get(0)
-        activate Square
-           Square --> GameState: square
-        deactivate Square
-        GameState -> Square: affect(gladiator)
-        activate Square
-           Square -> Gladiator: positionate(position)
-           Square -> Gladiator: runEffect(obstacle)
-           Square -> Gladiator: runEffect(prize)
-        deactivate Square
-    end loop
-deactivate GameState
+create Game
+Actor -> Game: getInstance(Gladiator, Square)
+
+Actor -> Game: startGame()
+activate Game
+    Actor -> GameState: entryOfTheGladiatorToTheFirstSquare(gladiators, map)
+    activate GameState
+        loop until the entire gladiators array is recoorated
+            GameState -> Gladiator: get(i)
+            activate Gladiator
+            Gladiator --> GameState: gladiator
+            deactivate Gladiator
+            GameState -> Square: get(0)
+            activate Square
+            Square --> GameState: square
+            deactivate Square
+            GameState -> Square: affect(gladiator)
+            activate Square
+            Square -> Gladiator: positionate(position)
+            Square -> Gladiator: runEffect(obstacle)
+            Square -> Gladiator: runEffect(prize)
+            deactivate Square
+        end loop
+    deactivate GameState
+deactivate Game
 
 Actor -> Gladiator: getEnergy()
 activate Gladiator

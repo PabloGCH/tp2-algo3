@@ -3,9 +3,9 @@
 class Active{
     +move(): Int
     +update(): State
-    +runEffect(Effect effect, Gladiator gladiator)
+    +runEffect(effect: Effect, gladiator: Gladiator)
     +fracture(): State
-    +getIntoBacchanalia(Gladiator aGladiator): State
+    +getIntoBacchanalia(aGladiator: Gladiator ): State
 }
 
 Active --> Dice

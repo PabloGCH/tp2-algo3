@@ -62,6 +62,6 @@ public class ShieldSwordTest {
 
         fullArmor = newEquipment.win(fullArmor);
 
-        assertFalse(fullArmor.isWinner(gladiators.get(0).getName()).result(gladiators));
+        assertFalse(fullArmor.isWinner(gladiators.get(0).getName()).Finalized());
     }
 }

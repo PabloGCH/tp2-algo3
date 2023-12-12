@@ -1,9 +1,9 @@
 @startuml
 
 class Position {
-    -Position(int x, int y, int pathPosition)
-    +comparePosition(Position aPosition): boolean
-    +moveFoward(int stepsForward, int pathSize): int
+    -Position(x: int , y: int, pathPosition: int)
+    +comparePosition(aPosition: Position): boolean
+    +moveFoward(stepsForward: int, pathSize: int): int
     +coordinates(): Dimension2D
 }
 

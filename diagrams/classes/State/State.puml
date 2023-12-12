@@ -1,13 +1,15 @@
 @startuml
 abstract State {
     +move(): Int
-    +update(int energy):State
-    +runEffect(Effect effect, Gladiator gladiator)
+    +update(energy: int):State
+    +runEffect(effect: Effect, gladiator: Gladiator)
     +fracture(): State
-    +getIntoBacchanalia(Gladiator aGladiator): State
+    +getIntoBacchanalia(aGladiator: Gladiator): State
     +isWinner(): GameState
-    +decideIfPlaysAgain(TurnDecider turnDecider)
-    +tryToWin(Gladiator aGladiator, Position middlePosition)
-    +updateTurn(int turn): int
+    +decideIfPlaysAgain(turnDecider: TurnDecider)
+    +tryToWin(aGladiator: Gladiator, middlePosition: Position)
+    +updateTurn(turn: int): int
+    +showState(): String
+    +energyFromState(energy: int): int
 }   
 @enduml

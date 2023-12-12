@@ -1,9 +1,10 @@
 @startuml
 class ActiveGame {
-    +nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult, int gladiatorTurn): GameState
+    +nextTurn(gladiators: ArrayList<Gladiator> ,path: ArrayList<Square> , diceResult: int , gladiatorTurn: int ): GameState
     +Finalized(): boolean
-    +result(ArrayList<Gladiator> gladiators): boolean
-    +turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators): int
-    +entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path)
+    +result(gladiators: ArrayList<String>): boolean
+    +turnEnded(gladiatorTurn: int, gladiators: ArrayList<Gladiator> ): int
+    +entryOfTheGladiatorToTheFirstSquare(gladiators: ArrayList<Gladiator> ,path: ArrayList<Square> )
+    +defeat(): GameState
 }
 @enduml

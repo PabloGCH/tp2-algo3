@@ -20,9 +20,7 @@ public class ActiveGame implements GameState {
         return false;
     }
 
-    public boolean result(ArrayList<Gladiator> gladiators){
-        System.out.println("Todos Perdieron");
-        System.out.println("Mejor suerte la proxima");
+    public boolean result(ArrayList<String> gladiators){
         return false;
     }
 
@@ -44,8 +42,9 @@ public class ActiveGame implements GameState {
 
     }
 
-    /*public GameState update( int turn){
-        if (turn == 30){ return new FinishedByWinning("Qué es esto?"); }
-        return this;
-    }*/
+    public GameState defeat(){
+        return new FinishedByTurns();
+    }
+
+
 }

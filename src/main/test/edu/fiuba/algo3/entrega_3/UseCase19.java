@@ -50,7 +50,7 @@ public class UseCase19 {
             gameState = game.playTurn(1);
         }
 
-        Assertions.assertTrue(gameState.result(gladiators));
+        Assertions.assertTrue(gameState.result(gladiatorsNames));
         game.restartGame();
     }
 }
