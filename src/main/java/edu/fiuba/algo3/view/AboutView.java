@@ -49,7 +49,7 @@ public class AboutView implements EventHandler<ActionEvent> {
 
         StackPane aboutPane = new StackPane();
         aboutPane.getChildren().add(canvas);
-        aboutPane.getStyleClass().add("gladiator-card");
+        aboutPane.getStyleClass().add("about");
         //aboutPane.setPadding(new Insets(10));
         aboutPane.setPadding(new Insets(10,15,10,5));
 

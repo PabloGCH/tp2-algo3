@@ -69,6 +69,10 @@
     -fx-spacing: 10px;
 }
 
+.about {
+    -fx-background-color: rgb(91, 53, 24);
+}
+
 .name-field {
     -fx-background-color: rgba(255, 255, 255, 0.2);
 }
