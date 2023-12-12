@@ -60,6 +60,7 @@ public class AboutView implements EventHandler<ActionEvent> {
         aboutStage.setScene(aboutScene);
         aboutStage.setResizable(false);
         aboutStage.setTitle("About");
+        aboutStage.getIcons().add(icon);
         aboutStage.show();
     }
 }
