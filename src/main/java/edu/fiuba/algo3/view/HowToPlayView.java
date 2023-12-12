@@ -44,6 +44,8 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         this.dialogStage.initModality(Modality.APPLICATION_MODAL);
         this.dialogStage.setTitle("How to play");
         this.totalPages = 0;
+
+        setUpPages();
     }
     @Override
     public void handle(ActionEvent actionEvent) {
@@ -52,7 +54,6 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         this.pageLabel.setWrapText(true);
         this.currentPage = 1;
 
-        setUpPages();
         setUpStage();
 
         dialogStage.showAndWait();
