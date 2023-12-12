@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.view;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -11,15 +10,16 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.HashMap;
-import java.util.Properties;
 
 public class HowToPlayView implements EventHandler<ActionEvent> {
     private int currentPage;
+    private int totalPages;
     private HBox mainContainer = new HBox();
     private HBox buttonsContainer = new HBox();
     private ImageView pageImageView = new ImageView();
@@ -31,14 +31,19 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
     private Button backButton = new Button("Back");
     private Label pageNumberLabel = new Label();
     public HowToPlayView() {
+        this.dialogStage.setWidth(550);
+        this.dialogStage.setHeight(350);
+        this.dialogStage.setResizable(false);
         this.mainContainer.getChildren().addAll(this.pageImageView, this.pageLabel);
         this.buttonsContainer.getChildren().addAll(backButton, pageNumberLabel, nextButton);
+        this.pageLabel.setLineSpacing(1.5);
 
         this.backButton.getStyleClass().add("btn");
         this.nextButton.getStyleClass().add("btn");
 
         this.dialogStage.initModality(Modality.APPLICATION_MODAL);
         this.dialogStage.setTitle("How to play");
+        this.totalPages = 0;
     }
     @Override
     public void handle(ActionEvent actionEvent) {
@@ -54,11 +59,18 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
     }
 
     private void setUpPages() {
-        this.texts.put("1", "First page text");
-        this.images.put("1", new Image(getClass().getResource("/img/beast.png").toExternalForm()));
-
-        this.texts.put("2", "Second page text");
-        this.images.put("2", new Image(getClass().getResource("/img/bacchanalia.png").toExternalForm()));
+        this.addAPage("Welcome to AlgoRoma! Your goal is to reach Pompeii before the other players! But make sure to found a key previously. During your journey, you will find different prizes and obstacles. Click \"next\" to learn about them!", "/img/gladiator1.png");
+        this.addAPage("This means you found some food! Your energy increases 15 points!","/img/food.png");
+        this.addAPage("In these squares, your equipment receives an upgrade! Depending on your current equipment, you will get a better one. These are the upgrades\n\nNothing -> helmet\nHelmet -> armor\nArmor -> sword and shield\nSword and shield -> key.", "/img/upgrade.png");
+        this.addAPage("There's a beast in these squares, so be careful! You will have to kill the beast, but it will cost energy. The amount depends on your equipment.\n\nUnequipped: 20 points\nHelmet: 15 points\nArmor:10 points\nShield and sword: 5 points\nKey: 0 points", "/img/beast.png");
+        this.addAPage("This is a bacchanalia! Throw the dice to figure out how many glasses of wine you will drink. Each glass will decrease your energy 4 points.", "/img/bacchanalia.png");
+        this.addAPage("Life pisses you off, you kick a stone and break your foot. You skip next turn.", "/img/injury.png");
+        this.addAPage("This is Pompeii's gate. If you reach here with the key, you win. If not, you go back to the middle of the path.", "/img/finishline.png");
+    }
+    private void addAPage(String text, String imageDir) {
+        totalPages++;
+        this.texts.put(String.valueOf(totalPages), text);
+        this.images.put(String.valueOf(totalPages), new Image(getClass().getResource(imageDir).toExternalForm()));
     }
 
     private void setUpStage() {
@@ -67,6 +79,7 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         root.setStyle("-fx-background-color: rgb(91, 53, 24)");
 
         this.pageLabel.setText(this.texts.get(String.valueOf(currentPage)));
+        this.pageLabel.setMinHeight(Region.USE_PREF_SIZE);
         this.pageLabel.setAlignment(Pos.CENTER);
         this.pageLabel.setPadding(new Insets(10));
         this.pageImageView.setImage(this.images.get(String.valueOf(currentPage)));
@@ -90,6 +103,7 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         this.buttonsContainer.setAlignment(Pos.CENTER);
 
         root.getChildren().addAll(mainContainer, buttonsContainer);
+        root.setPadding(new Insets(10));
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/styles/initialScene.css").toExternalForm());
@@ -103,6 +117,6 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         this.nextButton.setDisable(this.currentPage == this.texts.size());
         this.backButton.setDisable(currentPage == 1);
 
-        Label pageNumberLabel = new Label(this.currentPage + "/" + this.texts.size());
+        this.pageNumberLabel.setText(this.currentPage + "/" + this.texts.size());
     }
 }
