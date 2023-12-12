@@ -1,0 +1,16 @@
+@startuml
+
+[*] --> ActiveGame: start game
+
+state result <<fork>>
+ActiveGame --> result: playTurn
+
+result --> ActiveGame: if 30 turns have not passed and if no player won
+result --> FinishedByTurns: if 30 turns have passed and there was no winner
+result --> FinishedByWinning: if there was a winner
+
+ActiveGame -> [*]: follow the game
+FinishedByTurns --> [*]: the game is over
+FinishedByWinning --> [*]: the game is over
+
+@enduml
