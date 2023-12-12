@@ -28,8 +28,6 @@ public class BottonMenu implements GameObserver {
     private ImageView dice = new ImageView();
     private HashMap<String, Image> dicesImages = new HashMap<>();
 
-    CountDownLatch latch = new CountDownLatch(1);
-
     public void updateGladiator(String currentPlayerName, boolean canPlay) {
         this.name.setText(currentPlayerName);
         this.canPlay = canPlay;
