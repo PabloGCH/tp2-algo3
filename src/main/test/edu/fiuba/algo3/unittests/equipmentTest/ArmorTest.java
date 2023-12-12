@@ -54,14 +54,13 @@ public class ArmorTest {
         assertEquals(2, gladiator.move(5, 1));
     }
     @Test void armorIsNotComplete(){
-        ArrayList<Gladiator> gladiators = new ArrayList<>();
-        gladiators.add(new Gladiator("Example"));
-        State fullArmor = new Active();
-        GameState gameState = new ActiveGame();
+        ArrayList<String> gladiators = new ArrayList<>();
+        gladiators.add("Example");
+        State fullArmor = new Active();;
         Armor newEquipment = new Armor();
 
         fullArmor = newEquipment.win(fullArmor);
 
-        assertFalse(fullArmor.isWinner(gladiators.get(0).getName()).Finalized());
+        assertFalse(fullArmor.isWinner(gladiators.get(0)).result(gladiators));
     }
 }

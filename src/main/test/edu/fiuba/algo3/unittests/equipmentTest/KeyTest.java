@@ -55,14 +55,13 @@ public class KeyTest {
         assertEquals(1,gladiator.move(5,1));
     }
     @Test void armorIsComplete(){
-        ArrayList<Gladiator> gladiators = new ArrayList<>();
-        gladiators.add(new Gladiator("Example"));
+        ArrayList<String> gladiators = new ArrayList<>();
+        gladiators.add("Example");
         State fullArmor = new Active();
-        GameState gameState = new ActiveGame();
         Key newEquipment = new Key();
 
         fullArmor = newEquipment.win(fullArmor);
 
-        assertTrue(fullArmor.isWinner(gladiators.get(0).getName()).Finalized());
+        assertTrue(fullArmor.isWinner(gladiators.get(0)).result(gladiators));
     }
 }
