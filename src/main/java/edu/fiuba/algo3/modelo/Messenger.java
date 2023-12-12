@@ -3,11 +3,15 @@ import org.apache.logging.log4j.Logger;
 
 public class Messenger {
     private static Messenger instance;
-    private Logger logger;
+    private final Logger logger;
 
     private Messenger(Logger newLogger)
     {
         this.logger = newLogger;
+    }
+
+    public void restartMessenger() {
+        instance = null;
     }
     public static Messenger getInstance(Logger newLogger) {
         if (instance == null) {
