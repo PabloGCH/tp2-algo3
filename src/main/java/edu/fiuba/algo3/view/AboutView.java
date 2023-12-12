@@ -21,32 +21,41 @@ public class AboutView implements EventHandler<ActionEvent> {
         imageView.setImage(icon);
         VBox iconBox = new VBox();
         iconBox.getChildren().add(imageView);
+
         Label title = new Label("AlgoRoma");
+        title.getStyleClass().add("main-title");
         Label authorsTitle = new Label("Authors");
+        authorsTitle.getStyleClass().add("title");
         VBox titleBox = new VBox(25);
         titleBox.getChildren().addAll(title, authorsTitle);
+
         titleBox.setAlignment(Pos.CENTER);
-        Label authorsOne = new Label("Pablo, Zoilo, Mariano");
-        Label authorsTwo = new Label("Geronimo, Luciano");
-        VBox authorsBox = new VBox(5);
-        authorsBox.getChildren().addAll(authorsOne, authorsTwo);
-        authorsBox.setAlignment(Pos.CENTER_LEFT);
+        Label authors = new Label("Pablo Choconi\nZoilo Pazos\nMariano Barrionuevo\nGeronimo Paulozzi\nLuciano Wilberger");
+
         Label inspectorsTitle = new Label("Inspectors");
+        inspectorsTitle.getStyleClass().add("title");
         VBox inspectorsTitleBox = new VBox();
         inspectorsTitleBox.getChildren().add(inspectorsTitle);
         inspectorsTitleBox.setAlignment(Pos.CENTER);
-        Label inspectors = new Label("inspector 1, inspector 2");
+
+        Label inspectors = new Label("Joaquin Gomez, Bruno Grassano");
+
         VBox credits = new VBox(15);
-        credits.getChildren().addAll(titleBox, authorsBox, inspectorsTitleBox,inspectors);
-        credits.setAlignment(Pos.CENTER_LEFT);
+        credits.getChildren().addAll(titleBox, authors, inspectorsTitleBox,inspectors);
+        credits.setAlignment(Pos.CENTER);
+
         HBox canvas = new HBox();
         canvas.getChildren().addAll(iconBox, credits);
+
         StackPane aboutPane = new StackPane();
         aboutPane.getChildren().add(canvas);
         aboutPane.getStyleClass().add("gladiator-card");
-        aboutPane.setPadding(new Insets(5));
+        //aboutPane.setPadding(new Insets(10));
+        aboutPane.setPadding(new Insets(10,15,10,5));
+
         Scene aboutScene = new Scene(aboutPane);
         aboutScene.getStylesheets().add(getClass().getResource("/initialScene.css").toExternalForm());
+
         Stage aboutStage = new Stage();
         aboutStage.setScene(aboutScene);
         aboutStage.setResizable(false);
