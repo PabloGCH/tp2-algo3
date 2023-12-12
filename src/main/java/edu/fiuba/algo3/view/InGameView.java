@@ -167,6 +167,8 @@ public class InGameView {
         howToPlay.getStyleClass().add("menu-item");
         MenuItem about = new MenuItem("About");
         about.getStyleClass().add("menu-item");
+        AboutView aboutView = new AboutView();
+        about.setOnAction(aboutView);
 
 
         Menu help = new Menu("Help");

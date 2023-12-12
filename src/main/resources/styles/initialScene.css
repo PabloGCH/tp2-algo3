@@ -8,6 +8,16 @@
     -fx-text-fill: white;
 }
 
+.main-title{
+    -fx-underline: true;
+    -fx-font-size: 16;
+}
+
+.title{
+    -fx-underline: true;
+    -fx-font-size: 14;
+}
+
 .menu-bar, .menu, .menu-item {
     -fx-background-color: #413d3d;
     -fx-text-fill: white;
