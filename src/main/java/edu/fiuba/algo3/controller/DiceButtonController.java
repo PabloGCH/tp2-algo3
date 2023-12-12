@@ -22,11 +22,17 @@ public class DiceButtonController {
     }
 
     public void throwDice(ImageView diceImageView, HashMap diceImages) {
-
         int diceResult = dice.throwDice();
         diceImageView.setImage((Image) diceImages.get(String.valueOf(diceResult)));
         GameState gameState = game.playTurn(diceResult);
         gameState.updateScreen(GameStateController.getInstance());
     }
+
+    public void skipTurn() {
+        GameState gameState = game.playTurn(0);
+        gameState.updateScreen(GameStateController.getInstance());
+    }
+
+
 }
 

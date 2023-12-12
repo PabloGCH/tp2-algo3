@@ -4,12 +4,12 @@ import edu.fiuba.algo3.controller.DiceButtonController;
 import edu.fiuba.algo3.modelo.game.GameObserver;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.Event;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
+
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -24,12 +24,15 @@ public class BottonMenu implements GameObserver {
     private Text name;
     private Text lastDiceValue;
     private Button diceButton;
+    private boolean canPlay;
     private ImageView dice = new ImageView();
     private HashMap<String, Image> dicesImages = new HashMap<>();
+
     CountDownLatch latch = new CountDownLatch(1);
 
     public void updateGladiator(String currentPlayerName, boolean canPlay) {
         this.name.setText(currentPlayerName);
+        this.canPlay = canPlay;
         if(canPlay) this.diceButton.setText("Throw the dice");
         else this.diceButton.setText("Skip turn");
     }
@@ -39,6 +42,7 @@ public class BottonMenu implements GameObserver {
     }
 
     public BottonMenu() {
+        this.canPlay = true;
         this.name = new Text("");
         this.lastDiceValue = new Text("Last dice throw result: ");
         this.name.setFill(Color.WHITE);
@@ -64,15 +68,19 @@ public class BottonMenu implements GameObserver {
         diceButton.setOnAction(e ->{
             diceButton.setDisable(true);
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), event ->{
+                if(!canPlay) return;
                 dice.setImage(dicesImages.get(String.valueOf(new Random().nextInt(5) + 1)));
             }));
             timeline.setCycleCount(15);
             timeline.setOnFinished(event -> {
-                diceButtonController.throwDice(this.dice, this.dicesImages);
+                if(canPlay) diceButtonController.throwDice(this.dice, this.dicesImages);
+                else diceButtonController.skipTurn();
                 diceButton.setDisable(false);
             });
             timeline.play();
         });
+
+
 
         bottomMenu.getStyleClass().add("bottom-menu");
         diceButton.getStyleClass().add("dice-button");
