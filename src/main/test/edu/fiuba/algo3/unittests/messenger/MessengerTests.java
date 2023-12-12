@@ -9,7 +9,6 @@ import static org.mockito.Mockito.mock;
 
 public class MessengerTests {
     private static final Logger logger = mock(Logger.class);
-    //private
     @Test
     public void test01LoggerCallsInfo() throws Exception {
         Messenger newMessenger = Messenger.getInstance(logger);
