@@ -6,8 +6,12 @@ interface Rank {
     +energyFromExperience(amount: int): int
     +ascent(): Rank
 }
-Rank <|.. Senior
+Rookie .|> Rank
 Rank <|.. SemiSenior
-Rank <|.. Rookie
+Rank <|. Senior
+Rookie ..> SemiSenior
+SemiSenior .> Senior
+
+
 
 @enduml

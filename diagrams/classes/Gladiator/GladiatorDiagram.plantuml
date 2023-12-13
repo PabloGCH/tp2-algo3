@@ -6,9 +6,9 @@
 !include ../State/State.plantuml
 !include ../game/TurnDecider.plantuml
 
-Gladiator *-- Rank
-Gladiator *-- Equipment
-Gladiator *-- Position
+Rank --* Gladiator
+Equipment -* Gladiator
+Gladiator --> Position
 Gladiator *- State
 Gladiator ..> TurnDecider
 
