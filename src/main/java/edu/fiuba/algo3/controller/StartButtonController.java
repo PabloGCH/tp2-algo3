@@ -42,6 +42,7 @@ public class StartButtonController {
         MapFacade mapFacade = new MapFacade();
         ArrayList<Square> map = mapFacade.loadMap();
         Game.getInstance(gladiatorsNames, map);
+        Game.getInstance().addEffectsObserver(Sound.getInstance());
         Game.getInstance().startGame();
     }
 }

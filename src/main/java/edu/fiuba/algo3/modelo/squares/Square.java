@@ -34,4 +34,8 @@ public class Square {
         if(prizeName != "") names.add(prizeName);
         return names;
     }
+    public void addEffectObserver(EffectObserver observer) {
+        this.prize.addObserver(observer);
+        this.obstacle.addObserver(observer);
+    }
 }

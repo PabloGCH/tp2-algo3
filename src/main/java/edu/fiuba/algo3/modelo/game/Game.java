@@ -23,6 +23,11 @@ public class Game implements GameObservable {
         this.state = new ActiveGame();
         this.observers = new ArrayList<GameObserver>();
     }
+    public void addEffectsObserver(EffectObserver observer) {
+        for (Square square : path) {
+            square.addEffectObserver(observer);
+        }
+    }
     public static Game getInstance() {
         return instance;
     }
