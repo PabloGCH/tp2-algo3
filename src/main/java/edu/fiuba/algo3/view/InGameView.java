@@ -227,6 +227,9 @@ public class InGameView {
             e.printStackTrace();
         }
 
+        Sound.getInstance().loadMusic("gameOver/victory.mp3", "victory.mp3");
+        Sound.getInstance().loadMusic("gameOver/lose.mp3", "lose.mp3");
+
         try {
             URL resource = getClass().getResource(soundsFXDirectory);
 

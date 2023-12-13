@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.view;
 
+import edu.fiuba.algo3.controller.Sound;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
@@ -51,6 +52,8 @@ public class LossScene extends VBox {
         restartGameSamePlayers.getStyleClass().add("btn");
         exitGame.getStyleClass().add("btn");
         mainContainer.getChildren().addAll(label1, label2, restartGame, restartGameSamePlayers, exitGame);
+        Sound.getInstance().modifyEffectVolume(0);
+        Sound.getInstance().playMusic("lose.mp3");
         return mainContainer;
     }
 }
