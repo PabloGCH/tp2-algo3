@@ -19,8 +19,5 @@ public class NullEffect implements Effect{
         this.observers.add(observer);
     }
     private void updateObservers() {
-        for (EffectObserver observer : observers) {
-            observer.update(this.getName());
-        }
     }
 }
