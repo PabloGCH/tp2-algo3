@@ -100,6 +100,8 @@ public class InGameView {
             new Background(new BackgroundFill(Color.TRANSPARENT, null, null))
         );
 
+        mapScrollPane.setStyle("-fx-background: #413d3d; -fx-background-color: #413d3d;");
+
         int screenWidth = (int) Screen.getPrimary().getBounds().getWidth();
         int screenHeight = (int) Screen.getPrimary().getBounds().getHeight();
 

@@ -12,5 +12,6 @@ public class TurnDecider {
         Gladiator gladiator = gladiators.remove(0);
         gladiator.refreshState();
         gladiators.add(gladiator);
+        System.out.println("\nTurn ended \n");
     }
 }
