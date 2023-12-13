@@ -2,23 +2,17 @@ package edu.fiuba.algo3.view;
 
 import edu.fiuba.algo3.controller.GameStateController;
 import edu.fiuba.algo3.controller.StartButtonController;
-import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -28,6 +22,8 @@ public class InitialView {
     private final int MIN_PLAYERS_AMOUNT = 2;
     private final int PLAYERS_PER_ROW = 3;
     private final int PLAYERS_PER_COLUMN = 2;
+    private final int STAGE_HEIGHT = 450;
+    private final int STAGE_WIDTH = 480;
     ArrayList<TextField> nameFields = new ArrayList<>();
     public VBox initialScene(Stage stage) {
         GameStateController.getInstance(stage);
@@ -45,11 +41,10 @@ public class InitialView {
             for (int row = 0; row < PLAYERS_PER_ROW; row++) {
                 if (playersCreated < MIN_PLAYERS_AMOUNT) {
                     grid.add(createDefaultGladiator(), row, column);
-                    playersCreated++;
-                } else if (playersCreated < MAX_PLAYERS_AMOUNT){
+                } else {
                     grid.add(newAddCard(), row, column);
-                    playersCreated++;
                 }
+                playersCreated++;
             }
         }
 
@@ -81,6 +76,8 @@ public class InitialView {
         mainContainer.getChildren().add(invalidNamesText);
         mainContainer.setPrefWidth(150*PLAYERS_PER_ROW + 20);
         mainContainer.setPadding(new Insets(0, 0, 10, 0));
+        stage.setHeight(STAGE_HEIGHT);
+        stage.setWidth(STAGE_WIDTH);
         return mainContainer;
     }
     private VBox newAddCard() {

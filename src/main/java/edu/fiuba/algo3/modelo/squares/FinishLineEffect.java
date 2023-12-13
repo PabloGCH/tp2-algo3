@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.position.Position;
 import java.util.ArrayList;
 
 public class FinishLineEffect implements Effect{
-    private ArrayList<EffectObserver> observers = new ArrayList<>();
+    private final ArrayList<EffectObserver> observers = new ArrayList<>();
     private Position middlePosition = new Position(0, 0, 0);
     @Override
     public void affect(Gladiator aGladiator) {

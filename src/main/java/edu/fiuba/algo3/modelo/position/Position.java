@@ -13,7 +13,7 @@ public class Position {
     public boolean comparePosition(Position aPosition){
         return (this.pathLocation == aPosition.pathLocation);
     }
-    public int moveFoward(int stepsForward, int pathSize){
+    public int moveForward(int stepsForward, int pathSize){
         if (pathSize <= stepsForward + this.pathLocation){
             return (pathSize - 1);
         }

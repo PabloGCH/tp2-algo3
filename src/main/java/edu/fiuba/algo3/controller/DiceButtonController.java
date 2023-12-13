@@ -8,8 +8,8 @@ import javafx.scene.image.ImageView;
 import java.util.HashMap;
 
 public class DiceButtonController {
-    private Game game;
-    private Dice dice;
+    private final Game game;
+    private final Dice dice;
     public DiceButtonController() {
         game = Game.getInstance();
         dice = new Dice();

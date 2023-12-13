@@ -20,7 +20,6 @@ public class ActiveGame implements GameState {
     public boolean result(ArrayList<String> gladiators){
         return false;
     }
-
     public int turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators){
         Gladiator currentGladiator = gladiators.get(NEXT_GLADIATOR_TO_PLAY);
         return currentGladiator.turnEnded(gladiatorTurn);

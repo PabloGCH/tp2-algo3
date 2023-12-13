@@ -2,7 +2,6 @@ package edu.fiuba.algo3.unittests.rankTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
 
 public class rookieTest {
@@ -20,7 +19,6 @@ public class rookieTest {
 
         var newRank = rookie.ascent();
         int newEnergy = newRank.energyFromExperience(energy);
-
 
         assertEquals(15, newEnergy);
     }

@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class UseCase16 {
-
     @Test
     public void validateFoodSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         var mapParser = new MapJsonParser();
@@ -84,7 +83,7 @@ public class UseCase16 {
         );
         Gladiator gladiator = new Gladiator("Example");
         int initialEnergy = 20;
-        int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
+        int energyLostInBacchanaliaWithDiceResultOne = 4;
 
         int energyPoints = gladiator.getEnergy();
         assertEquals(20, energyPoints);

@@ -2,6 +2,8 @@ package edu.fiuba.algo3.view;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
+
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -26,7 +28,7 @@ public class SquareView {
     }
     private void loadImageByName(String name) {
         var image = SquareView.images.get(name);
-        if(image == null && name != "") {
+        if(image == null && !Objects.equals(name, "")) {
             String path = "/img/" + name + ".png";
             var newImage = new Image(getClass().getResource(path).toExternalForm());
             SquareView.images.put(name, newImage);

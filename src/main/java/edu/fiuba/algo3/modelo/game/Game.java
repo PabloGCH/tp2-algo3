@@ -11,10 +11,10 @@ public class Game implements GameObservable {
     private int turn;
     private int gladiatorTurn = 0;
     private ArrayList<Gladiator> gladiators;
-    private ArrayList<Square> path;
+    private final ArrayList<Square> path;
     private static Game instance;
     private GameState state;
-    private ArrayList<GameObserver> observers;
+    private final ArrayList<GameObserver> observers;
     private Game(ArrayList<Gladiator> gladiators, ArrayList<Square> path) {
         this.path = path;
         this.gladiators = gladiators;

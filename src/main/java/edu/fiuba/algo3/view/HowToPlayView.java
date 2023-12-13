@@ -21,16 +21,16 @@ import java.util.HashMap;
 public class HowToPlayView implements EventHandler<ActionEvent> {
     private int currentPage;
     private int totalPages;
-    private HBox mainContainer = new HBox();
-    private HBox buttonsContainer = new HBox();
-    private ImageView pageImageView = new ImageView();
-    private Label pageLabel = new Label();
+    private final HBox mainContainer = new HBox();
+    private final HBox buttonsContainer = new HBox();
+    private final ImageView pageImageView = new ImageView();
+    private final Label pageLabel = new Label();
     private final Stage dialogStage = new Stage();
-    private HashMap<String, String> texts = new HashMap<>();
-    private HashMap<String, Image> images = new HashMap<>();
-    private Button nextButton = new Button("Next");
-    private Button backButton = new Button("Back");
-    private Label pageNumberLabel = new Label();
+    private final HashMap<String, String> texts = new HashMap<>();
+    private final HashMap<String, Image> images = new HashMap<>();
+    private final Button nextButton = new Button("Next");
+    private final Button backButton = new Button("Back");
+    private final Label pageNumberLabel = new Label();
     public HowToPlayView() {
         this.dialogStage.setWidth(550);
         this.dialogStage.setHeight(350);

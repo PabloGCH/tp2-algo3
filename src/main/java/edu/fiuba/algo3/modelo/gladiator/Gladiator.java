@@ -62,7 +62,7 @@ public class Gladiator implements GladiatorObservable {
     public int move(int sizePath, int diceResult) {
         update();
         int steps = this.state.move(diceResult);
-        return this.position.moveFoward(steps, sizePath);
+        return this.position.moveForward(steps, sizePath);
     }
     public String getName(){
         return this.name;

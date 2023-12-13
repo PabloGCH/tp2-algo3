@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class TurnCounterView implements GameObserver {
-    private Text text;
+    private final Text text;
     public TurnCounterView() {
         this.text = new Text();
         this.text.setFill(Color.WHITE);

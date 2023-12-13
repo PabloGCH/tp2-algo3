@@ -7,8 +7,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class MapFacade implements TerrainFacade{
-    private String fileSource;
-    private String fileName;
+    private final String fileSource;
+    private final String fileName;
     public MapFacade() {
         this.fileSource = "src" + File.separator + "main" + File.separator + "resources"+ File.separator + "files" + File.separator + "map.json";
         this.fileName = "map.json";

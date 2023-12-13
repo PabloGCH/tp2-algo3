@@ -8,4 +8,3 @@ public interface Equipment {
     State win(State state);
     String showName();
 }
-
