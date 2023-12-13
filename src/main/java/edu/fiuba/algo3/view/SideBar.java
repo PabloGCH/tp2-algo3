@@ -7,7 +7,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 public class SideBar {
-
      public GridPane view(Game game){
         
         GridPane sidebarPane = new GridPane();

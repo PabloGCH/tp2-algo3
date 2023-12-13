@@ -14,8 +14,7 @@ public class mapDataJsonParser {
         assertThrows(MapFileNotFound.class, () -> {
             var mapDataParser = new MapDataJsonParser();
             mapDataParser.loadData(
-                    "src/main/resources/files/nonExistentFile.json",
-                    "nonExistentFile.json"
+                    "src/main/resources/files/nonExistentFile.json"
             );
         });
     }
@@ -24,8 +23,7 @@ public class mapDataJsonParser {
         assertThrows(MapFileCouldNotBeParsed.class, () -> {
             var mapDataParser = new MapDataJsonParser();
             mapDataParser.loadData(
-                    "src/main/resources/files/mapTestInvalidJsonSyntax.json",
-                    "mapTestInvalidJsonSyntax.json"
+                    "src/main/resources/files/mapTestInvalidJsonSyntax.json"
             );
         });
     }
@@ -34,8 +32,7 @@ public class mapDataJsonParser {
         assertThrows(InvalidMapFile.class, () -> {
             var mapDataParser = new MapDataJsonParser();
             mapDataParser.loadData(
-                    "src/main/resources/files/mapTestInvalidKeysInJson.json",
-                    "mapTestInvalidKeysInJson.json"
+                    "src/main/resources/files/mapTestInvalidKeysInJson.json"
             );
         });
     }
@@ -44,8 +41,7 @@ public class mapDataJsonParser {
         assertThrows(InvalidMapFile.class, () -> {
             var mapDataParser = new MapDataJsonParser();
             mapDataParser.loadData(
-                    "src/main/resources/files/mapWithoutMapa.json",
-                    "mapWithoutMapa.json"
+                    "src/main/resources/files/mapWithoutMapa.json"
             );
         });
     }
@@ -54,8 +50,7 @@ public class mapDataJsonParser {
         assertThrows(InvalidMapFile.class, () -> {
             var mapDataParser = new MapDataJsonParser();
             mapDataParser.loadData(
-                    "src/main/resources/files/JSONArray.json",
-                    "NotJSONArray.json"
+                    "src/main/resources/files/JSONArray.json"
             );
         });
     }
@@ -64,8 +59,7 @@ public class mapDataJsonParser {
         assertThrows(InvalidMapFile.class, () -> {
             var mapParser = new MapDataJsonParser();
             mapParser.loadData(
-                    "src/main/resources/files/mapWithWrongCoordinates.json",
-                    "mapWithWrongCoordinates.json"
+                    "src/main/resources/files/mapWithWrongCoordinates.json"
             );
         });
     }
@@ -73,8 +67,7 @@ public class mapDataJsonParser {
     public void validateCorrectDataIsExtracted() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         MapDataJsonParser mapDataParser = new MapDataJsonParser();
         ArrayList<Integer> data = mapDataParser.loadData(
-                "src/main/resources/files/map.json",
-                "map.json"
+                "src/main/resources/files/map.json"
         );
         assertEquals(10, data.get(0));
         assertEquals(18, data.get(1));

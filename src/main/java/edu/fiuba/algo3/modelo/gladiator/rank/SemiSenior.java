@@ -1,18 +1,14 @@
 package edu.fiuba.algo3.modelo.gladiator.rank;
 
 public class SemiSenior implements Rank {
-    //attributes
     private int shift;
-    //methods
     public SemiSenior(){
         this.shift = 0;
     }
-
     @Override
     public int energyFromExperience(int amount){
         return (amount + 5);
     }
-    
     @Override
     public Rank ascent(){
         this.shift ++;
@@ -21,11 +17,8 @@ public class SemiSenior implements Rank {
             return (new Senior());
         }
         return this;
-        
     }
-
     public String showRank(){
-        String rank = "Semi Senior";
-        return rank;
+        return "Semi Senior";
     }
 }

@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.game;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-
 import java.util.ArrayList;
 
 public class TurnDecider {

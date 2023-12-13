@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.squares;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.position.Position;
-
 import java.util.ArrayList;
 
 public class FinishLineEffect implements Effect{
@@ -13,11 +12,9 @@ public class FinishLineEffect implements Effect{
         aGladiator.tryToWin(middlePosition);
         this.updateObservers();
     }
-
     public void setMiddlePosition(Position aPosition) {
         this.middlePosition = aPosition;
     }
-
     public String getName() {
         return "finishline";
     }

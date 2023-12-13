@@ -11,12 +11,8 @@ public class Winner extends State{
         return new FinishedByWinning(name);
     }
     @Override
-    public void tryToWin(Gladiator aGladiator, Position middlePosition) {
-
-    }
-
+    public void tryToWin(Gladiator aGladiator, Position middlePosition) {}
     public String showState(){
-        String state = "Winner";
-        return state;
+        return "Winner";
     }
 }
