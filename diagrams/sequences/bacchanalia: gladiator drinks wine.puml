@@ -1,0 +1,27 @@
+@startuml
+autonumber
+actor Actor
+activate Actor
+create Bacchanalia
+
+activate Bacchanalia
+Actor --> Bacchanalia: <<create>> Bacchanalia
+Actor -> Bacchanalia: affect(gladiator)
+Bacchanalia -> Gladiator: getIntoBacchanalia()
+deactivate Bacchanalia
+activate Gladiator
+Gladiator -> Active: getIntoBacchanalia(this)
+activate Active
+deactivate Gladiator
+create InTheBacchanalia
+Active --> InTheBacchanalia: <<create>> InTheBacchanalia
+deactivate Active
+Actor -> Gladiator: move(sizePath, diceResult)
+activate Gladiator
+Gladiator -> InTheBacchanalia: move(diceResult)
+activate InTheBacchanalia
+InTheBacchanalia -> Gladiator: drinkWine(diceResult)
+InTheBacchanalia --> Gladiator: 0
+deactivate InTheBacchanalia
+deactivate Gladiator
+@enduml
