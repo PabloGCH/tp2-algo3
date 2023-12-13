@@ -6,14 +6,16 @@
 !include Armor.plantuml
 !include ShieldSword.plantuml
 !include Key.plantuml
-!include ../State/State.plantuml
 
-Equipment <|.. NullEquipment
+
+NullEquipment .|> Equipment
+NullEquipment .> Helmet
 Equipment <|.. Helmet
+Helmet .> Armor
+Armor .> ShieldSword
 Equipment <|.. Armor
 Equipment <|.. ShieldSword
-Equipment <|.. Key
-
-Equipment ..> State
+Key <.. ShieldSword
+Equipment <|. Key
 
 @enduml
