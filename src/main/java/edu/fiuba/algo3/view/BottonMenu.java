@@ -66,6 +66,7 @@ public class BottonMenu implements GameObserver {
         
         diceButton.setOnAction(e ->{
             diceButton.setDisable(true);
+            Sound.getInstance().stopSoundsFX();
             Sound.getInstance().playFX("rolling-dice.mp3");
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), event ->{
                 if(!canPlay) return;
