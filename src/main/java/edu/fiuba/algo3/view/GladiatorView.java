@@ -10,8 +10,8 @@ import javafx.util.Duration;
 
 public class GladiatorView implements GladiatorObserver {
     private Pane parentView;
-    private Pane viewRef;
-    private HashMap<String, Pane> gladiatorGrids;
+    private final Pane viewRef;
+    private final HashMap<String, Pane> gladiatorGrids;
     private static int colorCounter = 0;
     private Tooltip tooltip;
     public void update(int row, int column, int energy, String equipment, String name, String rank, String state) {

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Square {
-    private Position position;
+    private final Position position;
     protected Effect prize;
     protected Effect obstacle;
 

@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Effect;
 
 public class InTheBacchanalia extends State {
-    private Gladiator affectedGladiator;
+    private final Gladiator affectedGladiator;
     private final int TIRED_GLADIATOR = 0;
     private int times = 0;
     public InTheBacchanalia(Gladiator aGladiator) {

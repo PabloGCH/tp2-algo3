@@ -30,7 +30,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class InGameView {
-    private ArrayList<String> songsList = new ArrayList<>();
+    private final ArrayList<String> songsList = new ArrayList<>();
     public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         this.loadSoundsAndMusic();
         if (!songsList.isEmpty()) {

@@ -20,7 +20,7 @@ public class Sound implements EffectObserver {
     private final SimpleDoubleProperty volumeFx = new SimpleDoubleProperty(defaultVolume);
     private static final String SONGS_DIRECTORY = "/sounds/music/";
     private static final String SOUNDS_FX_DIRECTORY = "/sounds/soundsFX/";
-    private ArrayList<MediaPlayer> soundStack = new ArrayList<>();
+    private final ArrayList<MediaPlayer> soundStack = new ArrayList<>();
     private Sound() {
     }
     public static Sound getInstance() {

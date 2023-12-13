@@ -9,9 +9,7 @@ import edu.fiuba.algo3.modelo.squares.Bacchanalia;
 import edu.fiuba.algo3.modelo.squares.Food;
 import edu.fiuba.algo3.modelo.squares.NullEffect;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -91,7 +89,7 @@ public class inTheBacchanaliaTests {
         assertEquals(20, gladiator.getEnergy());
     }
     @Test
-    public void test08GetIntoBacchanliaSentGladiatorIntoThisStateAgain(){
+    public void test08GetIntoBacchanaliaSentGladiatorIntoThisStateAgain(){
         Gladiator gladiator = new Gladiator("Example");
         InTheBacchanalia inTheBacchanalia = new InTheBacchanalia(gladiator);
         State state = inTheBacchanalia.getIntoBacchanalia(gladiator);

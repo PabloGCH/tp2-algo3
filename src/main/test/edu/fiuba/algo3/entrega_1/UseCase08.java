@@ -6,8 +6,8 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
 public class UseCase08 {
     @Test
-    public void tetsNewRange(){
-        Gladiator gladiator = new Gladiator("Example");;
+    public void testNewRange(){
+        Gladiator gladiator = new Gladiator("Example");
 
         gladiator.move(10,1);
         gladiator.move(10,1);
@@ -17,7 +17,7 @@ public class UseCase08 {
         gladiator.move(10,1);
         gladiator.move(10,1);
         gladiator.move(10,1);
-        int energyPoints = gladiator.getEnergy();;
+        int energyPoints = gladiator.getEnergy();
 
         assertEquals(25, energyPoints);
     }

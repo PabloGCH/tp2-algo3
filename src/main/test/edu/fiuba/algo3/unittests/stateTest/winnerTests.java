@@ -3,16 +3,12 @@ package edu.fiuba.algo3.unittests.stateTest;
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.gladiator.state.Active;
 import edu.fiuba.algo3.modelo.gladiator.state.State;
-import edu.fiuba.algo3.modelo.gladiator.state.Tired;
 import edu.fiuba.algo3.modelo.gladiator.state.Winner;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.Food;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

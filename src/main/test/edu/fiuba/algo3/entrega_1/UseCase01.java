@@ -9,7 +9,7 @@ public class UseCase01 {
     @Test
     public void testGladiatorStartsWithCorrectEnergy() {
         Gladiator gladiator = new Gladiator("Example");
-        int energyPoints = gladiator.getEnergy();;
+        int energyPoints = gladiator.getEnergy();
         assertEquals(20, energyPoints);
     }
     @Test
