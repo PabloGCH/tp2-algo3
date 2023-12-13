@@ -12,8 +12,6 @@ public class FinishedByTurns implements GameState {
         return true;
     }
     public boolean result(ArrayList<String> gladiators){
-        System.out.println("Todos Perdieron, se terminaron los turnos!!");
-        System.out.println("Mejor suerte la proxima");
         return false;
     }
     public int turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators){

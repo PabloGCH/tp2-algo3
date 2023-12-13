@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.modelo.gladiator.state;
 
 public class Tired extends State{
+    private final int ACTIVE_GLADIATOR = 0, RECOVERED_ENERGY = 5;
     @Override
     public State update(int energy){
-        if (energy > 0) {
+        if (energy > ACTIVE_GLADIATOR) {
+            System.out.println("You recover energy");
             return new Active();
         }
         return this;
@@ -13,6 +15,7 @@ public class Tired extends State{
     }
     @Override
     public int energyFromState(int energy) {
-        return (energy + 5);
+        System.out.println("You recover " + RECOVERED_ENERGY + " energy points");
+        return (energy + RECOVERED_ENERGY);
     }
 }

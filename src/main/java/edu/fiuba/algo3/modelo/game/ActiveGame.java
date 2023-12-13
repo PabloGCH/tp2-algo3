@@ -8,6 +8,7 @@ public class ActiveGame implements GameState {
     private final int NEXT_GLADIATOR_TO_PLAY = 0;
     public GameState nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult) {
         Gladiator currentGladiator = gladiators.get(NEXT_GLADIATOR_TO_PLAY);
+        System.out.println(currentGladiator.getName() + " turn \n");
         int gladiatorPosition = currentGladiator.move(path.size(), diceResult);
         Square currentSquare = path.get(gladiatorPosition);
         currentSquare.affect(currentGladiator);
@@ -26,13 +27,15 @@ public class ActiveGame implements GameState {
     }
     public void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path){
         for (Gladiator currentGladiator : gladiators) {
-            Square currentSquare = path.get(0);
+            Square currentSquare = path.get(NEXT_GLADIATOR_TO_PLAY);
             currentSquare.affect(currentGladiator);
         }
     }
     @Override
     public void updateScreen(GameEndController controller) {}
     public GameState defeat(){
+        System.out.println("The turns are over, everyone lost!");
+        System.out.println("Better luck next time");
         return new FinishedByTurns();
     }
 }

@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Game implements GameObservable {
-    private final int MAX_TURNS_IN_A_GAME = 30, NEXT_GLADIATOR_TO_PLAY = 0;
+    private final int MAX_TURNS_IN_A_GAME = 30, NEXT_GLADIATOR_TO_PLAY = 0, TURN = 0;
     private int turn;
     private int gladiatorTurn = 0;
     private ArrayList<Gladiator> gladiators;
@@ -49,11 +49,13 @@ public class Game implements GameObservable {
         Random random = new Random();
         int randomResult = random.nextInt(gladiators.size());
         String randomName = gladiators.get(randomResult).getName();
-        while(!Objects.equals(gladiators.get(0).getName(), randomName)){
-            Gladiator aGladiator = gladiators.remove(0);
+        while(!Objects.equals(gladiators.get(NEXT_GLADIATOR_TO_PLAY).getName(), randomName)){
+            Gladiator aGladiator = gladiators.remove(NEXT_GLADIATOR_TO_PLAY);
             gladiators.add(aGladiator);
         }
-        return gladiators.get(0).getName();
+        System.out.println("The game starts \n");
+        System.out.println("turn " + this.turn + "\n");
+        return gladiators.get(NEXT_GLADIATOR_TO_PLAY).getName();
     }
     public void restartGame() {
         instance = null;
@@ -65,15 +67,17 @@ public class Game implements GameObservable {
             newGladiators.add(aGladiator);
         }
         this.gladiators = newGladiators;
+        this.turn = 0;
         this.startGame();
     }
     private void updateTurn(){
         gladiatorTurn = this.state.turnEnded(gladiatorTurn, this.gladiators);
         if (gladiatorTurn == this.gladiators.size()){
-            turn++;
-            gladiatorTurn = 0;
+            this.turn++;
+            gladiatorTurn = TURN;
+            System.out.println("turn " + this.turn);
         }
-        if (turn == MAX_TURNS_IN_A_GAME){ this.state = this.state.defeat(); }
+        if (this.turn == MAX_TURNS_IN_A_GAME){ this.state = this.state.defeat(); }
     }
     public GameState playTurn(int diceResult){
         this.state = this.state.nextTurn(this.gladiators, this.path, diceResult);
@@ -96,6 +100,6 @@ public class Game implements GameObservable {
     private void updateObserver(GameObserver observer) {
         String currentGladiator = this.gladiators.get(NEXT_GLADIATOR_TO_PLAY).getName();
         boolean canPlay = this.gladiators.get(NEXT_GLADIATOR_TO_PLAY).canPlay();
-        observer.update(currentGladiator, canPlay, turn);
+        observer.update(currentGladiator, canPlay, this.turn);
     }
 }

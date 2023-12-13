@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.gladiator.rank;
 
 public class Rookie implements Rank {
     private int shift;
+    private final int TURNS_FOR_NEXT_RANK = 8;
     public Rookie(){
         shift = 0;
     }
@@ -12,7 +13,7 @@ public class Rookie implements Rank {
     @Override
     public Rank ascent(){
         this.shift ++;
-        if (this.shift == 8) {
+        if (this.shift == TURNS_FOR_NEXT_RANK) {
             System.out.println("congratulations you have been promoted to Semi Senior");
             return (new SemiSenior());
         }

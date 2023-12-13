@@ -32,6 +32,7 @@ public class Gladiator implements GladiatorObservable {
     }
     public void drinkWine(int cupsOfWineAmount) {
         this.energy = this.energy - ENERGY_LOST_FOR_EACH_CUP * cupsOfWineAmount;
+        System.out.println(name + " lose " + (ENERGY_LOST_FOR_EACH_CUP * cupsOfWineAmount) + " energy");
         this.updateObservers();
     }
     public void update(){
@@ -42,6 +43,7 @@ public class Gladiator implements GladiatorObservable {
     }
     public void eat() {
         this.energy += ENERGY_FROM_FOOD;
+        System.out.println(name + " get " + ENERGY_FROM_FOOD + " energy points");
         this.updateObservers();
     }
     public void fightWithBeast() {

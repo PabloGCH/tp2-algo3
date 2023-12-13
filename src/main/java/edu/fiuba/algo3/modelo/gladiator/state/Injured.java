@@ -10,6 +10,7 @@ public class Injured extends State{
     @Override
     public State update(int energy){
         if (shift == TURNS_TO_BE_INJURED) {
+            System.out.println("Recovered from injury");
             return new Active();
         }
         shift++;
