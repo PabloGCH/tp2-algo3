@@ -34,6 +34,10 @@ public class Sound {
     private void loadFile(String fileName, String identifier, HashMap<String, MediaPlayer> container, SimpleDoubleProperty volume, String directory){
         Media media = new Media(Objects.requireNonNull(getClass().getResource(directory + fileName).toExternalForm()));
         MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setOnEndOfMedia(() -> {
+            mediaPlayer.stop();
+            mediaPlayer.seek(Duration.ZERO);
+        });
         mediaPlayer.volumeProperty().bindBidirectional(volume);
         container.put(identifier, mediaPlayer);
     }
