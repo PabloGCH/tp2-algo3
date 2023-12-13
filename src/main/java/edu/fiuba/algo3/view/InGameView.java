@@ -109,6 +109,7 @@ public class InGameView {
         stage.setHeight(sceneHeight);
         stage.centerOnScreen();
 
+        stage.setMaximized(false);
         stage.setMaximized(true);
 
         gamePane.setCenter(mapStackPane);
