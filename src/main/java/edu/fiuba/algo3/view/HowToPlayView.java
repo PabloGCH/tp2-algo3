@@ -33,7 +33,7 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
     private final Label pageNumberLabel = new Label();
     public HowToPlayView() {
         this.dialogStage.setWidth(550);
-        this.dialogStage.setHeight(350);
+        this.dialogStage.setHeight(400);
         this.dialogStage.setResizable(false);
         this.mainContainer.getChildren().addAll(this.pageImageView, this.pageLabel);
         this.buttonsContainer.getChildren().addAll(backButton, pageNumberLabel, nextButton);
@@ -76,7 +76,7 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
     }
     private void setUpStage() {
         VBox root = new VBox();
-        root.setPrefHeight(350);
+        root.setPrefHeight(400);
         root.setStyle("-fx-background-color: rgb(91, 53, 24)");
 
         this.pageLabel.setText(this.texts.get(String.valueOf(currentPage)));
