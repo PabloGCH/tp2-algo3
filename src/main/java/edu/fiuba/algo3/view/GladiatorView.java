@@ -8,6 +8,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 
 public class GladiatorView implements GladiatorObserver {
@@ -45,6 +46,7 @@ public class GladiatorView implements GladiatorObserver {
         piece.setImage(gladiator);
         gladiatorView.getChildren().add(piece);
         this.tooltip = new Tooltip();
+        this.tooltip.setShowDelay(Duration.millis(100));
         Tooltip.install(piece, this.tooltip);
         if (colorCounter == 6) {
             colorCounter = 0;

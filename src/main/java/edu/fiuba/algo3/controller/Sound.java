@@ -57,7 +57,9 @@ public class Sound implements EffectObserver {
     public void modifyEffectVolume(double value) {
         modifyVolume(value, volumeFx);
     }
-
+    public void stopSoundsFX() {
+        soundStack.clear();
+    }
     private void modifyVolume(double value, SimpleDoubleProperty volume) {
         if (value >= 0 && value <= 100){
             volume.set(value / 100);
