@@ -14,7 +14,7 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="vehicles" level="info" additivity="false" >
+        <Logger name="AlgoRoma" level="info" additivity="false" >
             <AppenderRef ref="LogFile" />
             <AppenderRef ref="Console" />
         </Logger>
