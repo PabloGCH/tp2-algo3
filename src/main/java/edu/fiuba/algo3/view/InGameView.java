@@ -19,7 +19,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -37,7 +36,7 @@ public class InGameView {
     public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         this.loadSoundsAndMusic();
         if (!songsList.isEmpty()) {
-            Sound.getInstance().playMusic(songsList.get(0));
+            Sound.getInstance().playLoopedMusic(songsList.get(0));
         }
         int squareWidth = 65;
         int squareHeight = 65;
@@ -166,7 +165,7 @@ public class InGameView {
             MenuItem track = new MenuItem(song);
             track.getStyleClass().add("menu-item");
             musicList.getItems().add(track);
-            track.setOnAction(e -> Sound.getInstance().playMusic(song));
+            track.setOnAction(e -> Sound.getInstance().playLoopedMusic(song));
         }
 
         Menu musicMenu = new Menu("Music");
@@ -226,6 +225,9 @@ public class InGameView {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+
+        Sound.getInstance().loadMusic("gameOver/victory.mp3", "victory.mp3");
+        Sound.getInstance().loadMusic("gameOver/lose.mp3", "lose.mp3");
 
         try {
             URL resource = getClass().getResource(soundsFXDirectory);
