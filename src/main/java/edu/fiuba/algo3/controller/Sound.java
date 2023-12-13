@@ -41,7 +41,9 @@ public class Sound implements EffectObserver {
             System.out.println(soundStack.size());
             mediaPlayer.stop();
             mediaPlayer.seek(Duration.ZERO);
-            this.soundStack.remove(0);
+            if (!soundStack.isEmpty()) {
+                this.soundStack.remove(0);
+            }
             if (this.soundStack.size() > 0) {
                 this.soundStack.get(0).play();
             }
@@ -79,7 +81,18 @@ public class Sound implements EffectObserver {
             Messenger.getInstance().error("File not found");
         }
     }
-    public void playMusic(String identifier) {
+    public void playMusicOnce(String identifier) {
+        if (!songs.containsKey(identifier))
+            System.err.println("Error music");
+        if (currentSong != null) {
+            currentSong.stop();
+        }
+
+        currentSong = songs.get(identifier);
+
+        currentSong.play();
+    }
+    public void playLoopedMusic(String identifier) {
         if (!songs.containsKey(identifier))
             System.err.println("Error music");
         if (currentSong != null) {
