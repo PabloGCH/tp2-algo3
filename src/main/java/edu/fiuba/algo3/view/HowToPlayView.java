@@ -61,7 +61,7 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
     }
 
     private void setUpPages() {
-        this.addAPage("Welcome to AlgoRoma! Your goal is to reach Pompeii before the other players! But make sure to found a key previously. During your journey, you will find different prizes and obstacles. Click \"next\" to learn about them!", "/img/gladiator-hd.png");
+        this.addAPage("Welcome to AlgoRoma! Your goal is to reach Pompeii before the other players! But make sure to found a key previously. During your journey, you will find different prizes and obstacles. Click \"next\" to learn about them!", "/img/gladiator.gif");
         this.addAPage("This means you found some food! Your energy increases 15 points!","/img/food-hd.png");
         this.addAPage("In these squares, your equipment receives an upgrade! Depending on your current equipment, you will get a better one. These are the upgrades\n\nNothing -> helmet\nHelmet -> armor\nArmor -> sword and shield\nSword and shield -> key.", "/img/upgrade-hd.png");
         this.addAPage("There's a beast in these squares, so be careful! You will have to kill the beast, but it will cost energy. The amount depends on your equipment.\n\nUnequipped: 20 points\nHelmet: 15 points\nArmor:10 points\nShield and sword: 5 points\nKey: 0 points", "/img/beast-hd.png");
