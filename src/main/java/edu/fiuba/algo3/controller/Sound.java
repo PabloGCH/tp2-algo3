@@ -1,17 +1,19 @@
 package edu.fiuba.algo3.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+import edu.fiuba.algo3.modelo.Messenger;
+import edu.fiuba.algo3.modelo.squares.EffectObserver;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-public class Sound {
+public class Sound implements EffectObserver {
     private final HashMap<String, MediaPlayer> songs = new HashMap<>();
     private final HashMap<String, MediaPlayer> soundsFX = new HashMap<>();
-    private MediaPlayer currentSoundFX;
     private MediaPlayer currentSong;
     private static final Sound instance = new Sound();
     private final double defaultVolume = 0.6;
@@ -20,6 +22,7 @@ public class Sound {
     private static final String SONGS_DIRECTORY = "/sounds/music/";
     private static final String SOUNDS_FX_DIRECTORY = "/sounds/soundsFX/";
     private boolean muted = false;
+    private ArrayList<MediaPlayer> soundStack = new ArrayList<MediaPlayer>();
     private Sound() {
     }
     public static Sound getInstance() {
@@ -35,8 +38,13 @@ public class Sound {
         Media media = new Media(Objects.requireNonNull(getClass().getResource(directory + fileName).toExternalForm()));
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setOnEndOfMedia(() -> {
+            System.out.println(soundStack.size());
             mediaPlayer.stop();
             mediaPlayer.seek(Duration.ZERO);
+            this.soundStack.remove(0);
+            if (this.soundStack.size() > 0) {
+                this.soundStack.get(0).play();
+            }
         });
         mediaPlayer.volumeProperty().bindBidirectional(volume);
         container.put(identifier, mediaPlayer);
@@ -54,13 +62,22 @@ public class Sound {
         }
     }
     public void playFX(String identifier) {
-        if (!soundsFX.containsKey(identifier))
-            //throw new ErrorIdentifierDoesNotMatchAnyLoadedSong();
-            if (currentSoundFX != null || muted == true)
-                currentSoundFX.stop();
 
-        currentSoundFX = soundsFX.get(identifier);
-        currentSoundFX.play();
+        try {
+            if (!soundsFX.containsKey(identifier)) {
+                throw new ErrorSoundNotFound();
+            }
+            MediaPlayer currentSoundFX = soundsFX.get(identifier);
+            if (currentSoundFX == null) {
+                return;
+            }
+            soundStack.add(currentSoundFX);
+            if (soundStack.size() == 1) {
+                currentSoundFX.play();
+            }
+        } catch (ErrorSoundNotFound e) {
+            Messenger.getInstance().error("File not found");
+        }
     }
     public void playMusic(String identifier) {
         if (!songs.containsKey(identifier))
@@ -96,5 +113,9 @@ public class Sound {
     }
     public int getMusicTracksAmount() {
         return this.songs.size();
+    }
+    @Override
+    public void update(String effect) {
+        this.playFX(effect + ".mp3");
     }
 }
