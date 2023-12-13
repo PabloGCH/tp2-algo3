@@ -3,6 +3,7 @@ package edu.fiuba.algo3.view;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.animation.ScaleTransition;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 public class SquareView {
     private static Image pathImage;
@@ -57,6 +59,22 @@ public class SquareView {
         pathSquare.setPrefSize(width, height);
         pathSquare.setStyle("-fx-border-color: black; -fx-border-width: 1px");
         mapGridPane.getChildren().remove(square);
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100), pathSquare);
+        double originalScaleX = pathSquare.getScaleX();
+        double originalScaleY = pathSquare.getScaleY();
+        scaleTransition.setToX(originalScaleX * 1.5);
+        scaleTransition.setToY(originalScaleY * 1.5);
+
+        pathSquare.setOnMouseEntered(event -> {
+            pathSquare.toFront();
+            scaleTransition.playFromStart();
+        });
+
+        pathSquare.setOnMouseExited(event -> {
+            scaleTransition.stop();
+            pathSquare.setScaleX(originalScaleX);
+            pathSquare.setScaleY(originalScaleY);
+        });
 
 
         //EFFECTS
