@@ -1,6 +1,5 @@
 package edu.fiuba.algo3;
 
-
 import edu.fiuba.algo3.modelo.Messenger;
 import edu.fiuba.algo3.view.InitialView;
 import javafx.application.Application;
@@ -8,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
-
 
 /**
  * JavaFX App
@@ -25,10 +23,7 @@ public class App extends Application {
         stage.setResizable(false);
         stage.show();
     }
-
-
     public static void main(String[] args) {
         launch();
     }
-
 }

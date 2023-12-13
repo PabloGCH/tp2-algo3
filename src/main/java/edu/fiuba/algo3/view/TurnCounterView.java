@@ -13,11 +13,9 @@ public class TurnCounterView implements GameObserver {
         this.text = new Text();
         this.text.setFill(Color.WHITE);
     }
-
     public void update(String gladiatorName, boolean canPlay, int gameTurn) {
         this.text.setText("Current turn: " + gameTurn);
     }
-    
     public Pane view() {
         FlowPane turnCounterView = new FlowPane();
         turnCounterView.setMouseTransparent(true);

@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo.squares;
 
-
-import edu.fiuba.algo3.modelo.Dice;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-
 import java.util.ArrayList;
 
 public class Upgrade implements Effect{
@@ -26,4 +23,3 @@ public class Upgrade implements Effect{
         }
     }
 }
-

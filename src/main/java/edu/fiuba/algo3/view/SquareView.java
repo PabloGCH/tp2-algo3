@@ -2,7 +2,6 @@ package edu.fiuba.algo3.view;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -16,19 +15,15 @@ import javafx.util.Duration;
 public class SquareView {
     private static Image pathImage;
     private static HashMap<String, Image> images;
-
     public SquareView() {
         SquareView.pathImage = null;
-        SquareView.images = new HashMap<String, Image>();
+        SquareView.images = new HashMap<>();
     }
-
-
     private void loadPathImage() {
         if (SquareView.pathImage == null) {
             SquareView.pathImage = new Image(getClass().getResource("/img/path.png").toExternalForm());
         }
     }
-
     private void loadImageByName(String name) {
         var image = SquareView.images.get(name);
         if(image == null && name != "") {
@@ -37,8 +32,6 @@ public class SquareView {
             SquareView.images.put(name, newImage);
         }
     }
-
-
     public Pane addPathToMapGrid(
         int row,
         int col,
@@ -49,7 +42,6 @@ public class SquareView {
     ) {
         this.loadPathImage();
 
-        //PATH IMAGE
         Pane square = (Pane) mapGridPane.getChildren().get(col * mapGridPane.getRowCount() + row);
         ImageView pathImageView = new ImageView(pathImage);
         pathImageView.setFitHeight(height);
@@ -76,8 +68,6 @@ public class SquareView {
             pathSquare.setScaleY(originalScaleY);
         });
 
-
-        //EFFECTS
         FlowPane effectsPane = new FlowPane();
         effectsPane.setAlignment(Pos.CENTER);
 
@@ -87,7 +77,7 @@ public class SquareView {
             ImageView imageView = new ImageView(SquareView.images.get(name));
             imageView.setPreserveRatio(true);
             if(effectNames.size() > 1) {
-                imageView.setFitWidth(width / 2);
+                imageView.setFitWidth((double) width / 2);
             } 
             else {
                 imageView.setFitWidth(width * 0.75);
@@ -96,7 +86,6 @@ public class SquareView {
         }
         pathSquare.getChildren().add(effectsPane);
 
-        //GLADIATORS GRID
         FlowPane squareGladiatorGrid = new FlowPane();
         squareGladiatorGrid.setStyle("-fx-padding: 5px;");
         squareGladiatorGrid.setHgap(1);

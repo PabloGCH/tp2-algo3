@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.gladiator.state;
 import edu.fiuba.algo3.modelo.squares.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 
-
 public class Active extends State{
     @Override
     public int move(int diceResult){
@@ -27,7 +26,7 @@ public class Active extends State{
     @Override
     public State getIntoBacchanalia(Gladiator aGladiator) {
         return new InTheBacchanalia(aGladiator);
-    };
+    }
     @Override
     public boolean canPlay() {
         return true;

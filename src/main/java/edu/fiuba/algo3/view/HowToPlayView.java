@@ -26,8 +26,8 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
     private ImageView pageImageView = new ImageView();
     private Label pageLabel = new Label();
     private final Stage dialogStage = new Stage();
-    private HashMap<String, String> texts = new HashMap<String, String>();
-    private HashMap<String, Image> images = new HashMap<String, Image>();
+    private HashMap<String, String> texts = new HashMap<>();
+    private HashMap<String, Image> images = new HashMap<>();
     private Button nextButton = new Button("Next");
     private Button backButton = new Button("Back");
     private Label pageNumberLabel = new Label();
@@ -59,7 +59,6 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
 
         dialogStage.showAndWait();
     }
-
     private void setUpPages() {
         this.addAPage("Welcome to AlgoRoma! Your goal is to reach Pompeii before the other players! But make sure to found a key previously. During your journey, you will find different prizes and obstacles. Click \"next\" to learn about them!\nIf your energy is 0 or negative, you will not be able to move. But don't worry! Each turn without moving will increase your energy 5 points.", "/img/gladiator.gif");
         this.addAPage("Depending on your played turns your gladiator will receive promotions.\n\n1 - 8 turns -> Rookie\n8 - 12 turns -> Semi senior\n12 or more turns -> Senior\n\nThe higher your rank, the more energy points you receive each turn.\n\nRookie -> 0 points\nSemi senior -> 5 points\nSenior -> 10 points", "/img/gladiator.gif");
@@ -75,9 +74,7 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         this.texts.put(String.valueOf(totalPages), text);
         this.images.put(String.valueOf(totalPages), new Image(getClass().getResource(imageDir).toExternalForm()));
     }
-
     private void setUpStage() {
-
         VBox root = new VBox();
         root.setPrefHeight(350);
         root.setStyle("-fx-background-color: rgb(91, 53, 24)");
@@ -118,7 +115,6 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         scene.getStylesheets().add(getClass().getResource("/styles/initialScene.css").toExternalForm());
         dialogStage.setScene(scene);
     }
-
     private void updatePage() {
         this.pageLabel.setText(this.texts.get(String.valueOf(currentPage)));
         this.pageImageView.setImage(this.images.get(String.valueOf(currentPage)));

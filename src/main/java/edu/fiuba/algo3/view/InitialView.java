@@ -28,11 +28,9 @@ public class InitialView {
     private final int MIN_PLAYERS_AMOUNT = 2;
     private final int PLAYERS_PER_ROW = 3;
     private final int PLAYERS_PER_COLUMN = 2;
-
-    ArrayList<TextField> nameFields = new ArrayList<TextField>();
+    ArrayList<TextField> nameFields = new ArrayList<>();
     public VBox initialScene(Stage stage) {
         GameStateController.getInstance(stage);
-        this.nameFields = nameFields;
         VBox mainContainer = new VBox();
         mainContainer.getStyleClass().add("main-container");
         Label invalidNamesText = new Label("Los nombres deben ser únicos y de al menos 4 caracteres");
@@ -85,7 +83,6 @@ public class InitialView {
         mainContainer.setPadding(new Insets(0, 0, 10, 0));
         return mainContainer;
     }
-
     private VBox newAddCard() {
         VBox aVBox = new VBox();
         aVBox.setPrefSize(150, 150);
@@ -134,7 +131,6 @@ public class InitialView {
         container.getChildren().add(deleteGladiator);
         deleteGladiator.setOnAction(e -> removeGladiator(container, gladiatorNameField));
     }
-
     private void removeGladiator(VBox gladiatorField, TextField nameField) {
         gladiatorField.getChildren().clear();
         gladiatorField.getChildren().add(setAddButton(gladiatorField));
