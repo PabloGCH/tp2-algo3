@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.unittests.rankTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
 import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.gladiator.rank.Senior;
 
 public class seniorTest {

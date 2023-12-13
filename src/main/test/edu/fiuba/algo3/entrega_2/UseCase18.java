@@ -7,23 +7,23 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.mock;
 
 public class UseCase18 {
-    private static Logger logger = mock(Logger.class);
+    private static final Logger logger = mock(Logger.class);
     @Test
-    public void loggerCallsInfo() throws Exception {
+    public void loggerCallsInfo() {
         Messenger newMessenger = Messenger.getInstance(logger);
         newMessenger.info("test");
         Mockito.verify(logger).info("test");
         newMessenger.restartMessenger();
     }
     @Test
-    public void loggerCallsWarn() throws Exception {
+    public void loggerCallsWarn() {
         Messenger newMessenger = Messenger.getInstance(logger);
         newMessenger.warn("test");
         Mockito.verify(logger).warn("test");
         newMessenger.restartMessenger();
     }
     @Test
-    public void loggerCallsError() throws Exception {
+    public void loggerCallsError() {
         Messenger newMessenger = Messenger.getInstance(logger);
         newMessenger.error("test");
         Mockito.verify(logger).error("test");

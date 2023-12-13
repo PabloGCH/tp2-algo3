@@ -2,10 +2,6 @@ package edu.fiuba.algo3.unittests.squareTest;
 
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
@@ -51,7 +47,6 @@ public class squareTest {
     @Test
     public void test03AGladiatorWithNoEquipmentLoosesEnergyAfterFight() {
         Gladiator aGladiator = new Gladiator("Example");
-        Effect food = new Food();
         Effect fight = new Beast();
         int initialEnergy;
         int finalEnergy;
@@ -69,11 +64,11 @@ public class squareTest {
     @Test
     public void test04AGladiatorLoosesExpectedEnergyAfterDrinkingWine() {
         Gladiator aGladiator = new Gladiator("Example");
-        Effect aBacchanalia = new Bacchanalia();;
+        Effect aBacchanalia = new Bacchanalia();
         int initialEnergy;
         int initialExpectedEnergy = 20;
         int finalEnergy;
-        int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
+        int energyLostInBacchanaliaWithDiceResultOne = 4;
 
         initialEnergy = aGladiator.getEnergy();
         assertEquals(initialEnergy, initialExpectedEnergy);
@@ -103,7 +98,7 @@ public class squareTest {
     }
 
     @Test
-    public void test06AGladiatorStepsOnTheFinishLineWithoutKeyAndIsSetOnTheMiddleSquare() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void test06AGladiatorStepsOnTheFinishLineWithoutKeyAndIsSetOnTheMiddleSquare() {
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         Gladiator aGladiator = new Gladiator("Example");
         ArrayList<Square> map = new ArrayList<>();

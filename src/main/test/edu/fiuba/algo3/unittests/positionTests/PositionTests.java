@@ -3,7 +3,6 @@ package edu.fiuba.algo3.unittests.positionTests;
 import edu.fiuba.algo3.modelo.position.Position;
 import javafx.geometry.Dimension2D;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PositionTests {
@@ -24,13 +23,13 @@ public class PositionTests {
     @Test
     public void test03MoveForwardReturnsNewPathLocationIfNotCrossPathBoundaries(){
         Position position = new Position(0,0,3);
-        int newLocation = position.moveFoward(1,10);
+        int newLocation = position.moveForward(1,10);
         assertEquals(4, newLocation);
     }
     @Test
     public void test04MoveForwardReturnsLastPathLocationIfCrossPathBoundaries(){
         Position position = new Position(0,0,7);
-        int newLocation = position.moveFoward(6,10);
+        int newLocation = position.moveForward(6,10);
         assertEquals(9, newLocation);
     }
     @Test

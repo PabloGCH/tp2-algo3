@@ -1,16 +1,11 @@
 package edu.fiuba.algo3.unittests.rankTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import edu.fiuba.algo3.modelo.gladiator.rank.Rookie;
 import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.gladiator.rank.SemiSenior;
 
 public class semiSeniorTest {
     @Test void GoFromSemiSeniorToSenior() {
-        //Arrange
-        
         int energy = 10;
         SemiSenior semiSenior = new SemiSenior();
 
@@ -20,7 +15,6 @@ public class semiSeniorTest {
 
         var newRank = semiSenior.ascent();
         int newEnergy = newRank.energyFromExperience(energy);
-
 
         assertEquals(20, newEnergy);
     }

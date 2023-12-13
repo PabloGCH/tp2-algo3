@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UseCase03 {
     @Test
-    public void test03APlayerCantMoveWithoutEnergy() {;
+    public void test03APlayerCantMoveWithoutEnergy() {
         ArrayList<Square> map = new ArrayList<>();
         EffectFactory effectFactory = new EffectFactory();
         Position position = new Position(0,0,0);

@@ -2,7 +2,6 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UseCase11 {
@@ -15,11 +14,11 @@ public class UseCase11 {
         gladiator.upgrade();
         gladiator.upgrade();
         gladiator.fightWithBeast();
-        int energyPoints = gladiator.getEnergy();;
+        int energyPoints = gladiator.getEnergy();
 
         assertEquals(20, energyPoints);
         gladiator.upgrade();
-        energyPoints = gladiator.getEnergy();;
+        energyPoints = gladiator.getEnergy();
         assertEquals(20, energyPoints);
     }
 }

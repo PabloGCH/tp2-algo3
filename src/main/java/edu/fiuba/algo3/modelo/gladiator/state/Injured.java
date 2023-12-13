@@ -1,8 +1,5 @@
 package edu.fiuba.algo3.modelo.gladiator.state;
 
-import edu.fiuba.algo3.modelo.squares.*;
-import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-
 public class Injured extends State{
     private int shift;
     private final int TURNS_TO_BE_INJURED = 1;
@@ -18,9 +15,7 @@ public class Injured extends State{
         shift++;
         return this;
     }
-
     public String showState(){
-        String state = "Injured";
-        return state;
+        return "Injured";
     }
 }

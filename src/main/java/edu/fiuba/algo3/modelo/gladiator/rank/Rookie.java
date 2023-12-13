@@ -1,18 +1,14 @@
 package edu.fiuba.algo3.modelo.gladiator.rank;
 
 public class Rookie implements Rank {
-    //attributes
     private int shift;
-    //methods
     public Rookie(){
         shift = 0;
     }
-
     @Override
     public int energyFromExperience(int amount){
         return amount ;
     }
-    
     @Override
     public Rank ascent(){
         this.shift ++;
@@ -22,10 +18,7 @@ public class Rookie implements Rank {
         }
         return this;
     }
-
     public String showRank(){
-        String rank = "Rookie";
-        return rank;
+        return "Rookie";
     }
-
 }

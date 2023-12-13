@@ -21,19 +21,19 @@ import java.util.HashMap;
 public class HowToPlayView implements EventHandler<ActionEvent> {
     private int currentPage;
     private int totalPages;
-    private HBox mainContainer = new HBox();
-    private HBox buttonsContainer = new HBox();
-    private ImageView pageImageView = new ImageView();
-    private Label pageLabel = new Label();
+    private final HBox mainContainer = new HBox();
+    private final HBox buttonsContainer = new HBox();
+    private final ImageView pageImageView = new ImageView();
+    private final Label pageLabel = new Label();
     private final Stage dialogStage = new Stage();
-    private HashMap<String, String> texts = new HashMap<String, String>();
-    private HashMap<String, Image> images = new HashMap<String, Image>();
-    private Button nextButton = new Button("Next");
-    private Button backButton = new Button("Back");
-    private Label pageNumberLabel = new Label();
+    private final HashMap<String, String> texts = new HashMap<>();
+    private final HashMap<String, Image> images = new HashMap<>();
+    private final Button nextButton = new Button("Next");
+    private final Button backButton = new Button("Back");
+    private final Label pageNumberLabel = new Label();
     public HowToPlayView() {
         this.dialogStage.setWidth(550);
-        this.dialogStage.setHeight(350);
+        this.dialogStage.setHeight(400);
         this.dialogStage.setResizable(false);
         this.mainContainer.getChildren().addAll(this.pageImageView, this.pageLabel);
         this.buttonsContainer.getChildren().addAll(backButton, pageNumberLabel, nextButton);
@@ -59,7 +59,6 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
 
         dialogStage.showAndWait();
     }
-
     private void setUpPages() {
         this.addAPage("Welcome to AlgoRoma! Your goal is to reach Pompeii before the other players! But make sure to found a key previously. During your journey, you will find different prizes and obstacles. Click \"next\" to learn about them!\nIf your energy is 0 or negative, you will not be able to move. But don't worry! Each turn without moving will increase your energy 5 points.", "/img/gladiator.gif");
         this.addAPage("Depending on your played turns your gladiator will receive promotions.\n\n1 - 8 turns -> Rookie\n8 - 12 turns -> Semi senior\n12 or more turns -> Senior\n\nThe higher your rank, the more energy points you receive each turn.\n\nRookie -> 0 points\nSemi senior -> 5 points\nSenior -> 10 points", "/img/gladiator.gif");
@@ -75,11 +74,9 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         this.texts.put(String.valueOf(totalPages), text);
         this.images.put(String.valueOf(totalPages), new Image(getClass().getResource(imageDir).toExternalForm()));
     }
-
     private void setUpStage() {
-
         VBox root = new VBox();
-        root.setPrefHeight(350);
+        root.setPrefHeight(400);
         root.setStyle("-fx-background-color: rgb(91, 53, 24)");
 
         this.pageLabel.setText(this.texts.get(String.valueOf(currentPage)));
@@ -118,7 +115,6 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
         scene.getStylesheets().add(getClass().getResource("/styles/initialScene.css").toExternalForm());
         dialogStage.setScene(scene);
     }
-
     private void updatePage() {
         this.pageLabel.setText(this.texts.get(String.valueOf(currentPage)));
         this.pageImageView.setImage(this.images.get(String.valueOf(currentPage)));
