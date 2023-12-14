@@ -10,6 +10,7 @@ public class SideBar {
      public GridPane view(Game game){
         
         GridPane sidebarPane = new GridPane();
+        sidebarPane.setPrefWidth(390);
         VBox vBoxgeneral = new VBox(10);
 
         for (Gladiator gladiator : game.getGladiators()) {
@@ -26,7 +27,10 @@ public class SideBar {
             new Background(new BackgroundFill(Color.GRAY, null, null))
         );
         scrollable.setBorder(new Border(new BorderStroke(Color.GRAY, null, null, null)));
+        scrollable.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
+        gladiatorsList.setPrefWidth(390);
+        scrollable.setPrefWidth(390);
         sidebarPane.add(scrollable, 2000, 4000);
         sidebarPane.setStyle("-fx-background-color: gray;");
         gladiatorsList.setStyle("-fx-background-color: gray;");
