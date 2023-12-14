@@ -24,6 +24,8 @@ public class LossScene extends VBox {
         Button restartGame = new Button("Restart game");
         restartGame.setOnAction(e -> {
             Game.getInstance().restartGame();
+            stage.getScene().getStylesheets().clear();
+            stage.getScene().getStylesheets().add(LossScene.class.getResource("/styles/initialScene.css").toExternalForm());
             stage.getScene().setRoot(new InitialView().initialScene(stage));
             stage.setMaximized(false);
             stage.setResizable(false);
