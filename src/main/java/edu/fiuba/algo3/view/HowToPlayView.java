@@ -32,6 +32,8 @@ public class HowToPlayView implements EventHandler<ActionEvent> {
     private final Button backButton = new Button("Back");
     private final Label pageNumberLabel = new Label();
     public HowToPlayView() {
+        Image icon = new Image(getClass().getResource("/img/icon.png").toExternalForm());
+        this.dialogStage.getIcons().add(icon);
         this.dialogStage.setWidth(550);
         this.dialogStage.setHeight(400);
         this.dialogStage.setResizable(false);
