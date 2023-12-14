@@ -1,24 +1,21 @@
 package edu.fiuba.algo3.modelo.gladiator.state;
 
-import edu.fiuba.algo3.modelo.squares.*;
-import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-
 public class Tired extends State{
+    private final int ACTIVE_GLADIATOR = 0, RECOVERED_ENERGY = 5;
     @Override
     public State update(int energy){
-        if (energy > 0) {
+        if (energy > ACTIVE_GLADIATOR) {
+            System.out.println("You recover energy");
             return new Active();
         }
         return this;
     }
-
     public String showState(){
-        String state = "Tired";
-        return state;
+        return "Tired";
     }
-
     @Override
     public int energyFromState(int energy) {
-        return (energy + 5);
+        System.out.println("You recover " + RECOVERED_ENERGY + " energy points");
+        return (energy + RECOVERED_ENERGY);
     }
 }

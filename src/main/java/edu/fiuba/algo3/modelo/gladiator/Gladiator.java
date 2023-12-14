@@ -21,7 +21,6 @@ public class Gladiator implements GladiatorObservable {
     private Rank rank;
     private final ArrayList<GladiatorObserver> observers;
     public Position position;
-
     public Gladiator(String name) {
         this.name = name;
         this.energy = INITIAL_ENERGY;
@@ -33,58 +32,50 @@ public class Gladiator implements GladiatorObservable {
     }
     public void drinkWine(int cupsOfWineAmount) {
         this.energy = this.energy - ENERGY_LOST_FOR_EACH_CUP * cupsOfWineAmount;
+        System.out.println(name + " lose " + (ENERGY_LOST_FOR_EACH_CUP * cupsOfWineAmount) + " energy");
         this.updateObservers();
     }
-
     public void update(){
         this.rank = this.rank.ascent();
         this.energy = this.rank.energyFromExperience(this.energy);
         this.rest();
         this.updateObservers();
     }
-
     public void eat() {
         this.energy += ENERGY_FROM_FOOD;
+        System.out.println(name + " get " + ENERGY_FROM_FOOD + " energy points");
         this.updateObservers();
     }
-
     public void fightWithBeast() {
         this.energy = this.equipment.receiveAttack(this.energy);
         this.updateObservers();
     }
-
     public int getEnergy() {
         return this.energy;
     }
-
     public void upgrade(){
         this.equipment = this.equipment.upgrade();
         this.updateObservers();
     }
-
     public void injured(){
         this.state = this.state.fracture();
         this.updateObservers();
     }
-
     public int move(int sizePath, int diceResult) {
         update();
         int steps = this.state.move(diceResult);
-        return this.position.moveFoward(steps, sizePath);
+        return this.position.moveForward(steps, sizePath);
     }
     public String getName(){
         return this.name;
     }
-
     public void runEffect(Effect effect){
         this.state.runEffect(effect, this);
     }
-
     public void positionate(Position position){
         this.position = position;
         this.updateObservers();
     }
-
     public void getIntoBacchanalia() {
         this.state = this.state.getIntoBacchanalia(this);
         this.updateObservers();
@@ -100,26 +91,21 @@ public class Gladiator implements GladiatorObservable {
     public GameState won() {
         return this.state.isWinner(this.name);
     }
-
     public void decideIfPlaysAgain(TurnDecider turnDecider) {
         this.state.decideIfPlaysAgain(turnDecider);
     }
-
     public int turnEnded(int gladiatorTurn){
         return this.state.updateTurn(gladiatorTurn);
     }
-
     public void addObserver(GladiatorObserver observer) {
         observers.add(observer);
         this.updateObserver(observer);
     }
-
     private void updateObservers() {
         for (GladiatorObserver observer : observers) {
             this.updateObserver(observer);
         }
     }
-
     public void rest () {
         this.energy = this.state.energyFromState(this.energy);
     }

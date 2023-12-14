@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import java.util.ArrayList;
 
 public class Food implements Effect {
-    private ArrayList<EffectObserver> observers = new ArrayList<>();
+    private final ArrayList<EffectObserver> observers = new ArrayList<>();
     @Override
     public void affect(Gladiator aGladiator) {
         aGladiator.eat();

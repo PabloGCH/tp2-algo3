@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.mapJsonParser;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
@@ -12,7 +12,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 
 public class MapJsonParser implements Parser {
     public ArrayList<Square> loadMap(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
@@ -60,15 +59,14 @@ public class MapJsonParser implements Parser {
         }
         return path;
     }
-    public Dimension2D obtainDimension(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        ArrayList<Integer> measures = new MapDataJsonParser().loadData(filePath, fileName);
+    public Dimension2D obtainDimension(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        ArrayList<Integer> measures = new MapDataJsonParser().loadData(filePath);
         int width = measures.get(0);
         int height = measures.get(1);
         return new Dimension2D(width, height);
     }
     private JSONArray getPathObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
-        //TRIES TO READ MAP FILE
         try {
             reader = new FileReader(filePath);
             JSONParser parser = new JSONParser();

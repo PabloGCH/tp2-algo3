@@ -3,7 +3,6 @@ package edu.fiuba.algo3.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
-
 import edu.fiuba.algo3.modelo.Messenger;
 import edu.fiuba.algo3.modelo.squares.EffectObserver;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -21,8 +20,7 @@ public class Sound implements EffectObserver {
     private final SimpleDoubleProperty volumeFx = new SimpleDoubleProperty(defaultVolume);
     private static final String SONGS_DIRECTORY = "/sounds/music/";
     private static final String SOUNDS_FX_DIRECTORY = "/sounds/soundsFX/";
-    private boolean muted = false;
-    private ArrayList<MediaPlayer> soundStack = new ArrayList<MediaPlayer>();
+    private final ArrayList<MediaPlayer> soundStack = new ArrayList<>();
     private Sound() {
     }
     public static Sound getInstance() {
@@ -41,8 +39,10 @@ public class Sound implements EffectObserver {
             System.out.println(soundStack.size());
             mediaPlayer.stop();
             mediaPlayer.seek(Duration.ZERO);
-            this.soundStack.remove(0);
-            if (this.soundStack.size() > 0) {
+            if (!soundStack.isEmpty()) {
+                this.soundStack.remove(0);
+            }
+            if (!this.soundStack.isEmpty()) {
                 this.soundStack.get(0).play();
             }
         });
@@ -55,14 +55,15 @@ public class Sound implements EffectObserver {
     public void modifyEffectVolume(double value) {
         modifyVolume(value, volumeFx);
     }
-
+    public void stopSoundsFX() {
+        soundStack.clear();
+    }
     private void modifyVolume(double value, SimpleDoubleProperty volume) {
         if (value >= 0 && value <= 100){
             volume.set(value / 100);
         }
     }
     public void playFX(String identifier) {
-
         try {
             if (!soundsFX.containsKey(identifier)) {
                 throw new ErrorSoundNotFound();
@@ -79,7 +80,7 @@ public class Sound implements EffectObserver {
             Messenger.getInstance().error("File not found");
         }
     }
-    public void playMusic(String identifier) {
+    public void playMusicOnce(String identifier) {
         if (!songs.containsKey(identifier))
             System.err.println("Error music");
         if (currentSong != null) {
@@ -87,21 +88,22 @@ public class Sound implements EffectObserver {
         }
 
         currentSong = songs.get(identifier);
-        currentSong.setOnEndOfMedia(new Runnable() {
-            @Override
-            public void run() {
-                currentSong.seek(Duration.ZERO);
-                currentSong.play();
-            }
-        });
 
         currentSong.play();
     }
-
-    public void stopMusic() {
+    public void playLoopedMusic(String identifier) {
+        if (!songs.containsKey(identifier))
+            System.err.println("Error music");
         if (currentSong != null) {
             currentSong.stop();
         }
+
+        currentSong = songs.get(identifier);
+        currentSong.setOnEndOfMedia(() -> {
+            currentSong.seek(Duration.ZERO);
+            currentSong.play();
+        });
+        currentSong.play();
     }
     public void toggleMuteMusic() {
         currentSong.setMute(!currentSong.isMute());
@@ -110,9 +112,6 @@ public class Sound implements EffectObserver {
         for (MediaPlayer sound : soundsFX.values()) {
             sound.setMute(!sound.isMute());
         }
-    }
-    public int getMusicTracksAmount() {
-        return this.songs.size();
     }
     @Override
     public void update(String effect) {

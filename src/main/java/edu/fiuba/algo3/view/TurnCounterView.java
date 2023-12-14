@@ -8,16 +8,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class TurnCounterView implements GameObserver {
-    private Text text;
+    private final Text text;
     public TurnCounterView() {
         this.text = new Text();
         this.text.setFill(Color.WHITE);
     }
-
     public void update(String gladiatorName, boolean canPlay, int gameTurn) {
         this.text.setText("Current turn: " + gameTurn);
     }
-    
     public Pane view() {
         FlowPane turnCounterView = new FlowPane();
         turnCounterView.setMouseTransparent(true);

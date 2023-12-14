@@ -4,12 +4,10 @@ import org.apache.logging.log4j.Logger;
 public class Messenger {
     private static Messenger instance;
     private final Logger logger;
-
     private Messenger(Logger newLogger)
     {
         this.logger = newLogger;
     }
-
     public void restartMessenger() {
         instance = null;
     }

@@ -2,15 +2,12 @@ package edu.fiuba.algo3.unittests.stateTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import edu.fiuba.algo3.modelo.game.GameState;
 import edu.fiuba.algo3.modelo.game.TurnDecider;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Food;
 import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.gladiator.state.Tired;
-
 import java.util.ArrayList;
 
 public class tiredTest {

@@ -2,21 +2,14 @@ package edu.fiuba.algo3.modelo.game;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.squares.Square;
-
 import java.util.ArrayList;
 
 public interface GameState {
-    public GameState nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult);
-
-    public boolean Finalized();
-
-    public boolean result(ArrayList<String> gladiators);
-
-    public int turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators);
-
-    public void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path);
-
-    public void updateScreen(GameEndController controller);
-
-    public GameState defeat();
+    GameState nextTurn(ArrayList<Gladiator> gladiators, ArrayList<Square> path, int diceResult);
+    boolean Finalized();
+    boolean result(ArrayList<String> gladiators);
+    int turnEnded(int gladiatorTurn, ArrayList<Gladiator> gladiators);
+    void entryOfTheGladiatorToTheFirstSquare(ArrayList<Gladiator> gladiators, ArrayList<Square> path);
+    void updateScreen(GameEndController controller);
+    GameState defeat();
 }

@@ -2,10 +2,8 @@
 !include Square.plantuml
 !include ../position/Position.plantuml
 !include Effect.plantuml
-!include ../Gladiator/Gladiator.plantuml
 
-Square o-- Position
-Square "2" o- Effect: contains
-Square ..> Gladiator
 
+Square --> Position
+Square  o-"2" Effect: contains
 @enduml

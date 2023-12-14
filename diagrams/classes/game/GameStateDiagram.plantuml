@@ -3,13 +3,9 @@
 !include FinishedByWinning.plantuml
 !include FinishedByTurns.plantuml
 !include GameState.plantuml
-!include ../Gladiator/Gladiator.plantuml
-!include ../square/Square.plantuml
-
-GameState <|... FinishedByWinning
-GameState <|.. ActiveGame
+GameState <|. FinishedByWinning
 GameState <|.. FinishedByTurns
-GameState .> "2..6" Gladiator
-GameState ..> "*" Square
-
+GameState <|... ActiveGame
+FinishedByTurns <.. ActiveGame
+FinishedByWinning <.. ActiveGame
 @enduml

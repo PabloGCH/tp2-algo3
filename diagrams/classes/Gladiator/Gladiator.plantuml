@@ -1,7 +1,7 @@
 @startuml
 class Gladiator {
     -name : String
-    -ENERGY_FROM_FOOD: int
+    -energy: int
     +Gladiator(): Gladiator
     +move(): int
     +drinkWine()

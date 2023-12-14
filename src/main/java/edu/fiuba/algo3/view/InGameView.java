@@ -19,11 +19,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -32,12 +30,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class InGameView {
-    private ArrayList<String> songsList = new ArrayList<>();
-
+    private final ArrayList<String> songsList = new ArrayList<>();
     public void displayInGameScene(Stage stage) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         this.loadSoundsAndMusic();
         if (!songsList.isEmpty()) {
-            Sound.getInstance().playMusic(songsList.get(0));
+            Sound.getInstance().playLoopedMusic(songsList.get(0));
         }
         int squareWidth = 65;
         int squareHeight = 65;
@@ -45,7 +42,6 @@ public class InGameView {
         stage.setResizable(true);
         MenuBar menuBar = createMenuBar(stage);
 
-        double gridSize = Math.min(stage.getHeight(), stage.getWidth());
         Game aGame = Game.getInstance();
         Dimension2D dimensions = new MapFacade().mapDimensions();
         int width = (int) dimensions.getWidth();
@@ -63,9 +59,7 @@ public class InGameView {
                 mapGridPane.add(square, row, column);
             }
         }
-        
-        Image pathImage = new Image(getClass().getResource("/img/path.png").toExternalForm());
-        
+
         HashMap<String, Pane> mapGladiatorGrids = new HashMap<>();
 
         for (Square square : path) {
@@ -75,14 +69,11 @@ public class InGameView {
             Pane squareGladiatorGrid = (new SquareView()).addPathToMapGrid(xPosition, yPosition, squareWidth, squareHeight, mapGridPane, effectNames);
             mapGladiatorGrids.put(xPosition + "-" + yPosition, squareGladiatorGrid);
         }
- 
 
         for (Gladiator gladiator : aGame.getGladiators()) {
             GladiatorView view = new GladiatorView(mapGladiatorGrids);
             gladiator.addObserver(view);
         }
-
-        
 
         BorderPane mainLayout = new BorderPane();
         BorderPane gamePane = new BorderPane();
@@ -100,7 +91,7 @@ public class InGameView {
 
         mapScrollPane.setPannable(true);
         mapScrollPane.setStyle("-fx-background-color: #413d3d;");
-        mapScrollPane.setBorder(new Border(new BorderStroke(new Color(65/255, 61/255, 61/255, 1/255), null, null, null)));
+        mapScrollPane.setBorder(new Border(new BorderStroke(new Color((double) 65 /255, (double) 61 /255, (double) 61 /255, (double) 1 /255), null, null, null)));
 
         mapScrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
         mapScrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
@@ -109,17 +100,18 @@ public class InGameView {
             new Background(new BackgroundFill(Color.TRANSPARENT, null, null))
         );
 
+        mapScrollPane.setStyle("-fx-background: #413d3d; -fx-background-color: #413d3d;");
+
         int screenWidth = (int) Screen.getPrimary().getBounds().getWidth();
         int screenHeight = (int) Screen.getPrimary().getBounds().getHeight();
 
-        int sceneWidth = screenWidth;
         int sceneHeight = (int)(screenHeight * (0.9));
 
-
-        stage.setWidth(sceneWidth);
+        stage.setWidth(screenWidth);
         stage.setHeight(sceneHeight);
         stage.centerOnScreen();
 
+        stage.setMaximized(false);
         stage.setMaximized(true);
 
         gamePane.setCenter(mapStackPane);
@@ -149,12 +141,10 @@ public class InGameView {
         fullScreenItem.setOnAction(e -> toggleFullScreen(stage));
         fullScreenItem.getStyleClass().add("menu-item");
 
-
         Menu fileMenu = new Menu("File");
         fileMenu.getItems().add(exitItem);
         fileMenu.getItems().add(fullScreenItem);
         fileMenu.getStyleClass().add("menu");
-
 
         CheckMenuItem toggleMusic = new CheckMenuItem("Music on");
         toggleMusic.getStyleClass().add("menu-item");
@@ -166,7 +156,7 @@ public class InGameView {
             MenuItem track = new MenuItem(song);
             track.getStyleClass().add("menu-item");
             musicList.getItems().add(track);
-            track.setOnAction(e -> Sound.getInstance().playMusic(song));
+            track.setOnAction(e -> Sound.getInstance().playLoopedMusic(song));
         }
 
         Menu musicMenu = new Menu("Music");
@@ -183,12 +173,10 @@ public class InGameView {
         AboutView aboutView = new AboutView();
         about.setOnAction(aboutView);
 
-
         Menu help = new Menu("Help");
         help.getStyleClass().add("menu");
         help.getItems().add(howToPlay);
         help.getItems().add(about);
-
 
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(fileMenu);
@@ -198,7 +186,6 @@ public class InGameView {
 
         return menuBar;
     }
-
     private void loadSoundsAndMusic() {
         Sound sounds = Sound.getInstance();
         String songsDirectory = "/sounds/music";
@@ -227,6 +214,9 @@ public class InGameView {
             e.printStackTrace();
         }
 
+        Sound.getInstance().loadMusic("gameOver/victory.mp3", "victory.mp3");
+        Sound.getInstance().loadMusic("gameOver/lose.mp3", "lose.mp3");
+
         try {
             URL resource = getClass().getResource(soundsFXDirectory);
 
@@ -249,14 +239,10 @@ public class InGameView {
             e.printStackTrace();
         }
 
-
         sounds.modifyEffectVolume(50);
         sounds.modifyMusicVolume(25);
     }
-
-
     private void toggleFullScreen(Stage stage) {
         stage.setFullScreen(!stage.isFullScreen());
     }
-
 }

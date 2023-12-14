@@ -4,14 +4,13 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class MapDataJsonParser {
-    public ArrayList<Integer> loadData(String filePath, String fileName) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public ArrayList<Integer> loadData(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         int height;
         int width;
         ArrayList<Integer> data = new ArrayList<>();
@@ -28,7 +27,6 @@ public class MapDataJsonParser {
     }
     private JSONObject getMapObject(String filePath) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         FileReader reader;
-        //TRIES TO READ MAP FILE
         try {
             reader = new FileReader(filePath);
             JSONParser parser = new JSONParser();

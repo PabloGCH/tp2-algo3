@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.view;
 
+import edu.fiuba.algo3.controller.Sound;
 import edu.fiuba.algo3.modelo.game.Game;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
@@ -7,12 +8,9 @@ import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LossScene extends VBox {
@@ -51,6 +49,8 @@ public class LossScene extends VBox {
         restartGameSamePlayers.getStyleClass().add("btn");
         exitGame.getStyleClass().add("btn");
         mainContainer.getChildren().addAll(label1, label2, restartGame, restartGameSamePlayers, exitGame);
+        Sound.getInstance().modifyEffectVolume(0);
+        Sound.getInstance().playMusicOnce("lose.mp3");
         return mainContainer;
     }
 }

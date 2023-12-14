@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import edu.fiuba.algo3.modelo.squares.Square;
 import javafx.scene.control.TextField;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,9 +31,8 @@ public class StartButtonController {
         }
         return namesAreCorrect;
     }
-
     public void newGame(ArrayList<TextField> nameFields) throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        ArrayList<String> gladiatorsNames = new ArrayList<String>();
+        ArrayList<String> gladiatorsNames = new ArrayList<>();
         for (TextField name : nameFields) {
             String gladiatorName = name.getText();
             gladiatorsNames.add(gladiatorName);
