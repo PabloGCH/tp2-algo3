@@ -22,7 +22,7 @@ Actor -> Game: getInstance(Gladiator, Square)
 
 Actor -> Game: startGame()
 activate Game
-    Actor -> GameState: entryOfTheGladiatorToTheFirstSquare(gladiators, map)
+    Game -> GameState: entryOfTheGladiatorToTheFirstSquare(gladiators, map)
     activate GameState
         loop until the entire gladiators array is recoorated
             GameState -> Gladiator: get(i)
