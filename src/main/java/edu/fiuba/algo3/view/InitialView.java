@@ -93,6 +93,7 @@ public class InitialView {
         Button addButton = new Button("+");
         addButton.getStyleClass().add("plus-sign");
         addButton.getStyleClass().add("btn");
+        vBox.setPadding(new Insets(5));
         addButton.setOnAction(e -> addGladiator(vBox));
         return addButton;
     }
@@ -114,6 +115,7 @@ public class InitialView {
     }
     private void addGladiator(VBox container) {
         container.getChildren().clear();
+        container.setPadding(new Insets(32, 5, 0, 5));
 
         Label nameLabel = new Label("Nombre");
         TextField gladiatorNameField = new TextField();
