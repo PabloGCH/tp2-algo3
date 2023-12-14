@@ -15,6 +15,6 @@ public class Key implements Equipment{
         return new Winner();
     }
     public String showName(){
-        return ("Key");
+        return ("key");
     }
 }
