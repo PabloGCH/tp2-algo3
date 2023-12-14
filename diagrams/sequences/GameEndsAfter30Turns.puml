@@ -1,0 +1,48 @@
+@startuml
+autonumber
+
+autonumber
+actor Actor
+
+activate Actor
+
+create StateGame
+Actor -> StateGame: <<Create>>
+create collections Square
+Actor -> Square: <<create>>
+create EffectFactory
+Actor -> EffectFactory: <<create>>
+
+activate Square
+    Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), new Position(0,0,0))
+    Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(1,0,1))
+    Actor -> Square: add(effectFactory.createEffect("NullEffect"),new FinishLineEffect(), new Position(2,0,2))
+deactivate Square
+
+create collections GladiatorsNames
+Actor --> GladiatorsNames: <<create>>
+activate GladiatorsNames
+    Actor --> GladiatorsNames: add(gladiatorName)
+deactivate GladiatorsNames
+
+create Game
+Actor -> Game: getInstance(GladiatorsNames, Square)
+activate Game
+    Actor -> Game: startGame()
+deactivate Game
+
+loop Until the Finalized method returns true
+Actor -> Game: playTurn(1)
+activate Game
+    Game --> Actor: StateGame
+deactivate Game
+end loop
+
+Actor -> StateGame: result(Gladiator)
+activate StateGame
+    StateGame --> Actor: false
+deactivate StateGame
+
+deactivate Actor
+
+@enduml
