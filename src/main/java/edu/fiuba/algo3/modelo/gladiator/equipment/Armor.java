@@ -16,6 +16,6 @@ public class Armor implements Equipment{
         return state;
     }
     public String showName(){
-        return ("Armor");
+        return ("armor");
     }
 }
