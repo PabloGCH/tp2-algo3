@@ -15,7 +15,7 @@ loop until you have done the method 4 times
 activate Gladiator
     Gladiator -> Equipment: upgrade()
     activate Equipment
-        Equipment -> Gladiator: new Equipment()
+        Equipment --> Gladiator: new Equipment()
     deactivate Equipment
 end loop
 deactivate Gladiator

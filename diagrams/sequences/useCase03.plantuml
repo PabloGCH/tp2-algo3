@@ -9,8 +9,8 @@ create collections Square
 Actor -> Square: <<create>>
 create EffectFactory
 Actor -> EffectFactory: <<create>>
-Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(0,0,0))
-Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), new Position(1,0,1))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(0,0,0))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("Comida"), new Position(1,0,1))
 Actor -> Square: affect(Gladiator)
 
 create collections Gladiator

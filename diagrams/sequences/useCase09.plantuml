@@ -14,17 +14,17 @@ deactivate Gladiator
 
 create EffectFactory
 Actor -> EffectFactory: <<create>>
-Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(0,0,0))
-Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(1,0,1))
-Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(2,0,2))
-Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("Comida"), new Position(3,0,3))
-Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(4,0,4))
-Actor -> Square: add(effectFactory.createEffect("NullEffect"),effectFactory.createEffect("NullEffect"), new Position(5,0,5))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(0,0,0))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(1,0,1))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(2,0,2))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("Comida"), new Position(3,0,3))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(4,0,4))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(5,0,5))
 
 create FinishLineEffect
 Actor -> FinishLineEffect: <<create>>
 Actor -> FinishLineEffect: setMiddlePosition(middleposition)
-Actor -> Square: add(effectFactory.createEffect("NullEffect"),FinishLineEffect, new Position(6,0,6))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\nFinishLineEffect, new Position(6,0,6))
 
 Actor -> FinishLineEffect: affect(Gladiator)
 activate FinishLineEffect
