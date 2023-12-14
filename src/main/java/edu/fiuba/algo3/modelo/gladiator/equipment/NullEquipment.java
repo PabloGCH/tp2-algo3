@@ -16,6 +16,6 @@ public class NullEquipment implements Equipment {
         return state;
     }
     public String showName(){
-        return ("Without equipment");
+        return ("null-equipment");
     }
 }

@@ -16,6 +16,6 @@ public class Helmet implements Equipment{
         return state;
     }
     public String showName(){
-        return ("Helmet");
+        return ("helmet");
     }
 }

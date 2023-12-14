@@ -3,12 +3,14 @@ package edu.fiuba.algo3.view;
 import edu.fiuba.algo3.modelo.gladiator.GladiatorObserver;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class SideBarGladiator implements GladiatorObserver{
     private final Label name;
     private final Label energy;
-    private final Label equipment;
+    private final ImageView equipment;
     private final Label rank;
     private final Label state;
     private final VBox viewRef;
@@ -17,13 +19,14 @@ public class SideBarGladiator implements GladiatorObserver{
 
         this.name = new Label();
         this.energy = new Label();
-        this.equipment = new Label();
+        this.equipment = new ImageView();
         this.rank = new Label();
         this.state = new Label();
 
         this.name.setStyle("-fx-text-fill: blue;");
         this.energy.setStyle("-fx-text-fill: black;");
-        this.equipment.setStyle("-fx-text-fill: black;");
+        this.equipment.setFitHeight(34);
+        this.equipment.setFitWidth(128);
         this.rank.setStyle("-fx-text-fill: black;");
         this.state.setStyle("-fx-text-fill: black;");
 
@@ -31,9 +34,9 @@ public class SideBarGladiator implements GladiatorObserver{
         this.viewRef.setPadding(new Insets(10,10,10,10));
     }
     @Override
-    public void update(int row, int columnm, int energy, String equipment, String name, String rank, String state) {
+    public void update(int row, int column, int energy, String equipment, String name, String rank, String state) {
         this.name.setText(name);
-        this.equipment.setText("Equipment: " + equipment);
+        this.equipment.setImage(new Image(getClass().getResource("/img/" + equipment + ".png").toExternalForm()));
         this.energy.setText("Energy: " + energy);
         this.rank.setText("Rank: " + rank);
         this.state.setText("State: " + state);
