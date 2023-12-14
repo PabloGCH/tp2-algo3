@@ -3,11 +3,11 @@
 [*] --> Active: start game
 
 state result_of_energy <<fork>>
-Active --> result_of_energy: result of energy
+Active --> result_of_energy: fights against\na beast
 
-result_of_energy --> Active: its energy is greater than 0
-result_of_energy --> Tired: its energy is less than 0
+result_of_energy --> Active: its energy\nis greater than 0
+result_of_energy --> Tired: its energy is 0 or negative
 
-Active --> [*] : The next turn you can play again
-Tired --> [*] : does not move next turn
+Active --> [*] : The next turn\nyou can play again
+Tired --> [*] : skips next turn
 @enduml
