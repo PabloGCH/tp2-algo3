@@ -1,0 +1,11 @@
+@startuml
+!include ActiveGame.plantuml
+!include FinishedByWinning.plantuml
+!include FinishedByTurns.plantuml
+!include GameState.plantuml
+GameState <|. FinishedByWinning
+GameState <|.. FinishedByTurns
+GameState <|... ActiveGame
+FinishedByTurns <.. ActiveGame
+FinishedByWinning <.. ActiveGame
+@enduml

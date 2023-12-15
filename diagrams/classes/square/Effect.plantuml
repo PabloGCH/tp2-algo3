@@ -1,0 +1,7 @@
+@startuml
+
+interface Effect {
+    +affect(gladiator: Gladiator)
+}
+
+@enduml

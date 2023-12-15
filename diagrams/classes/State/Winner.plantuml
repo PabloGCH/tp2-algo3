@@ -1,0 +1,6 @@
+@startuml
+class Winner{
+    +isWinner(): GameState
+    +tryToWin(Gladiator aGladiator, Position middlePosition)
+}
+@enduml

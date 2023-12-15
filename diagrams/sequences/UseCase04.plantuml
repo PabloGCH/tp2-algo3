@@ -1,0 +1,16 @@
+@startuml
+autonumber
+actor Actor
+activate Actor
+
+create Gladiator
+Actor -->> Gladiator: <<create>> Gladiator("Example")
+Actor -> Gladiator: eat()
+
+Actor -> Gladiator: getEnergy()
+activate Gladiator
+    Gladiator --> Actor: 35
+deactivate Gladiator
+
+deactivate Actor
+@enduml

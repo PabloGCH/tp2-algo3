@@ -1,0 +1,8 @@
+@startuml
+Interface Equipment {
+    +upgrade(): Equipment
+    +receiveAttack(energy: int): int
+    +win(state: State) State
+    +showName(): String
+}
+@enduml

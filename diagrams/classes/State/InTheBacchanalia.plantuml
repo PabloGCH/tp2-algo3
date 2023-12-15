@@ -1,0 +1,13 @@
+@startuml
+class InTheBacchanalia{
+    -affectedGladiator: Gladiator
+    -TIRED_GLADIATOR: int
+    -InTheBacchanalia(aGladiator: Gladiator)
+    +move(diceResult: int): int
+    +runEffect(effect: Bacchanalia, gladiator: Gladiator)
+    +update(energy: int): State
+    +decideIfPlaysAgain(turnDecider: TurnDecider)
+    +updateTurn(turn: int): int
+    +showState(): String
+}
+@enduml

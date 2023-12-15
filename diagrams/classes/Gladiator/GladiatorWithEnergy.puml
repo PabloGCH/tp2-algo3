@@ -1,5 +1,0 @@
-@startuml
-!include Gladiator.plantuml
-!include ../Energy/Energy.plantuml
-Gladiator --> Energy
-@enduml

@@ -3,8 +3,9 @@ package edu.fiuba.algo3.unittests.mapFacadeTests;
 import edu.fiuba.algo3.modelo.facade.MapFacade;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.*;
-import edu.fiuba.algo3.modelo.squares.Position;
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
+import javafx.geometry.Dimension2D;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,7 @@ public class MapFacadeTest {
     }
 
     @Test
-    public void validateFoodSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void test01ValidateFoodSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         Gladiator gladiator = new Gladiator("Example");
 
         Square square = path.get(2);
@@ -32,7 +33,7 @@ public class MapFacadeTest {
     }
 
     @Test
-    public void validateEquipmentUpgradeSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void test02ValidateEquipmentUpgradeSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         Gladiator gladiator = new Gladiator("Example");
 
         int energyPoints = gladiator.getEnergy();
@@ -47,7 +48,7 @@ public class MapFacadeTest {
     }
 
     @Test
-    public void validateBeastSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void test03ValidateBeastSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         Gladiator gladiator = new Gladiator("Example");
 
         int energyPoints = gladiator.getEnergy();
@@ -61,7 +62,7 @@ public class MapFacadeTest {
     }
 
     @Test
-    public void validateWineSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void test04ValidateWineSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         Gladiator gladiator = new Gladiator("Example");
         int initialEnergy = 20;
         int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
@@ -78,7 +79,7 @@ public class MapFacadeTest {
     }
 
     @Test
-    public void validateInjurySquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void test05ValidateInjurySquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         Gladiator gladiator = new Gladiator("Example");
 
         Square square = path.get(3);
@@ -89,15 +90,22 @@ public class MapFacadeTest {
         assertEquals(currentPathPosition,newPathPosition);
     }
     @Test
-    public void validateInitialSquarePosition() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void test06ValidateInitialSquarePosition() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         Position initialPosition = path.get(0).getPosition();
         Position expectedPosition = new Position(1, 7, 0);
         assertTrue(initialPosition.comparePosition(expectedPosition));
     }
     @Test
-    public void validateFinalSquarePosition() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void test07ValidateFinalSquarePosition() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         Position finalPosition = path.get(path.size()-1).getPosition();
         Position expectedPosition = new Position(17, 1, path.size()-1);
         assertTrue(finalPosition.comparePosition(expectedPosition));
+    }
+    @Test
+    public void test02ValidateMapDimensions() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+        MapFacade mapFacade = new MapFacade();
+        Dimension2D dimensions = mapFacade.mapDimensions();
+        assertEquals(10, dimensions.getWidth());
+        assertEquals(18, dimensions.getHeight());
     }
 }

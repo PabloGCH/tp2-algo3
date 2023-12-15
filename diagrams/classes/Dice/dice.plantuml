@@ -1,7 +1,7 @@
 @startuml
 class Dice{
-    -Random throwResult
-    -int diceFaces
+    -throwResult: Random
+    -diceFaces: int 
     +Dice()
     +throwDice(): int
 }

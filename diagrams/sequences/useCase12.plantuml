@@ -1,25 +1,40 @@
 @startuml
 
 autonumber
+actor Actor
 
 activate Actor
 
-actor Actor
-Actor -> Game : <<Create>> Game(gladiators,map)
-activate Game
-    loop until all gladiators are saved and does not exceed the maximum of 6 gladiators 
-    Game -> Game : addGladiator(Gladiator)
-    activate Game
-    deactivate Game
-    end loop
-deactivate Game
+create StateGame
+Actor -> StateGame: <<Create>>
+create collections Square
+Actor -> Square: <<create>>
+create EffectFactory
+Actor -> EffectFactory: <<create>>
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("Comida"), new Position(0,0,0))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(1,0,1))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\nnew FinishLineEffect(), new Position(2,0,2))
 
-Actor -> Game : startGame()
-loop until turn is greater than or equal to 30
+create collections Gladiator
+Actor -> Gladiator: <<create>>
+Actor -> Gladiator: add(new Gladiator("Example"))
+
+create Game
+Actor -> Game: getInstance(Gladiator, Square, new Dice())
+
+Actor -> Game: startGame()
+
+loop Until the Finalized method returns true
+Actor -> Game: playTurn(1)
 activate Game
-    Game --> Actor : true
+    Game --> Actor: StateGame
 deactivate Game
 end loop
+
+Actor -> StateGame: result(Gladiator)
+activate StateGame
+    StateGame --> Actor: false
+deactivate StateGame
 
 deactivate Actor
 

@@ -1,12 +1,7 @@
 package edu.fiuba.algo3.modelo.gladiator.rank;
 
 public interface Rank {
-    //attributes
-    
-    //methods
-
-    public int energyFromExperience(int amount);
-
-    public Rank ascent();
-
+    int energyFromExperience(int amount);
+    Rank ascent();
+    String showRank();
 }

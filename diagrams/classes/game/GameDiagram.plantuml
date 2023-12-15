@@ -1,0 +1,12 @@
+@startuml
+!include Game.plantuml
+!include GameState.plantuml
+!include ../Gladiator/Gladiator.plantuml
+!include ../square/Square.plantuml
+!include GameState.plantuml
+Game o-- "2..6" Gladiator: contains
+Game *-- GameState
+Game o-- "*" Square: contains
+Game --> Game
+
+@enduml

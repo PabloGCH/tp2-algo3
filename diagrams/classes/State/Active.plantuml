@@ -1,0 +1,11 @@
+@startuml
+
+class Active{
+    +move(diceResult: int): Int
+    +update(energy: int): State
+    +runEffect(effect: Effect, gladiator: Gladiator)
+    +fracture(): State
+    +getIntoBacchanalia(aGladiator: Gladiator ): State
+}
+
+@enduml

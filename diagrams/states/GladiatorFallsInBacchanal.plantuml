@@ -1,0 +1,15 @@
+@startuml
+
+[*] --> Active: start game
+
+Active --> Bacchanal : roll the dice and\nfall into bacchanal
+
+state wine_result <<fork>>
+Bacchanal --> wine_result: wine result
+
+wine_result --> Active : its energy\nis greater than 0
+wine_result --> Tired: its energy\nis 0 or negative
+
+Active --> [*] : The next turn\nyou can play again
+Tired --> [*] : skips next turn
+@enduml

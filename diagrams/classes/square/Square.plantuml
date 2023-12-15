@@ -1,0 +1,9 @@
+@startuml
+
+class Square {
+    -Square(obstacle: Effect, prize: Effect, aPosition: Position)
+    +affect(gladiator: Gladiator)
+    +getPosition(): Position
+}
+
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+
+[*] --> Active: start game
+
+Active --> Injured : roll the dice\nand gets injured
+
+Injured --> Active: Passing a turn\nrecovers
+
+Active --> [*] : The next turn\nyou can play again
+@enduml

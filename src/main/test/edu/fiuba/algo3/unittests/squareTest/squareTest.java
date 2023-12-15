@@ -2,10 +2,7 @@ package edu.fiuba.algo3.unittests.squareTest;
 
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -50,7 +47,6 @@ public class squareTest {
     @Test
     public void test03AGladiatorWithNoEquipmentLoosesEnergyAfterFight() {
         Gladiator aGladiator = new Gladiator("Example");
-        Effect food = new Food();
         Effect fight = new Beast();
         int initialEnergy;
         int finalEnergy;
@@ -68,11 +64,11 @@ public class squareTest {
     @Test
     public void test04AGladiatorLoosesExpectedEnergyAfterDrinkingWine() {
         Gladiator aGladiator = new Gladiator("Example");
-        Effect aBacchanalia = new Bacchanalia();;
+        Effect aBacchanalia = new Bacchanalia();
         int initialEnergy;
         int initialExpectedEnergy = 20;
         int finalEnergy;
-        int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
+        int energyLostInBacchanaliaWithDiceResultOne = 4;
 
         initialEnergy = aGladiator.getEnergy();
         assertEquals(initialEnergy, initialExpectedEnergy);
@@ -102,7 +98,7 @@ public class squareTest {
     }
 
     @Test
-    public void test06AGladiatorStepsOnTheFinishLineWithoutKeyAndIsSetOnTheMiddleSquare() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
+    public void test06AGladiatorStepsOnTheFinishLineWithoutKeyAndIsSetOnTheMiddleSquare() {
         ArrayList<Gladiator> gladiators = new ArrayList<>();
         Gladiator aGladiator = new Gladiator("Example");
         ArrayList<Square> map = new ArrayList<>();
@@ -158,5 +154,49 @@ public class squareTest {
         int newPosition = aGladiator.move(map.size(), 1);
         assertEquals(initialPosition, newPosition);
         assertEquals(expectedInitialEnergy, aGladiator.getEnergy());
+    }
+    @Test
+    public void test08FoodGetNameReturnsCorrectName(){
+        Food food = new Food();
+        assertEquals("food", food.getName());
+    }
+    @Test
+    public void test09NullEffectGetNameReturnsCorrectName(){
+        NullEffect nullEffect = new NullEffect();
+        assertEquals("", nullEffect.getName());
+    }
+    @Test
+    public void test10UpgradeGetNameReturnsCorrectName(){
+        Upgrade upgrade = new Upgrade();
+        assertEquals("upgrade", upgrade.getName());
+    }
+    @Test
+    public void test11InjuryGetNameReturnsCorrectName(){
+        Injury injury = new Injury();
+        assertEquals("injury", injury.getName());
+    }
+    @Test
+    public void test12FinishLineEffectGetNameReturnsCorrectName(){
+        FinishLineEffect finishLineEffect = new FinishLineEffect();
+        assertEquals("finishline", finishLineEffect.getName());
+    }
+    @Test
+    public void test13BeastGetNameReturnsCorrectName(){
+        Beast beast = new Beast();
+        assertEquals("beast", beast.getName());
+    }
+    @Test
+    public void test14BacchanaliaGetNameReturnsCorrectName(){
+        Bacchanalia bacchanalia = new Bacchanalia();
+        assertEquals("bacchanalia", bacchanalia.getName());
+    }
+    @Test
+    public void test15getEffectNamesReturnCorrectsNames(){
+        EffectFactory effectFactory = new EffectFactory();
+        Position position = new Position(0,0,0);
+        Square square = new Square(effectFactory.createEffect("Fiera"), effectFactory.createEffect("Comida"),position);
+        ArrayList<String> effectsNames = square.getEffectNames();
+        assertEquals("beast", effectsNames.get(0));
+        assertEquals("food", effectsNames.get(1));
     }
 }

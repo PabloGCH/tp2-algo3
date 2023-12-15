@@ -1,0 +1,15 @@
+@startuml
+!include ../Equipment/Equipment.plantuml
+!include Gladiator.plantuml
+!include ../rank/Rank.plantuml
+!include ../position/Position.plantuml
+!include ../State/State.plantuml
+!include ../game/TurnDecider.plantuml
+
+Rank --* Gladiator
+Equipment -* Gladiator
+Gladiator --> Position
+Gladiator *- State
+Gladiator ..> TurnDecider
+
+@enduml

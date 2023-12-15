@@ -1,0 +1,6 @@
+@startuml
+class TurnDecider {
+    -TurnDecider(gladiators: ArrayList )
+    +finishTurn()
+}
+@enduml

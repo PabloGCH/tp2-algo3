@@ -1,0 +1,7 @@
+@startuml
+
+class Upgrade {
+    +affect(gladiator: Gladiator)
+}
+
+@enduml

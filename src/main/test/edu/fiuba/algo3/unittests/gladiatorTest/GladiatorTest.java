@@ -3,9 +3,9 @@ package edu.fiuba.algo3.unittests.gladiatorTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.fiuba.algo3.modelo.factories.EffectFactory;
-import edu.fiuba.algo3.modelo.squares.Position;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 
 public class GladiatorTest {
@@ -135,5 +135,33 @@ public class GladiatorTest {
         initialSquare.affect(gladiator);
         int newPosition = gladiator.move(10,1);
         assertEquals(1, newPosition);
+    }
+    @Test
+    public void canPlayReturnsDependingTheState(){
+        Gladiator gladiator = new Gladiator("Example");
+        assertTrue(gladiator.canPlay());
+
+        gladiator.fightWithBeast();
+        gladiator.refreshState();
+        assertFalse(gladiator.canPlay());
+
+        gladiator.eat();
+        gladiator.refreshState();
+        gladiator.injured();
+        assertFalse(gladiator.canPlay());
+
+        gladiator.refreshState();
+        gladiator.refreshState();
+        gladiator.getIntoBacchanalia();
+        assertTrue(gladiator.canPlay());
+
+        gladiator.refreshState();
+        gladiator.refreshState();
+        gladiator.upgrade();
+        gladiator.upgrade();
+        gladiator.upgrade();
+        gladiator.upgrade();
+        gladiator.tryToWin(new Position(0,0,0));
+        assertFalse(gladiator.canPlay());
     }
 }

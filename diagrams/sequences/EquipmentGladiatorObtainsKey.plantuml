@@ -1,0 +1,59 @@
+@startuml
+autonumber
+actor Actor
+activate Actor
+
+create Gladiator
+Actor -> Gladiator: <<create>>
+activate Gladiator
+    create NullEquipment
+    Gladiator -> NullEquipment: <<create>>
+deactivate Gladiator
+
+Actor -> Gladiator: upgrade()
+activate Gladiator
+    Gladiator -> NullEquipment: upgrade()
+deactivate Gladiator
+
+activate NullEquipment
+create Helmet
+    NullEquipment --> Helmet: <<create>>
+deactivate NullEquipment
+
+Actor -> Gladiator: upgrade()
+activate Gladiator
+    Gladiator -> Helmet: upgrade()
+deactivate Gladiator
+
+activate Helmet
+    create Armor
+    Helmet --> Armor: <<create>>
+deactivate Helmet
+
+Actor -> Gladiator: upgrade()
+activate Gladiator
+    Gladiator -> Armor: upgrade()
+deactivate Gladiator
+
+activate Armor
+    create ShieldSword
+    Armor --> ShieldSword: <<create>>
+deactivate Armor
+
+Actor -> Gladiator: upgrade()
+activate Gladiator
+    Gladiator -> ShieldSword: upgrade()
+deactivate Gladiator
+
+activate ShieldSword
+    create Key
+    ShieldSword --> Key: <<create>>
+deactivate ShieldSword
+
+Actor -> Gladiator: upgrade()
+activate Gladiator
+    Gladiator -> Key: upgrade()
+deactivate Gladiator
+
+deactivate Actor
+@enduml

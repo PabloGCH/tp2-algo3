@@ -1,7 +1,0 @@
-@startuml
-Interface Equipment {
-    +upgrade(): Equipment
-    +receiveAttack(Energy: energyPoints): Energy
-    +complete(): boolean
-}
-@enduml

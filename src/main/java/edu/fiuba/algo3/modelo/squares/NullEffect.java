@@ -6,6 +6,11 @@ public class NullEffect implements Effect{
     @Override
     public void affect(Gladiator aGladiator)
     {
-        // Do nothing;
-    };
+    }
+    public String getName() {
+        return "";
+    }
+    @Override
+    public void addObserver(EffectObserver observer) {
+    }
 }

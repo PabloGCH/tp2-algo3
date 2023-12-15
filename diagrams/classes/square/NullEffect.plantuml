@@ -1,0 +1,7 @@
+@startuml
+
+class NullEffect {
+    +affect(gladiator: Gladiator)
+}
+
+@enduml

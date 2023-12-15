@@ -2,7 +2,6 @@ package edu.fiuba.algo3.unittests.rankTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.gladiator.rank.Senior;
 
 public class seniorTest {
@@ -30,5 +29,10 @@ public class seniorTest {
         int newEnergy = senior.energyFromExperience(energy);
 
         assertEquals(20, newEnergy);
+    }
+    @Test
+    public void showRankReturnsCorrectName(){
+        Senior senior = new Senior();
+        assertEquals("Senior", senior.showRank());
     }
 }

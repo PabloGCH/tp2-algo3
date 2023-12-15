@@ -1,0 +1,7 @@
+@startuml
+class Tired{
+    +update(energy: Energy): State
+    +energyFromState(energy: int): int
+    +showState(): string
+}
+@enduml

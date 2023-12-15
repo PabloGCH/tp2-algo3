@@ -1,0 +1,14 @@
+@startuml
+
+[*] --> NullEquipment: start game
+
+NullEquipment --> Helmet : The gladiator falls into a\nsquare with equipment improvement
+
+Helmet --> Armor: The gladiator falls into a square with\nequipment improvement
+
+Armor --> swordAndShield: The gladiator falls into a\nsquare with equipment improvement
+
+swordAndShield --> Key: The gladiator falls into a\nsquare with equipment improvement
+
+Key --> [*]
+@enduml

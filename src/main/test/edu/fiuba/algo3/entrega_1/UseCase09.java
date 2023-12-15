@@ -2,10 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.factories.*;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
-import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
-import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,8 +10,7 @@ import java.util.ArrayList;
 
 public class UseCase09 {
     @Test
-    public void test09AGladiatorReturnsToMiddleSquare() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
-        ArrayList<Gladiator> gladiators = new ArrayList<>();
+    public void test09AGladiatorReturnsToMiddleSquare(){
         Gladiator aGladiator = new Gladiator("Example");
 
         ArrayList<Square> map = new ArrayList<>();
@@ -42,9 +38,8 @@ public class UseCase09 {
         Square lastSquare = new Square(effectFactory.createEffect("NullEffect"), finishLineEffect, position);
         map.add(lastSquare);
 
-        gladiators.add(aGladiator);
         lastSquare.affect(aGladiator);
 
-        Assertions.assertEquals(4, aGladiator.move(map.size(), 1));
+        Assertions.assertEquals(3, aGladiator.move(map.size(), 0));
     }
 }

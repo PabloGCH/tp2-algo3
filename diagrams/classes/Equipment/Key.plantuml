@@ -1,0 +1,8 @@
+@startuml
+class Key {
+    +upgrade(): Equipment
+    +receiveAttack(energy: int): int
+    +win(state: State) State
+    +showName(): String
+}
+@enduml

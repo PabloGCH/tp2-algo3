@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.view;
 
+import edu.fiuba.algo3.controller.GameStateController;
 import edu.fiuba.algo3.controller.StartButtonController;
 import edu.fiuba.algo3.modelo.mapJsonParser.InvalidMapFile;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileCouldNotBeParsed;
@@ -7,28 +8,25 @@ import edu.fiuba.algo3.modelo.mapJsonParser.MapFileFailedToOpenOrClose;
 import edu.fiuba.algo3.modelo.mapJsonParser.MapFileNotFound;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 public class InitialView {
-    private final int MAX_PLAYERS_AMOUNT = 5;
+    private final int MAX_PLAYERS_AMOUNT = 6;
     private final int MIN_PLAYERS_AMOUNT = 2;
     private final int PLAYERS_PER_ROW = 3;
     private final int PLAYERS_PER_COLUMN = 2;
-    ArrayList<TextField> nameFields;
-    public Scene initialScene(Stage stage, ArrayList nameFields) {
-        this.nameFields = nameFields;
+    private final int STAGE_HEIGHT = 450;
+    private final int STAGE_WIDTH = 480;
+    ArrayList<TextField> nameFields = new ArrayList<>();
+    public VBox initialScene(Stage stage) {
+        GameStateController.getInstance(stage);
         VBox mainContainer = new VBox();
         mainContainer.getStyleClass().add("main-container");
         Label invalidNamesText = new Label("Los nombres deben ser únicos y de al menos 4 caracteres");
@@ -43,11 +41,10 @@ public class InitialView {
             for (int row = 0; row < PLAYERS_PER_ROW; row++) {
                 if (playersCreated < MIN_PLAYERS_AMOUNT) {
                     grid.add(createDefaultGladiator(), row, column);
-                    playersCreated++;
-                } else if (playersCreated < MAX_PLAYERS_AMOUNT){
+                } else {
                     grid.add(newAddCard(), row, column);
-                    playersCreated++;
                 }
+                playersCreated++;
             }
         }
 
@@ -79,13 +76,10 @@ public class InitialView {
         mainContainer.getChildren().add(invalidNamesText);
         mainContainer.setPrefWidth(150*PLAYERS_PER_ROW + 20);
         mainContainer.setPadding(new Insets(0, 0, 10, 0));
-        Scene scene = new Scene(mainContainer);
-
-        scene.getStylesheets().add(getClass().getResource("/initialScene.css").toExternalForm());
-
-        return scene;
+        stage.setHeight(STAGE_HEIGHT);
+        stage.setWidth(STAGE_WIDTH);
+        return mainContainer;
     }
-
     private VBox newAddCard() {
         VBox aVBox = new VBox();
         aVBox.setPrefSize(150, 150);
@@ -99,6 +93,7 @@ public class InitialView {
         Button addButton = new Button("+");
         addButton.getStyleClass().add("plus-sign");
         addButton.getStyleClass().add("btn");
+        vBox.setPadding(new Insets(5));
         addButton.setOnAction(e -> addGladiator(vBox));
         return addButton;
     }
@@ -120,6 +115,7 @@ public class InitialView {
     }
     private void addGladiator(VBox container) {
         container.getChildren().clear();
+        container.setPadding(new Insets(32, 5, 0, 5));
 
         Label nameLabel = new Label("Nombre");
         TextField gladiatorNameField = new TextField();
@@ -134,7 +130,6 @@ public class InitialView {
         container.getChildren().add(deleteGladiator);
         deleteGladiator.setOnAction(e -> removeGladiator(container, gladiatorNameField));
     }
-
     private void removeGladiator(VBox gladiatorField, TextField nameField) {
         gladiatorField.getChildren().clear();
         gladiatorField.getChildren().add(setAddButton(gladiatorField));

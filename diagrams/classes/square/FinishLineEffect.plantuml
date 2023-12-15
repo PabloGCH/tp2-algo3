@@ -1,0 +1,8 @@
+@startuml
+
+class FinishLineEffect {
+    +affect(gladiator: Gladiator)
+    +setMiddlePosition(aPosition: Position)
+}
+
+@enduml

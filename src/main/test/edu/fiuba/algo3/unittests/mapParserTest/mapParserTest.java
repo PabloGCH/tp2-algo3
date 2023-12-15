@@ -2,11 +2,8 @@ package edu.fiuba.algo3.unittests.mapParserTest;
 
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.*;
-import edu.fiuba.algo3.modelo.squares.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
 import org.junit.jupiter.api.Test;
-
-import java.sql.SQLInput;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,7 +39,46 @@ public class mapParserTest {
             );
         });
     }
-
+    @Test
+    public void validateJSONMapWithoutCaminoThrowsError() {
+        assertThrows(InvalidMapFile.class, () -> {
+            var mapParser = new MapJsonParser();
+            mapParser.loadMap(
+                    "src/main/resources/files/mapWithoutCamino.json",
+                    "mapWithoutCamino.json"
+            );
+        });
+    }
+    @Test
+    public void validateJSONMapWithoutCeldasThrowsError() {
+        assertThrows(InvalidMapFile.class, () -> {
+            var mapParser = new MapJsonParser();
+            mapParser.loadMap(
+                    "src/main/resources/files/mapWithoutCeldas.json",
+                    "mapWithoutCeldas.json"
+            );
+        });
+    }
+    @Test
+    public void validateJSONFileJSONArrayThrowsError() {
+        assertThrows(InvalidMapFile.class, () -> {
+            var mapParser = new MapJsonParser();
+            mapParser.loadMap(
+                    "src/main/resources/files/JSONArray.json",
+                    "NotJSONArray.json"
+            );
+        });
+    }
+    @Test
+    public void validateJSONWithWrongCoordinateThrowsError() {
+        assertThrows(InvalidMapFile.class, () -> {
+            var mapParser = new MapJsonParser();
+            mapParser.loadMap(
+                    "src/main/resources/files/mapWithWrongCoordinates.json",
+                    "mapWithWrongCoordinates.json"
+            );
+        });
+    }
     @Test
     public void validateFoodSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         var mapParser = new MapJsonParser();
@@ -109,7 +145,7 @@ public class mapParserTest {
                 "mapTest.json"
         );
         Gladiator gladiator = new Gladiator("Example");
-        int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
+        int energyLostInBacchanaliaWithDiceResultOne = 4;
 
         Square square = path.get(0);
         square.affect(gladiator);

@@ -1,21 +1,26 @@
 @startuml
 class Gladiator {
-    -win: boolean 
     -name : String
+    -energy: int
     +Gladiator(): Gladiator
-    +move()
+    +move(): int
     +drinkWine()
     +eat()
     +fightWithBeast()
     +upgrade()
     +gameOver()
     +getName(): String
-    +turn(): boolean
     +injured()
-    +setInitialEnergy(Energy energy)
-    +completeArmament(): boolean
-    +getEnergy(): Energy
+    +getEnergy(): int
     +update()
-
+    +runEffect()
+    +positionate()
+    +getIntoBacchanalia()
+    +refreshState()
+    +won(): GameState
+    +decideIfPlaysAgain(turnDecider: TurnDecider)
+    +turnEnded(gladiatorTurn: int ): int
+    +tryToWin(middlePosition: Position)
+    +rest()
 }
 @enduml

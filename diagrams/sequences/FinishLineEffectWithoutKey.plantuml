@@ -1,0 +1,63 @@
+@startuml
+autonumber
+actor Actor
+activate Actor
+create collections Square
+Actor -> Square: <<create>>
+
+create  Gladiator
+Actor -> Gladiator: <<create>>
+activate Gladiator
+    create Active
+    Gladiator -> Active : <<create>>
+    create NullEquipment
+    Gladiator -> NullEquipment: <<create>>
+deactivate Gladiator
+
+create EffectFactory
+Actor -> EffectFactory: <<create>>
+
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(0,0,0))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(1,0,1))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(2,0,2))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("Comida"), new Position(3,0,3))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(4,0,4))
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\neffectFactory.createEffect("NullEffect"), new Position(5,0,5))
+
+create FinishLineEffect
+Actor -> FinishLineEffect: <<create>>
+activate FinishLineEffect
+    Actor -> FinishLineEffect: setMiddlePosition(middlePosition)
+deactivate FinishLineEffect
+
+Actor -> Square: add(effectFactory.createEffect("NullEffect"),\nFinishLineEffect, new Position(6,0,6))
+activate Square
+    Actor -> FinishLineEffect: affect(Gladiator)
+deactivate Square
+
+activate FinishLineEffect
+    FinishLineEffect -> Gladiator: tryToWin(middlePosition)
+deactivate FinishLineEffect
+
+activate Gladiator
+    Gladiator -> NullEquipment: win(Active)
+    activate NullEquipment
+        NullEquipment --> Gladiator: Active
+    deactivate NullEquipment
+    activate Active
+        Gladiator -> Active: tryToWin(this, middlePosition)
+        Active -> Gladiator: positionate(middlePosition)
+    deactivate Active
+deactivate Gladiator
+
+Actor -> Gladiator: move(map.size(), 0)
+activate Gladiator
+    Gladiator -> Active: move(0)
+    activate Active
+        Active --> Gladiator: 0
+    deactivate Active
+    Gladiator --> Actor: 3
+deactivate Gladiator
+
+deactivate Actor
+@enduml

@@ -1,22 +1,16 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.factories.EffectFactory;
 import edu.fiuba.algo3.modelo.gladiator.Gladiator;
 import edu.fiuba.algo3.modelo.mapJsonParser.*;
-import edu.fiuba.algo3.modelo.squares.Effect;
-import edu.fiuba.algo3.modelo.squares.Position;
+import edu.fiuba.algo3.modelo.position.Position;
 import edu.fiuba.algo3.modelo.squares.Square;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.mockito.Mockito.mock;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class UseCase16 {
-
     @Test
     public void validateFoodSquareCreationFromMapJson() throws MapFileNotFound, MapFileFailedToOpenOrClose, MapFileCouldNotBeParsed, InvalidMapFile {
         var mapParser = new MapJsonParser();
@@ -89,7 +83,7 @@ public class UseCase16 {
         );
         Gladiator gladiator = new Gladiator("Example");
         int initialEnergy = 20;
-        int energyLostInBacchanaliaWithDiceResultOne = 1 * 4;
+        int energyLostInBacchanaliaWithDiceResultOne = 4;
 
         int energyPoints = gladiator.getEnergy();
         assertEquals(20, energyPoints);
