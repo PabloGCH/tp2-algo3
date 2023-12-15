@@ -63,6 +63,6 @@ public class KeyTest {
     @Test
     public void test05ShowNameReturnsCorrectName(){
         Key key = new Key();
-        assertEquals("Key", key.showName());
+        assertEquals("key", key.showName());
     }
 }

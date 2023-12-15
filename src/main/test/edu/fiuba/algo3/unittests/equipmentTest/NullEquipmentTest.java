@@ -63,6 +63,6 @@ public class NullEquipmentTest {
     @Test
     public void test05ShowNameReturnsCorrectName(){
         NullEquipment nullEquipment = new NullEquipment();
-        assertEquals("Without equipment", nullEquipment.showName());
+        assertEquals("null-equipment", nullEquipment.showName());
     }
 }

@@ -53,6 +53,6 @@ public class HelmetTest {
     @Test
     public void test05ShowNameReturnsCorrectName(){
         Helmet helmet = new Helmet();
-        assertEquals("Helmet", helmet.showName());
+        assertEquals("helmet", helmet.showName());
     }
 }

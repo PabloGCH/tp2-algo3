@@ -63,6 +63,6 @@ public class ShieldSwordTest {
     @Test
     public void test05ShowNameReturnsCorrectName(){
         ShieldSword shieldSword = new ShieldSword();
-        assertEquals("Shield and Sword", shieldSword.showName());
+        assertEquals("shield-and-sword", shieldSword.showName());
     }
 }

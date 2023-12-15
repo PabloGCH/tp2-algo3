@@ -62,6 +62,6 @@ public class ArmorTest {
     @Test
     public void test05ShowNameReturnsCorrectName(){
         Armor armor = new Armor();
-        assertEquals("Armor", armor.showName());
+        assertEquals("armor", armor.showName());
     }
 }
